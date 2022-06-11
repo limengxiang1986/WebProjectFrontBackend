@@ -1,0 +1,141 @@
+
+@font-face {
+  font-family: 'iconfont';
+  src: url('../font/iconfont.ttf?t=1637653567978') format('truetype');
+}
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.clearfix:after{
+	content: '';
+	display: block;
+	clear: both;
+}
+.fl {
+	float: left;
+}
+.fr {
+	float: right;
+}
+.fi {
+	float: inherit;
+}
+.mr3 {
+	margin-right: 3px;
+}
+.mr5 {
+	margin-right: 5px;
+}
+.mr7 {
+	margin-right: 7px;
+}
+.mr10 {
+	margin-right: 10px;
+}
+.mr12 {
+	margin-right: 12px;
+}
+.mr30 {
+	margin-right: 30px;
+}
+.mr20 {
+	margin-right: 20px;
+}
+.c4{
+	color: #f40;
+}
+.c5{
+	color: #f50;
+}
+.cn{
+    color: #124191;
+}
+
+/*头部信息*/
+#headMessage {
+  color: #ffffff;
+  background-color: #124191;
+  top: 0px;
+  width: 100%;
+  position: fixed;
+  height: 40px;
+  line-height: 40px;
+}
+#headMessage li{
+  float: left;
+  line-height: 35px;
+  padding: 0 12px ;
+  list-style-type:none;
+  font-size: 0px;
+}
+
+#headMessage a{
+  color: #FFFFFF;
+  font-size: 14px;
+}
+
+#headMessage a:hover{
+  color: #bfbfbf;
+}
+
+#headMessage a.login{
+  color: #bfbfbf;
+}
+
+#headMessage span{
+  font-size: 14px;
+}
+
+#headMessage span.arrow{
+  margin-left: 7px;
+}
+
+#headMessage span#searchbtn:hover{
+    color: #bfbfbf;
+}
+
+#headMessage span#searchbtn{
+    cursor: pointer;
+}
+
+#headMessage li strong{
+  font-size: 14px;
+  color: #f22e00;
+}
+
+#headMessage li a.store{
+  color: #FFFFFF;
+}
+
+#headMessage li a{
+  vertical-align: center;
+}
+
+#headMessage li.line{
+  font-size: 14px;
+  color: #FFFFFF;
+  padding: 2px 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+

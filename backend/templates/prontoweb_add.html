@@ -1,0 +1,2294 @@
+{% extends 'layout.html' %}
+{% block headMessageSed %}
+<style >
+.topnav {
+    overflow: hidden;
+    background-color: #D0D9E9;
+    height: 35px;
+    position: fixed;
+    top: 40px;
+    z-index: 10;
+    width: 100%;
+    border-bottom: 1px solid #AAAACC;
+}
+.topnav ul{
+    display: inline-block;
+    height: 35px;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+}
+.topnav ul li{
+    height: 35px;
+    border-right: 0px solid #AAAACC;
+    margin: 0px 0px;
+    padding: 0px 50px;
+    align-content: center;
+    vertical-align: middle;
+    font-size: 16px;
+    display: table-cell;
+    top: 3px;
+    color: #124191;
+    cursor: pointer;
+}
+.headmessagesedchecked{
+    transform: scale(1);
+    border-bottom: 1px solid #8195B2;
+    background: #8195B2;
+    color: #FFFFFF;
+}
+.topnavsub {
+    overflow: hidden;
+    background-color: #D0D9E9;
+    border-bottom: 1px solid #AAAACC;
+    height: 35px;
+    position: fixed;
+    top: 76px;
+    z-index: 10;
+    width: 100%;
+    color: #FFFFFF;
+}
+.topnavsub ul{
+    display: inline-block;
+    height: 35px;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+}
+.topnavsub ul li{
+    height: 35px;
+    border-right: 0px solid #AAAACC;
+    margin: 0px 0px;
+    padding: 0px 50px;
+    align-content: center;
+    vertical-align: middle;
+    font-size: 16px;
+    display: table-cell;
+    top: 3px;
+    color: #6A6A71;
+    cursor: pointer;
+}
+</style>
+<div class="topnav" id="toptab">
+    <ul>
+        <li id="tab-radio-1" ischecked="true" class="headmessagesedchecked">RCA-Facts</li>
+        <li id="tab-radio-2" >RCA</li>
+        <li id="tab-radio-3" >EDA</li>
+        <li id="tab-radio-4" >SUMMARY</li>
+    </ul>
+</div>
+<div class="topnavsub" id="topnavsub" style="display: none;z-index: 3">
+    <ul>
+        <li id="edaradio1" ischecked="true" class="headmessagesedchecked">SCT</li>
+        <li id="edaradio2" >ET</li>
+        <li id="edaradio3" >ST</li>
+    </ul>
+</div>
+<div id="mainscrollid1" style="top: 23px;position: relative;z-index: 2;margin-left: 20px;">
+    <a href="javascript:void(0);" id="mainscrollicon" style="text-decoration: none;">
+        <span class="iconfont" style="font-size: 23px;">&#xf004d;</span>
+        <p style="display: inline-block;font-size: 23px;margin: 0px 0px 0px 5px;">Online RCA</p>
+    </a>
+</div>
+{% endblock %}
+
+{% block body %}
+<style type="text/css">
+html {
+    font-family: sans-serif;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    margin: 0px;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    display: table;
+    border-collapse: separate;
+    box-sizing: border-box;
+    text-indent: initial;
+    border-spacing: 2px;
+    border-color: grey;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-family: sans-serif;
+    -ms-text-size-adjust: 100%;
+    max-width: 4500px;
+}
+
+td,th {
+    display: table-cell;
+    vertical-align: top;
+    max-width: 500px;
+}
+table th {
+    font-size: 15px;
+    font-weight: bold;
+}
+table td p{
+    padding: 2px 2px 2px 2px;
+    text-align: left;
+    color: #252525;
+    font-size: 15px;
+    display: inline-block;
+    width: 89%;
+    left: 2px;
+    word-wrap:break-word;
+    white-space: pre-line;
+}
+table td a:link{
+    color: black;
+}
+table td a:visited{
+    color: black;
+}
+table td span:first-child {
+    display: block;
+    top: 0px;
+    alignment: center;
+    margin: 5px;
+    opacity : 0.7;
+    float: right;
+}
+table td svg {
+    display: inline-block;
+    top: 20px;
+    alignment: center;
+    margin: 5px;
+    opacity : 0.7;
+}
+
+textarea{
+    font-size: 13px;
+}
+.firstCol{
+    background-color: #FFCC00
+}
+.whyclass5{
+    background-color: #194A95;
+    color: #FFFFFF;
+}
+.rootCauseClass{
+    background-color: #194A95;
+    color: #FFFFFF;
+}
+.ActionProposalClass{
+    background-color: #194A95;
+    color: #FFFFFF;
+}
+.RootCauseSubClass{
+    background-color: #194A95;
+    color: #FFFFFF;
+}
+
+.textareayellow{
+    color:black;
+    background-color:#FFADBB;;
+    color: #FFFFFF;
+}
+
+
+
+select{
+    font-size: 13px;
+}
+.pure-table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    empty-cells: show;
+    border: 1px solid #cbcbcb;
+}
+
+.pure-table caption {
+    color: #C7CAD1;
+    font: italic 85%/1 arial,sans-serif;
+    padding: 1em 0;
+    text-align: center;
+}
+
+.pure-table td,.pure-table th {
+    border-left: 1px solid #cbcbcb;
+    border-width: 0 0 0 1px;
+    font-size: inherit;
+    margin: 0;
+    overflow: visible;
+    padding: .5em 1em;
+}
+
+.pure-table thead {
+    background-color: #e0e0e0;
+    color: #C7CAD1;
+    text-align: left;
+    vertical-align: bottom;
+}
+
+.pure-table td {
+    background-color: transparent;
+}
+
+.showtext{
+  width: 99%;
+  height: 100%;
+  resize: none;
+  overflow-y:scroll;
+  }
+
+
+.btnpanel{
+   background-color:#194A95;
+   alignment: left;
+   width: 30px;
+}
+
+div {
+}
+form {
+}
+textarea{
+}
+input {
+}
+
+
+#f_top {
+    position:fixed;
+	bottom:110px;
+	right:15px;
+	width:70px;
+	height:30px;
+	background: #3DAA00;
+	opacity: 0.45;
+	color: white;
+	text-align: center;
+	line-height: 30px;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+#f_rca {
+    position:fixed;
+	bottom:110px;
+	right:15px;
+	width:70px;
+	height:30px;
+	background: #3DAA00;
+	opacity: 0.45;
+	color: white;
+	text-align: center;
+	line-height: 30px;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+#f_bottom {
+    position:fixed;
+	bottom:70px;
+	right:15px;
+	width:70px;
+	height:30px;
+	background: #3DAA00;
+	opacity: 0.45;
+	color: white;
+	text-align: center;
+	line-height: 30px;
+	cursor: pointer;
+	border-radius: 5px;
+}
+#RcaScrollFooter {
+    width: 100%;
+    position: fixed ;
+    line-height: 20px;
+    bottom: 35px;
+}
+
+.rcascrollclass::-webkit-scrollbar{
+    display: none;
+}
+
+
+.tab-wrapper{
+    padding: 0px 30px;
+}
+.tab-wrapper .tab-radio{
+  display: none;
+}
+.tab-wrapper label{
+    color: black;
+    border-radius: 4px 4px 0px 0px;
+    border: 1px solid #252525;
+    background-color: #EFEFEF;
+    border-bottom: 0px solid #EFEFEF;
+    width: 80px;
+    height: 29px;
+    border-bottom-color: #EFEFEF;
+    text-align: center;
+}
+.tab-handler{
+  position: relative;
+  display: block;
+  float: left;
+  height: 29px;
+  color: #fff;
+  padding: 0px 30px;
+  font-size: 14px;
+  line-height: 29px;
+  transition: .3s;
+  transform: scale(.9);
+}
+.tab-radio:checked + .tab-handler{
+  transform: scale(1);
+  border-bottom: 1px solid #8195B2;
+  background: #8195B2;
+  color: #FFFFFF;
+}
+/**
+.tab-radio:checked + .tab-handler + .tab-content{
+  visibility: visible;
+  opacity: 1;
+  transform: scale(1);
+}
+ */
+.tab-content{
+  position: relative ;
+  top: 5px;
+  left: 0;
+  width: 100%;
+  padding: 0px;
+  #color: #fff;
+  font-size: 14px;
+  line-height: 1.618em;
+  #background-color: #fff;
+  opacity: 1;
+  transition: transform .3s, opacity .7s;
+  transform: translateY(20px);
+}
+.eda-wrapper{
+    position: relative;
+    width: 100%;
+    height: 29px;
+    background-color: #215F7C;
+    border-radius: 4px 4px 0px 0px;
+}
+.eda-wrapper .eda-radio{
+  display: none;
+}
+.eda-handler{
+    position: relative;
+    display: block;
+    float: left;
+    height: 29px;
+    padding: 0 54px;
+    color: #fff;
+    font-size: 16px;
+    line-height: 29px;
+    transition: .3s;
+    transform: scale(.9);
+    border: 0px;
+    border-color: #FFFFFF;
+}
+.eda-radio:checked + .eda-handler{
+    background: #8195B2;
+    color: #FFFFFF;
+    transform: scale(1);
+    border-right: 1px solid white;
+}
+.resizeclass th {
+    cursor:col-resize;
+}
+label, input { display:block; }
+input.text { margin-bottom:12px; width:95%; padding: .4em; }
+fieldset { padding:0; border:0; margin-top:25px; }
+h1 { font-size: 1.2em; margin: .6em 0; }
+div#users-contain { width: 350px; margin: 20px 0; }
+div#users-contain table { margin: 1em 0; border-collapse: collapse; width: 100%; }
+div#users-contain table td, div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left; }
+.ui-dialog .ui-state-error { padding: .3em; }
+.validateTips { border: 1px solid transparent; padding: 0.3em; }
+
+.confirm-button{
+    background-color: #006DCC;
+    color: #ffffff;
+    width: 120px;
+    height: 40px;
+    font-size: 16px;
+    border-radius: 3px;
+    border: 0px;
+}
+#tab-radio-4-div table tr td{
+    border:1px solid #000000;
+}
+#commentlist ul li:first-child{
+    font-size: 19px;
+}
+#commentlist ul li{
+    font-size: 17px;
+}
+#commentlist ul:hover {
+    background-color:#CCCCCC;
+}
+.summarytitle {
+    background-color: #194A95;
+}
+.summaryth {
+    background-color: #D0D9E9;
+}
+
+.summarythgrade {
+    background-color: #FFCC00;
+}
+.createaplink {
+    cursor: pointer;
+    font: bold 12px Arial;
+    text-decoration: none;
+    background-color: #EEEEEE;
+    color: #333333;
+    padding: 2px 6px 2px 6px;
+    border-radius: 3px;
+    border-top: 1px solid #CCCCCC;
+    border-right: 1px solid #333333;
+    border-bottom: 1px solid #333333;
+    border-left: 1px solid #CCCCCC;
+    margin: 0px 3px;
+    height: 30px;
+    line-height: 30px;
+}
+.stable{
+
+}
+.stable tr td{
+    word-wrap: break-word;
+    white-space: pre-line;
+}
+</style>
+<script src="../static/js/jquery.fly.min.js"></script>
+<form id="mainform" >
+    <div class="" style="display: block;margin-left: 0px;margin-right: 0px;">
+        <div class="" style="margin-top: 0px;padding: 0px;" id="onlinediv">
+            <div class="tab-content tab-content-1 rcascrollclass" style="height: auto;margin: 5px;padding: 0px;" id="tab-radio-1-div">
+                <div id="prontodiv">
+                    <table border="1" width="100% ">
+                        <tr bgcolor="" style="display: none">
+                            <td colspan="5">
+                                <div><font color="#FF0000">MAKE SURE TO ENABLE MACROS BEFORE EDITING THIS
+                                    SPREADSHEET</font></div>
+                                <br>
+                                <div align="center">Heading</div>
+                            </td>
+                        </tr>
+                        <tr bgcolor="">
+                            <td colspan="1" width="15%" align="center" class="summaryth">Case Number</td>
+                            <td colspan="1" width="15%" align="center" class="summaryth">Product</td>
+                            <td colspan="1" width="25%" align="center" class="summaryth">Abstract Headline</td>
+                            <td colspan="1" width="25%" align="center" class="summaryth">Assessors</td>
+                            <td colspan="1" width="25%" align="center" class="summaryth">Quality Reviewer</td>
+                        </tr>
+                        <tr>
+                            <td colspan="1" rowspan="1" align="center"><textarea style="width:94%;height:100%;" id="case_number"
+                                                                                 rows="6" maxlength="20" resize="none"></textarea></td>
+                            <td colspan="1" rowspan="1" align="center"><textarea style="width:94%;height:100%;" id="product"
+                                                                                 rows="6" maxlength="2000"></textarea></td>
+                            <td colspan="1" rowspan="1" align="center"><textarea style="width:94%;height:100%;"
+                                                                                 id="abstract_headline"
+                                                                                 rows="6" maxlength="2000"></textarea>
+                            </td>
+                            <td colspan="1" rowspan="1" align="center"><textarea style="width:94%;height:100%;" id="assessors"
+                                                                                 rows="6" maxlength="2000"></textarea></td>
+                            <td colspan="1" rowspan="1" align="center"><textarea style="width:94%;height:100%;"
+                                                                                 id="quality_reviewer"
+                                                                                 rows="6" maxlength="2000"></textarea>
+                            </td>
+                        </tr>
+                        <tr bgcolor="">
+                            <td colspan="2" align="center" class="summaryth">Gather Facts</td>
+                            <td colspan="3" align="center" class="summaryth">Facts</td>
+                        </tr>
+                        <tr style="width: 200px">
+                            <td colspan="2"><font size="2px" style="font-weight: bold;">1. Issue Description</font><br>
+                                What was the problem from the customer's or tester’s viewpoint?<br>
+                                What was wrong or not working?
+                            </td>
+                            <td colspan="3"><textarea rows="9" id="issue_description" style="width:98%;height:100%;"
+                                                      maxlength="2000"></textarea>
+                            </td>
+                        </tr>
+                        <tr style="width: 200px">
+                            <td colspan="2"><font size="2px" style="font-weight: bold;">2. Triggering scenario</font><br>
+                                What sequence of events is needed to observe the fault?<br>
+                                What environment (e.g. HW/SW configuration) should be used?<br>
+                                What constraints should be satisfied?<br>
+                                Where and how was the issue actually found?<br>
+                                Repeatability %%
+
+                            </td>
+                            <td colspan="3"><textarea rows="8" id="triggering_scenario" style="width:98%;height:100%;"
+                                                      maxlength="2000"></textarea>
+                            </td>
+                        </tr>
+                        <tr style="width: 200px">
+                            <td colspan="2"><font color="#FF0000" >Triggering scenario category: select appropriate item from the
+                                list</font>
+                            </td>
+                            <td colspan="3"><select style="width:100%;" id="triggering_scenario_category"></select></td>
+                            <td colspan="2"></td>
+                        </tr>
+                        <tr style="width: 250px">
+                            <td colspan="2"><font size="2px" style="font-weight: bold;">3.Code Deficiency: What was wrong in the source code?</font><br>
+                                Short technical description like<br>
+                                *variable was overwritten due to queue overflow --> The check for queue size was wrong - did allow
+                                more<br>
+                                entries than actually fit into the queue<br>
+                                “name of non-existing file was sent to iOMS” --> “No check for file creation operation success
+                                was<br>
+                                performed”
+                            </td>
+                            <td colspan="3"><textarea rows="9" id="code_deficience" style="width:98%;height:100%;"
+                                                      maxlength="2000"></textarea></td>
+                        </tr>
+                        <tr style="width: 250px">
+                            <td colspan="2"><font size="2px" style="font-weight: bold;">4. Correction Description: How the code was changed to fix the
+                                issue?</font><br>
+                                Just a short technical description:<br>
+                                *variable was overwritten due to queue overflow --> The check for queue size was wrong - did allow
+                                more<br>
+                                entries than actually fit into the queue --> “<font color="#0000FF">queue size verification was
+                                    added</font>”<br>
+                                “name of non-existing file was sent to iOMS” --> “No check for file creation operation success
+                                was<br>
+                                performed” --> “<font color="#0000FF">file creation operation result is verified before next
+                                    actions</font>”<br>
+                            </td>
+                            <td colspan="3"><textarea rows="9" id="correction_description"
+                                                      style="width:98%;height:100%;" maxlength="2000"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><font size="2px" style="font-weight: bold;">5. Injection type</font><br>
+                                - Feature Development<br>
+                                - Defective Correction<br>
+                                - Optimization / Refactoring<br>
+                                - Revealed Issue<br>
+                                - Legacy code"<br>
+                            </td>
+                            <td colspan="3"><select style="width:100%; " id="injection_type">
+                            </select></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><font size="2px" style="font-weight: bold;">6. Injection time</font><br>
+                                When the issue was merged (precise date) and first build containing the issue (e.g. LN4.0_ENB_1202_476_42) + following:<br>
+                                - For Feature Development and Optimization / Refactoring injection: Feature ID or CNI ID or CR ID<br>
+                                - For Defective Correction injection: PR ID + Feature ID or CNI ID or CR ID(againt which the defective PR was reported)<br>
+                                - For Revealed Issue: Feature ID or CNI ID or CR ID (from which the defect was injected) +  Feature ID or CNI ID or CR ID or PR ID which revealed this defect.<br>
+                                - For Legacy Code: oldest file revision (date) or system release which was checked to claim Legacy Code"<br>
+                            </td>
+                            <td colspan="3"><textarea rows="7" id="injection_time" style="width:98%;height:100%; "
+                                                      maxlength="2000"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><font size="2px" style="font-weight: bold;">7.Additional Facts</font><br>
+                                - Was the issue corrected in another branch and not propagated to the branch where the issue was detected and reported by Customer?<br>
+                                - Any other facts worth to be mentioned<br>
+                                   In case of a doubt (should be mentioned or not) – please do add the information"<br>
+                            </td>
+                            <td colspan="3"><textarea rows="6" id="additional_facts" style="width:98%;height:100%;"
+                                                      maxlength="2000"></textarea></td>
+                        </tr>
+                        <tr style="display: none;">
+                            <td colspan="2"><font size="2px" style="font-weight: bold;">8.Inheritance Recommendation</font><br>
+                                - Should the issue be requested for propagation in maintenance branches?<br>
+                                - Guidenace is to request inheritance for issues which might lead to an outage (e.g. rolling reboot,<br>
+                                sleeping cell, site unavailability, site visit is needed to repair after the fault occurence and
+                                etc)<br>
+                            </td>
+                            <td colspan="3"><textarea rows="6" id="inheritance_recommendation"
+                                                      style="width:98%;height:100%;" maxlength="2000"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><font size="2px" style="font-weight: bold;">8. How many times R&D requested for Symptoms/Logs recollection
+                                (number)?</font><br>
+                            </td>
+                            <td colspan="3"><textarea rows="2" id="how_many_times" style="width:98%;height:100%;"
+                                                      maxlength="2000"></textarea></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="tab-content tab-content-2 rcascrollclass" style="height: auto;margin: 5px;padding: 0px;" id="tab-radio-2-div" >
+                <div style="width:100%; overflow-y:hidden;overflow-x: scroll;
+                     border-left: 1px solid #C7CAD1;border-right: 1px solid #C7CAD1;
+                     border-bottom: 1px solid #C7CAD1; " class="rcascrollclass resizeclass" id="RCADiv">
+                    <table border="1" id="RCADivtable" style="max-width:5000px;width:4200px;">
+                        <tr>
+                            <th style="width:10px;"><a href="javascript:void(0)" onclick="toggleWidth('RCADivtable');" style="text-decoration:none"><span class="iconfont">&#xe8e5;</span></a></th>
+                            <th style="width:280px;" class="whyclass5" colspan="2">Why 1</th>
+                            <th style="width:280px;" class="whyclass5" colspan="2">Why 2</th>
+                            <th style="width:280px;" class="whyclass5" colspan="2">Why 3</th>
+                            <th style="width:280px;" class="whyclass5" colspan="2">Why 4</th>
+                            <th style="width:280px;" class="whyclass5" colspan="2">Why 5</th>
+                            <th style="width:320px;" class="rootCauseClass"><p>Root Cause</p></th>
+                            <th style="width:320px;" class="ActionProposalClass">Action Proposal</th>
+                            <th style="width:320px;" class="RootCauseSubClass"><p>Root Cause Category</p></th>
+                            <th style="width:300px;" class="RootCauseSubClass"><p>Root Cause Subcategory</p></th>
+                            <th style="width:300px;" class="RootCauseSubClass"><p>RCA Action Type</p></th>
+                            <th style="width:280px;" class="RootCauseSubClass">Assigned To</th>
+                            <th style="width:320px;" class="RootCauseSubClass">RCA AI ID</th>
+                            <th style="width:320px;" class="RootCauseSubClass">Completion Target Date</th>
+                            <th style="width:250px;display: none;" ></th>
+                            <th style="width:250px;display: none;" ></th>
+                        </tr>
+                        <tr groupid="why_was_the_fault_introduced">
+                            <td class="firstCol"><p style="display: none;">Why was the fault introduced?
+                                (Process RCA)
+                                See Process RCA guideline for information how to proceed</p>
+                            </td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj" class="textareayellow"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style=""><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style="display: none;"></td>
+                            <td groupid="lindobj" style="display: none;"><p ></p></td>
+                        </tr>
+                         <tr groupid="why_was_the_fault_introduced">
+                            <td ></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj" class="textareayellow"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style=""><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style="display: none;"></td>
+                            <td groupid="lindobj" style="display: none;"><p ></p></td>
+                        </tr>
+                         <tr groupid="why_was_the_fault_introduced">
+                            <td ></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj" class="textareayellow"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style=""><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style="display: none;"></td>
+                            <td groupid="lindobj" style="display: none;"><p ></p></td>
+                        </tr>
+                        <tr groupid="why_root_cause_was_not_found">
+                            <td class="firstCol"><p style="display: none;">CDI analysis, mandatory if:
+If there was at least one symptoms/log re-collection requested: Why root cause was not found with first set of attached symptoms?</p>
+                            </td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj" class="textareayellow"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style=""><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style="display: none;"></td>
+                            <td groupid="lindobj" style="display: none;"><p ></p></td>
+                        </tr>
+                        <tr groupid="why_correction_took_longer_than_fct_target">
+                            <td class="firstCol"><p style="display: none;">CTA Analysis, mandatory if:
+Correction time was 14+ days longer than FCT target (Critical: 20D, Major: 35D, Minor: 60D): Why correction took longer than FCT target?</p>
+                            </td>
+                                                        <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj" class="textareayellow"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style=""><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style="display: none;"></td>
+                            <td groupid="lindobj" style="display: none;"><p ></p></td>
+                        </tr>
+                    </table>
+                    <br>
+                    <br>
+                </div>
+            </div>
+            <div class="tab-content tab-content-3 rcascrollclass" style="height: auto;margin: 0px;padding: 0px;z-index: 1;" id="tab-radio-3-div">
+                <div style="width:99.3%; overflow-y:hidden;overflow-x: scroll; overflow-x:scroll;
+                     border-left: 1px solid #C7CAD1;border-right: 1px solid #C7CAD1;
+                     border-bottom: 1px solid #C7CAD1;top: 45px;position: inherit; margin: 0px 15px 50px 6px;
+                     padding: 0px 0px 0px 0px;" class="rcascrollclass resizeclass" id="EDADiv">
+                    <table border="1"  id="EDADiv1table" style="max-width:5000px;width:4200px;">
+                        <tr>
+                            <th style="width:20px;display: none;"><p>Escape Defect Analysis</p></th>
+                            <th style="width:220px;" class="whyclass5" colspan="2">Why 1</th>
+                            <th style="width:220px;" class="whyclass5" colspan="2">Why 2</th>
+                            <th style="width:220px;" class="whyclass5" colspan="2">Why 3</th>
+                            <th style="width:220px;" class="whyclass5" colspan="2">Why 4</th>
+                            <th style="width:220px;" class="whyclass5" colspan="2">Why 5</th>
+                            <th style="width:320px;" class="rootCauseClass">Escape Cause</th>
+                            <th style="width:320px;" class="ActionProposalClass">Action Proposal</th>
+                            <th style="width:320px;" class="RootCauseSubClass">Escape Cause Category</th>
+                            <th style="width:320px;" class="RootCauseSubClass">Escape Cause Subcategory</th>
+                            <th style="width:300px;" class="RootCauseSubClass">EDA Action Type</th>
+                            <th style="width:280px;" class="RootCauseSubClass">Assigned To</th>
+                            <th style="width:320px;" class="RootCauseSubClass">RCA AI ID</th>
+                            <th style="width:320px;" class="RootCauseSubClass">Completion Target Date</th>
+                            <th style="width:300px;display: none;" ></th>
+                            <th style="width:250px;display: none;" ></th>
+                        </tr>
+                        <tr groupid="why_not_requirements_review">
+                            <td class="firstCol" style="display: none;"><p>1. Why didn't Requirements reviews catch this
+                                defect? </p>
+                            </td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj" class="textareayellow"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style=""><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style="display: none;"></td>
+                            <td groupid="lindobj" style="display: none;"><p ></p></td>
+                        </tr>
+                        <tr groupid="why_not_requirements_review">
+                            <td style="display: none;"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj" class="textareayellow"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style=""><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style="display: none;"></td>
+                            <td groupid="lindobj" style="display: none;"><p ></p></td>
+                        </tr>
+                        <tr groupid="why_not_requirements_review">
+                            <td style="display: none;"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj" class="textareayellow"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style=""><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style="display: none;"></td>
+                            <td groupid="lindobj" style="display: none;"><p ></p></td>
+                        </tr>
+                        <tr>
+                            <th style="display: none;"><p></p></th>
+                            <th style="width:220px;" class="whyclass5" colspan="2">Why 1</th>
+                            <th style="width:220px;" class="whyclass5" colspan="2">Why 2</th>
+                            <th style="width:220px;" class="whyclass5" colspan="2">Why 3</th>
+                            <th style="width:220px;" class="whyclass5" colspan="2">Why 4</th>
+                            <th style="width:220px;" class="whyclass5" colspan="2">Why 5</th>
+                            <th  class="rootCauseClass">Escape Cause</th>
+                            <th  class="ActionProposalClass">Action Proposal</th>
+                            <th  class="RootCauseSubClass">Escape Cause Category
+                            </th>
+                            <th class="RootCauseSubClass">Escape Cause Subcategory
+                            </th>
+                            <th class="RootCauseSubClass">EDA Action Type</th>
+                            <th class="RootCauseSubClass">Assigned To</th>
+                            <th style="width:320px;" class="RootCauseSubClass">RCA AI ID</th>
+                            <th class="RootCauseSubClass">Completion Target Date</th>
+                            <th  style="display: none;"></th>
+                            <th style="width:250px;display: none;" ></th>
+                        </tr>
+                        <tr groupid="why_not_design_review">
+                            <td class="firstCol" style="display: none;"><p>2. Why didn't Design reviews catch this
+                                defect? </p>
+                            </td>
+                                                        <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj" class="textareayellow"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style=""><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style="display: none;"></td>
+                            <td groupid="lindobj" style="display: none;"><p ></p></td>
+                        </tr>
+                        <tr groupid="why_not_design_review">
+                            <td style="display: none;"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj" class="textareayellow"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style=""><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style="display: none;"></td>
+                            <td groupid="lindobj" style="display: none;"><p ></p></td>
+                        </tr>
+                        <tr groupid="why_not_design_review">
+                            <td style="display: none;"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj" class="textareayellow"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style=""><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style="display: none;"></td>
+                            <td groupid="lindobj" style="display: none;"><p ></p></td>
+                        </tr>
+                        <tr>
+                            <th  style="display: none;"><p></p></th>
+                            <th style="width:220px;" class="whyclass5" colspan="2">Why 1</th>
+                            <th style="width:220px;" class="whyclass5" colspan="2">Why 2</th>
+                            <th style="width:220px;" class="whyclass5" colspan="2">Why 3</th>
+                            <th style="width:220px;" class="whyclass5" colspan="2">Why 4</th>
+                            <th style="width:220px;" class="whyclass5" colspan="2">Why 5</th>
+                            <th  class="rootCauseClass">Escape Cause</th>
+                            <th  class="ActionProposalClass">Action Proposal</th>
+                            <th  class="RootCauseSubClass">Escape Cause Category
+                            </th>
+                            <th class="RootCauseSubClass">Escape Cause Subcategory
+                            </th>
+                            <th class="RootCauseSubClass">EDA Action Type</th>
+                            <th class="RootCauseSubClass">Assigned To</th>
+                            <th style="width:320px;" class="RootCauseSubClass">RCA AI ID</th>
+                            <th class="RootCauseSubClass">Completion Target Date</th>
+                            <th style="display: none;"></th>
+                            <th style="width:250px;display: none;" ></th>
+                        </tr>
+                        <tr groupid="why_not_analysis_tools">
+                            <td class="firstCol" style="display: none;"><p>3. Why didn't code analysis tools such as Klocwork, Purify,
+                                etc
+                                catch this defect? </p>
+                            </td>
+                                                        <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj" class="textareayellow"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style=""><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style="display: none;"></td>
+                            <td groupid="lindobj" style="display: none;"><p ></p></td>
+                        </tr>
+                        <tr groupid="why_not_analysis_tools">
+                            <td style="display: none;"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj" class="textareayellow"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style=""><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style="display: none;"></td>
+                            <td groupid="lindobj" style="display: none;"><p ></p></td>
+                        </tr>
+                        <tr groupid="why_not_analysis_tools">
+                            <td style="display: none;"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj" class="textareayellow"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style=""><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style="display: none;"></td>
+                            <td groupid="lindobj" style="display: none;"><p ></p></td>
+                        </tr>
+                        <tr>
+                            <th  style="display: none;"><p></p></th>
+                            <th style="width:220px;" class="whyclass5" colspan="2">Why 1</th>
+                            <th style="width:220px;" class="whyclass5" colspan="2">Why 2</th>
+                            <th style="width:220px;" class="whyclass5" colspan="2">Why 3</th>
+                            <th style="width:220px;" class="whyclass5" colspan="2">Why 4</th>
+                            <th style="width:220px;" class="whyclass5" colspan="2">Why 5</th>
+                            <th  class="rootCauseClass">Escape Cause</th>
+                            <th  class="ActionProposalClass">Action Proposal</th>
+                            <th  class="RootCauseSubClass">Escape Cause Category
+                            </th>
+                            <th class="RootCauseSubClass">Escape Cause Subcategory
+                            </th>
+                            <th class="RootCauseSubClass">EDA Action Type</th>
+                            <th class="RootCauseSubClass">Assigned To</th>
+                            <th style="width:320px;" class="RootCauseSubClass">RCA AI ID</th>
+                            <th class="RootCauseSubClass">Completion Target Date</th>
+                            <th style="display: none;"></th>
+                            <th style="width:250px;display: none;" ></th>
+                        </tr>
+                        <tr groupid="why_not_inspections">
+                            <td class="firstCol" style="display: none;"><p>4. Why didn't code inspections catch this
+                                defect?</p>
+                            </td>
+                                                        <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj" class="textareayellow"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style=""><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style="display: none;"></td>
+                            <td groupid="lindobj" style="display: none;"><p ></p></td>
+                        </tr>
+                        <tr groupid="why_not_inspections">
+                            <td style="display: none;"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj" class="textareayellow"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style=""><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style="display: none;"></td>
+                            <td groupid="lindobj" style="display: none;"><p ></p></td>
+                        </tr>
+                        <tr groupid="why_not_inspections">
+                            <td style="display: none;"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj" class="textareayellow"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style=""><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style="display: none;"></td>
+                            <td groupid="lindobj" style="display: none;"><p ></p></td>
+                        </tr>
+                        <tr>
+                            <th  style="display: none;"><p></p></th>
+                            <th style="width:220px;" class="whyclass5" colspan="2">Why 1</th>
+                            <th style="width:220px;" class="whyclass5" colspan="2">Why 2</th>
+                            <th style="width:220px;" class="whyclass5" colspan="2">Why 3</th>
+                            <th style="width:220px;" class="whyclass5" colspan="2">Why 4</th>
+                            <th style="width:220px;" class="whyclass5" colspan="2">Why 5</th>
+                            <th  class="rootCauseClass">Escape Cause</th>
+                            <th  class="ActionProposalClass">Action Proposal</th>
+                            <th  class="RootCauseSubClass">Escape Cause Category
+                            </th>
+                            <th class="RootCauseSubClass">Escape Cause Subcategory
+                            </th>
+                            <th class="RootCauseSubClass">EDA Action Type</th>
+                            <th class="RootCauseSubClass">Assigned To</th>
+                            <th style="width:320px;" class="RootCauseSubClass">RCA AI ID</th>
+                            <th class="RootCauseSubClass">Completion Target Date</th>
+                            <th style="display: none;"></th>
+                            <th style="width:250px;display: none;" ></th>
+                        </tr>
+                        <tr groupid="why_not_component_test">
+                            <td class="firstCol" style="display: none;"><p>5. Why didn't unit or component test catch this
+                                defect?</p>
+                            </td>
+                                                        <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj" class="textareayellow"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style=""><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style="display: none;"></td>
+                            <td groupid="lindobj" style="display: none;"><p ></p></td>
+                        </tr>
+                        <tr groupid="why_not_component_test">
+                            <td style="display: none;"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj" class="textareayellow"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style=""><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style="display: none;"></td>
+                            <td groupid="lindobj" style="display: none;"><p ></p></td>
+                        </tr>
+                        <tr groupid="why_not_component_test">
+                            <td style="display: none;"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj" class="textareayellow"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style=""><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style="display: none;"></td>
+                            <td groupid="lindobj" style="display: none;"><p ></p></td>
+                        </tr>
+                    </table>
+                </div>
+                <div style="width:99.3%; overflow-y:hidden;overflow-x: scroll; overflow-x:scroll;
+                     border-left: 1px solid #C7CAD1;border-right: 1px solid #C7CAD1;
+                     border-bottom: 1px solid #C7CAD1; display: none;top: 45px; position: inherit; margin: 0px 15px 50px 6px; padding: 0px;"
+                     class="rcascrollclass resizeclass" id="EDADiv2">
+                    <table border="1"  id="EDADiv2table" style="max-width:5000px;width:4200px;">
+                        <tr>
+                            <th style="width:20px;display: none;"></th>
+                            <th style="width:220px;" class="whyclass5" colspan="2">Why 1</th>
+                            <th style="width:220px;" class="whyclass5" colspan="2">Why 2</th>
+                            <th style="width:220px;" class="whyclass5" colspan="2">Why 3</th>
+                            <th style="width:220px;" class="whyclass5" colspan="2">Why 4</th>
+                            <th style="width:220px;" class="whyclass5" colspan="2">Why 5</th>
+                            <th style="width:320px;" class="rootCauseClass">Escape Cause</th>
+                            <th style="width:320px;" class="ActionProposalClass">Action Proposal</th>
+                            <th style="width:320px;" class="RootCauseSubClass">Escape Cause Category</th>
+                            <th style="width:320px;" class="RootCauseSubClass">Escape Cause Subcategory</th>
+                            <th style="width:300px;" class="RootCauseSubClass">EDA Action Type</th>
+                            <th style="width:280px;" class="RootCauseSubClass">Assigned To</th>
+                            <th style="width:320px;" class="RootCauseSubClass">RCA AI ID</th>
+                            <th style="width:320px;" class="RootCauseSubClass">Completion Target Date</th>
+                            <th style="width:350px;background-color: #FFADBB;color: black;display: none;"  class="RootCauseSubClass">Where Could Defect Have Been Detected</th>
+                            <th style="width:250px;display: none;" ></th>
+                        </tr>
+                        <tr groupid="why_not_entity_test">
+                            <td class="firstCol" style="display: none;"><p>6. Why didn't <font color="#FF0033">Entity Test</font> test
+                                catch this defect? </p>
+                            </td>
+                                                        <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj" class="textareayellow"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style=""><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" class="textareayellow" style="display: none;"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style="display: none;"><p ></p></td>
+                        </tr>
+                        <tr groupid="why_not_entity_test">
+                            <td style="display: none;"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj" class="textareayellow"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style=""><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" class="textareayellow" style="display: none;"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style="display: none;"><p ></p></td>
+                        </tr>
+                        <tr groupid="why_not_entity_test">
+                            <td class="firstCol" style="display: none;"><p></p>
+                            </td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj" class="textareayellow"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style=""><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" class="textareayellow" style="display: none;"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style="display: none;"><p ></p></td>
+                        </tr>
+                        <tr groupid="why_not_entity_test">
+                            <td style="display: none;"></td>
+                                                        <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj" class="textareayellow"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style=""><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" class="textareayellow" style="display: none;"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style="display: none;"><p ></p></td>
+                        </tr>
+                    </table>
+                </div>
+                <div style="width:99.3%; overflow-y:hidden;overflow-x: scroll; overflow-x:scroll;
+                     border-left: 1px solid #C7CAD1;border-right: 1px solid #C7CAD1;
+                     border-bottom: 1px solid #C7CAD1; display: none;top: 45px; position: inherit; margin: 0px 15px 50px 6px; padding: 0px;"
+                     class="rcascrollclass resizeclass" id="EDADiv3">
+                    <table border="1" id="EDADiv3table"  style="width:4200px;">
+                        <tr>
+                            <th style="width:20px; display: none;"></th>
+                            <th style="width:220px;" class="whyclass5" colspan="2">Why 1</th>
+                            <th style="width:220px;" class="whyclass5" colspan="2">Why 2</th>
+                            <th style="width:220px;" class="whyclass5" colspan="2">Why 3</th>
+                            <th style="width:220px;" class="whyclass5" colspan="2">Why 4</th>
+                            <th style="width:220px;" class="whyclass5" colspan="2">Why 5</th>
+                            <th style="width:320px;" class="rootCauseClass">Escape Cause</th>
+                            <th style="width:320px;" class="ActionProposalClass">Action Proposal</th>
+                            <th style="width:320px;" class="RootCauseSubClass">Escape Cause Category</th>
+                            <th style="width:320px;" class="RootCauseSubClass">Escape Cause Subcategory</th>
+                            <th style="width:300px;" class="RootCauseSubClass">EDA Action Type</th>
+                            <th style="width:280px;" class="RootCauseSubClass">Assigned To</th>
+                            <th style="width:320px;" class="RootCauseSubClass">RCA AI ID</th>
+                            <th style="width:320px;" class="RootCauseSubClass">Completion Target Date</th>
+                            <th style="width:350px;background-color: #FFADBB;color: black;display: none;" class="RootCauseSubClass" >Where Could Defect Have Been Detected</th>
+                            <th style="width:250px;display: none;" ></th>
+                        </tr>
+                        <tr groupid="why_not_system_test">
+                            <td class="firstCol" style="display: none;"><p>7. Why didn't <font color="#FF0033">System Test</font>
+                                catch
+                                this defect? </p>
+                            </td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj" class="textareayellow"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style=""><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" class="textareayellow" style="display: none;"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style="display: none;"><p ></p></td>
+                        </tr>
+                        <tr groupid="why_not_system_test">
+                            <td style="display: none;"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj" class="textareayellow"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style=""><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" class="textareayellow" style="display: none;"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style="display: none;"><p ></p></td>
+                        </tr>
+                        <tr groupid="why_not_system_test">
+                            <td class="firstCol" style="display: none;"><p></p>
+                            </td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj" class="textareayellow"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style=""><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" class="textareayellow" style="display: none;"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style="display: none;"><p ></p></td>
+                        </tr>
+                        <tr groupid="why_not_system_test">
+                            <td style="display: none;"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj" class="textareayellow"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style=""><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" class="textareayellow" style="display: none;"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style="display: none;"><p ></p></td>
+                        </tr>
+                        <tr>
+                            <th style="width:20px; display: none;"></th>
+                            <th style="width:220px;" class="whyclass5" colspan="2">Why 1</th>
+                            <th style="width:220px;" class="whyclass5" colspan="2">Why 2</th>
+                            <th style="width:220px;" class="whyclass5" colspan="2">Why 3</th>
+                            <th style="width:220px;" class="whyclass5" colspan="2">Why 4</th>
+                            <th style="width:220px;" class="whyclass5" colspan="2">Why 5</th>
+                            <th style="width:320px;" class="rootCauseClass">Escape Cause</th>
+                            <th style="width:320px;" class="ActionProposalClass">Action Proposal</th>
+                            <th style="width:320px;" class="RootCauseSubClass">Escape Cause Category</th>
+                            <th style="width:320px;" class="RootCauseSubClass">Escape Cause Subcategory</th>
+                            <th style="width:300px;" class="RootCauseSubClass">EDA Action Type</th>
+                            <th style="width:280px;" class="RootCauseSubClass">Assigned To</th>
+                            <th style="width:320px;" class="RootCauseSubClass">RCA AI ID</th>
+                            <th style="width:320px;" class="RootCauseSubClass">Completion Target Date</th>
+                            <th style="width:350px;background-color: #FFADBB;color: black;display: none;" class="RootCauseSubClass" >Where Could Defect Have Been Detected</th>
+                            <th style="width:250px;display: none;" ></th>
+                        </tr>
+                        <tr groupid="why_customer_opened_a_ticket_on_a_known_defect">
+                            <td class="firstCol" style="display: none;"><p>8. Program EDA (<font color="#FF0033">Optional</font>):
+Why customer opened a ticket on a known defect?
+Scope includes:
+- Program Way of Working
+-  Fault Correction process & practice
+-  Fault Release Documentation
+- Fault Customer Communication</p>
+                            </td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj" class="textareayellow"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style=""><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" class="textareayellow" style="display: none;"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style="display: none;"><p ></p></td>
+                        </tr>
+                        <tr groupid="why_customer_opened_a_ticket_on_a_known_defect">
+                            <td style="display: none;"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj"><p ></p></td>
+                            <td class="btnpanel"></td>
+                            <td groupid="lindobj" class="textareayellow"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style=""><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" class="textareayellow" style="display: none;"><p ></p><a href='javascript:void(0)' ><span class="iconfont">&#xe8ac;</span></a></td>
+                            <td groupid="lindobj" style="display: none;"><p ></p></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="tab-content tab-content-4" style="height: auto;color: black;margin: 10px;" id="tab-radio-4-div">
+                <div id="summarydiv" style="width:98%;
+                     border-left: 0px solid #C7CAD1;border-right: 0px solid #C7CAD1;
+                     border-bottom: 0px solid #C7CAD1; overflow-x: hidden;">
+                    <div id="basesummary" style="display: none;">
+                        <table border="1" width="100% ">
+                            <tr bgcolor="#3DAA00">
+                                <td colspan="1" width="15%" align="center" class="summaryth">Case Number</td>
+                                <td colspan="1" width="15%" align="center" class="summaryth">Product</td>
+                                <td colspan="1" width="25%" align="center" class="summaryth">Abstract Headline</td>
+                                <td colspan="1" width="25%" align="center" class="summaryth">Assessors</td>
+                                <td colspan="1" width="25%" align="center" class="summaryth">Quality Reviewer</td>
+                            </tr>
+                            <tr>
+                                <td colspan="1" rowspan="1" align="center" id="case_number_summary"></td>
+                                <td colspan="1" rowspan="1" align="center" id="product_summary"></td>
+                                <td colspan="1" rowspan="1" align="center" id="abstract_headline_summary">
+                                </td>
+                                <td colspan="1" rowspan="1" align="center" id="assessors_summary"></td>
+                                <td colspan="1" rowspan="1" align="center" id="quality_reviewer_summary">
+                                </td>
+                            </tr>
+                            <tr class="btnpanel">
+                                <td colspan="2" align="center" class="summaryth">Gather Facts</td>
+                                <td colspan="3" align="center" class="summaryth">Facts</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><font size="2px" style="font-weight: bold;">1. Issue Description</font><br>
+                                    What was the problem from the customer's or tester’s viewpoint?<br>
+                                    What was wrong or not working?
+                                </td>
+                                <td colspan="3" id="issue_description_summary">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><font size="2px" style="font-weight: bold;">2. Triggering scenario</font><br>
+                                    What sequence of events is needed to observe the fault?<br>
+                                    What environment (e.g. HW/SW configuration) should be used?<br>
+                                    What constraints should be satisfied?<br>
+                                    Where and how was the issue actually found?<br>
+                                    Repeatability %%
+
+                                </td>
+                                <td colspan="3" id="triggering_scenario_summary">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><font color="#FF0000" >Triggering scenario category: select appropriate item from the
+                                    list</font>
+                                </td>
+                                <td colspan="3" id="triggering_scenario_category_summary"></td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><font size="2px" style="font-weight: bold;">3.Code Deficiency: What was wrong in the source code?</font><br>
+                                    Short technical description like<br>
+                                    *variable was overwritten due to queue overflow --> The check for queue size was wrong - did allow
+                                    more<br>
+                                    entries than actually fit into the queue<br>
+                                    “name of non-existing file was sent to iOMS” --> “No check for file creation operation success
+                                    was<br>
+                                    performed”
+                                </td>
+                                <td colspan="3" id="code_deficience_summary"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><font size="2px" style="font-weight: bold;">4. Correction Description: How the code was changed to fix the
+                                    issue?</font><br>
+                                    Just a short technical description:<br>
+                                    *variable was overwritten due to queue overflow --> The check for queue size was wrong - did allow
+                                    more<br>
+                                    entries than actually fit into the queue --> “<font color="#0000FF">queue size verification was
+                                        added</font>”<br>
+                                    “name of non-existing file was sent to iOMS” --> “No check for file creation operation success
+                                    was<br>
+                                    performed” --> “<font color="#0000FF">file creation operation result is verified before next
+                                        actions</font>”<br>
+                                </td>
+                                <td colspan="3" id="correction_description_summary"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><font size="2px" style="font-weight: bold;">5. Injection type</font><br>
+                                    - New Feature<br>
+                                    - Defective Correction<br>
+                                    - Optimization / Refactoring<br>
+                                    - Revealed Issue<br>
+                                    - Legacy code<br>
+
+                                    See Technical RCA guideline for detailed description:<br>
+                                    https://sharenet-ims.inside.nokiasiemensnetworks.com/Overview/D492583158<br>
+                                </td>
+                                <td colspan="3" id="injection_type_summary"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><font size="2px" style="font-weight: bold;">6. Injection time</font><br>
+                                    When the issue was merged (precise date) and first build containing the issue (e.g.
+                                    LN4.0_ENB_1202_476_42) +<br>
+                                    following:<br>
+                                    - For New Feature injection: Feature ID<br>
+                                    - For Defective Correction injection: PR id<br>
+                                    - For Legacy Code: latest file revision (date) which was checked to claim Legacy Code<br>
+
+
+                                </td>
+                                <td colspan="3" id="injection_time_summary"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><font size="2px" style="font-weight: bold;">7.Additional Facts</font><br>
+                                    - Was the issue corrected in another branch and not propagated to the branch where the issue was
+                                    detected<br>
+                                    and reported by Customer?<br>
+                                    - Any other facts worth to be mentioned<br>
+                                    If case of a doubt (should be mentioned or not) – please do add the information<br>
+                                </td>
+                                <td colspan="3" id="additional_facts_summary"></td>
+                            </tr>
+                            <tr style="display: none;">
+                                <td colspan="2"><font size="2px" style="font-weight: bold;">8.Inheritance Recommendation</font><br>
+                                    - Should the issue be requested for propagation in maintenance branches?<br>
+                                    - Guidenace is to request inheritance for issues which might lead to an outage (e.g. rolling reboot,<br>
+                                    sleeping cell, site unavailability, site visit is needed to repair after the fault occurence and
+                                    etc)<br>
+                                </td>
+                                <td colspan="3" id="inheritance_recommendation_summary"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><font size="2px" style="font-weight: bold;">8. How many times R&D requested for Symptoms/Logs recollection
+                                    (number)?</font><br>
+                                </td>
+                                <td colspan="3" id="how_many_times_summary"></td>
+                            </tr>
+
+                        </table>
+                    </div>
+                    <div id="rcasummary"></div>
+                    <div id="edasummary"><div id="edasummary-sct"></div><div id="edasummary-et"></div><div id="edasummary-st"></div></div>
+                </div>
+            </div>
+        </div>
+        <div style="margin: 80px 0px 80px 20px;display: none;" id="gradingdiv">
+            <a href="javascript:void(0);" id="gradingicon" style="text-decoration: none;">
+                <span class="iconfont" style="font-size: 23px;">&#xf004d;</span>
+                <p style="display: inline-block;font-size: 23px;margin: 0px 0px 0px 5px;">5WhyRCA Quality Grade</p>
+            </a>
+            <div id="gradingDivselect" style="margin-top: 10px;display: block;">
+
+            </div>
+        </div>
+        <div style="margin: 80px 0px 80px 20px;display: block;" id="commentoutdiv">
+            <a href="javascript:void(0);" id="commenticon" style="text-decoration: none;">
+                <span class="iconfont" style="font-size: 23px;">&#xf004d;</span>
+                <p style="display: inline-block;font-size: 23px;margin: 0px 0px 0px 5px;">Review Comments</p>
+            </a>
+            <div id="commentDiv" style="margin-top: 10px;display: none;">
+                <div id="commentlist" style="border-bottom: 1px solid #cccccc;">
+                </div>
+                <div style="margin: 20px 0px 0px 20px;"><a id="commentbtn" style="cursor: pointer;font-size: 18px;text-decoration: none;padding: 10px;background: #EDEEF2;" title="add a comment"><span class="iconfont" style="margin-right: 14px;">&#xe653;</span>Comment</a></div>
+            </div>
+        </div>
+        <div style="margin: 20px 20px 140px 20px;display: block;top: 0px;" id="bottomDiv" >
+            <input id="SubmitToJira-DEV" type="button" value="Save-DEV" class="btn btn-large btn-primary" style="display: none"/>
+            <input id="SubmitToJira" type="button" value="Save" class="btn btn-large btn-primary"/>
+            <input id="RcaFactsGetFilled" type="button" value="RCA-Facts Done" class="btn btn-large btn-primary"/>
+            <input id="CreateJiraSubTaskForAp" type="button" value="Create AP Tasks" class="btn btn-large btn-primary"/>
+            <input id="SubmitGrading" type="button" value="SubmitGrading" class="btn btn-large btn-primary" style="display: none;"/>
+            <input id="CloseBtn" type="button" value="Close" class="btn btn-large btn-primary" style="display: none;"/>
+            <div id="VersionHistory" style="display: inline-block;"></div> <!--inline-block-->
+            <a href="javascript:void(0);" style="text-decoration: none;margin: 16px 0px 0px 15px;top: 15px;position: relative;display: '';" id="copyurla">
+                <span title="COPY URL" class="iconfont" id="copyid" style="font-size: 45px;cursor: pointer;">&#xe760;</span>
+            </a>
+            <input id="usernamehidden" type="button" value="{{ username }}" class="" style="display: none;"/>
+            <input id="CreateJiraSubTaskForApFromSharePointExcel" type="button" value="CreateJiraSubTaskForApFromSharePointExcel" class="btn btn-large btn-success" style="display: none;"/>
+            <input id="CloseBtn" type="button" value="Close" class="btn btn-large btn-primary" style="display: none;"/>
+            <!--<a href="/customer_home">Back to list</a>-->  <!--/newprontoweb/-->
+            <input type="hidden" id="acttype" value="{{ acttype }}"/>
+            <br>
+            <div id="mask" style="display: none;">
+                <p id="info"></p>
+                <div id="parent">
+                    <div id="child"></div>
+                </div>
+            </div>
+            <div id="f_top" style="display: none;">Top</div>
+            <div id="f_rca" style="display: none;">Rca</div>
+            <div id="f_bottom" style="display: none;">Bottom</div>
+        </div>
+    </div>
+    <div id="qaaddicon" style="display: none;display: block;position: absolute;z-index: 2;height: 0px;width: 0px; background-color:yellow;opacity: 0; cursor: pointer;">
+        <div style="left: -8%;top: 39%;position: relative;">
+            <span class="iconfont" style="font-size: 78px;color: #194A95;">&#xe616;</span>
+        </div>
+    </div>
+
+    <div id="RcaScrollFooter" style="overflow-x: scroll;overflow-y: hidden; width: 98%;display: none;z-index: 3" >
+        <table style="width: 4500px;">
+            <tr><td style="width: 4500px;">&nbsp;</td></tr>
+        </table>
+    </div>
+    <div id="SummaryScrollFooter" style="overflow-x: scroll;overflow-y: hidden; width: 98%;display: none;z-index: 3;position: fixed;line-height: 20px;bottom: 35px;" >
+        <table style="width: 2000px;">
+            <tr><td style="width: 2000px;">&nbsp;</td></tr>
+        </table>
+    </div>
+    <div id="dialog-confirm-comment" title="Add A Comment" style="display: none;">
+        <table style="width: 100%;height: 100%;">
+            <tr >
+                <td style="width: 100%;height: 200px; alignment: right;">
+                    <textarea  id="edit_content_comment" class="resize" style="width: 100%;height:95%;resize: none;padding:0px 0px;border-radius: 1px;"></textarea>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="dialog-confirm" title="5WHY" style="display: none;">
+        <table style="width: 100%;height:100%;">
+            <tr style="height: 220px">
+                <td style="width: 12%;"><font style="font-weight: bold">QUESTION:</font></td>
+                <td style="width: 88%;alignment: right;">
+                    <textarea  id="edit_content_question" class="resize" style="width: 100%;height:250px;resize: none;padding:0px 0px;border-radius: 1px;"></textarea>
+                </td>
+            </tr>
+            <tr style="height: 240px;border-top: 2px solid #FFFFFF;">
+                <td style=""><font style="font-weight: bold">ANSWER:</font></td>
+                <td style="">
+                    <textarea  id="edit_content_answer" class="resize" style="width: 100%;height:220px;resize: none;padding:0px 0px;border-radius: 1px;"></textarea>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="dialog-confirm-cause" title="Edit Dialog" style="display: none;">
+        <table style="width: 100%;height: 100%;">
+            <tr >
+                <td style="width: 100%;height: 300px; alignment: right;">
+                    <textarea  id="edit_content_cause" class="resize" style="width: 100%;height:100%;resize: none;padding:0px 0px;border-radius: 1px;"></textarea>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="dialog-confirm-panel" title="Action Proposal" style="display: none;">
+        <table style="width: 100%; margin: 0px 0px 0px 0px;">
+            <tr style="height: 180px;">
+                <td style="width: 25%;" ></td>
+                <td style="width: 75%;height: 250px;alignment: right;">
+                    <textarea class="resize" style="width: 99.6%;height:99%;resize: none;padding:0px 0px;border-radius: 1px;" ></textarea>
+                </td>
+            </tr>
+            <tr style="height: 25px;">
+                <td ></td>
+                <td ><select style="width:100%;padding:0px 0px 0px 0px;margin:0px 0px 0px 0px;border-radius: 1px;" ></select></td>
+            </tr>
+            <tr style="height: 25px;">
+                <td ></td>
+                <td ><select style="width:100%;padding:0px 0px 0px 0px;margin:0px 0px 0px 0px;border-radius: 1px;" ></select></td>
+            </tr>
+            <tr style="height: 25px;"><!--rca_action_type-->
+                <td ></td>
+                <td ><select style="width:100%;padding:0px 0px 0px 0px;margin:0px 0px 0px 0px;border-radius: 1px;" ></select></td>
+            </tr>
+            <tr style="height: 35px;">
+                <td ></td>
+                <td >
+                    <input type="text" id="autocomplete" style="width:99.7%;height: 28px; padding:0px 0px 0px 0px;margin:0px 0px 0px 0px;border-radius: 1px;" maxlength="200"/>
+                </td>
+            </tr>
+            <tr style="height: 30px;display: none;"><!--RCA AI ID-->
+                <td ></td>
+                <td >
+                    <input type="text" style="width:99.7%;height: 28px; padding:0px 0px 0px 0px;margin:0px 0px 0px 0px;border-radius: 1px;" maxlength="200"/>
+                </td>
+            </tr>
+            <tr style="height: 30px;">
+                <td ></td>
+                <td >
+                    <input id="J_date_4" type="text" class="f-textDate" style="width:100%;height:30px;padding:0px 0px 0px 0px;margin:0px 0px 0px 0px;border-radius: 1px;cursor: pointer"/>
+                </td>
+            </tr>
+            <tr style="height: 30px;width: 150px;display: none;" id="WhereCouldDefectHaveBeenDetectedTr">
+                <td ></td>
+                <td >
+                    <select style="width:100%;padding:0px 0px 0px 0px;margin:0px 0px 0px 0px;border-radius: 1px;" ></select>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="dialog-confirm-detected" title="Where Could Defect Have Been Detected" style="display: none;">
+        <table style="width: 100%; margin: 0px 0px 0px 0px;">
+            <tr style="height: 30px;width: 150px;">
+                <td >Where Could Defect Have Been Detected:</td>
+                <td >
+                    <select style="width:100%;padding:0px 0px 0px 0px;margin:0px 0px 0px 0px;border-radius: 1px;" ></select>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+</form>
+
+<style type="text/css">
+    #parent{border:1px #EEE solid;width: 900px;height: 30px;margin: 0 auto;}
+    #child{width: 0%;height: 30px;background-color: #215F7C;}
+    #mask p{text-align: center;color: fuchsia;}
+</style>
+<script language="JavaScript">
+var acttype = '{{ acttype }}';
+var rcaformstr = {{ rcaedajson|tojson|safe }};
+var rcaform_pronto_id = '{{ prid }}';
+var jiraissueid = '{{ jiraissueid }}';
+var jiraissuetype = '{{ jiraissuetype }}';
+var rcaformjson = {};
+
+var develpflag = false;
+var pr_grade_dm = '';
+$('#autocomplete').autocomplete({
+    serviceUrl: '/autocompleteemail',
+    minChars : 3,
+    deferRequestBy:500,
+    triggerSelectOnValidInput:false,
+    onSelect: function (suggestion) {
+        //$('#selected_option').html(suggestion.value);
+    }
+});
+</script>
+<script src="/static/js/prontoweb_add.js"></script>
+<script type="text/babel">
+class PRGrading extends React.Component{
+    constructor() {
+        super();
+        const dmlist = [["-1",""],["261614","A – Excellent"],["261615","B – Acceptable"],["261616","C – Clarifications required"],
+                ["261617","D – Full rework needed"],["261618","N/A – Grade not applicable"]];
+        this.state = {
+            pr_grade_dm : pr_grade_dm,
+            pr_grade_text : dmlist[pr_grade_dm],
+            gradinglist : dmlist
+        }
+    }
+    render(){
+        let pstyle = {
+            display: 'inline-block',
+            margin: '0px 15px 0px 30px',
+            fontSize : '20'
+        }
+        let optionstyle = {
+            fontSize:'20'
+        }
+        let selectclass = {
+            width : "350",
+            fontSize : "20"
+        }
+        return (
+            <div>
+                <p style={pstyle}>Quality grade: </p>
+                <select id="pr_grade" defaultValue={this.state.pr_grade_dm} style={selectclass} onChange={e=>this.changeselect(e)}>
+                {
+                    this.state.gradinglist.map((item)=>{
+                        return <option value={item[0]} style={optionstyle}>{item[1]}</option>
+                    })
+                }
+                </select>
+                <input type="button" onClick={e=>this.submitGrade()} className="gradesubmit" value="Submit"/>
+            </div>
+        )
+    }
+    async submitGrade(){
+        if(!this.state.pr_grade_dm){
+            alert('Grade has not changed. Please select grade first.');
+            return;
+        }
+        const needtoconfirm = ['261614','261615'].indexOf(this.state.pr_grade_dm) > -1 ? true : false;
+        let ctext = '';
+        for (let i =0 ;i<this.state.gradinglist.length;i++){
+            if (this.state.pr_grade_dm == this.state.gradinglist[i][0]){
+                ctext=this.state.gradinglist[i][1];
+            }
+        }
+        const rst = confirm((needtoconfirm ? "You have choose "+ ctext + ", The Status of this jira task and it's subtasks all will be updated to Resolved together.":"" )
+            +'Confirm to Submit Quality Grade?' );
+        if(rst == true){
+            showloading('', '');
+            const rstlist = await axios.get("/onlinercaSubmitGrade/"+rcaform_pronto_id+","+this.state.pr_grade_dm+","+ctext);
+            hideloading();
+            const rst = rstlist['data'];
+            if(rst['result'] != 'error'){
+                alert('Submit success.' + (rst['mes'] ? rst['mes'] : ''));
+            }else {
+                alert('Error.'+rst['mes']);
+            }
+        }
+    }
+    changeselect(e){
+        this.setState({
+            pr_grade_dm :e.target.value,
+            pr_grade_text:e.target.selectedOptions[0].text
+        })
+    }
+}
+ReactDOM.render(<PRGrading/>, document.getElementById("gradingDivselect") );
+
+class VersionSummary extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    renderTr(tro) {
+        if (tro == undefined) {
+            return (<tr>
+                    <td className="stc"></td>
+                    <td className="stc"></td>
+                    <td className="stc"></td>
+                    <td className="stc"></td>
+                    <td className="stc"></td>
+                    <td className="stc"></td>
+                    <td className="stc"></td>
+                    <td className="stc"></td>
+                    <td className="stc"></td>
+                    <td className="stc"></td>
+                    <td className="stc"></td>
+                    <td className="stc"></td>
+                    <td className="stchide"></td>
+                    <td className="stc"></td>
+                </tr>
+            )
+        } else {
+            return (
+                tro.map((tr, rindex) => {
+                    return tr.rootcause === '' ? '' :
+                        <tr className="str" key={rindex}>
+                            <td className="stc">{tr.why1}</td>
+                            <td className="stc">{tr.why2}</td>
+                            <td className="stc">{tr.why3}</td>
+                            <td className="stc">{tr.why4}</td>
+                            <td className="stc">{tr.why5}</td>
+                            <td className="stc">{tr.rootcause}</td>
+                            <td className="stc">{tr.actionproposal}</td>
+                            <td className="stc">{tr.root_cause_category.text}</td>
+                            <td className="stc">{tr.root_cause_subcategory.text}</td>
+                            <td className="stc">{tr.rca_action_type.text}</td>
+                            <td className="stc">{tr.assigned_to}</td>
+                            <td className="stc">{tr.completion_target_date}</td>
+                            <td className="stc">{tr.grading}</td>
+                            <td className="stchide"></td>
+                        </tr>
+                    }
+                )
+            );
+        }
+    }
+    renderTr2(tro,hasdefect){
+        if(tro == undefined){
+            return (<tr>
+                        <td className="stc"></td>
+                        <td className="stc"></td>
+                        <td className="stc"></td>
+                        <td className="stc"></td>
+                        <td className="stc"></td>
+                        <td className="stc"></td>
+                        <td className="stc"></td>
+                        <td className="stc"></td>
+                        <td className="stc"></td>
+                        <td className="stc"></td>
+                        <td className="stc"></td>
+                        <td className="stc"></td>
+                        <td className="stchide"></td>
+                        <td className="stc"></td>
+                    </tr>
+            )
+        }else {
+            return (
+                tro.map((tr, rindex) =>
+                    {return tr.escape_cause === '' ? '' :
+                        <tr className="str" key={rindex} >
+                            <td className="stc">{tr.why1}</td>
+                            <td className="stc">{tr.why2}</td>
+                            <td className="stc">{tr.why3}</td>
+                            <td className="stc">{tr.why4}</td>
+                            <td className="stc">{tr.why5}</td>
+                            <td className="stc">{tr.escape_cause}</td>
+                            <td className="stc">{tr.actionproposal}</td>
+                            <td className="stc">{tr.escape_cause_category.text}</td>
+                            <td className="stc">{tr.escape_cause_subcategory.text}</td>
+                            <td className="stc">{tr.eda_action_type.text}</td>
+                            <td className="stc">{tr.assigned_to}</td>
+                            <td className="stc">{tr.completion_target_date}</td>
+                            <td className="stchide">{hasdefect ? tr.where_could_defect_have_been_detected.text : tr.grading}</td>
+                            <td className="stc">{hasdefect ? tr.grading : ''}</td>
+                        </tr>
+                    }
+                )
+            );
+        }
+    }
+
+    render() {
+        if(this.props.jsoncontent === ''){
+            return <div></div>;
+        }
+        const jsonobj = $.parseJSON(this.props.jsoncontent);
+        const returnobj = (
+            <div>
+                <div className="summarytable">
+                    <table>
+                        <tr className="stitle"><td colSpan='5'><p >Facts</p></td></tr>
+                        <tr >
+                            <td className="summaryth" width="250px">Case Number</td>
+                            <td className="summaryth" width="300px">Product</td>
+                            <td className="summaryth" width="250px">Abstract Headline</td>
+                            <td className="summaryth" width="200px">Assessors</td>
+                            <td className="summaryth" width="200px">Quality Reviewer</td>
+                        </tr>
+                        <tr>
+                            <td >{jsonobj.rcaformbase.case_number}</td>
+                            <td >{jsonobj.rcaformbase.product}</td>
+                            <td >{jsonobj.rcaformbase.abstract_headline} </td>
+                            <td >{jsonobj.rcaformbase.assessors}</td>
+                            <td >{jsonobj.rcaformbase.quality_reviewer}</td>
+                        </tr>
+                        <tr class="btnpanel">
+                            <td colSpan="2" className="summaryth">Gather Facts</td>
+                            <td colSpan="3" className="summaryth">Facts</td>
+                        </tr>
+                        <tr>
+                            <td colSpan="2"><font>1. Issue Description</font>
+                                What was the problem from the customer's or tester’s viewpoint?
+                                What was wrong or not working?
+                            </td>
+                            <td colSpan="3">
+                                {jsonobj.rcaformbase.issue_description}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colSpan="2"><font fontSize="2px">2. Triggering scenario</font>
+                                What sequence of events is needed to observe the fault?
+                                What environment (e.g. HW/SW configuration) should be used?
+                                What constraints should be satisfied?
+                                Where and how was the issue actually found?
+                                Repeatability
+                            </td>
+                            <td colSpan="3" id="triggering_scenario_summary">
+                                {jsonobj.rcaformbase.triggering_scenario}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colSpan="2"><font color="#FF0000" >Triggering scenario category: select appropriate item from the
+                                list</font>
+                            </td>
+                            <td colSpan="3" >{jsonobj.rcaformbase.triggering_scenario_category.text}</td>
+                        </tr>
+                        <tr>
+                            <td colSpan="2"><font size="2px" >3.Code Deficiency: What was wrong in the source code?</font>
+                                Short technical description like
+                                *variable was overwritten due to queue overflow --> The check for queue size was wrong - did allow
+                                more
+                                entries than actually fit into the queue
+                                “name of non-existing file was sent to iOMS” --> “No check for file creation operation success
+                                was
+                                performed”
+                            </td>
+                            <td colSpan="3" id="code_deficience_summary">{jsonobj.rcaformbase.code_deficience}</td>
+                        </tr>
+                        <tr>
+                            <td colSpan="2"><font size="2px" >4. Correction Description: How the code was changed to fix the
+                                issue?</font>
+                                Just a short technical description:
+                                *variable was overwritten due to queue overflow --> The check for queue size was wrong - did allow
+                                more
+                                entries than actually fit into the queue --> “<font color="#0000FF">queue size verification was
+                                    added</font>”
+                                “name of non-existing file was sent to iOMS” --> “No check for file creation operation success
+                                was
+                                performed” --> “<font color="#0000FF">file creation operation result is verified before next
+                                    actions</font>”
+                            </td>
+                            <td colSpan="3" >{jsonobj.rcaformbase.correction_description}</td>
+                        </tr>
+                        <tr>
+                            <td colSpan="2"><font size="2px" >5. Injection type</font>
+                                - Feature Development
+                                - Defective Correction
+                                - Optimization / Refactoring
+                                - Revealed Issue
+                                - Legacy code
+                            </td>
+                            <td colSpan="3" >{jsonobj.rcaformbase.injection_type.text}</td>
+                        </tr>
+                        <tr>
+                            <td colSpan="2"><font size="2px" >6. Injection time</font>
+                                When the issue was merged (precise date) and first build containing the issue (e.g. LN4.0_ENB_1202_476_42) + following:
+                                - For Feature Development and Optimization / Refactoring injection: Feature ID or CNI ID or CR ID
+                                - For Defective Correction injection: PR ID + Feature ID or CNI ID or CR ID(againt which the defective PR was reported)
+                                - For Revealed Issue: Feature ID or CNI ID or CR ID (from which the defect was injected) +  Feature ID or CNI ID or CR ID or PR ID which revealed this defect.
+                                - For Legacy Code: oldest file revision (date) or system release which was checked to claim Legacy Code
+                            </td>
+                            <td colSpan="3">{jsonobj.rcaformbase.injection_time}</td>
+                        </tr>
+                        <tr>
+                            <td colSpan="2"><font size="2px">7.Additional Facts</font>
+                                - Was the issue corrected in another branch and not propagated to the branch where the issue was detected and reported by Customer?
+                                - Any other facts worth to be mentioned
+                                   In case of a doubt (should be mentioned or not) – please do add the information
+                            </td>
+                            <td colSpan="3" >{jsonobj.rcaformbase.additional_facts}</td>
+                        </tr>
+                        <tr className="stchide">
+                            <td colSpan="2"><font size="2px">8.Inheritance Recommendation</font>
+                                - Should the issue be requested for propagation in maintenance branches?
+                                - Guidenace is to request inheritance for issues which might lead to an outage (e.g. rolling reboot,
+                                sleeping cell, site unavailability, site visit is needed to repair after the fault occurence and
+                                etc)
+                            </td>
+                            <td colSpan="3" >{jsonobj.rcaformbase.inheritance_recommendation}</td>
+                        </tr>
+                        <tr>
+                            <td colSpan="2"><font size="2px" >8. How many times R&D requested for Symptoms/Logs recollection
+                                (number)?</font>
+                            </td>
+                            <td colSpan="3">{jsonobj.rcaformbase.how_many_times}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div className="stable">
+                    <table >
+                        <tr className="stitle"><td colSpan='14' ><p >RCA</p></td></tr>
+                        <tr><td className="summaryth" width="450px;">Why1</td><td className="summaryth" width="450px;">Why2</td><td className="summaryth" width="250px;">Why3</td><td className="summaryth" width="250px;">Why4</td><td className="summaryth" width="250px;">Why5</td><td className="summaryth" width="250px;">Root Cause</td><td className="summaryth"  width="250px;">Action Proposal</td><td  className="summaryth"  width="250px;">Root Cause Category</td><td className="summaryth"  width="250px;">Root Cause Subcategory</td><td className="summaryth"  width="250px;">RCA Action Type</td><td className="summaryth"  width="250px;"  >Assigned To</td><td className="summaryth"  width="250px;"  >Completion Target Date</td><td className='summarythgrade'  width="250px;">RCA Quality Grade</td><td className="summaryth" width="250px;"></td></tr>
+                        {this.renderTr(jsonobj.rcaformrootcause.why_was_the_fault_introduced)}
+                        {this.renderTr(jsonobj.rcaformrootcause.why_root_cause_was_not_found)}
+                        {this.renderTr(jsonobj.rcaformrootcause.why_root_cause_was_not_found)}
+                        <tr className="stitle"><td colSpan='14' ><p >EDA-SCT</p></td></tr>
+                        <tr><td className="summaryth">Why1</td><td className="summaryth">Why2</td><td className="summaryth">Why3</td><td className="summaryth">Why4</td><td className="summaryth">Why5</td><td className="summaryth">Escape Cause</td><td className="summaryth" >Action Proposal</td><td  className="summaryth" >Escape Cause Category</td><td className="summaryth" >Escape Cause Subcategory</td><td className="summaryth" >EDA Action Type</td><td className="summaryth"   >Assigned To</td><td className="summaryth"   >Completion Target Date</td><td className='summarythgrade' >EDA Quality Grade</td><td className="summaryth"></td></tr>
+                        {this.renderTr2(jsonobj.rcaformescapedefect.why_not_requirements_review,false)}
+                        {this.renderTr2(jsonobj.rcaformescapedefect.why_not_design_review,false)}
+                        {this.renderTr2(jsonobj.rcaformescapedefect.why_not_analysis_tools,false)}
+                        {this.renderTr2(jsonobj.rcaformescapedefect.why_not_inspections,false)}
+                        {this.renderTr2(jsonobj.rcaformescapedefect.why_not_component_test,false)}
+                        <tr className="stitle"><td colSpan='14' ><p >EDA-ET</p></td></tr>
+                        <tr><td className="summaryth">Why1</td><td className="summaryth">Why2</td><td className="summaryth">Why3</td><td className="summaryth">Why4</td><td className="summaryth">Why5</td><td className="summaryth">Escape Cause</td><td className="summaryth" >Action Proposal</td><td  className="summaryth" >Escape Cause Category</td><td className="summaryth" >Escape Cause Subcategory</td><td className="summaryth" >EDA Action Type</td><td className="summaryth"   >Assigned To</td><td className="summaryth"   >Completion Target Date</td><td className="stchide">Where Could Defect Have Been Detected</td><td className='summarythgrade' >EDA Quality Grade</td></tr>
+                        {this.renderTr2(jsonobj.rcaformescapedefect.why_not_entity_test,true)}
+                        <tr className="stitle"><td colSpan='14' ><p >EDA-ST</p></td></tr>
+                        <tr><td className="summaryth">Why1</td><td className="summaryth">Why2</td><td className="summaryth">Why3</td><td className="summaryth">Why4</td><td className="summaryth">Why5</td><td className="summaryth">Escape Cause</td><td className="summaryth" >Action Proposal</td><td  className="summaryth" >Escape Cause Category</td><td className="summaryth" >Escape Cause Subcategory</td><td className="summaryth" >EDA Action Type</td><td className="summaryth"   >Assigned To</td><td className="summaryth"   >Completion Target Date</td><td className="stchide">Where Could Defect Have Been Detected</td><td className='summarythgrade' >EDA Quality Grade</td></tr>
+                        {this.renderTr2(jsonobj.rcaformescapedefect.why_not_system_test,true)}
+                        {this.renderTr2(jsonobj.rcaformescapedefect.why_customer_opened_a_ticket_on_a_known_defect,true)}
+                    </table>
+                </div>
+            </div>
+        );
+        return (returnobj);
+    }
+}
+
+class Versionhistory extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            currentIndex: 0,
+            currentId: '',
+            currentJson: '',
+            historyVersion: [],
+            show:false,
+        }
+    }
+
+    componentDidMount() {
+        this.loadData();
+    }
+
+    render() {
+        const {currentId, currentJson, historyVersion, show} = this.state;
+        return (
+            <div >
+                <input type="button" value="VersionHistory" className="btn btn-large btn-primary" onClick={e=>this.showHis()}/>
+                <div className={"history_bg " + ( show ? "" : "roothidden")}>
+                        <div className={"history_root"}>
+                            <div className="history_title"><p >Version History</p></div>
+                            <div className={"history_body"} >
+                                <div className="history_left">
+                                    <VersionSummary jsoncontent={currentJson}/>
+                                </div>
+                                <div className="history_right">
+                                    <ul>
+                                        {
+                                            historyVersion.map((item, index) =>
+                                                <li key={item.vid}
+                                                    onClick={() => {
+                                                        this.clickHistoryItem(index)
+                                                    }}>
+                                                    <div className="li_uname">{item.uname}</div>
+                                                    <div className="li_time">{item.create_time}</div>
+                                                </li>
+                                            )
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                            <div className="history_bottom">
+                                <span className="history_bottom_btn history_bottom_left" onClick={()=>this.restore()}>Restore</span>
+                                <span className="history_bottom_btn history_bottom_right" onClick={()=>this.close()}>Close</span>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        )
+    }
+    async loadData(){
+        const rstlist = await axios.get("/prontoweb/getHistoryVersion/" + rcaform_pronto_id);
+        this.setState({
+            historyVersion: rstlist.data.data
+        })
+    }
+    close(){
+        this.setState({
+            show: false
+        })
+    }
+    restore(){
+        var rst = confirm('The contents of the page will be completely restored, but the database will not be updated, Confirm to Restore?');
+        if(rst == true){
+            initForm($.parseJSON(this.state.currentJson));
+            framelayout($("#tab-radio-1"));
+            this.close();
+        }
+    }
+    clickHistoryItem(index) {
+        this.setState({
+            currentIndex: index,
+            currentId: this.state.historyVersion[index]["vid"],
+            currentJson: this.state.historyVersion[index]["json"]
+        });
+    }
+    showHis(){
+        disabledAllBtn(false);
+        this.loadData();
+        if(this.state.historyVersion.length < 1){
+            return;
+        }
+        this.setState({
+            show: true,
+            currentIndex: 0,
+            currentId: this.state.historyVersion[0]["vid"],
+            currentJson: this.state.historyVersion[0]["json"]
+        })
+    }
+}
+
+
+ReactDOM.render(<Versionhistory/>, document.getElementById("VersionHistory"));
+
+</script>
+<link href="/static/css/prontoweb_add.css" rel="stylesheet">
+{% endblock %}
+
+
+
+
+

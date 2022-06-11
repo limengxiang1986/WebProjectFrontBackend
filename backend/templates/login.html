@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<link href="../static/favicon.ico" rel="icon">
+<link href="/static/css/login.css" rel="stylesheet">
+<link href="/static/css/default.css" rel="stylesheet">
+<link href="/static/css/select2.css" rel="stylesheet">
+<head>
+    <meta charset="utf-8">
+    <title>Login RCAShark</title>
+</head>
+<body>
+<div id="formContainer" class="dwo" style="height: 370px;">
+    <div class="formLeft" style="background-color: #124191;width: 300px;">
+        <div style="top: 6px;position: absolute;left: -9px;width: 370px;"><img src="/static/img/NOKIA1.png"
+                                                                               style="width: 80%;"></div>
+        <div style="color: #FFFFFF;font-size: 30px;position: absolute;top: 80px;left: 35px;"><p>RCA-Shark</p></div>
+    </div>
+    <div class="formRight" style="width: 63%;">
+        <!-- Login form -->
+        <form id="login" action="" method=post style="left: 13%;">
+            <header>
+                <h1>Welcome back</h1>
+                <p>Log in </p>
+            </header>
+            <section>
+                <label>
+                    <p>Usrname</p>
+                    <input type="text" id="username" name="username" placeholder="Enter Username" required
+                           style="background: transparent;">
+                    <div class="border"></div>
+                </label>
+                <label>
+                    <p>Password</p>
+                    <input type="password" id="password" name="password" placeholder="Enter Password" required
+                           style="background: transparent;">
+                    <div class="border"></div>
+                </label>
+                <label>
+                    <div><p style="display: inline-block;">Remember me</p><input type="checkbox" id="remember_me"
+                                                                                 name="remember_me"
+                                                                                 style="display: inline-block;"> Keep me
+                        login</input></div>
+                </label>
+                <button type="submit"
+                        style="position: relative;left: 55%;height: 35px;font-size: 15px;font-weight: 200;background-color: #124191;width: 45%;">
+                    LOG IN
+                </button>
+            </section>
+        </form>
+
+    </div>
+</div>
+<div id="NokCustomFooter" style="z-index: 3;">
+    <div id="NokFooterBottomRow">
+        <div style="alignment: left;float: left; padding: 0px 5px 0px 10px">
+            <ui>
+                <ui class="FooterLeftLi"><img src="/static/img/NOKIA1.png" style="height: 100%;opacity: 100%;padding: 0px 0px 2px 0px;" height="25px" width="80px"></ui>
+                <ui class="FooterLeftLi">|</ui>
+                <ui class="FooterLeftLi" style="margin-left: 5px;margin-right: 5px;">© Arch Squad 2022</ui>
+                <ui class="FooterLeftLi" style="display: none;">|</ui>
+                <ui class="FooterLeftLi" style="margin-left: 3px;display: none;" id="websitevisitcount">Total visits:10488, Today visits:4</ui>
+            </ui>
+        </div>
+        <div style="alignment: right;float: right; padding: 0px 20px 0px 0px">
+            <ui class="FooterLeftLi" style="margin: 0px 5px 0px 5px;">
+                <a href="javascript:void(0);" onclick="openLink('https://confluence.ext.net.nokia.com/pages/viewpage.action?spaceKey=rcaShark&amp;title=MN+RCA-Shark+Tool+User+Manual')" style="color: #FFFFFF"><span class="iconfont" style="margin-right: 5px;">&#xe6b2;</span>Confluence</a>
+            </ui>
+            <ui class="FooterLeftLi">|</ui>
+            <ui class="FooterLeftLi" style="margin: 0px 5px 0px 5px;">
+                <span class="iconfont" style="font-size: 20px;"></span>
+                <a href="javascript:void(0);" onclick="openLink('https://jiradc.ext.net.nokia.com/projects/RCASHARK/issues/RCASHARK-1')"
+                   style="color: #FFFFFF"><span class="iconfont mr5">&#xe6d5;</span>Raise Requirements</a>
+            </ui>
+            <ui class="FooterLeftLi">|</ui>
+            <ui class="FooterLeftLi" style="margin: 0px 5px 0px 5px;"><a
+                    href="javascript:void(0);" onclick="openLink('https://jiradc.ext.net.nokia.com/projects/RCASHARK/issues/RCASHARK-2')"
+                    style="color: #FFFFFF"><span class="iconfont mr5">&#xe65a;</span>Report Bug&nbsp;</a></ui>
+            </a></ui>
+            <!--<ui class="FooterLeftLi">|</ui>
+            <ui class="FooterLeftLi"><a href="https://jiradc.ext.net.nokia.com/secure/CreateIssue.jspa?pid=71785&issuetype=1" style="color: #FFFFFF">Help&nbsp;</a></ui>
+            -->
+            <!--<ui class="FooterLeftLi">{{username}}</ui>-->
+        </div>
+    </div>
+</div>
+<script src="/static/js/jquery.js"></script>
+<script type="text/javascript" src="/static/js/common.js" charset="UTF-8"></script>
+<script language="JavaScript">
+    $(function () {
+        $('.forgotBtn').click(function () {
+            $('#forgot').toggleClass('toggle')
+        })
+
+        $('.registerBtn').click(function () {
+            $('#register, #formContainer').toggleClass('toggle')
+        })
+    });
+//var websitevisitcount = getwebsitevisitcount();
+//$("#websitevisitcount").text('Total visits:'+websitevisitcount[0]+', Today visits:' + websitevisitcount[1]);
+</script>
+<script src="../static/font/iconfont.js"></script>
+</body>
+<style>
+    #NokCustomFooter {
+        width: 100%;
+        background-color: #124191;
+        position: fixed;
+        line-height: 30px;
+        bottom: 0;
+    }
+    #NokFooterBottomRow {
+        color: white;
+    }
+    .FooterLeftLi {
+        float: left;
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+
+</style>
+</html>

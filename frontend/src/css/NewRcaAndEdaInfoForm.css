@@ -1,0 +1,704 @@
+#formHeader {
+    padding-bottom: 5px;
+    padding-top: 0px;
+    border-bottom: rgb(18,65,145) 1px solid;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+#recoveryBtn, #recoveryBtn:hover {
+    color: rgb(18,65,145) !important;
+}
+
+.firstColumn {
+    /*position: -webkit-sticky !important;*/
+    /*position: sticky !important;*/
+    top: 0% !important;
+    height: 100vh !important;
+    max-width: 250px;
+    padding-bottom: 10px;
+    float: left;
+    display: flex;
+    flex-direction: column;
+    margin-right: 15px;
+    padding-right: 15px;
+    padding-top: 15px;
+    border-right: rgb(18,65,145) 1px solid;
+
+}
+
+#idFaultAnalysisSubmit {
+    width: 100%;
+    display: flex;
+    float: left;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+
+#idProntoSubmit {
+    display: flex;
+    float: left;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+
+.raeiContainer .ant-input, .ant-input:active, .ant-input:focus {
+    border: 0 !important;
+}
+
+.prontoInput, .faultAnalysisInput {
+    width: 100%;
+    height: 40px;
+    border-style: solid !important;
+    border-width: 1px !important;
+    border-color: rgb(18,65,145) !important;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+#faultAnalysisBtn, #prontoBtn {
+    width: 100%;
+    color: white !important;
+    background-color: rgb(0,201,255) !important;
+    border-color: rgb(18, 116, 149) !important;
+    padding: 0 !important;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+#faultAnalysisBtn:hover, #prontoBtn:hover {
+    color: black !important;
+    background-color: white !important;
+    border-color: green !important;
+    border-width: 2px;
+    padding: 0 !important;
+}
+
+.raeiContainer .ant-form-item-control-input {
+    align-items: unset;
+}
+
+.raeiContainer .ant-input-affix-wrapper {
+    padding: 7px !important;
+}
+
+.infoIDItem:hover {
+    color: rgb(18,65,145) !important;
+}
+
+.formColumn {
+    width: 100%;
+    padding-top: 15px;
+    padding-bottom: 25px;
+    overflow: auto;
+}
+
+.Rca-Eda-Info-form {
+    display: grid !important;
+    grid-template-columns: minmax(100px, 1fr) minmax(100px, 1fr) !important;
+    grid-column-gap: 50px !important;
+    margin-right: 15px;
+}
+
+/*Placement on a grid that goes in sequence*/
+
+#headerLeft {
+    grid-row: 1;
+    grid-column: 1;
+}
+
+#headerRight {
+    grid-row: 1;
+    grid-column: 2;
+}
+
+#headerOneLeft {
+    grid-row: 2;
+    grid-column: 1;
+}
+
+#leftOne {
+    grid-row: 3;
+    grid-column: 1;
+}
+
+#headerTwoLeft {
+    grid-row: 4;
+    grid-column: 1
+}
+
+#leftTwo {
+    grid-row: 5;
+    grid-column: 1;
+}
+
+#headerThreeLeft {
+    grid-row: 6;
+    grid-column: 1;
+}
+
+#leftThree {
+    grid-row: 7;
+    grid-column: 1;
+}
+
+#headerOneRight {
+    grid-row: 2;
+    grid-column: 2;
+}
+
+#threeRows {
+    grid-row: 3/8;
+    grid-column: 2;
+}
+
+#headerFourLeft {
+    grid-row: 8;
+    grid-column: 1;
+}
+
+#leftFour {
+    grid-row: 9;
+    grid-column: 1;
+}
+
+#emptySpace1 {
+    grid-row: 8/10;
+    grid-column: 2;
+}
+
+#headerFiveLeft {
+    grid-row: 10;
+    grid-column: 1;
+}
+
+#leftFive {
+    grid-row: 11;
+    grid-column: 1;
+}
+
+#headerFiveRight {
+    grid-row: 10;
+    grid-column: 2;
+}
+
+#corrDescript {
+    grid-row: 11;
+    grid-column: 2;
+}
+
+#headerSixLeft {
+    grid-row: 12;
+    grid-column:1
+}
+
+#leftSix {
+    grid-row: 13;
+    grid-column: 1;
+}
+
+#headerSixRight {
+    grid-row: 12;
+    grid-column: 2;
+}
+
+#injType {
+    grid-row: 13;
+    grid-column: 2;
+}
+
+#headerSevenLeft {
+    grid-row: 14;
+    grid-column: 1;
+}
+
+#leftSeven {
+    grid-row: 15;
+    grid-column: 1;
+    display: grid !important;
+    grid-template-columns: 5fr 5fr !important;
+    grid-column-gap: 5px !important;
+}
+
+    /* Injection time grid */
+
+    #issuePreciseDateMargeHeader {
+        grid-row: 1;
+        grid-column: 1;
+        padding: 2% 0;
+        margin-top: 22px;
+        margin-bottom: 15px;
+    }
+
+    #issuePreciseDateMarge {
+        grid-row: 1;
+        grid-column: 2;
+    }
+
+    #issueFirstSWBuildHeader {
+        grid-row: 2;
+        grid-column: 1;
+        padding: 2% 0px;
+        margin-bottom: 15px;
+    }
+
+    #issueFirstSWBuildInput {
+        grid-row: 2;
+        grid-column: 2;
+        padding-left: 10px !important;
+        background-color: white !important;
+        margin-bottom: 15px;
+        border-style: solid !important;
+        border-width: 1px !important;
+        border-color: rgb(18,65,145) !important;
+        box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+    }
+
+    #issueCorrDescriptInput, #issueNewFeatureInput {
+        grid-row: 4;
+        grid-column: 2;
+        padding-left: 10px !important;
+        background-color: white !important;
+        margin-bottom: 15px;
+        border-style: solid !important;
+        border-width: 1px !important;
+        border-color: rgb(18,65,145) !important;
+        box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+    }
+
+    #issueFirstSWBuildInput:focus-visible, #issueCorrDescriptInput:focus-visible, #issueNewFeatureInput:focus-visible {
+        outline: none !important;
+    }
+
+    #issueFirstSWBuildInput:active, #issueCorrDescriptInput:active, #issueNewFeatureInput:active {
+        border-style: solid !important;
+        border-width: 1px !important;
+        border-color: rgb(18,65,145) !important;
+        box-shadow: rgba(0,0,0,0) !important;
+    }
+
+    #issueFirstSWBuildInput:focus-within, #issueCorrDescriptInput:focus-within, #issueNewFeatureInput:focus-within {
+        border-style: solid !important;
+        border-width: 1px !important;
+        border-color: rgb(18,65,145) !important;
+    }
+
+    #issueInjMaintenancePostP8Header {
+        grid-row: 3;
+        grid-column: 1;
+        margin-top: 10px;
+        margin-bottom: 15px;
+    }
+
+    #issueInjMaintenancePostP8CheckBox {
+        grid-row: 3;
+        grid-column: 2;
+        margin-bottom: 18px;
+        padding-right: 50%;
+    }
+
+    #issueCorrDescriptHeader {
+        grid-row: 4;
+        grid-column: 1;
+        padding: 2% 0;
+        margin-bottom: 15px;
+    }
+
+    #issueNewFeatureHeader {
+        grid-row: 4;
+        grid-column: 1;
+        padding: 2% 0;
+        margin-bottom: 15px;
+    }
+
+    #issueLegacyCodeDateHeader {
+        grid-row: 4;
+        grid-column: 1;
+        padding: 2% 0;
+        margin-bottom: 15px;
+    }
+
+    #issueLegacyCodeDate {
+        grid-row: 4;
+        grid-column: 2;
+    }
+
+#headerSevenRight {
+    grid-row: 14;
+    grid-column: 2;
+}
+
+#injectionTime {
+    grid-row: 15;
+    grid-column: 2;
+}
+
+#headerEightLeft {
+    grid-row: 16;
+    grid-column: 1;
+}
+
+#leftEight {
+    grid-row: 17;
+    grid-column: 1;
+}
+
+#headerNineLeft {
+    grid-row: 18;
+    grid-column: 1;
+}
+
+#leftNine {
+    grid-row: 19;
+    grid-column: 1;
+}
+
+#emptySpace2 {
+    grid-row: 15/20;
+    grid-column: 2;
+}
+
+#headerTenLeft {
+    grid-row: 20;
+    grid-column: 1;
+}
+
+#leftTen {
+    grid-row: 21;
+    grid-column: 1;
+}
+
+#headerTenRight {
+    grid-row: 20;
+    grid-column: 2;
+}
+
+#howManyTimes {
+    grid-row: 21;
+    grid-column: 2;
+}
+
+
+#headerElevenLeft {
+    grid-row: 22;
+    grid-column: 1;
+}
+
+#leftEleven {
+    grid-row: 23;
+    grid-column: 1;
+}
+
+#createBtnFormItem {
+    grid-row: 24;
+    grid-column: 1;
+    width: 100%;
+    padding-top: 5% !important;
+    padding-left: 25% !important;
+    padding-right: 25% !important
+}
+
+.submitErrorMessage {
+    justify-content: center;
+    text-align: center !important;
+    width: 100%;
+    grid-row: 24;
+    grid-column: 2;
+    color: red;
+    padding-top: 5% !important;
+    padding-left: 25% !important;
+    padding-right: 25% !important;
+}
+
+#loader {
+    background-color: rgba(226, 226, 226, 0.8);
+    /*position: absolute;*/
+    width: 100%;
+    border: 5px solid rgb(198, 198, 198);
+    z-index: 100;
+    grid-row: 1/24;
+    grid-column: 1/3;
+
+}
+
+/*----------------------------------------------------------*/
+
+#threeRowsText {
+    height: 100%;
+}
+
+#createButton {
+    justify-content: center;
+    width: 100%;
+    color: white !important;
+    background-color: rgb(0,201,255) !important;
+    border-color: rgb(18,65,145) !important;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+#createButton:hover {
+    color: black !important;
+    width: 100%;
+    background-color: white !important;
+    border-color: rgb(18,65,145) !important;
+}
+
+#createButtonDisabled {
+    justify-content: center;
+    width: 100%;
+    color: white !important;
+    background-color: rgb(180, 180, 180) !important;
+    border-color: rgb(122, 121, 121) !important;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+#createButtonDisabled:hover {
+    color: white !important;
+    width: 100%;
+    background-color: rgb(180, 180, 180) !important;
+    border-color: rgb(122, 121, 121) !important;
+}
+
+#createButton .span, #createButtonDisabled .span {
+    overflow: hidden;
+}
+
+.raeiContainer .ant-spin-dot {
+    height: 100px;
+    width: 100px;
+}
+
+.raeiContainer .ant-spin-lg .ant-spin-dot i {
+    height: 35px !important;
+    width: 35px !important;
+}
+
+.raeiContainer .submitErrorMessage .ant-spin-dot {
+    height: 2px;
+    width: 2px;
+}
+
+.raeiContainer .submitErrorMessage .ant-spin-lg .ant-spin-dot i {
+    height: 35px !important;
+    width: 35px !important;
+}
+
+.firstColumn h5, .firstColumn  .divFetchingMessages
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.dropDownMenuFaPr {
+    width: 100%;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.linkButton {
+    margin-top: 10px;
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    color: #069;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: large;
+}
+
+.raeiContainer .ant-form-item {
+    padding: 0 !important;
+}
+
+.raeiContainer .ant-menu-item ant-menu-item-only-child {
+    padding: 0 !important;
+}
+
+.infoIcon {
+    padding-left: 5px;
+}
+
+.dropDownMenu {
+    width: 100%;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+/*.dropDownMenu:active, .dropDownMenu:focus {*/
+/*    border-style: solid !important;*/
+/*    border-width: 2px !important;*/
+/*    border-color: rgb(0,201,255) !important;*/
+/*}*/
+
+.formItem {
+    padding-bottom: 20px;
+}
+
+.raeiContainer .textAreaInput {
+    border-style: solid !important;
+    border-width: 1px !important;
+    border-color: rgb(18,65,145) !important;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.raeiContainer .textAreaBorder {
+    border-style: solid !important;
+    border-width: 1px !important;
+    border-color: white !important;
+}
+
+.raeiContainer .textAreaBorder:focus-within {
+    border-style: solid !important;
+    border-width: 2px !important;
+    border-color: #d4ebfd !important;
+}
+
+.raeiContainer .textAreaInput:disabled {
+    color: black;
+    cursor: default !important;
+}
+
+.raeiContainer .numberInput {
+    width: 100%;
+    border-style: solid !important;
+    border-width: 1px !important;
+    border-color: rgb(18,65,145) !important;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.raeiContainer .textInputBorder:focus-within {
+    border-style: solid !important;
+    border-width: 2px !important;
+    border-color: #d4ebfd !important;
+}
+
+.raeiContainer .textInputBorder {
+    border-style: solid !important;
+    border-width: 1px !important;
+    border-color: white !important;
+}
+
+.raeiContainer .ant-select-arrow {
+    color: rgb(18,65,145) !important;
+}
+
+.raeiContainer .ant-select:not(.ant-select-customize-input) .ant-select-selector {
+    border: rgb(18,65,145) 1px solid !important;
+}
+
+.ant-select .dropDownMenu .ant-select-single .ant-select-show-arrow .ant-select-show-search {
+    border: none;
+}
+
+#inputProntoFaultIdBtn {
+    margin-top: 10px;
+    margin-bottom: 15px;
+    color: white !important;
+    background-color: rgb(0,201,255) !important;
+    border-color: rgb(18,65,145) !important;
+    border-radius: 18px;
+    width: 100%;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+#inputProntoFaultIdBtn:hover {
+    color: black !important;
+    background-color: white !important;
+    border-color: rgb(18,65,145) !important;
+}
+
+#inputProntoFaultIdBtnDisabled {
+    margin-top: 10px;
+    margin-bottom: 15px;
+    color: white !important;
+    background-color: rgb(180, 180, 180) !important;
+    border-color: rgb(122, 121, 121) !important;
+    border-radius: 18px;
+    width: 100%;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+#inputProntoFaultIdBtnDisabled:hover {
+    color: white !important;
+    width: 100%;
+    background-color: rgb(180, 180, 180) !important;
+    border-color: rgb(122, 121, 121) !important;
+}
+
+.alreadySelectedAlert {
+    position: fixed;
+    top: 40% !important;
+    left: 25%;
+    width: 50%;
+    font-size: 24px;
+}
+
+.raeiContainer .ant-modal-content {
+    margin-bottom: 100px;
+}
+
+/*.rc-virtual-list-holder-inner {*/
+/*    position: absolute !important;*/
+/*    top: 0% !important;*/
+/*}*/
+
+.raeiContainer {
+    margin-bottom: 0;
+    overflow: hidden;
+}
+
+.ant-checkbox {
+    border: rgb(18,65,145) 1px solid;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.raeiContainer .raeiSpinner {
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: 35%;
+    left: 45.8%;
+    transform: translate(-50%, -50%);
+}
+
+.raeiContainer .star {
+    color: red;
+}
+
+@media (-webkit-min-device-pixel-ratio: 1.0) {
+    .raeiContainer {
+        height: 870px;
+    }
+    .formColumn {
+        height: 800px;
+    }
+}
+
+@media (-webkit-min-device-pixel-ratio: 1.25) {
+    .raeiContainer {
+        height: 660px;
+    }
+    .formColumn {
+        height: 610px;
+    }
+}
+
+@media (-webkit-min-device-pixel-ratio: 1.5) {
+    .raeiContainer {
+        height: 500px;
+    }
+    .formColumn {
+        height: 460px;
+    }
+}
+
+@media (-webkit-min-device-pixel-ratio: 1.75) {
+    .raeiContainer {
+        height: 400px;
+    }
+    .formColumn {
+        height: 360px;
+    }
+}
+
+

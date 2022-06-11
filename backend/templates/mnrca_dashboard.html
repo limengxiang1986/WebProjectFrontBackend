@@ -1,0 +1,729 @@
+﻿{% extends "layout.html" %}
+
+{% block body %}
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<div class="row">
+   <div class="col-md-6" style="float:left;">
+        <h3>
+            <meta charset="utf-8">
+
+            <p> <b style="color:red;">{{titlemessage}}</b> <b style="color:blue;"> Tribe Customer 5WhyRCA Task Status <b></p>
+        </h3>
+            <div id="new5WhyRcaStatus" style="width:600px;height:400px;"></div>
+	</div>
+    <div class="col-md-6" style="float:right;">
+        <h3>
+            <meta charset="utf-8">
+            <p> <b style="color:red;">{{titlemessage}}</b> <b style="color:blue;"> Tribe Customer RCA/EDA Task Status<b></p>
+        </h3>
+        <div id="newRcaEdaStatus" style="width:600px;height:400px;"></div>
+    </div>
+</div>
+<hr>
+
+<h2>
+    <meta charset="utf-8">
+    <p> <b style="color:red;">{{titlemessage}}</b> <b style="color:blue;"> Tribe Customer RCA/EDA AP Status <b></p>
+</h2>
+    <div id="newRcaEdaApStatus" style="width:600px;height:400px;"></div>
+		
+<hr>
+<h2>
+    <meta charset="utf-8">
+    <p> <b style="color:red;">{{titlemessage}}</b> <b style="color:blue;"> Tribe Monthly Customer 5WhyRca Status <b></p>
+</h2>
+    <div id="hzmonthlyfivewhyrca" style="width:1200px;height:600px;"></div>
+<hr>
+
+<h2>
+    <meta charset="utf-8">
+    <p> <b style="color:red;">{{titlemessage}}</b> <b style="color:blue;"> Tribe Monthly MNRCA RCA/EDA Status <b></p>
+</h2>
+    <div id="hzmonthlyRcaEda" style="width:1200px;height:600px;"></div>
+<hr>
+
+<h2>
+    <meta charset="utf-8">
+    <p> <b style="color:red;">{{titlemessage}}</b> <b style="color:blue;"> Tribe Monthly Customer RCA/EDA AP Status <b></p>
+</h2>
+    <div id="hzmonthlyRcaEdaAp" style="width:1200px;height:600px;"></div>	
+<hr>
+
+<script type="text/javascript">
+
+var myChart5WhyRcaStatus = echarts.init(document.getElementById('new5WhyRcaStatus'));	
+$.get('/newfiveWhyRcaStatus').done(function (data) {
+        myChart5WhyRcaStatus.hideLoading(); 
+        myChart5WhyRcaStatus.setOption(
+		{
+		title: {
+              text: "5WhyRca Status", //标题
+              padding: [12, 4], //距离上下4px
+              x: "center", //居中
+              textStyle: {
+                color: "#3398DB", //主标题的颜色
+                fontSize: "18" //主标题的大小
+              },
+            
+            },
+              
+        
+            color: ['#3398DB'],
+            
+            tooltip : {
+                trigger: 'axis',
+                formatter:'{c}',　　　　   //这是关键，以百分比的形式显示
+                axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                    type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                }
+            },
+            
+            
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis : [
+                {
+                    type : 'category',
+                    data : data.category,
+                    axisTick: {
+                        alignWithLabel: true
+                    },
+										axisLabel:{
+
+						  rotate:12,
+						  interval:0,
+						  textStyle:{
+					 
+							 color:"black",
+
+							 //fontSize:12
+
+						}
+
+					}
+                }
+            ],
+            
+            yAxis: [
+                      {  
+                                type: 'value',  
+                                axisLabel: {  
+                                    show: true,  
+                                    interval: 'auto',  
+                                    formatter: '{value}'  
+                                    },  
+                                show: true  
+                        }  
+                    ],
+            
+            label: {
+                                show: true,
+                                position: 'top',
+                                formatter: '{b}\n{c}'　//在柱状图的顶部显示出某个东西和这个东西的百分比值
+                    },
+                    
+            series : [
+                {
+                    name:'5WhyRcaData',
+                    type:'bar',
+                    barWidth: '60%',
+                    data:data.value    
+				}
+            
+            ]
+		}
+		);
+    });
+
+//点击事件
+//full column anywhere
+myChart5WhyRcaStatus.getZr().on('click', params => {
+          let pointInPixel = [params.offsetX, params.offsetY]
+          if (myChart5WhyRcaStatus.containPixel('grid', pointInPixel)) {
+            let xIndex = myChart5WhyRcaStatus.convertFromPixel({ seriesIndex: 0 }, [params.offsetX, params.offsetY])[0]
+			if (xIndex==0){
+				window.location.href="fiveWhyRcaTaskTotal";} 
+			if (xIndex==1){
+				window.location.href="fiveWhyRcaTaskClosed";}
+			if (xIndex==2){
+				window.location.href="fiveWhyRcaTaskClosedInTime";}
+			if (xIndex==3){
+				window.location.href="fiveWhyRcaTaskClosedNoInTime";}
+			if (xIndex==4){
+				window.location.href="fiveWhyRcaTaskOpen";}
+			if (xIndex==5){
+				window.location.href="fiveWhyRcaTaskOverDue";}
+            //var name = params.name;
+			alert("Display all the items?")
+			//console.log(xIndex)
+          }
+        });
+		
+var myChartRcaEdaStatus = echarts.init(document.getElementById('newRcaEdaStatus'));	
+$.get('/newRcaEdaStatus').done(function (data) {
+        myChartRcaEdaStatus.hideLoading(); 
+        myChartRcaEdaStatus.setOption(
+		{
+		title: {
+              text: "RCA/EDA Status", //标题
+              padding: [12, 4], //距离上下4px
+              x: "center", //居中
+              textStyle: {
+                color: "#3398DB", //主标题的颜色
+                fontSize: "18" //主标题的大小
+              },
+            },
+            color: ['#3398DB'],    
+            tooltip : {
+                trigger: 'axis',
+                formatter:'{c}',　　　　   //这是关键，以百分比的形式显示
+                axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                    type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                }
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis : [
+                {
+                    type : 'category',
+                    data : data.category,
+                    axisTick: {
+                        alignWithLabel: true
+                    },
+			axisLabel:{
+
+						  rotate:12,
+						  interval:0,
+						  textStyle:{
+					 
+							 color:"black",
+
+							 //fontSize:12
+						}
+					}
+                }
+            ],     
+            yAxis: [
+                      {  
+							type: 'value',  
+							axisLabel: {  
+								show: true,  
+								interval: 'auto',  
+								formatter: '{value}'  
+								},  
+							show: true  
+                        }  
+                    ],
+            
+            label: {
+						show: true,
+						position: 'top',
+						formatter: '{b}\n{c}'　//在柱状图的顶部显示出某个东西和这个东西的百分比值
+                    },
+                    
+            series : [
+                {
+                    name:'5WhyRcaData',
+                    type:'bar',
+                    barWidth: '60%',
+                    data:data.value    
+				}
+            
+            ]
+		}
+		);
+    });
+
+myChartRcaEdaStatus.getZr().on('click', params => {
+          let pointInPixel = [params.offsetX, params.offsetY]
+          if (myChartRcaEdaStatus.containPixel('grid', pointInPixel)) {
+            let xIndex = myChartRcaEdaStatus.convertFromPixel({ seriesIndex: 0 }, [params.offsetX, params.offsetY])[0]
+			if (xIndex==0){
+				window.location.href="RcaEdaTotal";} 
+			if (xIndex==1){
+				window.location.href="RcaEdaClosed";}
+			if (xIndex==2){
+				window.location.href="RcaEdaClosedInTime";}
+			if (xIndex==3){
+				window.location.href="RcaEdaClosedNoInTime";}
+			if (xIndex==4){
+				window.location.href="RcaEdaOpen";}
+			if (xIndex==5){
+				window.location.href="RcaEdaOverDue";}
+            //var name = params.name;
+			alert("Display all the items?")
+			//console.log(xIndex)
+          }
+        });
+
+var myChartRcaEdaApStatus = echarts.init(document.getElementById('newRcaEdaApStatus'));	
+$.get('/newRcaEdaApStatus').done(function (data) {
+        myChartRcaEdaApStatus.hideLoading(); 
+        myChartRcaEdaApStatus.setOption(
+		{
+		title: {
+              text: "RCA/EDA AP Status", //标题
+              padding: [12, 4], //距离上下4px
+              x: "center", //居中
+              textStyle: {
+                color: "#3398DB", //主标题的颜色
+                fontSize: "18" //主标题的大小
+              },
+            },
+            color: ['#3398DB'],    
+            tooltip : {
+                trigger: 'axis',
+                formatter:'{c}',　　　　   //这是关键，以百分比的形式显示
+                axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                    type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                }
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis : [
+                {
+                    type : 'category',
+                    data : data.category,
+                    axisTick: {
+                        alignWithLabel: true
+                    },
+			axisLabel:{
+
+						  rotate:0,
+						  interval:0,
+						  textStyle:{
+					 
+							 color:"black",
+
+							 //fontSize:12
+						}
+					}
+                }
+            ],     
+            yAxis: [
+                      {  
+							type: 'value',  
+							axisLabel: {  
+								show: true,  
+								interval: 'auto',  
+								formatter: '{value}'  
+								},  
+							show: true  
+                        }  
+                    ],
+            
+            label: {
+						show: true,
+						position: 'top',
+						formatter: '{b}\n{c}'　//在柱状图的顶部显示出某个东西和这个东西的百分比值
+                    },
+                    
+            series : [
+                {
+                    name:'5WhyRcaData',
+                    type:'bar',
+                    barWidth: '60%',
+                    data:data.value    
+				}
+            
+            ]
+		}
+		);
+    });
+
+myChartRcaEdaApStatus.getZr().on('click', params => {
+          let pointInPixel = [params.offsetX, params.offsetY]
+          if (myChartRcaEdaApStatus.containPixel('grid', pointInPixel)) {
+            let xIndex = myChartRcaEdaApStatus.convertFromPixel({ seriesIndex: 0 }, [params.offsetX, params.offsetY])[0]
+			if (xIndex==0){
+				window.location.href="RcaEdaApTotal";} 
+			if (xIndex==1){
+				window.location.href="RcaEdaApClosed";}
+			if (xIndex==2){
+				window.location.href="RcaEdaApClosedInTime";}
+			if (xIndex==3){
+				window.location.href="RcaEdaApClosedNoInTime";}
+			if (xIndex==4){
+				window.location.href="RcaEdaApOpen";}
+			if (xIndex==5){
+				window.location.href="RcaEdaApOverDue";}
+            //var name = params.name;
+			alert("Display all the items?")
+			//console.log(xIndex)
+          }
+        });
+
+
+var hzmonthlyfivewhyrca = echarts.init(document.getElementById('hzmonthlyfivewhyrca'));	
+$.get('/hzmonthlyfivewhyrca').done(function (data) {
+        hzmonthlyfivewhyrca.hideLoading(); 
+        hzmonthlyfivewhyrca.setOption(
+		{
+            title : {
+                text: data.user,
+                subtext: 'Tribe 5WhyRCA Status',
+                x:'center' /*,
+				textStyle:{
+		 
+                 color:"red",
+
+                 //fontSize:12
+				 }*/
+            },
+            tooltip : {
+                trigger: 'axis',
+                axisPointer : { 
+                    type : 'shadow'
+                }
+            },
+            legend: {
+                data:['Closed','ClosedInTime','ClosedNoInTime','Open', 'OverDue'],
+				//x : 'right',
+				y: 'bottom',// 'top'| 'center' | 'bottom' | {number}
+            },
+			/*
+            toolbox: {
+                show : true,
+                feature : {
+                    mark : {show: true},
+                    dataView : {show: true, readOnly: false},
+                    magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                    restore : {show: true},
+                    saveAsImage : {show: true}
+                }
+            },*/
+            calculable : true,
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            xAxis : [
+                {
+                    type : 'category',
+                    data :data.month,//['zhangyijie','Yangjinyong','Caizhichao','Chenlong','Liumingjing','Xiezhen','Lizhongyuan','Lanshenghai']
+					axisLabel:{
+
+						  rotate:12,
+						  interval:0,
+						  textStyle:{
+					 
+							 color:"blue",
+
+							 //fontSize:12
+
+						}
+
+					}
+				}
+            ],
+			/*
+			grid: {
+				x: 40,
+				x2: 0,
+				y2: 70,
+			},*/                 
+            series : [
+                {
+                    name:'Closed',//['RCA/EDA Arrival','RCA/EDA Planned', 'RCA/EDA Missed'
+                    type:'bar',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data: data.Closed  //[320, 302,191, 234, 290, 330, 310,120]
+                },
+                {
+                    name:'ClosedInTime',
+                    type:'bar',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data:data.ClosedInTime //[120, 132, 101, 134, 90, 230, 210,120]
+                },
+			    {
+                    name:'ClosedNoInTime',
+                    type:'bar',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data:data.ClosedNoInTime //[120, 132, 101, 134, 90, 230, 210,120]
+                },
+			    {
+                    name:'Open',
+                    type:'bar',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data:data.Open //[120, 132, 101, 134, 90, 230, 210,120]
+                },
+				{
+                    name:'OverDue',
+                    type:'bar',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data:data.OverDue //[120, 132, 101, 134, 90, 230, 210,120]
+                }
+            ]
+		}
+		);
+    });
+
+
+hzmonthlyfivewhyrca.on('click', function(params) {
+	alert("Check the 5WhyRca list of "+params.name +" ?")
+	window.location.href="fiveWhyRcaStatus/"+params.name
+    //console.log(params); 
+	//var name = parseInt(params.name);
+});
+
+var hzmonthlyRcaEda = echarts.init(document.getElementById('hzmonthlyRcaEda'));	
+$.get('/hzmonthlyRcaEda').done(function (data) {
+        hzmonthlyRcaEda.hideLoading(); 
+        hzmonthlyRcaEda.setOption(
+		{
+            title : {
+                text: data.user,
+                subtext: 'Tribe RCA/EDA Status',
+                x:'center' /*,
+				textStyle:{
+		 
+                 color:"red",
+
+                 //fontSize:12
+				 }*/
+            },
+            tooltip : {
+                trigger: 'axis',
+                axisPointer : { 
+                    type : 'shadow'
+                }
+            },
+            legend: {
+                data:['Closed','ClosedInTime','ClosedNoInTime','Open', 'OverDue'],
+				//x : 'right',
+				y: 'bottom',// 'top'| 'center' | 'bottom' | {number}
+            },
+			/*
+            toolbox: {
+                show : true,
+                feature : {
+                    mark : {show: true},
+                    dataView : {show: true, readOnly: false},
+                    magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                    restore : {show: true},
+                    saveAsImage : {show: true}
+                }
+            },*/
+            calculable : true,
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            xAxis : [
+                {
+                    type : 'category',
+                    data :data.month,//['zhangyijie','Yangjinyong','Caizhichao','Chenlong','Liumingjing','Xiezhen','Lizhongyuan','Lanshenghai']
+					axisLabel:{
+
+						  rotate:12,
+						  interval:0,
+						  textStyle:{
+					 
+							 color:"blue",
+
+							 //fontSize:12
+
+						}
+
+					}
+				}
+            ],
+			/*
+			grid: {
+				x: 40,
+				x2: 0,
+				y2: 70,
+			},*/                 
+            series : [
+                {
+                    name:'Closed',//['RCA/EDA Arrival','RCA/EDA Planned', 'RCA/EDA Missed'
+                    type:'bar',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data: data.Closed  //[320, 302,191, 234, 290, 330, 310,120]
+                },
+                {
+                    name:'ClosedInTime',
+                    type:'bar',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data:data.ClosedInTime //[120, 132, 101, 134, 90, 230, 210,120]
+                },
+			    {
+                    name:'ClosedNoInTime',
+                    type:'bar',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data:data.ClosedNoInTime //[120, 132, 101, 134, 90, 230, 210,120]
+                },
+			    {
+                    name:'Open',
+                    type:'bar',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data:data.Open //[120, 132, 101, 134, 90, 230, 210,120]
+                },
+				{
+                    name:'OverDue',
+                    type:'bar',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data:data.OverDue //[120, 132, 101, 134, 90, 230, 210,120]
+                }
+            ]
+		}
+		);
+    });
+
+hzmonthlyRcaEda.on('click', function(params) {
+	alert("Check the RCA/EDA list of "+params.name +" ?")
+	window.open("MonthlyRcaEdaStatus/"+params.name)
+    //console.log(params); 
+	//var name = parseInt(params.name);
+});
+
+	
+var hzmonthlyRcaEdaAp = echarts.init(document.getElementById('hzmonthlyRcaEdaAp'));	
+$.get('/hzmonthlyRcaEdaAp').done(function (data) {
+        hzmonthlyRcaEdaAp.hideLoading(); 
+        hzmonthlyRcaEdaAp.setOption(
+		{
+            title : {
+                text: data.user,
+                subtext: 'Tribe RCA/EDA AP Status',
+                x:'center' /*,
+				textStyle:{
+		 
+                 color:"red",
+
+                 //fontSize:12
+				 }*/
+            },
+            tooltip : {
+                trigger: 'axis',
+                axisPointer : { 
+                    type : 'shadow'
+                }
+            },
+            legend: {
+                data:['Closed','ClosedInTime','ClosedNoInTime','Open', 'OverDue'],
+				//x : 'right',
+				y: 'bottom',// 'top'| 'center' | 'bottom' | {number}
+            },
+			/*
+            toolbox: {
+                show : true,
+                feature : {
+                    mark : {show: true},
+                    dataView : {show: true, readOnly: false},
+                    magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                    restore : {show: true},
+                    saveAsImage : {show: true}
+                }
+            },*/
+            calculable : true,
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            xAxis : [
+                {
+                    type : 'category',
+                    data :data.month,//['zhangyijie','Yangjinyong','Caizhichao','Chenlong','Liumingjing','Xiezhen','Lizhongyuan','Lanshenghai']
+					axisLabel:{
+
+						  rotate:12,
+						  interval:0,
+						  textStyle:{
+					 
+							 color:"blue",
+
+							 //fontSize:12
+
+						}
+
+					}
+				}
+            ],
+			/*
+			grid: {
+				x: 40,
+				x2: 0,
+				y2: 70,
+			},*/                 
+            series : [
+                {
+                    name:'Closed',//['RCA/EDA Arrival','RCA/EDA Planned', 'RCA/EDA Missed'
+                    type:'bar',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data: data.Closed  //[320, 302,191, 234, 290, 330, 310,120]
+                },
+                {
+                    name:'ClosedInTime',
+                    type:'bar',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data:data.ClosedInTime //[120, 132, 101, 134, 90, 230, 210,120]
+                },
+			    {
+                    name:'ClosedNoInTime',
+                    type:'bar',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data:data.ClosedNoInTime //[120, 132, 101, 134, 90, 230, 210,120]
+                },
+			    {
+                    name:'Open',
+                    type:'bar',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data:data.Open //[120, 132, 101, 134, 90, 230, 210,120]
+                },
+				{
+                    name:'OverDue',
+                    type:'bar',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data:data.OverDue //[120, 132, 101, 134, 90, 230, 210,120]
+                }
+            ]
+		}
+		);
+    });
+hzmonthlyRcaEdaAp.on('click', function(params) {
+	alert("Check the AP list of "+params.name +" ?")
+	top.location.href="RcaEdaApStatus/"+params.name
+    //console.log(params); 
+	//var name = parseInt(params.name);
+});
+
+	
+
+</script>
+
+{% endblock %}
+

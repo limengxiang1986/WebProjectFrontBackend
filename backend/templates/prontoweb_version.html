@@ -1,0 +1,82 @@
+{% extends "layout.html" %}
+{% block body %}
+    <style>
+        .aptable {
+
+        }
+
+        .aptable tr {
+            height: 35px;
+        }
+
+        .aptable tr td:first-child {
+        }
+
+        .aptable tr td:last-child {
+        }
+    </style>
+    <form action="" method=post class="form-horizontal" style="margin-left: 100px;">
+        <h2>Edit AP or Update AP status: <input name='button' class="btn btn-large btn-primary" value='Delete'
+                                                type='SUBMIT'></h2>
+        <table class="aptable">
+            <p style="font-size: 20px;">Use this form to Edit your internal task and status( No More than 1024
+                chars,Only English,No Chinese):</p>
+            <tr>
+                <td style="width: 15%;"><h4>APID:</h4></td>
+                <td style="width: 35%;font-size: 18px;">{{ todo.APID }}</td>
+                <td style="width: 11%;"><h4>PRID:</h4></td>
+                <td style="font-size: 18px;">{{ todo.PRID }}</td>
+            </tr>
+            <tr>
+                <td style="width: 15%;"><h4>ApJiraId:</h4></td>
+                <td style="width: 35%;font-size: 18px;">{{ todo.ApJiraId }}</td>
+                <td><h4>APDescription:</h4></td>
+                <td style="font-size: 18px;">{{ todo.APDescription }}</td>
+            </tr>
+            <tr>
+                <td><h4>APCreatedDate:</h4></td>
+                <td style="font-size: 18px;">
+                    {{ todo.APCreatedDate }}
+                </td>
+                <td><h4>APDueDate:</h4></td>
+                <td style="font-size: 18px;">
+                    {{ todo.APDueDate }}
+                </td>
+            </tr>
+            <tr>
+                <td><h4>APCompletedOn:</h4></td>
+                <td style="font-size: 18px;">
+                    {{ todo.APCompletedOn }}
+                </td>
+                <td><h4>IsApCompleted:</h4></td>
+                <td style="font-size: 18px;">{{ todo.IsApCompleted }}</td>
+            </tr>
+            <tr>
+                <td><h4>APAssingnedTo:</h4></td>
+                <td style="font-size: 18px;">{{ todo.APAssingnedTo }}</td>
+                <td><h4>QualityOwner:</h4></td>
+                <td style="font-size: 18px;">{{ todo.QualityOwner }}</td>
+            </tr>
+            <tr>
+                <td><h4>Evidence of completeness:</h4></td>
+                <td style="font-size: 18px;"><textarea type="text" name="Evidence" id="Evidence" value=''
+                                                       style="width: 400px;"
+                                                       rows="5">{{ todo.EvidenceOfCompleteness }}</textarea>
+                </td>
+            </tr>
+        </table>
+        <div class="control-group" style="">
+            <div class="controls" style="margin: 20px 0px 20px 0px;display: block;">
+                <input name='button' class="btn btn-success" value='TextEvidenceUpdate' type='SUBMIT'>
+                <a href="{{ url_for('uploadevidence') }}" class="btn btn-success"> UploadEvidence </a>
+                <!--<a href="{{ url_for('apindex') }}">Back to list</a>-->
+                <input name='button' class="btn btn-success" value='Close' onclick="closePage()" style="width: 50px;">
+            </div>
+        </div>
+    </form>
+
+
+    <script type="text/javascript">
+
+    </script>
+{% endblock %}

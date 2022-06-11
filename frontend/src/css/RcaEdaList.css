@@ -1,0 +1,344 @@
+.rcaEdaListControlPanel {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    width: 100%;
+    margin-bottom: 5px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #214191;
+    height: 45px;
+}
+
+.rcaEdaListControlPanel #cp-1 {
+    width: 100%;
+    grid-column: 1;
+    padding: 0px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    word-wrap: normal;
+    font-weight: 500;
+}
+
+.rcaEdaListControlPanel #cp-2 {
+    width: 100%;
+    grid-column: 2;
+    margin-top: 8px;
+    margin-left: auto;
+    margin-right: 0px;
+    text-align: right;
+}
+
+.rcaEdaListControlPanel .clearAllButton{
+    margin-left: 10px;
+    justify-content: center;
+    color: white !important;
+    background-color: rgb(0,201,255) !important;
+    border-color: rgb(18,65,145) !important;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.rcaEdaListControlPanel .clearAllButton:hover {
+    color: black !important;
+    background-color: white !important;
+    border-color: rgb(18,65,145) !important;
+    cursor: pointer;
+}
+
+.reList .tableDiv {
+    width: 100%;
+    overflow: auto;
+}
+
+.reList .tableDiv .headerDiv {
+    display: grid;
+    grid-template-rows: 80% 20%;
+    padding-bottom: 10px;
+    height: 25px;
+}
+
+.reList .tableDiv .links {
+    display: block;
+    text-align: center;
+}
+
+.reList .tableDiv .links:hover {
+    color: #214191 !important;
+}
+
+.reList thead {
+    border-bottom: 2px solid #214191;
+    background-color: #F8F8FF;
+}
+
+.react-table-wordwrap {
+    white-space: pre-line !important;
+    word-wrap: break-word;
+}
+
+.reList tr:hover td {
+    background: #e3e3e3;
+}
+
+.reList td {
+    height: 70px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    white-space: pre-line !important;
+    word-wrap: break-word;
+    border-bottom: solid #214191 1px;
+    padding: 0px 7px;
+}
+
+.reList td,
+.reList th {
+    width: 110px !important;
+    max-width: 110px !important;
+}
+
+/*Abstract headline*/
+.reList td:nth-child(3),
+.reList th:nth-child(3){
+    width: 250px !important;
+    max-width: 250px !important;
+    /*background: #ddd;*/
+}
+
+/*Product*/
+.reList td:nth-child(4),
+.reList th:nth-child(4){
+    width: 140px !important;
+    max-width: 140px !important;
+    /*background: #ddd;*/
+}
+
+/*Dates*/
+.reList td:nth-child(9), .reList td:nth-child(10), .reList td:nth-child(11),
+.reList th:nth-child(9), .reList th:nth-child(10), .reList th:nth-child(11){
+    width: 130px !important;
+    max-width: 130px !important;
+    /*background: #ddd;*/
+}
+
+/*Triggering scenario category*/
+.reList td:nth-child(13),
+.reList th:nth-child(13){
+    width: 220px !important;
+    max-width: 220px !important;
+    /*background: #ddd;*/
+}
+
+/*How many requests R&D*/
+.reList td:nth-child(16),
+.reList th:nth-child(16){
+    width: 170px !important;
+    max-width: 170px !important;
+    /*background: #ddd;*/
+}
+
+.reList tbody {
+    display: block;
+    /*width: 100%;*/
+    overflow-y: scroll;
+}
+
+.reList thead, .reList tbody tr {
+    display: table;
+    width: 99%;
+    table-layout: fixed;/* even columns width , fix width of table too*/
+}
+
+.reList tr {
+    padding-bottom: 2px;
+    padding-top: 2px;
+}
+
+.reList .pagination {
+    font-size: 14px;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    display: grid;
+    grid-template-columns: 35% 30% 35%;
+}
+
+.reList .pagination #left {
+    margin-right: auto;
+    margin-left: 0px;
+    margin-top: 2px;
+    width: 50%;
+    height: 25px;
+}
+
+.reList .pagination #center {
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 500;
+    font-size: 1.0rem;
+}
+
+.reList .pagination #right {
+    margin-right: 0px;
+    margin-left: auto;
+}
+
+.reList .thFilter {
+    background-color: #F8F8FF;
+    height: 32px;
+    padding: 2px;
+    font-weight: 700;
+    margin-bottom: 3px;
+}
+
+.reList .pagination .pButton {
+    background-color: #F8F8FF;
+    border-radius: 20px;
+    font-weight: 700;
+    padding: 1px 8px;
+    margin-right: 4px;
+    cursor: pointer;
+    border: none;
+    font-size: larger;
+}
+
+.reList .pagination .pButton button:disabled {
+    background-color: #bec8d2;
+    border-color: #bec8d2;
+    cursor: not-allowed;
+}
+
+.reList .ant-select-selector,
+.reList .inputFilterActive,
+.reList .datepicker .ant-picker,
+.reList .inputFilter {
+    width: 100%;
+    height: 25px !important;
+}
+
+.reList .inputFilterActive,
+.reList .inputFilter {
+    margin-top: 1px;
+}
+
+.reList .ant-select-single .ant-select-selector .ant-select-selection-item {
+    line-height: 23px !important;
+    font-weight: 400;
+}
+.reList input.ant-input {
+    border-bottom: none !important;
+}
+.reList .selectFilterActive .ant-select-selector,
+.reList .inputFilterActive,
+.reList .inputFilterActive input.ant-input {
+    background-color: #00C9FF !important;
+}
+.reList .inputFilterGlobal {
+    width: 50%;
+    height: 30px;
+}
+
+.reList .datepicker {
+    display: grid;
+    grid-template-columns: 42% 58%;
+}
+
+.reList .datepicker .ant-select {
+    width: 100% !important;
+}
+
+.reList .datepicker .ant-select-selector {
+    padding: 0 !important;
+}
+
+.reList .datepicker .ant-picker {
+    padding: 2px 5px !important;
+}
+
+.reList .ant-select .ant-select-clear,
+.reList .datepicker .ant-picker .ant-picker-clear {
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.tableDiv td button, .tableDiv td .tdIcon {
+    margin-right: 7px;
+    font-weight: 500;
+    border: none;
+    padding: 0px;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.tableDiv td button:disabled {
+    cursor: not-allowed;
+}
+
+.tableDiv td button:hover {
+    color: #001135 !important;
+}
+
+.loadingMessage {
+    margin-top: 60px;
+    font-size: large;
+    text-align: center;
+}
+
+.loadingMessage div:first-child {
+    margin-top: 100px;
+}
+
+.statusAlert {
+    position: fixed;
+    top: 35%;
+    left: 25%;
+    width: 50%;
+}
+
+.reList tr td,
+.reList table {
+    border-bottom: 1px solid #214191;
+}
+
+@media (-webkit-min-device-pixel-ratio: 1.0) {
+    .reList .tableDiv {
+        font-size: 13px;
+    }
+    .reList tbody {
+        height: 700px;
+    }
+    .rcaEdaListControlPanel #cp-1 {
+        font-size: 2.1vmin;
+    }
+}
+
+@media (-webkit-min-device-pixel-ratio: 1.25) {
+    .reList .tableDiv {
+        font-size: 12px;
+    }
+    .reList tbody {
+        height: 485px;
+    }
+    .rcaEdaListControlPanel #cp-1 {
+        font-size: 3vmin;
+    }
+}
+
+@media (-webkit-min-device-pixel-ratio: 1.5) {
+    .reList .tableDiv {
+        font-size: 11px;
+    }
+    .reList tbody {
+        height: 345px;
+    }
+    .rcaEdaListControlPanel #cp-1 {
+        font-size: 3.5vmin;
+    }
+}
+
+@media (-webkit-min-device-pixel-ratio: 1.75) {
+    .reList tbody {
+        height: 240px;
+    }
+    .rcaEdaListControlPanel #cp-1 {
+        font-size: 4vmin;
+    }
+}

@@ -1,0 +1,572 @@
+/*style of the connection path between cards of tree (link/path) */
+.fiveWhyTree .rd3t-link {
+    /*stroke: rgb(18,65,145) !important;*/
+    stroke: rgba(124, 124, 124, 0.6) !important;
+    stroke-width: 10px;
+    z-index: 0 !important;
+}
+
+/*Branch card styles*/
+.fiveWhyTree .branchInnerContainer {
+    display: grid !important;
+    grid-template-columns: 1fr;
+    bottom: 60px;
+    position: absolute;
+    width: 88%;
+}
+
+.fiveWhyTree .actionsDiv .jiraLinkDiv {
+    margin-right: 0px;
+    margin-left: auto;
+    font-size: 32px;
+    font-weight: 500;
+}
+
+.fiveWhyTree .actionsDiv .jiraLinkDiv .jiraLink,
+.branchInnerContainer .branchInnerContainerText .jiraLink {
+    font-size: xx-large;
+    margin-left: 25px;
+    margin-top: 0px;
+}
+
+.fiveWhyTree .actionsDiv .jiraLinkDiv .jiraLink {
+    color: #ff9100 !important;
+}
+
+.fiveWhyTree .actionsDiv .jiraLinkDiv .jiraLink:hover,
+.branchInnerContainer .branchInnerContainerText .jiraLink:hover {
+    color: #214191 !important;
+}
+
+.fiveWhyTree .branchInnerContainerBranchType {
+    font-weight: bold;
+    margin-bottom: 25px;
+    padding: 0 !important;
+    font-size: 50px;
+    display: inline-block;
+}
+
+.fiveWhyTree .commentsSectionViewMode {
+    display: inline-block;
+    float: right;
+    margin-left: 25px;
+}
+
+
+/*branch name text*/
+.fiveWhyTree .branchInnerContainerUp {
+    font-style: italic;
+    float: left;
+    font-size: 36px;
+    margin-right: 100px;
+}
+
+.fiveWhyTree .branchInnerContainerText {
+    color: black;
+    text-align: left;
+    font-size: 30px;
+    font-weight: 600;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-bottom: 5px !important;
+    margin-top: 15px;
+    width: 100% !important;
+}
+
+.fiveWhyTree .branchInnerContainerInput {
+    width: 100% !important;
+    padding: 0;
+    margin: 0;
+    height: 38px;
+}
+
+.fiveWhyTree .branchInnerContainerInput .ant-select-selector {
+    height: 42px !important;
+    font-size: 26px !important;
+    padding-top: 5px !important;
+    padding-bottom: 0 !important;
+}
+
+.fiveWhyTree .ant-select-single.ant-select-show-arrow .ant-select-selection-item,
+.fiveWhyTree .ant-select-single.ant-select-show-arrow .ant-select-selection-placeholder {
+    padding-right: 0;
+}
+
+.fiveWhyTree .branchDisabledStyleRcaActive.ant-select-disabled.ant-select:not(.ant-select-customize-input) .ant-select-selector {
+    color: black !important;
+    background-color: rgb(255,223,5) !important;
+    cursor: pointer !important;
+}
+
+.fiveWhyTree .branchDisabledStyleEdaActive.ant-select-disabled.ant-select:not(.ant-select-customize-input) .ant-select-selector {
+    color: black !important;
+    background-color: rgb(255,247,166) !important;
+    cursor: pointer !important;
+}
+
+.fiveWhyTree .branchInnerContainerInput .dropDownMenu, .fiveWhyTree .actionsDiv .dropDownMenu {
+    width: 100%;
+    border-style: solid !important;
+    border-width: 1px !important;
+    border-color: rgb(18,65,145) !important;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+/*Button styles - currently not used because they have been replaced by icons*/
+.fiveWhyTree .btnAdd, .fiveWhyTree .btnAdd:focus {
+    background-color: lightgreen;
+    border: #52c752 2px solid;
+    width: 100%;
+    color: black;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.fiveWhyTree .btnRemove, .fiveWhyTree .btnRemove:focus {
+    background-color: mistyrose;
+    border: #d59e97 2px solid;
+    width: 100%;
+    color: black;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.fiveWhyTree .btnEdit, .fiveWhyTree .btnEdit:focus {
+    background-color: #f8f3b9;
+    border: #b49e4d 2px solid;
+    color: black;
+    width: 100%;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.fiveWhyTree .btnAddAction, .fiveWhyTree .btnAddAction:focus {
+    background-color: #c8c7fc;
+    border: #8e89aa 2px solid;
+    color: black;
+    width: 100%;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.fiveWhyTree .btnAddCause, .fiveWhyTree .btnAddCause:focus {
+    background-color: #88c6d2;
+    border: #5db0b0 2px solid;
+    color: black;
+    width: 100%;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.fiveWhyTree  .btnSave, .fiveWhyTree .btnSave:focus {
+    background-color: rgb(1, 180, 6);
+    border: rgb(18,65,145) 1px solid;
+    border-radius: 18px;
+    color: white;
+    padding: 3px 85px 3px 85px;
+    font-weight: 600;
+    display: block;
+    height: 30px;
+    font-size: 14px;
+    margin-top: 8px;
+    margin-right: 50px;
+    justify-content: center;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.fiveWhyTree .btnSave:hover {
+    color: black !important;
+    background-color: white !important;
+    border-color: rgb(18,65,145);
+    cursor: pointer;
+}
+
+.fiveWhyTree .btnSaveDisabled, .fiveWhyTree .btnSaveDisabled:focus {
+    background-color: rgb(180, 180, 180);
+    border: rgb(122, 121, 121) 1px solid;
+    border-radius: 18px;
+    color: white;
+    height: 38px;
+    padding: 5px 85px 5px 85px;
+    margin-top: 3px;
+    font-weight: 600;
+    display: block;
+    font-size: 14px;
+    margin-right: 50px;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+    cursor: not-allowed;
+}
+
+.fiveWhyTree .btnRefresh, .fiveWhyTree .btnRefresh:focus {
+    background-color: white;
+    border: rgb(8, 41, 103) 1px solid;
+    border-radius: 24px;
+    color: black;
+    padding: 5px 10px 5px 10px;
+    margin-bottom: 0;
+    font-weight: bold;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.fiveWhyTree .btnRefresh:hover {
+    color: white !important;
+    background-color: rgb(18,65,145) !important;
+    border: rgb(8, 41, 103) 1px solid;
+    cursor: pointer;
+}
+
+.fiveWhyTree .btnRefreshDisabled, .fiveWhyTree .btnRefreshDisabled:focus {
+    background-color: rgb(180, 180, 180);
+    border: rgb(140, 138, 138) 1px solid;
+    border-radius: 18px;
+    color: white;
+    padding: 5px 10px 5px 10px;
+    margin-bottom: 0;
+    font-weight: bold;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+    cursor: not-allowed;
+}
+
+.fiveWhyTree .btnAdd:hover, .fiveWhyTree .btnRemove:hover, .fiveWhyTree .btnEdit:hover,
+.fiveWhyTree .btnAddAction:hover, .fiveWhyTree .btnAddCause:hover {
+    color: black !important;
+    background-color: white !important;
+    border-color: green !important;
+    border-width: 2px;
+    font-weight: bold;
+}
+
+/*Branch icon styles*/
+.fiveWhyTree .clickIcon:hover {
+    color: #52c752;
+}
+
+/*Why question icon styles*/
+.fiveWhyTree .clickWhyIcon, .fiveWhyTree .clickWhyIcon:focus {
+    font-size: 50px;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+.fiveWhyTree .clickBranchWhyIcon {
+    font-size: 50px;
+    padding-right: 10px;
+    margin-top: 25px;
+}
+
+.fiveWhyTree .clickWhyAddIcon:hover {
+    color: green;
+}
+
+.fiveWhyTree .clickWhyDeleteIcon:hover {
+    color: #c75243;
+}
+
+.fiveWhyTree .clickWhyEditIcon:hover {
+    color: #b49e4d;
+}
+
+.fiveWhyTree .clickWhyCauseIcon:hover {
+    color: #5db0b0;
+}
+
+/*cause icon styles*/
+.fiveWhyTree .cIcon {
+    margin-top: 15px !important;
+    font-size: 50px;
+    padding-right: 10px;
+}
+
+.fiveWhyTree .cEditIcon:hover {
+    color: #b49e4d;
+}
+
+.fiveWhyTree .cActionIcon:hover {
+    color: green;
+}
+
+.fiveWhyTree .cDeleteIcon:hover {
+    color: #c75243;
+}
+
+/*Action icon styles*/
+.fiveWhyTree .actionIcon {
+    margin-top: 15px;
+    font-size: 50px;
+    padding-right: 10px;
+}
+
+.fiveWhyTree .actionEditIcon:hover {
+    color: #b49e4d;
+}
+
+.fiveWhyTree .actionDeleteIcon:hover {
+    color: #c75243;
+}
+
+/*Not status style but message style that popups in the center of a screen with green or red icon depending on success and error*/
+.statusAlert {
+    position: fixed;
+    top: 40% !important;
+    left: 25%;
+    width: 50%;
+    font-size: 24px;
+}
+
+/*style of a save status text*/
+.fiveWhyTree .statusText {
+    float: left;
+    margin-right: 25px;
+    padding: 4px 0;
+    vertical-align: center;
+    font-weight: 600;
+    font-Style: italic;
+    font-size: 24px;
+}
+
+/*status of the whole box that has status inside of it*/
+.fiveWhyTree .statusBox {
+    display: flex;
+    vertical-align: middle;
+    padding: 5px 10px;
+    background-color: white;
+    border-bottom: rgb(18,65,145) 2px solid;
+    margin-bottom: 5px;
+}
+
+.fiveWhyTree .loadingSpinner {
+    position: inherit;
+    padding-top: 5px;
+}
+
+.fiveWhyTree .shiftKeyInfo {
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.fiveWhyTree .shift {
+    font-weight: 700;
+    margin: 0 4px;
+}
+
+.fiveWhyTree .ant-modal-content {
+    margin-bottom: 100px;
+}
+
+.fiveWhyTree .whyQuestionAnswerDiv {
+    display: grid;
+    grid-template-columns: 3% 97%;
+}
+
+.fiveWhyTree .whyQuestionAnswerDiv .label {
+    margin-left: auto;
+    margin-right: 10px;
+    font-weight: 600;
+    font-size: 30px;
+    text-align: right;
+}
+.fiveWhyTree .whyQuestionAnswerDiv .input {
+    margin-bottom: 5px;
+    margin-left: 15px;
+    margin-right: auto;
+    font-size: 35px;
+    width: 98%;
+}
+
+.fiveWhyTree .whyQuestionAnswerDiv .dataText {
+    margin-left: 30px;
+    margin-right: auto;
+    font-size: 30px;
+    word-wrap: break-word;
+    width: 100%;
+}
+
+.fiveWhyTree .whyQADiv .disabledStyleRcaActive {
+    color: white !important;
+    background-color: rgb(15,39,100) !important;
+    cursor: pointer;
+
+}
+
+.fiveWhyTree .whyQADiv .disabledStyleRcaNotActive {
+    background-color: rgb(175,175,175) !important;
+    cursor: pointer;
+}
+
+.fiveWhyTree .whyQADiv .disabledStyleEdaActive {
+    color: white !important;
+    background-color: rgb(18,65,145) !important;
+    cursor: pointer;
+}
+
+.fiveWhyTree .whyQADiv .disabledStyleEdaNotActive {
+    background-color: rgb(206,205,205) !important;
+    cursor: pointer;
+}
+
+.fiveWhyTree .cause .disabledStyleRcaActive {
+    color: white !important;
+    background-color: rgb(217,98,4) !important;
+    cursor: pointer;
+
+}
+
+.fiveWhyTree .cause .disabledStyleRcaNotActive {
+    background-color: rgb(175,175,175) !important;
+    cursor: pointer;
+}
+
+.fiveWhyTree .cause .disabledStyleEdaActive {
+    color: white !important;
+    background-color: rgb(255,148,64) !important;
+    cursor: pointer;
+
+}
+
+.fiveWhyTree .cause .disabledStyleEdaNotActive {
+    background-color: rgb(206,205,205) !important;
+    cursor: pointer;
+}
+
+.fiveWhyTree .actionsDiv {
+    display: grid;
+    grid-template-columns: 100%;
+}
+
+.fiveWhyTree .actionsDiv .label {
+    margin-left: 5px;
+    margin-right: auto;
+    /*margin-top: 15px;*/
+    font-weight: 600;
+    font-size: 28px;
+    text-align: left;
+    height: 38px;
+}
+
+.fiveWhyTree .actionsDiv .labelSmaller {
+    font-size: 18px;
+    margin-left: auto;
+    margin-right: 5px;
+    font-weight: 500;
+    text-align: right;
+    padding-top: 2px;
+    height: 55px;
+}
+
+.fiveWhyTree .actionsDiv .input {
+    margin: 5px 2px 8px 2px;
+    width: 100%;
+}
+
+.fiveWhyTree .actionProposalInput textarea .ant-input{
+    height: 114px;
+}
+
+.fiveWhyTree .actionsDiv .textarea.ant-input {
+    height: 42px !important;
+    font-size: 26px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.fiveWhyTree .actionsDiv .ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+    height: 42px !important;
+    font-size: 26px !important;
+    padding-top: 4px !important;
+}
+
+.fiveWhyTree.actionsDiv .ant-picker {
+    height: 42px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.fiveWhyTree .actionsDiv .ant-picker-input > input {
+   font-size: 26px !important;
+}
+
+.fiveWhyTree .actions-div .input span{
+    font-style: italic;
+}
+
+.fiveWhyTree .actionsDiv .dataText {
+    margin-left: 5px;
+    margin-right: auto;
+    font-size: 20px;
+    word-wrap: break-word;
+    width: 100%;
+}
+
+.fiveWhyTree .actionsDiv .inputAiId, .fiveWhyTree .inputCompletionDate {
+    display: flex !important;
+}
+
+/*.fiveWhyTree .actionsDiv .disabledStyle {*/
+/*    background-color: green !important;*/
+/*    color: black !important;*/
+/*}*/
+
+.fiveWhyTree .actionsDiv .disabledStyleRcaActive {
+    color: white !important;
+    background-color: rgb(5,154,3) !important;
+    cursor: pointer;
+}
+
+.fiveWhyTree .actionsDiv .disabledStyleRcaNotActive {
+    background-color: rgb(175,175,175) !important;
+    cursor: pointer;
+}
+
+.fiveWhyTree .actionsDiv .disabledStyleEdaActive {
+    color: white !important;
+    background-color: rgb(6,189,3) !important;
+    cursor: pointer;
+}
+
+.fiveWhyTree .actionsDiv .disabledStyleEdaNotActive {
+    background-color: rgb(206,205,205) !important;
+    cursor: pointer;
+}
+
+.fiveWhyTree .disabledStyleRcaActive.ant-select-show-search.ant-select:not(.ant-select-customize-input) .ant-select-selector {
+    color: white !important;
+    background-color: rgba(5,154,3,1) !important;
+    cursor: pointer;
+}
+
+.fiveWhyTree .disabledStyleRcaNotActive.ant-select-show-search.ant-select:not(.ant-select-customize-input) .ant-select-selector {
+    background-color: rgb(175,175,175) !important;
+    cursor: pointer;
+}
+
+.fiveWhyTree .disabledStyleEdaActive.ant-select-show-search.ant-select:not(.ant-select-customize-input) .ant-select-selector {
+    color: white !important;
+    background-color: rgb(6,189,3) !important;
+    cursor: pointer;
+}
+
+.fiveWhyTree .disabledStyleEdaNotActive.ant-select-show-search.ant-select:not(.ant-select-customize-input) .ant-select-selector {
+    background-color: rgb(206,205,205) !important;
+    cursor: pointer;
+}
+
+.fiveWhyTree .actionsDiv > .ant-select-disabled.ant-select:not(.ant-select-customize-input) .ant-select-selector input {
+    cursor: pointer !important;
+}
+
+.fiveWhyTree .disabledStyleRcaActive > .ant-picker-input > input {
+    color: white !important;
+    cursor: pointer !important;
+}
+
+.fiveWhyTree .disabledStyleEdaActive > .ant-picker-input > input {
+    color: white !important;
+    cursor: pointer !important
+}
+
+.fiveWhyTree .whyQADiv .ant-input:disabled,
+.fiveWhyTree .cause .ant-input:disabled,
+.fiveWhyTree .actionsDiv .ant-input:disabled,
+.fiveWhyTree .actionsDiv .ant-select-disabled.ant-select:not(.ant-select-customize-input) .ant-select-selector,
+.fiveWhyTree .actionsDiv .ant-picker-input > input:disabled{
+    color: black ;
+}
+
+.fiveWhyTree .clickWhyCommentIcon .commentsIconNumber {
+    margin-left: 5px !important;
+}

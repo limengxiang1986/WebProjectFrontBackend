@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block body %}
+<div style = "text-align:left;">
+<div class="" style="margin-left: 100px;">
+    <h2>All Items:  <b style="color:red;">{{count}}</b>  	
+    <div style = "text-align:right;"> 
+        <a href="{{url_for('displayAllEmailService')}}" class="btn btn-large btn-primary">Display All</a>
+        <a href="{{url_for('SubscribeEmailServiceNew')}}" class="btn btn-large btn-primary">Subscribe New EmailService</a>
+    </div>
+    </h2> 
+    <table class="table table-hover">
+      <tr>
+        <th>ServiceID  
+		<th>Tribe
+		<th>TribeQualityManager
+        <th>RCA_EmailService
+        <th>EDA_EmailService
+        <th>ActionForRCA_EmailService
+        <th>ActionForEDA_EmailService
+        <th>AddedBy
+      {%- for todo in todos %}
+      <tr class={{ "success" if todo.done }}>
+        <td><a href="/emailservice/{{todo.EmailServiceId}}">{{ todo.EmailServiceId}}</a>
+        <td>{{ todo.TribeName}}</td>
+        <td>{{ todo.QualityManagerEmail}}</td>
+        <td>{{ todo.RCA_EmailService}}</td>
+        <td>{{ todo.EDA_EmailService}}</td>
+		<td>{{ todo.ActionForRCA_EmailService}}</td>
+        <td>{{ todo.ActionForEDA_EmailService}}</td>
+		<td>{{ todo.AddedBy}}</td>
+      {%- endfor %}
+    </table>
+    <p>
+    <div style = "text-align:left;"><a href="{{ url_for('SubscribeEmailServiceNew') }}" class="btn btn-large btn-primary">Subscribe New EmailService</a></div>
+	  <!---<a href="{{url_for('importinchargegroupfromexcel')}}" class="btn btn-large btn-primary">Import from Excel</a>--->
+</div>
+
+</div>
+{% endblock %}
+

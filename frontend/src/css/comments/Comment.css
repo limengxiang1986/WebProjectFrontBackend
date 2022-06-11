@@ -1,0 +1,154 @@
+
+.commentComponent .textAreaInputComment {
+    border-style: solid !important;
+    border-width: 1px !important;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.commentComponent .textAreaInputComment:disabled {
+    color: black;
+    cursor: default !important;
+}
+
+.commentComponent .textAreaInputStandardComment {
+    border-color: rgb(18,65,145) !important;
+}
+
+.commentComponent .textAreaInputStandardComment:disabled {
+    color: black !important;
+}
+
+.commentComponent .textAreaInput5WhyTreeComment {
+    border-color: #ef8405 !important;
+}
+
+.commentComponent .textAreaInput5WhyTreeComment:disabled {
+    color: black !important;
+}
+
+.commentComponent .textAreaInputAnswerComment {
+    border-color: green !important;
+}
+
+.commentComponent .textAreaInputAnswerComment:disabled {
+    color: black !important;
+}
+
+.commentComponent .editButton {
+    background-color: white;
+    border-radius: 18px;
+    border: rgb(18,65,145) 1px solid;
+    color: rgb(18,65,145);
+    margin-top: 10px;
+    margin-right: 10px;
+    padding: 2px 15px 0px 15px;
+    font-weight: 600;
+    display: block;
+    height: 16px;
+    font-size: 8px;
+    justify-content: center;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.commentComponent .editButton:hover {
+    background-color: white;
+    color: black;
+    border: black 1px solid;
+}
+
+.commentComponent .removeButton {
+    background-color: white;
+    border-radius: 18px;
+    border: rgb(189, 4, 4) 1px solid;
+    color: rgb(189, 4, 4);
+    margin-top: 10px;
+    padding: 2px 15px 0px 15px;
+    font-weight: 600;
+    display: block;
+    height: 16px;
+    font-size: 8px;
+    justify-content: center;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.commentComponent .removeButton:hover {
+    background-color: white;
+    color: black;
+    border: black 1px solid;
+}
+
+.commentComponent .cancelButton {
+    background-color: white;
+    border-radius: 18px;
+    border: black 1px solid;
+    color: black;
+    margin-top: 10px;
+    margin-right: 10px;
+    padding: 2px 15px 0px 15px;
+    font-weight: 600;
+    display: block;
+    height: 16px;
+    font-size: 8px;
+    justify-content: center;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.commentComponent .cancelButton:hover {
+    background-color: white;
+    border: rgb(18,65,145) 1px solid;
+    color: rgb(18,65,145);
+}
+
+.commentComponent .saveEditButton {
+    background-color: rgb(18,65,145);
+    border-radius: 18px;
+    border: rgb(10, 49, 119) 1px solid;
+    color: white;
+    margin-top: 10px;
+    margin-right: 10px;
+    padding: 2px 15px 0px 15px;
+    font-weight: 600;
+    display: block;
+    height: 16px;
+    font-size: 8px;
+    justify-content: center;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.commentComponent .saveEditButton:hover {
+    background-color: white;
+    color: black;
+    border: black 1px solid;
+}
+
+.commentComponent .editTitleStyle {
+    color: black !important;
+}
+
+.commentComponent .profile-icon {
+    display: inline-block;
+    margin-bottom: -3px;
+    font-size: 1.08rem !important;
+}
+
+.commentComponent .date {
+    font-size: 9px;
+    font-weight: 600;
+    font-style: italic;
+}
+
+.commentComponent .editedAt {
+    margin-top: 13px;
+    margin-left: auto;
+    margin-left: auto;
+}
+
+
+/*.commentComponent .statusAlert {*/
+/*    position: fixed;*/
+/*    z-index: 99999999999999999999999999999 !important;*/
+/*    top: 40% !important;*/
+/*    left: 45%;*/
+/*    width: 50%;*/
+/*    font-size: 24px;*/
+/*}*/

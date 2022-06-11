@@ -1,0 +1,1823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <style type="text/css">
+html {
+    font-family: sans-serif;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    margin: 10px;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+td,th {
+    padding: 0;
+}
+
+.pure-table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    empty-cells: show;
+    border: 1px solid #cbcbcb;
+}
+
+.pure-table caption {
+    color: #000;
+    font: italic 85%/1 arial,sans-serif;
+    padding: 1em 0;
+    text-align: center;
+}
+
+.pure-table td,.pure-table th {
+    border-left: 1px solid #cbcbcb;
+    border-width: 0 0 0 1px;
+    font-size: inherit;
+    margin: 0;
+    overflow: visible;
+    padding: .5em 1em;
+}
+
+.pure-table thead {
+    background-color: #e0e0e0;
+    color: #000;
+    text-align: left;
+    vertical-align: bottom;
+}
+
+.pure-table td {
+    background-color: transparent;
+}
+
+.showtext{
+  width: 99%;
+  height: 100%;
+  resize: none;
+  overflow-y:scroll;
+  }
+
+
+
+
+
+
+    </style>
+    <script src="/static/javascript/jquery-3.6.0.js"></script>
+</head>
+
+<body id="generic" class="">
+<form id="mainform">
+    <div>
+        <table border="1" width="100% " class="active">
+            <tr bgcolor="#FFFFCC">
+                <td colspan="5">
+                    <div class="container"><font color="#FF0000">MAKE SURE TO ENABLE MACROS BEFORE EDITING THIS
+                        SPREADSHEET</font></div>
+                    <br>
+                    <div align="center">Heading</div>
+                </td>
+            </tr>
+            <tr bgcolor="#99CC99">
+                <td colspan="1" width="20%" align="center">Case Number</td>
+                <td colspan="1" width="20%" align="center">Product</td>
+                <td colspan="1" width="20%" align="center">Abstract Headline</td>
+                <td colspan="1" width="20%" align="center">Assessors</td>
+                <td colspan="1" width="20%" align="center">Quality Reviewer</td>
+            </tr>
+            <tr>
+                <td colspan="1" rowspan="1" width="20%" align="center"><input style="width:100%" id="CaseNumber"/></td>
+                <td colspan="1" rowspan="1" width="20%" align="center"><input style="width:100%" id="Product"/></td>
+                <td colspan="1" rowspan="1" width="20%" align="center"><input style="width:100%" id="AbstractHeadline"/>
+                </td>
+                <td colspan="1" rowspan="1" width="20%" align="center"><input style="width:100%" id="Assessors"/></td>
+                <td colspan="1" rowspan="1" width="20%" align="center"><input style="width:97%" id="QualityReviewer"/>
+                </td>
+            </tr>
+            <tr bgcolor="#99CCFF">
+                <td colspan="2" align="center">Gather Facts</td>
+                <td colspan="3" align="center">Facts</td>
+            </tr>
+            <tr>
+                <td colspan="2"><font size="5">1. Issue Description</font><br>
+                    What was the problem from the customer's or tester’s viewpoint?<br>
+                    What was wrong or not working?
+                </td>
+                <td colspan="3"><textarea class="showtext" rows="3" id="IssueDescription"></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="2"><font size="5">2. Triggering scenario</font><br>
+                    What sequence of events is needed to observe the fault?<br>
+                    What environment (e.g. HW/SW configuration) should be used?<br>
+                    What constraints should be satisfied?<br>
+                    Where and how was the issue actually found?<br>
+                    Repeatability %%
+
+                </td>
+                <td colspan="3"><textarea class="showtext" rows="6" id="Triggeringscenario"></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="2"><font color="#FF0000">Triggering scenario category: select appropriate item from the
+                    list</font>
+                </td>
+                <td colspan="1" bgcolor="#00BB00"><select style="width:100%; " id="Triggeringscenariocategory">
+                    <option value="Installation & Startup">Installation & Startup</option>
+                    <option value="SW Upgrade">SW Upgrade</option>
+                    <option value="SW Fallback">SW Fallback</option>
+                    <option value="Process of Configuration / Reconfiguration">Process of Configuration /
+                        Reconfiguration
+                    </option>
+                    <option value="Not Supported Configuration">Not Supported Configuration</option>
+                    <option value="OAM Operations">OAM Operations</option>
+                    <option value="Feature Interaction & interoperability">Feature Interaction & interoperability
+                    </option>
+                    <option value="OAM Robustness (high Load / stressful scenarios/long duration)">OAM Robustness (high
+                        Load
+                        /
+                        stressful scenarios/long duration)
+                    </option>
+                    <option value="Telecom Robustness (high Load / mobility /stressful scenarios/long duration)">Telecom
+                        Robustness (high Load / mobility /stressful scenarios/long duration)
+                    </option>
+                    <option value="Debug (Counters/Alarms/Trace/Resource monitoring)">Debug
+                        (Counters/Alarms/Trace/Resource
+                        monitoring)
+                    </option>
+                    <option value="Reset & Recovery">Reset & Recovery</option>
+                    <option value="HW Failure">HW Failure</option>
+                    <option value="Required customer/vendor specific equipment">Required customer/vendor specific
+                        equipment
+                    </option>
+                    <option value="Unknown triggering scenario">Unknown triggering scenario</option>
+                </select></td>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+                <td colspan="2"><font size="5">3.Code Deficiency: What was wrong in the source code?</font><br>
+                    Short technical description like<br>
+                    *variable was overwritten due to queue overflow --> The check for queue size was wrong - did allow
+                    more<br>
+                    entries than actually fit into the queue<br>
+                    “name of non-existing file was sent to iOMS” --> “No check for file creation operation success
+                    was<br>
+                    performed”
+                </td>
+                <td colspan="3"><textarea class="showtext" rows="7" id="CodeDeficiency"></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="2"><font size="5">4. Correction Description: How the code was changed to fix the
+                    issue?</font><br>
+                    Just a short technical description:<br>
+                    *variable was overwritten due to queue overflow --> The check for queue size was wrong - did allow
+                    more<br>
+                    entries than actually fit into the queue --> “<font color="#0000FF">queue size verification was
+                        added</font>”<br>
+                    “name of non-existing file was sent to iOMS” --> “No check for file creation operation success
+                    was<br>
+                    performed” --> “<font color="#0000FF">file creation operation result is verified before next
+                        actions</font>”<br>
+                </td>
+                <td colspan="3"><select style="width:100%; " id="CorrectionDescription">
+                    <option value="New Feature Development">New Feature Development</option>
+                    <option value="Defective Correction">Defective Correction</option>
+                    <option value="Optimization / Refactoring">Optimization / Refactoring</option>
+                    <option value="Revealed Issue">Revealed Issue</option>
+                    <option value="Legacy code">Legacy code</option>
+                    <option value="Other">Other</option>
+                </select></td>
+            </tr>
+            <tr>
+                <td colspan="2"><font size="5">5. Injection type</font><br>
+                    - New Feature<br>
+                    - Defective Correction<br>
+                    - Optimization / Refactoring<br>
+                    - Revealed Issue<br>
+                    - Legacy code<br>
+
+                    See Technical RCA guideline for detailed description:<br>
+                    https://sharenet-ims.inside.nokiasiemensnetworks.com/Overview/D492583158<br>
+                </td>
+                <td colspan="3"><textarea class="showtext" rows="8" id="Injectiontype"></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="2"><font size="5">6. Injection time</font><br>
+                    When the issue was merged (precise date) and first build containing the issue (e.g.
+                    LN4.0_ENB_1202_476_42) +<br>
+                    following:<br>
+                    - For New Feature injection: Feature ID<br>
+                    - For Defective Correction injection: PR id<br>
+                    - For Legacy Code: latest file revision (date) which was checked to claim Legacy Code<br>
+
+
+                </td>
+                <td colspan="3"><textarea class="showtext" rows="7" id="Injectiontime"></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="2"><font size="5">7.Additional Facts</font><br>
+                    - Was the issue corrected in another branch and not propagated to the branch where the issue was
+                    detected<br>
+                    and reported by Customer?<br>
+                    - Any other facts worth to be mentioned<br>
+                    If case of a doubt (should be mentioned or not) – please do add the information<br>
+                </td>
+                <td colspan="3"><textarea class="showtext" rows="6" id="AdditionalFactstt"></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="2"><font size="5">8.Inheritance Recommendation</font><br>
+                    - Should the issue be requested for propagation in maintenance branches?<br>
+                    - Guidenace is to request inheritance for issues which might lead to an outage (e.g. rolling reboot,<br>
+                    sleeping cell, site unavailability, site visit is needed to repair after the fault occurence and
+                    etc)<br>
+                </td>
+                <td colspan="3"><textarea class="showtext" rows="6" id="InheritanceRecommendation"></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="2"><font size="5">9. How many times R&D requested for Symptoms/Logs recollection
+                    (number)?</font><br>
+                </td>
+                <td colspan="3"><textarea class="showtext" rows="2" id="Howmanytimes"></textarea></td>
+            </tr>
+
+        </table>
+    </div>
+    <br><br>
+    <div style="width:100%; overflow:scroll;">
+        <table border="1" width="3000px ">
+            <tr>
+                <td colspan="11">
+                    &nbsp;
+                </td>
+                <td colspan="7" bgcolor="#FF99CC">
+                    <div align="center"><font size="4"><strong>Review Fields</strong></font></div>
+                </td>
+            </tr>
+            <tr>
+                <td style="width:300px;"><font size="3"><strong>Root Cause Analysis</strong></font></td>
+                <td style="width:200px;" bgcolor="#FFCC99"><font size="3"><strong>Why 1</strong></font></td>
+                <td style="width:30px;" bgcolor="#CCCCCC">&nbsp;</td>
+                <td style="width:200px;" bgcolor="#FFCC99"><font size="3"><strong>Why 2</strong></font></td>
+                <td style="width:30px;" bgcolor="#CCCCCC">&nbsp;</td>
+                <td style="width:200px;" bgcolor="#FFCC99"><font size="3"><strong>Why 3</strong></font></td>
+                <td style="width:30px;" bgcolor="#CCCCCC">&nbsp;</td>
+                <td style="width:200px;" bgcolor="#FFCC99"><font size="3"><strong>Why 4</strong></font></td>
+                <td style="width:30px;" bgcolor="#CCCCCC">&nbsp;</td>
+                <td style="width:200px;" bgcolor="#FFCC99"><font size="3"><strong>Why 5</strong></font></td>
+                <td style="width:200px;" bgcolor="#FFCC33"><font size="3"><strong>Root Cause</strong></font></td>
+                <td style="width:200px;" bgcolor="#99CC99"><font size="3"><strong>Action Proposal</strong></font></td>
+                <td style="width:200px;" bgcolor="#FF99CC"><font size="3"><strong>Root Cause Category</strong></font>
+                </td>
+                <td style="width:230px;" bgcolor="#FF99CC"><font size="3"><strong>Root Cause Subcategory</strong></font>
+                </td>
+                <td style="width:200px;" bgcolor="#FF99CC"><font size="3"><strong>RCA Action Type</strong></font></td>
+                <td style="width:200px;" bgcolor="#FF99CC"><font size="3"><strong>Assigned To</strong></font></td>
+                <td style="width:200px;" bgcolor="#FF99CC"><font size="3"><strong>RCA AI ID</strong></font></td>
+                <td style="width:200px;" bgcolor="#FF99CC"><font size="3"><strong>Completion Target Date</strong></font>
+                </td>
+            </tr>
+            <tr groupid="WhywasthefaultintroducedTr">
+                <td bgcolor="#FFFF66"><font size="4"><strong>Why was the fault introduced?
+                    (Process RCA)
+                    See Process RCA guideline for information how to proceed</strong></font>
+                </td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Requirements">Requirements</option>
+                    <option value="Architecture ">Architecture</option>
+                    <option value="High_Level_Design">High_Level_Design</option>
+                    <option value="Low_Level_Design">Low_Level_Design</option>
+                    <option value="Code">Code</option>
+                    <option value="User_Documentation_including_Release_Note">User_Documentation_including_Release_Note
+                    </option>
+                    <option value="Configuration_and_Fault_Management">Configuration_and_Fault_Management</option>
+                    <option value="Collaborated_Mode_with_Suppliers">Collaborated_Mode_with_Suppliers</option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Requirements Improvement">Requirements Improvement</option>
+                    <option value="Architecture Improvement">Architecture Improvement</option>
+                    <option value="High-Level Design Improvement">High-Level Design Improvement</option>
+                    <option value="Low-Level Design Improvement">Low-Level Design Improvement</option>
+                    <option value="Coding Quality Improvement">Coding Quality Improvement</option>
+                    <option value="User Documentation (including Release Note) Improvement">User Documentation
+                        (including Release Note) Improvement
+                    </option>
+                    <option value="Configuration and Fault Management Improvement">Configuration and Fault
+                        Management
+                        Improvement
+                    </option>
+                    <option value="Knowledge/ Expertise/ Training Improvement">Knowledge/ Expertise/ Training
+                        Improvement
+                    </option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+            </tr>
+            <tr groupid="WhywasthefaultintroducedTr">
+                <td></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Requirements">Requirements</option>
+                    <option value="Architecture ">Architecture</option>
+                    <option value="High_Level_Design">High_Level_Design</option>
+                    <option value="Low_Level_Design">Low_Level_Design</option>
+                    <option value="Code">Code</option>
+                    <option value="User_Documentation_including_Release_Note">User_Documentation_including_Release_Note
+                    </option>
+                    <option value="Configuration_and_Fault_Management">Configuration_and_Fault_Management</option>
+                    <option value="Collaborated_Mode_with_Suppliers">Collaborated_Mode_with_Suppliers</option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Requirements Improvement">Requirements Improvement</option>
+                    <option value="Architecture Improvement">Architecture Improvement</option>
+                    <option value="High-Level Design Improvement">High-Level Design Improvement</option>
+                    <option value="Low-Level Design Improvement">Low-Level Design Improvement</option>
+                    <option value="Coding Quality Improvement">Coding Quality Improvement</option>
+                    <option value="User Documentation (including Release Note) Improvement">User Documentation
+                        (including Release Note) Improvement
+                    </option>
+                    <option value="Configuration and Fault Management Improvement">Configuration and Fault
+                        Management
+                        Improvement
+                    </option>
+                    <option value="Knowledge/ Expertise/ Training Improvement">Knowledge/ Expertise/ Training
+                        Improvement
+                    </option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+            </tr>
+            <tr groupid="WhywasthefaultintroducedTr">
+                <td></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Requirements">Requirements</option>
+                    <option value="Architecture ">Architecture</option>
+                    <option value="High_Level_Design">High_Level_Design</option>
+                    <option value="Low_Level_Design">Low_Level_Design</option>
+                    <option value="Code">Code</option>
+                    <option value="User_Documentation_including_Release_Note">User_Documentation_including_Release_Note
+                    </option>
+                    <option value="Configuration_and_Fault_Management">Configuration_and_Fault_Management</option>
+                    <option value="Collaborated_Mode_with_Suppliers">Collaborated_Mode_with_Suppliers</option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Requirements Improvement">Requirements Improvement</option>
+                    <option value="Architecture Improvement">Architecture Improvement</option>
+                    <option value="High-Level Design Improvement">High-Level Design Improvement</option>
+                    <option value="Low-Level Design Improvement">Low-Level Design Improvement</option>
+                    <option value="Coding Quality Improvement">Coding Quality Improvement</option>
+                    <option value="User Documentation (including Release Note) Improvement">User Documentation
+                        (including Release Note) Improvement
+                    </option>
+                    <option value="Configuration and Fault Management Improvement">Configuration and Fault
+                        Management
+                        Improvement
+                    </option>
+                    <option value="Knowledge/ Expertise/ Training Improvement">Knowledge/ Expertise/ Training
+                        Improvement
+                    </option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+            </tr>
+            <tr  groupid="WhyrootcausenotfoundTr">
+                <td bgcolor="#FFFF66"><font size="3"><strong>Why root cause was not found with first set of attached
+                    symptoms?
+                    (see CDI Guideline)
+                    Mandatory if there was at least one symptoms/log re-collection requested</strong></font>
+                </td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Requirements">Requirements</option>
+                    <option value="Architecture ">Architecture</option>
+                    <option value="High_Level_Design">High_Level_Design</option>
+                    <option value="Low_Level_Design">Low_Level_Design</option>
+                    <option value="Code">Code</option>
+                    <option value="User_Documentation_including_Release_Note">User_Documentation_including_Release_Note
+                    </option>
+                    <option value="Configuration_and_Fault_Management">Configuration_and_Fault_Management</option>
+                    <option value="Collaborated_Mode_with_Suppliers">Collaborated_Mode_with_Suppliers</option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Requirements Improvement">Requirements Improvement</option>
+                    <option value="Architecture Improvement">Architecture Improvement</option>
+                    <option value="High-Level Design Improvement">High-Level Design Improvement</option>
+                    <option value="Low-Level Design Improvement">Low-Level Design Improvement</option>
+                    <option value="Coding Quality Improvement">Coding Quality Improvement</option>
+                    <option value="User Documentation (including Release Note) Improvement">User Documentation
+                        (including Release Note) Improvement
+                    </option>
+                    <option value="Configuration and Fault Management Improvement">Configuration and Fault
+                        Management
+                        Improvement
+                    </option>
+                    <option value="Knowledge/ Expertise/ Training Improvement">Knowledge/ Expertise/ Training
+                        Improvement
+                    </option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+        </table>
+        <br>
+        <br>
+        <br>
+    </div>
+
+    <div style="width:100%; overflow:scroll;">
+        <table border="1" width="3000px ">
+            <tr>
+                <td colspan="11">
+                    <div style="float:right"><font color="#FF6666">Can only Add columns after "Why 5" (col K) when
+                        adding
+                        more whys&nbsp;</font></div>
+                </td>
+                <td colspan="7" bgcolor="#FF99CC">
+                    <div align="center"><font size="4"><strong>Review Fields</strong></font></div>
+                </td>
+            </tr>
+            <tr>
+                <td style="width:300px;"><font size="3"><strong>Escape Defect Analysis</strong></font></td>
+                <td style="width:200px;" bgcolor="#FFCC99"><font size="3"><strong>Why 1</strong></font></td>
+                <td style="width:30px;" bgcolor="#CCCCCC">&nbsp;</td>
+                <td style="width:200px;" bgcolor="#FFCC99"><font size="3"><strong>Why 2</strong></font></td>
+                <td style="width:30px;" bgcolor="#CCCCCC">&nbsp;</td>
+                <td style="width:200px;" bgcolor="#FFCC99"><font size="3"><strong>Why 3</strong></font></td>
+                <td style="width:30px;" bgcolor="#CCCCCC">&nbsp;</td>
+                <td style="width:200px;" bgcolor="#FFCC99"><font size="3"><strong>Why 4</strong></font></td>
+                <td style="width:30px;" bgcolor="#CCCCCC">&nbsp;</td>
+                <td style="width:200px;" bgcolor="#FFCC99"><font size="3"><strong>Why 5</strong></font></td>
+                <td style="width:200px;" bgcolor="#FFCC33"><font size="3"><strong>Escape Cause</strong></font></td>
+                <td style="width:200px;" bgcolor="#99CC99"><font size="3"><strong>Action Proposal</strong></font></td>
+                <td style="width:200px;" bgcolor="#FF99CC"><font size="3"><strong>Escape Cause Category</strong></font>
+                </td>
+                <td style="width:230px;" bgcolor="#FF99CC"><font size="3"><strong>Escape Cause
+                    Subcategory</strong></font>
+                </td>
+                <td style="width:200px;" bgcolor="#FF99CC"><font size="3"><strong>EDA Action Type</strong></font></td>
+                <td style="width:200px;" bgcolor="#FF99CC"><font size="3"><strong>Assigned To</strong></font></td>
+                <td style="width:200px;" bgcolor="#FF99CC"><font size="3"><strong>RCA AI ID</strong></font></td>
+                <td style="width:200px;" bgcolor="#FF99CC"><font size="3"><strong>Completion Target Date</strong></font>
+                </td>
+            </tr>
+            <tr  groupid="WhydidnotrequirementsTr">
+                <td bgcolor="#FFFF66"><font size="4"><strong>1. Why didn't Requirements reviews catch this
+                    defect? </strong></font>
+                </td>
+                <td><textarea class="showtext" rows="4" style="width:97%"  groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Technical_Reviews">Technical_Reviews</option>
+                    <option value="Code_Analysis_Tools">Code_Analysis_Tools</option>
+                    <option value="Unit_Tests">Unit_Tests</option>
+                    <option value="System_Component_or_Module_Test">System_Component_or_Module_Test</option>
+                    <option value="Entity_or_Integration_and_Verification_Test">
+                        Entity_or_Integration_and_Verification_Test
+                    </option>
+                    <option value="System_Verification_Functional_Test">System_Verification_Functional_Test</option>
+                    <option value="System_verification_Non_Functional_Testing">
+                        System_verification_Non_Functional_Testing
+                    </option>
+                    <option value="Collaborated_Mode_with_Suppliers">Collaborated_Mode_with_Suppliers</option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Requirements Improvement">Requirements Improvement</option>
+                    <option value="Architecture Improvement">Architecture Improvement</option>
+                    <option value="High-Level Design Improvement">High-Level Design Improvement</option>
+                    <option value="Low-Level Design Improvement">Low-Level Design Improvement</option>
+                    <option value="Coding Quality Improvement">Coding Quality Improvement</option>
+                    <option value="User Documentation (including Release Note) Improvement">User Documentation
+                        (including Release Note) Improvement
+                    </option>
+                    <option value="Configuration and Fault Management Improvement">Configuration and Fault
+                        Management
+                        Improvement
+                    </option>
+                    <option value="Knowledge/ Expertise/ Training Improvement">Knowledge/ Expertise/ Training
+                        Improvement
+                    </option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+            </tr>
+            <tr groupid="WhydidnotrequirementsTr">
+                <td></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Technical_Reviews">Technical_Reviews</option>
+                    <option value="Code_Analysis_Tools">Code_Analysis_Tools</option>
+                    <option value="Unit_Tests">Unit_Tests</option>
+                    <option value="System_Component_or_Module_Test">System_Component_or_Module_Test</option>
+                    <option value="Entity_or_Integration_and_Verification_Test">
+                        Entity_or_Integration_and_Verification_Test
+                    </option>
+                    <option value="System_Verification_Functional_Test">System_Verification_Functional_Test</option>
+                    <option value="System_verification_Non_Functional_Testing">
+                        System_verification_Non_Functional_Testing
+                    </option>
+                    <option value="Collaborated_Mode_with_Suppliers">Collaborated_Mode_with_Suppliers</option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Requirements Improvement">Requirements Improvement</option>
+                    <option value="Architecture Improvement">Architecture Improvement</option>
+                    <option value="High-Level Design Improvement">High-Level Design Improvement</option>
+                    <option value="Low-Level Design Improvement">Low-Level Design Improvement</option>
+                    <option value="Coding Quality Improvement">Coding Quality Improvement</option>
+                    <option value="User Documentation (including Release Note) Improvement">User Documentation
+                        (including Release Note) Improvement
+                    </option>
+                    <option value="Configuration and Fault Management Improvement">Configuration and Fault
+                        Management
+                        Improvement
+                    </option>
+                    <option value="Knowledge/ Expertise/ Training Improvement">Knowledge/ Expertise/ Training
+                        Improvement
+                    </option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+            </tr>
+            <tr groupid="WhydidnotrequirementsTr">
+                <td></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Technical_Reviews">Technical_Reviews</option>
+                    <option value="Code_Analysis_Tools">Code_Analysis_Tools</option>
+                    <option value="Unit_Tests">Unit_Tests</option>
+                    <option value="System_Component_or_Module_Test">System_Component_or_Module_Test</option>
+                    <option value="Entity_or_Integration_and_Verification_Test">
+                        Entity_or_Integration_and_Verification_Test
+                    </option>
+                    <option value="System_Verification_Functional_Test">System_Verification_Functional_Test</option>
+                    <option value="System_verification_Non_Functional_Testing">
+                        System_verification_Non_Functional_Testing
+                    </option>
+                    <option value="Collaborated_Mode_with_Suppliers">Collaborated_Mode_with_Suppliers</option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Requirements Improvement">Requirements Improvement</option>
+                    <option value="Architecture Improvement">Architecture Improvement</option>
+                    <option value="High-Level Design Improvement">High-Level Design Improvement</option>
+                    <option value="Low-Level Design Improvement">Low-Level Design Improvement</option>
+                    <option value="Coding Quality Improvement">Coding Quality Improvement</option>
+                    <option value="User Documentation (including Release Note) Improvement">User Documentation
+                        (including Release Note) Improvement
+                    </option>
+                    <option value="Configuration and Fault Management Improvement">Configuration and Fault
+                        Management
+                        Improvement
+                    </option>
+                    <option value="Knowledge/ Expertise/ Training Improvement">Knowledge/ Expertise/ Training
+                        Improvement
+                    </option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+            </tr>
+            <tr>
+                <td style="width:300px;"><font size="3"><strong></strong></font></td>
+                <td style="width:200px;" bgcolor="#FFCC99"><font size="3"><strong>Why 1</strong></font></td>
+                <td style="width:30px;" bgcolor="#CCCCCC">&nbsp;</td>
+                <td style="width:200px;" bgcolor="#FFCC99"><font size="3"><strong>Why 2</strong></font></td>
+                <td style="width:30px;" bgcolor="#CCCCCC">&nbsp;</td>
+                <td style="width:200px;" bgcolor="#FFCC99"><font size="3"><strong>Why 3</strong></font></td>
+                <td style="width:30px;" bgcolor="#CCCCCC">&nbsp;</td>
+                <td style="width:200px;" bgcolor="#FFCC99"><font size="3"><strong>Why 4</strong></font></td>
+                <td style="width:30px;" bgcolor="#CCCCCC">&nbsp;</td>
+                <td style="width:200px;" bgcolor="#FFCC99"><font size="3"><strong>Why 5</strong></font></td>
+                <td style="width:200px;" bgcolor="#FFCC33"><font size="3"><strong>Escape Cause</strong></font></td>
+                <td style="width:200px;" bgcolor="#99CC99"><font size="3"><strong>Action Proposal</strong></font></td>
+                <td style="width:200px;" bgcolor="#FF99CC"><font size="3"><strong>Escape Cause Category</strong></font>
+                </td>
+                <td style="width:230px;" bgcolor="#FF99CC"><font size="3"><strong>Escape Cause
+                    Subcategory</strong></font>
+                </td>
+                <td style="width:200px;" bgcolor="#FF99CC"><font size="3"><strong>EDA Action Type</strong></font></td>
+                <td style="width:200px;" bgcolor="#FF99CC"><font size="3"><strong>Assigned To</strong></font></td>
+                <td style="width:200px;" bgcolor="#FF99CC"><font size="3"><strong>RCA AI ID</strong></font></td>
+                <td style="width:200px;" bgcolor="#FF99CC"><font size="3"><strong>Completion Target Date</strong></font>
+                </td>
+            </tr>
+            <tr groupid="WhydidnotdesignTr">
+                <td bgcolor="#FFFF66"><font size="4"><strong>2. Why didn't Design reviews catch this
+                    defect? </strong></font>
+                </td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Technical_Reviews">Technical_Reviews</option>
+                    <option value="Code_Analysis_Tools">Code_Analysis_Tools</option>
+                    <option value="Unit_Tests">Unit_Tests</option>
+                    <option value="System_Component_or_Module_Test">System_Component_or_Module_Test</option>
+                    <option value="Entity_or_Integration_and_Verification_Test">
+                        Entity_or_Integration_and_Verification_Test
+                    </option>
+                    <option value="System_Verification_Functional_Test">System_Verification_Functional_Test</option>
+                    <option value="System_verification_Non_Functional_Testing">
+                        System_verification_Non_Functional_Testing
+                    </option>
+                    <option value="Collaborated_Mode_with_Suppliers">Collaborated_Mode_with_Suppliers</option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Requirements Improvement">Requirements Improvement</option>
+                    <option value="Architecture Improvement">Architecture Improvement</option>
+                    <option value="High-Level Design Improvement">High-Level Design Improvement</option>
+                    <option value="Low-Level Design Improvement">Low-Level Design Improvement</option>
+                    <option value="Coding Quality Improvement">Coding Quality Improvement</option>
+                    <option value="User Documentation (including Release Note) Improvement">User Documentation
+                        (including Release Note) Improvement
+                    </option>
+                    <option value="Configuration and Fault Management Improvement">Configuration and Fault
+                        Management
+                        Improvement
+                    </option>
+                    <option value="Knowledge/ Expertise/ Training Improvement">Knowledge/ Expertise/ Training
+                        Improvement
+                    </option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+            </tr>
+            <tr groupid="WhydidnotdesignTr">
+                <td></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Technical_Reviews">Technical_Reviews</option>
+                    <option value="Code_Analysis_Tools">Code_Analysis_Tools</option>
+                    <option value="Unit_Tests">Unit_Tests</option>
+                    <option value="System_Component_or_Module_Test">System_Component_or_Module_Test</option>
+                    <option value="Entity_or_Integration_and_Verification_Test">
+                        Entity_or_Integration_and_Verification_Test
+                    </option>
+                    <option value="System_Verification_Functional_Test">System_Verification_Functional_Test</option>
+                    <option value="System_verification_Non_Functional_Testing">
+                        System_verification_Non_Functional_Testing
+                    </option>
+                    <option value="Collaborated_Mode_with_Suppliers">Collaborated_Mode_with_Suppliers</option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Requirements Improvement">Requirements Improvement</option>
+                    <option value="Architecture Improvement">Architecture Improvement</option>
+                    <option value="High-Level Design Improvement">High-Level Design Improvement</option>
+                    <option value="Low-Level Design Improvement">Low-Level Design Improvement</option>
+                    <option value="Coding Quality Improvement">Coding Quality Improvement</option>
+                    <option value="User Documentation (including Release Note) Improvement">User Documentation
+                        (including Release Note) Improvement
+                    </option>
+                    <option value="Configuration and Fault Management Improvement">Configuration and Fault
+                        Management
+                        Improvement
+                    </option>
+                    <option value="Knowledge/ Expertise/ Training Improvement">Knowledge/ Expertise/ Training
+                        Improvement
+                    </option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+            </tr>
+            <tr groupid="WhydidnotdesignTr">
+                <td></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Technical_Reviews">Technical_Reviews</option>
+                    <option value="Code_Analysis_Tools">Code_Analysis_Tools</option>
+                    <option value="Unit_Tests">Unit_Tests</option>
+                    <option value="System_Component_or_Module_Test">System_Component_or_Module_Test</option>
+                    <option value="Entity_or_Integration_and_Verification_Test">
+                        Entity_or_Integration_and_Verification_Test
+                    </option>
+                    <option value="System_Verification_Functional_Test">System_Verification_Functional_Test</option>
+                    <option value="System_verification_Non_Functional_Testing">
+                        System_verification_Non_Functional_Testing
+                    </option>
+                    <option value="Collaborated_Mode_with_Suppliers">Collaborated_Mode_with_Suppliers</option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Requirements Improvement">Requirements Improvement</option>
+                    <option value="Architecture Improvement">Architecture Improvement</option>
+                    <option value="High-Level Design Improvement">High-Level Design Improvement</option>
+                    <option value="Low-Level Design Improvement">Low-Level Design Improvement</option>
+                    <option value="Coding Quality Improvement">Coding Quality Improvement</option>
+                    <option value="User Documentation (including Release Note) Improvement">User Documentation
+                        (including Release Note) Improvement
+                    </option>
+                    <option value="Configuration and Fault Management Improvement">Configuration and Fault
+                        Management
+                        Improvement
+                    </option>
+                    <option value="Knowledge/ Expertise/ Training Improvement">Knowledge/ Expertise/ Training
+                        Improvement
+                    </option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+            </tr>
+            <tr>
+                <td style="width:300px;"><font size="3"><strong></strong></font></td>
+                <td style="width:200px;" bgcolor="#FFCC99"><font size="3"><strong>Why 1</strong></font></td>
+                <td style="width:30px;" bgcolor="#CCCCCC">&nbsp;</td>
+                <td style="width:200px;" bgcolor="#FFCC99"><font size="3"><strong>Why 2</strong></font></td>
+                <td style="width:30px;" bgcolor="#CCCCCC">&nbsp;</td>
+                <td style="width:200px;" bgcolor="#FFCC99"><font size="3"><strong>Why 3</strong></font></td>
+                <td style="width:30px;" bgcolor="#CCCCCC">&nbsp;</td>
+                <td style="width:200px;" bgcolor="#FFCC99"><font size="3"><strong>Why 4</strong></font></td>
+                <td style="width:30px;" bgcolor="#CCCCCC">&nbsp;</td>
+                <td style="width:200px;" bgcolor="#FFCC99"><font size="3"><strong>Why 5</strong></font></td>
+                <td style="width:200px;" bgcolor="#FFCC33"><font size="3"><strong>Escape Cause</strong></font></td>
+                <td style="width:200px;" bgcolor="#99CC99"><font size="3"><strong>Action Proposal</strong></font></td>
+                <td style="width:200px;" bgcolor="#FF99CC"><font size="3"><strong>Escape Cause Category</strong></font>
+                </td>
+                <td style="width:230px;" bgcolor="#FF99CC"><font size="3"><strong>Escape Cause
+                    Subcategory</strong></font>
+                </td>
+                <td style="width:200px;" bgcolor="#FF99CC"><font size="3"><strong>EDA Action Type</strong></font></td>
+                <td style="width:200px;" bgcolor="#FF99CC"><font size="3"><strong>Assigned To</strong></font></td>
+                <td style="width:200px;" bgcolor="#FF99CC"><font size="3"><strong>RCA AI ID</strong></font></td>
+                <td style="width:200px;" bgcolor="#FF99CC"><font size="3"><strong>Completion Target Date</strong></font>
+                </td>
+            </tr>
+            <tr groupid="WhydidnotanalysistoolsTr">
+                <td bgcolor="#FFFF66"><font size="4"><strong>3. Why didn't code analysis tools such as Klocwork, Purify,
+                    etc
+                    catch this defect? </strong></font>
+                </td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Technical_Reviews">Technical_Reviews</option>
+                    <option value="Code_Analysis_Tools">Code_Analysis_Tools</option>
+                    <option value="Unit_Tests">Unit_Tests</option>
+                    <option value="System_Component_or_Module_Test">System_Component_or_Module_Test</option>
+                    <option value="Entity_or_Integration_and_Verification_Test">
+                        Entity_or_Integration_and_Verification_Test
+                    </option>
+                    <option value="System_Verification_Functional_Test">System_Verification_Functional_Test</option>
+                    <option value="System_verification_Non_Functional_Testing">
+                        System_verification_Non_Functional_Testing
+                    </option>
+                    <option value="Collaborated_Mode_with_Suppliers">Collaborated_Mode_with_Suppliers</option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Requirements Improvement">Requirements Improvement</option>
+                    <option value="Architecture Improvement">Architecture Improvement</option>
+                    <option value="High-Level Design Improvement">High-Level Design Improvement</option>
+                    <option value="Low-Level Design Improvement">Low-Level Design Improvement</option>
+                    <option value="Coding Quality Improvement">Coding Quality Improvement</option>
+                    <option value="User Documentation (including Release Note) Improvement">User Documentation
+                        (including Release Note) Improvement
+                    </option>
+                    <option value="Configuration and Fault Management Improvement">Configuration and Fault
+                        Management
+                        Improvement
+                    </option>
+                    <option value="Knowledge/ Expertise/ Training Improvement">Knowledge/ Expertise/ Training
+                        Improvement
+                    </option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+            </tr>
+            <tr groupid="WhydidnotanalysistoolsTr">
+                <td></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Technical_Reviews">Technical_Reviews</option>
+                    <option value="Code_Analysis_Tools">Code_Analysis_Tools</option>
+                    <option value="Unit_Tests">Unit_Tests</option>
+                    <option value="System_Component_or_Module_Test">System_Component_or_Module_Test</option>
+                    <option value="Entity_or_Integration_and_Verification_Test">
+                        Entity_or_Integration_and_Verification_Test
+                    </option>
+                    <option value="System_Verification_Functional_Test">System_Verification_Functional_Test</option>
+                    <option value="System_verification_Non_Functional_Testing">
+                        System_verification_Non_Functional_Testing
+                    </option>
+                    <option value="Collaborated_Mode_with_Suppliers">Collaborated_Mode_with_Suppliers</option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Requirements Improvement">Requirements Improvement</option>
+                    <option value="Architecture Improvement">Architecture Improvement</option>
+                    <option value="High-Level Design Improvement">High-Level Design Improvement</option>
+                    <option value="Low-Level Design Improvement">Low-Level Design Improvement</option>
+                    <option value="Coding Quality Improvement">Coding Quality Improvement</option>
+                    <option value="User Documentation (including Release Note) Improvement">User Documentation
+                        (including Release Note) Improvement
+                    </option>
+                    <option value="Configuration and Fault Management Improvement">Configuration and Fault
+                        Management
+                        Improvement
+                    </option>
+                    <option value="Knowledge/ Expertise/ Training Improvement">Knowledge/ Expertise/ Training
+                        Improvement
+                    </option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+            </tr>
+            <tr groupid="WhydidnotanalysistoolsTr">
+                <td></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Technical_Reviews">Technical_Reviews</option>
+                    <option value="Code_Analysis_Tools">Code_Analysis_Tools</option>
+                    <option value="Unit_Tests">Unit_Tests</option>
+                    <option value="System_Component_or_Module_Test">System_Component_or_Module_Test</option>
+                    <option value="Entity_or_Integration_and_Verification_Test">
+                        Entity_or_Integration_and_Verification_Test
+                    </option>
+                    <option value="System_Verification_Functional_Test">System_Verification_Functional_Test</option>
+                    <option value="System_verification_Non_Functional_Testing">
+                        System_verification_Non_Functional_Testing
+                    </option>
+                    <option value="Collaborated_Mode_with_Suppliers">Collaborated_Mode_with_Suppliers</option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Requirements Improvement">Requirements Improvement</option>
+                    <option value="Architecture Improvement">Architecture Improvement</option>
+                    <option value="High-Level Design Improvement">High-Level Design Improvement</option>
+                    <option value="Low-Level Design Improvement">Low-Level Design Improvement</option>
+                    <option value="Coding Quality Improvement">Coding Quality Improvement</option>
+                    <option value="User Documentation (including Release Note) Improvement">User Documentation
+                        (including Release Note) Improvement
+                    </option>
+                    <option value="Configuration and Fault Management Improvement">Configuration and Fault
+                        Management
+                        Improvement
+                    </option>
+                    <option value="Knowledge/ Expertise/ Training Improvement">Knowledge/ Expertise/ Training
+                        Improvement
+                    </option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+            </tr>
+            <tr>
+                <td style="width:300px;"><font size="3"><strong></strong></font></td>
+                <td style="width:200px;" bgcolor="#FFCC99"><font size="3"><strong>Why 1</strong></font></td>
+                <td style="width:30px;" bgcolor="#CCCCCC">&nbsp;</td>
+                <td style="width:200px;" bgcolor="#FFCC99"><font size="3"><strong>Why 2</strong></font></td>
+                <td style="width:30px;" bgcolor="#CCCCCC">&nbsp;</td>
+                <td style="width:200px;" bgcolor="#FFCC99"><font size="3"><strong>Why 3</strong></font></td>
+                <td style="width:30px;" bgcolor="#CCCCCC">&nbsp;</td>
+                <td style="width:200px;" bgcolor="#FFCC99"><font size="3"><strong>Why 4</strong></font></td>
+                <td style="width:30px;" bgcolor="#CCCCCC">&nbsp;</td>
+                <td style="width:200px;" bgcolor="#FFCC99"><font size="3"><strong>Why 5</strong></font></td>
+                <td style="width:200px;" bgcolor="#FFCC33"><font size="3"><strong>Escape Cause</strong></font></td>
+                <td style="width:200px;" bgcolor="#99CC99"><font size="3"><strong>Action Proposal</strong></font></td>
+                <td style="width:200px;" bgcolor="#FF99CC"><font size="3"><strong>Escape Cause Category</strong></font>
+                </td>
+                <td style="width:230px;" bgcolor="#FF99CC"><font size="3"><strong>Escape Cause
+                    Subcategory</strong></font>
+                </td>
+                <td style="width:200px;" bgcolor="#FF99CC"><font size="3"><strong>EDA Action Type</strong></font></td>
+                <td style="width:200px;" bgcolor="#FF99CC"><font size="3"><strong>Assigned To</strong></font></td>
+                <td style="width:200px;" bgcolor="#FF99CC"><font size="3"><strong>RCA AI ID</strong></font></td>
+                <td style="width:200px;" bgcolor="#FF99CC"><font size="3"><strong>Completion Target Date</strong></font>
+                </td>
+            </tr>
+            <tr groupid="WhydidnotinspectionsTr">
+                <td bgcolor="#FFFF66"><font size="4"><strong>4. Why didn't code inspections catch this
+                    defect?</strong></font>
+                </td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Technical_Reviews">Technical_Reviews</option>
+                    <option value="Code_Analysis_Tools">Code_Analysis_Tools</option>
+                    <option value="Unit_Tests">Unit_Tests</option>
+                    <option value="System_Component_or_Module_Test">System_Component_or_Module_Test</option>
+                    <option value="Entity_or_Integration_and_Verification_Test">
+                        Entity_or_Integration_and_Verification_Test
+                    </option>
+                    <option value="System_Verification_Functional_Test">System_Verification_Functional_Test</option>
+                    <option value="System_verification_Non_Functional_Testing">
+                        System_verification_Non_Functional_Testing
+                    </option>
+                    <option value="Collaborated_Mode_with_Suppliers">Collaborated_Mode_with_Suppliers</option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Requirements Improvement">Requirements Improvement</option>
+                    <option value="Architecture Improvement">Architecture Improvement</option>
+                    <option value="High-Level Design Improvement">High-Level Design Improvement</option>
+                    <option value="Low-Level Design Improvement">Low-Level Design Improvement</option>
+                    <option value="Coding Quality Improvement">Coding Quality Improvement</option>
+                    <option value="User Documentation (including Release Note) Improvement">User Documentation
+                        (including Release Note) Improvement
+                    </option>
+                    <option value="Configuration and Fault Management Improvement">Configuration and Fault
+                        Management
+                        Improvement
+                    </option>
+                    <option value="Knowledge/ Expertise/ Training Improvement">Knowledge/ Expertise/ Training
+                        Improvement
+                    </option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+            </tr>
+            <tr groupid="WhydidnotinspectionsTr">
+                <td></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Technical_Reviews">Technical_Reviews</option>
+                    <option value="Code_Analysis_Tools">Code_Analysis_Tools</option>
+                    <option value="Unit_Tests">Unit_Tests</option>
+                    <option value="System_Component_or_Module_Test">System_Component_or_Module_Test</option>
+                    <option value="Entity_or_Integration_and_Verification_Test">
+                        Entity_or_Integration_and_Verification_Test
+                    </option>
+                    <option value="System_Verification_Functional_Test">System_Verification_Functional_Test</option>
+                    <option value="System_verification_Non_Functional_Testing">
+                        System_verification_Non_Functional_Testing
+                    </option>
+                    <option value="Collaborated_Mode_with_Suppliers">Collaborated_Mode_with_Suppliers</option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Requirements Improvement">Requirements Improvement</option>
+                    <option value="Architecture Improvement">Architecture Improvement</option>
+                    <option value="High-Level Design Improvement">High-Level Design Improvement</option>
+                    <option value="Low-Level Design Improvement">Low-Level Design Improvement</option>
+                    <option value="Coding Quality Improvement">Coding Quality Improvement</option>
+                    <option value="User Documentation (including Release Note) Improvement">User Documentation
+                        (including Release Note) Improvement
+                    </option>
+                    <option value="Configuration and Fault Management Improvement">Configuration and Fault
+                        Management
+                        Improvement
+                    </option>
+                    <option value="Knowledge/ Expertise/ Training Improvement">Knowledge/ Expertise/ Training
+                        Improvement
+                    </option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+            </tr>
+            <tr groupid="WhydidnotinspectionsTr">
+                <td></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Technical_Reviews">Technical_Reviews</option>
+                    <option value="Code_Analysis_Tools">Code_Analysis_Tools</option>
+                    <option value="Unit_Tests">Unit_Tests</option>
+                    <option value="System_Component_or_Module_Test">System_Component_or_Module_Test</option>
+                    <option value="Entity_or_Integration_and_Verification_Test">
+                        Entity_or_Integration_and_Verification_Test
+                    </option>
+                    <option value="System_Verification_Functional_Test">System_Verification_Functional_Test</option>
+                    <option value="System_verification_Non_Functional_Testing">
+                        System_verification_Non_Functional_Testing
+                    </option>
+                    <option value="Collaborated_Mode_with_Suppliers">Collaborated_Mode_with_Suppliers</option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Requirements Improvement">Requirements Improvement</option>
+                    <option value="Architecture Improvement">Architecture Improvement</option>
+                    <option value="High-Level Design Improvement">High-Level Design Improvement</option>
+                    <option value="Low-Level Design Improvement">Low-Level Design Improvement</option>
+                    <option value="Coding Quality Improvement">Coding Quality Improvement</option>
+                    <option value="User Documentation (including Release Note) Improvement">User Documentation
+                        (including Release Note) Improvement
+                    </option>
+                    <option value="Configuration and Fault Management Improvement">Configuration and Fault
+                        Management
+                        Improvement
+                    </option>
+                    <option value="Knowledge/ Expertise/ Training Improvement">Knowledge/ Expertise/ Training
+                        Improvement
+                    </option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+            </tr>
+            <tr>
+                <td style="width:300px;"><font size="3"><strong></strong></font></td>
+                <td style="width:200px;" bgcolor="#FFCC99"><font size="3"><strong>Why 1</strong></font></td>
+                <td style="width:30px;" bgcolor="#CCCCCC">&nbsp;</td>
+                <td style="width:200px;" bgcolor="#FFCC99"><font size="3"><strong>Why 2</strong></font></td>
+                <td style="width:30px;" bgcolor="#CCCCCC">&nbsp;</td>
+                <td style="width:200px;" bgcolor="#FFCC99"><font size="3"><strong>Why 3</strong></font></td>
+                <td style="width:30px;" bgcolor="#CCCCCC">&nbsp;</td>
+                <td style="width:200px;" bgcolor="#FFCC99"><font size="3"><strong>Why 4</strong></font></td>
+                <td style="width:30px;" bgcolor="#CCCCCC">&nbsp;</td>
+                <td style="width:200px;" bgcolor="#FFCC99"><font size="3"><strong>Why 5</strong></font></td>
+                <td style="width:200px;" bgcolor="#FFCC33"><font size="3"><strong>Escape Cause</strong></font></td>
+                <td style="width:200px;" bgcolor="#99CC99"><font size="3"><strong>Action Proposal</strong></font></td>
+                <td style="width:200px;" bgcolor="#FF99CC"><font size="3"><strong>Escape Cause Category</strong></font>
+                </td>
+                <td style="width:230px;" bgcolor="#FF99CC"><font size="3"><strong>Escape Cause
+                    Subcategory</strong></font>
+                </td>
+                <td style="width:200px;" bgcolor="#FF99CC"><font size="3"><strong>EDA Action Type</strong></font></td>
+                <td style="width:200px;" bgcolor="#FF99CC"><font size="3"><strong>Assigned To</strong></font></td>
+                <td style="width:200px;" bgcolor="#FF99CC"><font size="3"><strong>RCA AI ID</strong></font></td>
+                <td style="width:200px;" bgcolor="#FF99CC"><font size="3"><strong>Completion Target Date</strong></font>
+                </td>
+            </tr>
+            <tr groupid="WhydidnotcomponenttestTr">
+                <td bgcolor="#FFFF66"><font size="4"><strong>5. Why didn't unit or component test catch this
+                    defect?</strong></font>
+                </td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Technical_Reviews">Technical_Reviews</option>
+                    <option value="Code_Analysis_Tools">Code_Analysis_Tools</option>
+                    <option value="Unit_Tests">Unit_Tests</option>
+                    <option value="System_Component_or_Module_Test">System_Component_or_Module_Test</option>
+                    <option value="Entity_or_Integration_and_Verification_Test">
+                        Entity_or_Integration_and_Verification_Test
+                    </option>
+                    <option value="System_Verification_Functional_Test">System_Verification_Functional_Test</option>
+                    <option value="System_verification_Non_Functional_Testing">
+                        System_verification_Non_Functional_Testing
+                    </option>
+                    <option value="Collaborated_Mode_with_Suppliers">Collaborated_Mode_with_Suppliers</option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Requirements Improvement">Requirements Improvement</option>
+                    <option value="Architecture Improvement">Architecture Improvement</option>
+                    <option value="High-Level Design Improvement">High-Level Design Improvement</option>
+                    <option value="Low-Level Design Improvement">Low-Level Design Improvement</option>
+                    <option value="Coding Quality Improvement">Coding Quality Improvement</option>
+                    <option value="User Documentation (including Release Note) Improvement">User Documentation
+                        (including Release Note) Improvement
+                    </option>
+                    <option value="Configuration and Fault Management Improvement">Configuration and Fault
+                        Management
+                        Improvement
+                    </option>
+                    <option value="Knowledge/ Expertise/ Training Improvement">Knowledge/ Expertise/ Training
+                        Improvement
+                    </option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+            </tr>
+            <tr groupid="WhydidnotcomponenttestTr">
+                <td></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Technical_Reviews">Technical_Reviews</option>
+                    <option value="Code_Analysis_Tools">Code_Analysis_Tools</option>
+                    <option value="Unit_Tests">Unit_Tests</option>
+                    <option value="System_Component_or_Module_Test">System_Component_or_Module_Test</option>
+                    <option value="Entity_or_Integration_and_Verification_Test">
+                        Entity_or_Integration_and_Verification_Test
+                    </option>
+                    <option value="System_Verification_Functional_Test">System_Verification_Functional_Test</option>
+                    <option value="System_verification_Non_Functional_Testing">
+                        System_verification_Non_Functional_Testing
+                    </option>
+                    <option value="Collaborated_Mode_with_Suppliers">Collaborated_Mode_with_Suppliers</option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Requirements Improvement">Requirements Improvement</option>
+                    <option value="Architecture Improvement">Architecture Improvement</option>
+                    <option value="High-Level Design Improvement">High-Level Design Improvement</option>
+                    <option value="Low-Level Design Improvement">Low-Level Design Improvement</option>
+                    <option value="Coding Quality Improvement">Coding Quality Improvement</option>
+                    <option value="User Documentation (including Release Note) Improvement">User Documentation
+                        (including Release Note) Improvement
+                    </option>
+                    <option value="Configuration and Fault Management Improvement">Configuration and Fault
+                        Management
+                        Improvement
+                    </option>
+                    <option value="Knowledge/ Expertise/ Training Improvement">Knowledge/ Expertise/ Training
+                        Improvement
+                    </option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+            </tr>
+            <tr groupid="WhydidnotcomponenttestTr">
+                <td></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Technical_Reviews">Technical_Reviews</option>
+                    <option value="Code_Analysis_Tools">Code_Analysis_Tools</option>
+                    <option value="Unit_Tests">Unit_Tests</option>
+                    <option value="System_Component_or_Module_Test">System_Component_or_Module_Test</option>
+                    <option value="Entity_or_Integration_and_Verification_Test">
+                        Entity_or_Integration_and_Verification_Test
+                    </option>
+                    <option value="System_Verification_Functional_Test">System_Verification_Functional_Test</option>
+                    <option value="System_verification_Non_Functional_Testing">
+                        System_verification_Non_Functional_Testing
+                    </option>
+                    <option value="Collaborated_Mode_with_Suppliers">Collaborated_Mode_with_Suppliers</option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Requirements Improvement">Requirements Improvement</option>
+                    <option value="Architecture Improvement">Architecture Improvement</option>
+                    <option value="High-Level Design Improvement">High-Level Design Improvement</option>
+                    <option value="Low-Level Design Improvement">Low-Level Design Improvement</option>
+                    <option value="Coding Quality Improvement">Coding Quality Improvement</option>
+                    <option value="User Documentation (including Release Note) Improvement">User Documentation
+                        (including Release Note) Improvement
+                    </option>
+                    <option value="Configuration and Fault Management Improvement">Configuration and Fault
+                        Management
+                        Improvement
+                    </option>
+                    <option value="Knowledge/ Expertise/ Training Improvement">Knowledge/ Expertise/ Training
+                        Improvement
+                    </option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+            </tr>
+            <tr>
+                <td style="width:300px;"><font size="3"><strong></strong></font></td>
+                <td style="width:200px;" bgcolor="#FFCC99"><font size="3"><strong>Why 1</strong></font></td>
+                <td style="width:30px;" bgcolor="#CCCCCC">&nbsp;</td>
+                <td style="width:200px;" bgcolor="#FFCC99"><font size="3"><strong>Why 2</strong></font></td>
+                <td style="width:30px;" bgcolor="#CCCCCC">&nbsp;</td>
+                <td style="width:200px;" bgcolor="#FFCC99"><font size="3"><strong>Why 3</strong></font></td>
+                <td style="width:30px;" bgcolor="#CCCCCC">&nbsp;</td>
+                <td style="width:200px;" bgcolor="#FFCC99"><font size="3"><strong>Why 4</strong></font></td>
+                <td style="width:30px;" bgcolor="#CCCCCC">&nbsp;</td>
+                <td style="width:200px;" bgcolor="#FFCC99"><font size="3"><strong>Why 5</strong></font></td>
+                <td style="width:200px;" bgcolor="#FFCC33"><font size="3"><strong>Escape Cause</strong></font></td>
+                <td style="width:200px;" bgcolor="#99CC99"><font size="3"><strong>Action Proposal</strong></font></td>
+                <td style="width:200px;" bgcolor="#FF99CC"><font size="3"><strong>Escape Cause Category</strong></font>
+                </td>
+                <td style="width:230px;" bgcolor="#FF99CC"><font size="3"><strong>Escape Cause
+                    Subcategory</strong></font>
+                </td>
+                <td style="width:200px;" bgcolor="#FF99CC"><font size="3"><strong>EDA Action Type</strong></font></td>
+                <td style="width:200px;" bgcolor="#FF99CC"><font size="3"><strong>Assigned To</strong></font></td>
+                <td style="width:200px;" bgcolor="#FF99CC"><font size="3"><strong>RCA AI ID</strong></font></td>
+                <td style="width:200px;" bgcolor="#FF99CC"><font size="3"><strong>Completion Target Date</strong></font>
+                </td>
+            </tr>
+            <tr  groupid="WhydidnotEntitytestTr">
+                <td bgcolor="#FFFF66"><font size="4"><strong>6. Why didn't <font color="#FF0033">Entity Test</font> test
+                    catch this defect? </strong></font>
+                </td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Technical_Reviews">Technical_Reviews</option>
+                    <option value="Code_Analysis_Tools">Code_Analysis_Tools</option>
+                    <option value="Unit_Tests">Unit_Tests</option>
+                    <option value="System_Component_or_Module_Test">System_Component_or_Module_Test</option>
+                    <option value="Entity_or_Integration_and_Verification_Test">
+                        Entity_or_Integration_and_Verification_Test
+                    </option>
+                    <option value="System_Verification_Functional_Test">System_Verification_Functional_Test</option>
+                    <option value="System_verification_Non_Functional_Testing">
+                        System_verification_Non_Functional_Testing
+                    </option>
+                    <option value="Collaborated_Mode_with_Suppliers">Collaborated_Mode_with_Suppliers</option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Requirements Improvement">Requirements Improvement</option>
+                    <option value="Architecture Improvement">Architecture Improvement</option>
+                    <option value="High-Level Design Improvement">High-Level Design Improvement</option>
+                    <option value="Low-Level Design Improvement">Low-Level Design Improvement</option>
+                    <option value="Coding Quality Improvement">Coding Quality Improvement</option>
+                    <option value="User Documentation (including Release Note) Improvement">User Documentation
+                        (including Release Note) Improvement
+                    </option>
+                    <option value="Configuration and Fault Management Improvement">Configuration and Fault
+                        Management
+                        Improvement
+                    </option>
+                    <option value="Knowledge/ Expertise/ Training Improvement">Knowledge/ Expertise/ Training
+                        Improvement
+                    </option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+            </tr>
+            <tr  groupid="WhydidnotEntitytestTr">
+                <td></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Technical_Reviews">Technical_Reviews</option>
+                    <option value="Code_Analysis_Tools">Code_Analysis_Tools</option>
+                    <option value="Unit_Tests">Unit_Tests</option>
+                    <option value="System_Component_or_Module_Test">System_Component_or_Module_Test</option>
+                    <option value="Entity_or_Integration_and_Verification_Test">
+                        Entity_or_Integration_and_Verification_Test
+                    </option>
+                    <option value="System_Verification_Functional_Test">System_Verification_Functional_Test</option>
+                    <option value="System_verification_Non_Functional_Testing">
+                        System_verification_Non_Functional_Testing
+                    </option>
+                    <option value="Collaborated_Mode_with_Suppliers">Collaborated_Mode_with_Suppliers</option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Requirements Improvement">Requirements Improvement</option>
+                    <option value="Architecture Improvement">Architecture Improvement</option>
+                    <option value="High-Level Design Improvement">High-Level Design Improvement</option>
+                    <option value="Low-Level Design Improvement">Low-Level Design Improvement</option>
+                    <option value="Coding Quality Improvement">Coding Quality Improvement</option>
+                    <option value="User Documentation (including Release Note) Improvement">User Documentation
+                        (including Release Note) Improvement
+                    </option>
+                    <option value="Configuration and Fault Management Improvement">Configuration and Fault
+                        Management
+                        Improvement
+                    </option>
+                    <option value="Knowledge/ Expertise/ Training Improvement">Knowledge/ Expertise/ Training
+                        Improvement
+                    </option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+            </tr>
+            <tr groupid="WhydidnotETautoTr">
+                <td bgcolor="#FFFF66"><font size="4"><strong>Why didn't <font color="#FF0033">ET</font> automated test
+                    cases
+                    catch this defect?</strong></font>
+                </td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Technical_Reviews">Technical_Reviews</option>
+                    <option value="Code_Analysis_Tools">Code_Analysis_Tools</option>
+                    <option value="Unit_Tests">Unit_Tests</option>
+                    <option value="System_Component_or_Module_Test">System_Component_or_Module_Test</option>
+                    <option value="Entity_or_Integration_and_Verification_Test">
+                        Entity_or_Integration_and_Verification_Test
+                    </option>
+                    <option value="System_Verification_Functional_Test">System_Verification_Functional_Test</option>
+                    <option value="System_verification_Non_Functional_Testing">
+                        System_verification_Non_Functional_Testing
+                    </option>
+                    <option value="Collaborated_Mode_with_Suppliers">Collaborated_Mode_with_Suppliers</option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Requirements Improvement">Requirements Improvement</option>
+                    <option value="Architecture Improvement">Architecture Improvement</option>
+                    <option value="High-Level Design Improvement">High-Level Design Improvement</option>
+                    <option value="Low-Level Design Improvement">Low-Level Design Improvement</option>
+                    <option value="Coding Quality Improvement">Coding Quality Improvement</option>
+                    <option value="User Documentation (including Release Note) Improvement">User Documentation
+                        (including Release Note) Improvement
+                    </option>
+                    <option value="Configuration and Fault Management Improvement">Configuration and Fault
+                        Management
+                        Improvement
+                    </option>
+                    <option value="Knowledge/ Expertise/ Training Improvement">Knowledge/ Expertise/ Training
+                        Improvement
+                    </option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+            </tr>
+            <tr groupid="WhydidnotETautoTr">
+                <td></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Technical_Reviews">Technical_Reviews</option>
+                    <option value="Code_Analysis_Tools">Code_Analysis_Tools</option>
+                    <option value="Unit_Tests">Unit_Tests</option>
+                    <option value="System_Component_or_Module_Test">System_Component_or_Module_Test</option>
+                    <option value="Entity_or_Integration_and_Verification_Test">
+                        Entity_or_Integration_and_Verification_Test
+                    </option>
+                    <option value="System_Verification_Functional_Test">System_Verification_Functional_Test</option>
+                    <option value="System_verification_Non_Functional_Testing">
+                        System_verification_Non_Functional_Testing
+                    </option>
+                    <option value="Collaborated_Mode_with_Suppliers">Collaborated_Mode_with_Suppliers</option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Requirements Improvement">Requirements Improvement</option>
+                    <option value="Architecture Improvement">Architecture Improvement</option>
+                    <option value="High-Level Design Improvement">High-Level Design Improvement</option>
+                    <option value="Low-Level Design Improvement">Low-Level Design Improvement</option>
+                    <option value="Coding Quality Improvement">Coding Quality Improvement</option>
+                    <option value="User Documentation (including Release Note) Improvement">User Documentation
+                        (including Release Note) Improvement
+                    </option>
+                    <option value="Configuration and Fault Management Improvement">Configuration and Fault
+                        Management
+                        Improvement
+                    </option>
+                    <option value="Knowledge/ Expertise/ Training Improvement">Knowledge/ Expertise/ Training
+                        Improvement
+                    </option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+            </tr>
+            <tr>
+                <td style="width:300px;"><font size="3"><strong></strong></font></td>
+                <td style="width:200px;" bgcolor="#FFCC99"><font size="3"><strong>Why 1</strong></font></td>
+                <td style="width:30px;" bgcolor="#CCCCCC">&nbsp;</td>
+                <td style="width:200px;" bgcolor="#FFCC99"><font size="3"><strong>Why 2</strong></font></td>
+                <td style="width:30px;" bgcolor="#CCCCCC">&nbsp;</td>
+                <td style="width:200px;" bgcolor="#FFCC99"><font size="3"><strong>Why 3</strong></font></td>
+                <td style="width:30px;" bgcolor="#CCCCCC">&nbsp;</td>
+                <td style="width:200px;" bgcolor="#FFCC99"><font size="3"><strong>Why 4</strong></font></td>
+                <td style="width:30px;" bgcolor="#CCCCCC">&nbsp;</td>
+                <td style="width:200px;" bgcolor="#FFCC99"><font size="3"><strong>Why 5</strong></font></td>
+                <td style="width:200px;" bgcolor="#FFCC33"><font size="3"><strong>Escape Cause</strong></font></td>
+                <td style="width:200px;" bgcolor="#99CC99"><font size="3"><strong>Action Proposal</strong></font></td>
+                <td style="width:200px;" bgcolor="#FF99CC"><font size="3"><strong>Escape Cause Category</strong></font>
+                </td>
+                <td style="width:230px;" bgcolor="#FF99CC"><font size="3"><strong>Escape Cause
+                    Subcategory</strong></font>
+                </td>
+                <td style="width:200px;" bgcolor="#FF99CC"><font size="3"><strong>EDA Action Type</strong></font></td>
+                <td style="width:200px;" bgcolor="#FF99CC"><font size="3"><strong>Assigned To</strong></font></td>
+                <td style="width:200px;" bgcolor="#FF99CC"><font size="3"><strong>RCA AI ID</strong></font></td>
+                <td style="width:200px;" bgcolor="#FF99CC"><font size="3"><strong>Completion Target Date</strong></font>
+                </td>
+            </tr>
+            <tr groupid="WhydidnotSystemTestTr">
+                <td bgcolor="#FFFF66"><font size="4"><strong>7. Why didn't <font color="#FF0033">System Test</font>
+                    catch
+                    this defect? </strong></font>
+                </td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Technical_Reviews">Technical_Reviews</option>
+                    <option value="Code_Analysis_Tools">Code_Analysis_Tools</option>
+                    <option value="Unit_Tests">Unit_Tests</option>
+                    <option value="System_Component_or_Module_Test">System_Component_or_Module_Test</option>
+                    <option value="Entity_or_Integration_and_Verification_Test">
+                        Entity_or_Integration_and_Verification_Test
+                    </option>
+                    <option value="System_Verification_Functional_Test">System_Verification_Functional_Test</option>
+                    <option value="System_verification_Non_Functional_Testing">
+                        System_verification_Non_Functional_Testing
+                    </option>
+                    <option value="Collaborated_Mode_with_Suppliers">Collaborated_Mode_with_Suppliers</option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Requirements Improvement">Requirements Improvement</option>
+                    <option value="Architecture Improvement">Architecture Improvement</option>
+                    <option value="High-Level Design Improvement">High-Level Design Improvement</option>
+                    <option value="Low-Level Design Improvement">Low-Level Design Improvement</option>
+                    <option value="Coding Quality Improvement">Coding Quality Improvement</option>
+                    <option value="User Documentation (including Release Note) Improvement">User Documentation
+                        (including Release Note) Improvement
+                    </option>
+                    <option value="Configuration and Fault Management Improvement">Configuration and Fault
+                        Management
+                        Improvement
+                    </option>
+                    <option value="Knowledge/ Expertise/ Training Improvement">Knowledge/ Expertise/ Training
+                        Improvement
+                    </option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+            </tr>
+            <tr groupid="WhydidnotSystemTestTr">
+                <td></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Technical_Reviews">Technical_Reviews</option>
+                    <option value="Code_Analysis_Tools">Code_Analysis_Tools</option>
+                    <option value="Unit_Tests">Unit_Tests</option>
+                    <option value="System_Component_or_Module_Test">System_Component_or_Module_Test</option>
+                    <option value="Entity_or_Integration_and_Verification_Test">
+                        Entity_or_Integration_and_Verification_Test
+                    </option>
+                    <option value="System_Verification_Functional_Test">System_Verification_Functional_Test</option>
+                    <option value="System_verification_Non_Functional_Testing">
+                        System_verification_Non_Functional_Testing
+                    </option>
+                    <option value="Collaborated_Mode_with_Suppliers">Collaborated_Mode_with_Suppliers</option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Requirements Improvement">Requirements Improvement</option>
+                    <option value="Architecture Improvement">Architecture Improvement</option>
+                    <option value="High-Level Design Improvement">High-Level Design Improvement</option>
+                    <option value="Low-Level Design Improvement">Low-Level Design Improvement</option>
+                    <option value="Coding Quality Improvement">Coding Quality Improvement</option>
+                    <option value="User Documentation (including Release Note) Improvement">User Documentation
+                        (including Release Note) Improvement
+                    </option>
+                    <option value="Configuration and Fault Management Improvement">Configuration and Fault
+                        Management
+                        Improvement
+                    </option>
+                    <option value="Knowledge/ Expertise/ Training Improvement">Knowledge/ Expertise/ Training
+                        Improvement
+                    </option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+            </tr>
+            <tr groupid="WhydidnotSTautoTr">
+                <td bgcolor="#FFFF66"><font size="4"><strong>Why didn't <font color="#FF0033">ST</font> automated test
+                    cases
+                    catch this defect?</strong></font>
+                </td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Technical_Reviews">Technical_Reviews</option>
+                    <option value="Code_Analysis_Tools">Code_Analysis_Tools</option>
+                    <option value="Unit_Tests">Unit_Tests</option>
+                    <option value="System_Component_or_Module_Test">System_Component_or_Module_Test</option>
+                    <option value="Entity_or_Integration_and_Verification_Test">
+                        Entity_or_Integration_and_Verification_Test
+                    </option>
+                    <option value="System_Verification_Functional_Test">System_Verification_Functional_Test</option>
+                    <option value="System_verification_Non_Functional_Testing">
+                        System_verification_Non_Functional_Testing
+                    </option>
+                    <option value="Collaborated_Mode_with_Suppliers">Collaborated_Mode_with_Suppliers</option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Requirements Improvement">Requirements Improvement</option>
+                    <option value="Architecture Improvement">Architecture Improvement</option>
+                    <option value="High-Level Design Improvement">High-Level Design Improvement</option>
+                    <option value="Low-Level Design Improvement">Low-Level Design Improvement</option>
+                    <option value="Coding Quality Improvement">Coding Quality Improvement</option>
+                    <option value="User Documentation (including Release Note) Improvement">User Documentation
+                        (including Release Note) Improvement
+                    </option>
+                    <option value="Configuration and Fault Management Improvement">Configuration and Fault
+                        Management
+                        Improvement
+                    </option>
+                    <option value="Knowledge/ Expertise/ Training Improvement">Knowledge/ Expertise/ Training
+                        Improvement
+                    </option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+            </tr>
+            <tr groupid="WhydidnotSTautoTr">
+                <td></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC">--></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td bgcolor="#CCCCCC"></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Technical_Reviews">Technical_Reviews</option>
+                    <option value="Code_Analysis_Tools">Code_Analysis_Tools</option>
+                    <option value="Unit_Tests">Unit_Tests</option>
+                    <option value="System_Component_or_Module_Test">System_Component_or_Module_Test</option>
+                    <option value="Entity_or_Integration_and_Verification_Test">
+                        Entity_or_Integration_and_Verification_Test
+                    </option>
+                    <option value="System_Verification_Functional_Test">System_Verification_Functional_Test</option>
+                    <option value="System_verification_Non_Functional_Testing">
+                        System_verification_Non_Functional_Testing
+                    </option>
+                    <option value="Collaborated_Mode_with_Suppliers">Collaborated_Mode_with_Suppliers</option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><select style="width:100%; " groupid="lindobj">
+                    <option value="Requirements Improvement">Requirements Improvement</option>
+                    <option value="Architecture Improvement">Architecture Improvement</option>
+                    <option value="High-Level Design Improvement">High-Level Design Improvement</option>
+                    <option value="Low-Level Design Improvement">Low-Level Design Improvement</option>
+                    <option value="Coding Quality Improvement">Coding Quality Improvement</option>
+                    <option value="User Documentation (including Release Note) Improvement">User Documentation
+                        (including Release Note) Improvement
+                    </option>
+                    <option value="Configuration and Fault Management Improvement">Configuration and Fault
+                        Management
+                        Improvement
+                    </option>
+                    <option value="Knowledge/ Expertise/ Training Improvement">Knowledge/ Expertise/ Training
+                        Improvement
+                    </option>
+                </select></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+                <td><textarea class="showtext" rows="4" style="width:97%" groupid="lindobj"></textarea></td>
+            </tr>
+        </table>
+        <br>
+        <br>
+        <input id="submitbtn" type="button" value="提交"/>
+        <br>
+        <br>
+        <br>
+    </div>
+
+</form>
+</body>
+
+<script src="/static/javascript/rcaeda/rcaeda.js"></script>
+</html>
+
+
+

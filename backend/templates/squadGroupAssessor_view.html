@@ -1,0 +1,32 @@
+{% extends "jiralayout.html" %}
+{% block body %}
+  <form action="" method=post class="form-horizontal" style="margin-left:280px">
+    <h2>squadGroupAccessor Operation: 
+	<input name='button' class="btn btn-large btn-primary" value='Delete' type='SUBMIT'>
+	</h2>
+<table>
+<p>Use this form to Update squadGroupAccessor or Delete:</p>
+<tr><td><font color="black"><b>squadGroupAccessorEmail:</td><td><textarea name='squadGroupRcaEdaAssessor' style="width:800px;height:30px;">{{todo.squadGroupRcaEdaAssessor}} </textarea></td></tr>
+<tr><td><font color="green"> <b>squadGroupEmailGroup:</td><td><textarea name='squadGroupEmailGroup' style="width:800px;height:30px;">{{todo.squadGroupEmailGroup}} </textarea></td></tr>
+
+<tr><td><font color="green"> <b>assessorSquadGroupName:</td><td><textarea name='assessorSquadGroupName' style="width:800px;height:30px;">{{todo.assessorSquadGroupName}} </textarea></td></tr>
+
+<tr><td><font color="green"> <b>assessorSquadGroupLead:</td><td><textarea name='assessorSquadGroupLead' style="width:800px;height:30px;">{{todo.assessorSquadGroupLead}} </textarea></td></tr>
+
+<tr><td><font color="green"> <b>assessorTribe:</td><td><textarea name='assessorTribe' style="width:800px;height:30px;">{{todo.assessorTribe}} </textarea></td></tr>
+
+<tr><td><font color="green"> <b>assessorTribeLead:</td><td><textarea name='assessorTribeLead' style="width:800px;height:30px;">{{todo.assessorTribeLead}} </textarea></td></tr>
+
+<tr><td><font color="green"> <b>registeredBy:</td><td><textarea name='registeredBy' style="width:800px;height:30px;">{{todo.registeredBy}} </textarea></td></tr>
+
+</table>
+
+<div class="control-group" style="margin-left:-31px">
+	<div class="controls">
+	  <input name='button' class="btn btn-success" value='Submit Change' type='SUBMIT'>
+	  <a href="{{ url_for('squadGroupAssessorIndex') }}">Back to list</a>
+	</div>
+</div>
+</form>
+{% endblock %}
+

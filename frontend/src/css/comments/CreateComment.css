@@ -1,0 +1,85 @@
+.create {
+    margin-right: 25px;
+}
+
+.createAnswer {
+    margin-left: 50px;
+}
+
+.createComment {
+    margin-top: 25px
+}
+
+.create .createCommentTextArea {
+    border-style: solid !important;
+    border-width: 1px !important;
+    border-color: rgb(18,65,145) !important;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.create .createTitle {
+    font-weight: 600;
+}
+
+.create .createButton {
+    background-color: #ef8405;
+    border-radius: 18px;
+    border: #cb7003 1px solid;
+    color: white;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 15px;
+    padding: 2px 15px 0px 15px;
+    font-weight: 600;
+    display: block;
+    height: 16px;
+    font-size: 8px;
+    justify-content: center;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.create .createButton:hover {
+    background-color: white;
+    color: black;
+    border: #cb7003 1px solid;
+}
+
+.create .answerButton {
+    background-color: green;
+    border-radius: 18px;
+    border: #006500 1px solid;
+    color: white;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 15px;
+    padding: 2px 15px 0px 15px;
+    font-weight: 600;
+    display: block;
+    height: 16px;
+    font-size: 8px;
+    justify-content: center;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.create .answerButton:hover {
+    background-color: white;
+    color: black;
+    border: #006500 1px solid;
+}
+
+.create .createButtonDisabled, .create .answerButtonDisabled {
+    background-color: rgb(180, 180, 180);
+    border-radius: 18px;
+    border: rgb(180, 180, 180) 1px solid;
+    color: white;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 15px;
+    padding: 2px 15px 0px 15px;
+    font-weight: 600;
+    display: block;
+    height: 16px;
+    font-size: 8px;
+    justify-content: center;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}

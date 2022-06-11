@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block body %}
+<form action="" method=post class="form-horizontal" style="margin-left:280px">
+	<h2>Register New squadGroupAssessor:</h2>
+<table>
+<p>Use this form to Register New squadGroupAssessor:</p>
+
+<tr><td><font color="green"><b>squadGroupAccessorEmail<span style="color:red">*</span>:</td><td><input name='squadGroupRcaEdaAssessor'  type='TEXT' value ='{{squadGroupRcaEdaAssessor}}'style="width:800px;height:25px; background-color:#FFFFCC" placeholder = " AA.BB@MM.NN" > </td></tr>
+
+<tr><td><font color="blue"> <b>squadGroupEmailGroup<span style="color:red">*</span>:</td><td><input name='squadGroupEmailGroup' type='TEXT' style="width:800px;height:25px;" value = '{{squadGroupEmailGroup}}' placeholder = " AA.BB@MM.NN" ></td></tr>
+
+</table>
+
+<div class="control-group" style="margin-left:-180px">
+	<div class="controls">
+	  <button name="button" id='RegisterNewSquadGroupAssessor' class="btn btn-success" value='RegisterNewSquadGroupAssessor'  >RegisterNewSquadGroupAssessor</button><a href="{{ url_for('squadGroupAssessorIndex') }}"> Back to list</a>
+	</div>
+</div>
+</form>
+
+
+
+{% endblock %}

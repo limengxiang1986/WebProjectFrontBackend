@@ -1,0 +1,591 @@
+{% extends "layout.html" %}
+{% block body %}
+<div style = "text-align:left;">
+  <form action="" method=post class="form-horizontal" style="margin-left:280px">
+    <h2>InChargeGroup Operation: 
+	<input name='button' class="btn btn-large btn-primary" value='Delete' type='SUBMIT'>
+	</h2>
+<table>
+
+
+<p>Use this form to Update InChargeGroupName or Delete:</p>
+<tr><td><font color="black"><b>InChargeGroupName:</td><td><textarea name='InChargeGroupName' style="width:800px;height:30px;">{{todo.InChargeGroupName}} </textarea></td></tr>
+<tr><td><font color="black"><b>GIC-Tribe<span style="color:red">*</span>:</td><td><input name='GICTribe'  type='TEXT' value ='{{todo.Tribe}}'style="width:800px;height:25px;"> </td></tr>
+<tr><td><font color="green"> <b>RCA_AssessorEmailName:</td><td><input name='AssessorEmail' style="width:808px;height:30px;color: #555555; border: 1px solid #c5c5c5;border-radius: 3px;" value="{{todo.AssessorEmail}} "> </td></tr>
+
+<tr><td><font color="blue"> <b>Labels:</td><td><textarea name='Labels' style="width:720px;height:30px;">{{todo.Labels}} </textarea> <a href="http://nok.it/rcaa"> <span style="color:red"> <B><I><U> Labels Info</U></I> </span></a></td></tr>
+
+<tr><td><font color="black"><b>Business Unit<span style="color:red">*</span>:&nbsp </td><td> <input type="text" name="BusinessUnit" id="t1" value ='{{todo.BusinessUnit}}' onFocus="showSelect1();" style=" width:800px; height:23px">    
+<select name="sel1" id="sel1" style="display:none; width:815px;height:33px" onchange="document.getElementById('t1').value=this.value">  
+<option value='{{BusinessUnit}}'>{{BusinessUnit}}</option> 
+<option value="-1">None</option>
+<option value="189744">Mobile Networks Products</option>
+<option value="189745">Converged Core</option>
+<option value="189746">Advanced Mobile Networks Solutions (AMS)</option>
+<option value="189747">MN Service</option>
+</select>
+</td></tr>
+<tr><td><font color="black"><b>Business Line<span style="color:red">*</span>:</td><td> <input type="text" name="BusinessLine" id="t4" value ='{{todo.BusinessLine}}' onFocus="showSelect4();" style=" width:800px; height:23px">    
+<select name="sel4" id="sel4" style="display:none; width:815px;height:33px" onchange="document.getElementById('t4').value=this.value">  
+<option value='{{BusinessLine}}'>{{BusinessLine}}</option> 
+<option value="-1">None</option>
+<option  value="205171">LTE</option>
+<option value="205172">HetRAN</option>
+<option value="205173">5G</option>
+<option value="205174">RF&AA</option>
+<option value="205175">BBP</option>
+<option value="205176">RMA</option>
+<option value="205177">Customer Support</option>
+<option value="205178">Architecture</option>
+<option value="205179">Telco Cloud </option>
+<option value="205180">3G Core</option>
+<option value="205181">Cloud SDM</option>
+<option value="205182">Cloud IMS </option>
+<option value="205183">Customer and Solution</option>
+<option value="205184">Small Cell & WiFi Solutions</option>
+<option value="205185">Public Sector, Complementary Solutions and Partner</option>
+<option value="205187">X-Haul</option>
+<option value="205188">NA</option>
+<option value="205189">WVS</option>
+<option value="219023">SRAN</option>
+<option value="280313">Airphone</option>
+<option value="276424">CDS</option>
+<option value="280311">ECP</option>
+<option value="280310">SoC</option>
+<option value="280312">TRS</option>
+<option value="320812">NM</option>
+
+</select>
+</td></tr>
+<tr><td><font color="black"><b>ProductLine<span style="color:red">*</span>:</td><td><input type="text" name="ProductLine" id="t5" value ='{{todo.ProductLine}}' onFocus="showSelect5();" style=" width:800px; height:23px">    
+<select name="sel5" id="sel5" style="display:none; width:815px;height:33px" onchange="document.getElementById('t5').value=this.value">  
+<option value='{{ProductLine}}'>{{ProductLine}}</option>
+<option value="All">All</option>
+<option value="AED">AED</option>
+<option value="BBP HW">BBP HW</option>
+<option value="BBP OPSW">BBP OPSW</option>
+<option value="BTS Site Manager">BTS Site Manager</option>
+<option value="CFX">CFX</option>
+<option value="Cloud BTS">Cloud BTS</option>
+<option value="CuDo">CuDo</option>
+<option value="DCM">DCM</option>
+<option value="FDD LTE">FDD LTE</option>
+<option value="Femto">Femto</option>
+<option value="Flexi Platform SW">Flexi Platform SW</option>
+<option value="Flexi Zone">Flexi Zone</option>
+<option value="GSM BTS">GSM BTS</option>
+<option value="HetRAN BTS">HetRAN BTS</option>
+<option value="HSS/vHSS">HSS/vHSS</option>
+<option value="HW">HW</option>
+<option value="MEC">MEC</option>
+<option value="Metro">Metro</option>
+<option value="MGW/OSP">MGW/OSP</option>
+<option value="MSS">MSS</option>
+<option value="N/A">N/A</option>
+<option value="NCIO">NCIO</option>
+<option value="NDCS">NDCS</option>
+<option value="NLS">NLS</option>
+<option value="NT-HLR/vHLR">NT-HLR/vHLR</option>
+<option value="One NDS">One NDS</option>
+<option value="One-EIR">One-EIR</option>
+<option value="One-MNP">One-MNP</option>
+<option value="oTAS">oTAS</option>
+<option value="PMOD - VGP">PMOD - VGP</option>
+<option value="RFHW">RFHW</option>
+<option value="RFSW">RFSW</option>
+<option value="RNC, BSC, RCP, vRNC">RNC, BSC, RCP, vRNC</option>
+<option value="SDL">SDL</option>
+<option value="SoC">SoC</option>
+<option value="SRAN/SBTS">SRAN/SBTS</option>
+<option value="TD LTE">TD LTE</option>
+<option value="WBTS">WBTS</option>
+<option value="WiFi/ZC">WiFi/ZC</option>
+<option value="5G Application">5G Application</option>
+<option value="5G L1">5G L1</option>
+<option value="nTAS">nTAS</option>
+<option value="Airphone">Airphone</option>
+<option value="ECP">ECP</option>
+<option value="TRS">TRS</option>
+<option value="MN RAN NM SON">MN RAN NM SON</option>
+<option value="NOM">NOM</option>
+</select>
+</td></tr>
+
+<!---
+<tr><td><font color="black"><b>RCAEDACategory<span style="color:red">*</span>:</td><td><input type="text" name="ProductLine" id="t5" value ='{{todo.ProductLine}}' onFocus="showSelect5();" style=" width:800px; height:23px">    
+<select name="sel5" id="sel5" style="display:none; width:815px;height:33px" onchange="document.getElementById('t5').value=this.value">  
+<option value='{{ProductLine}}'>{{ProductLine}}</option>
+<option value="RCA and EDA">RCA and EDA</option>
+<option value="RCA">RCA</option>
+<option value="EDA">EDA</option>
+</select>
+</td></tr>
+={{'false' if todo.ProductLine=='RCA and EDA' }}
+--->
+
+<tr><td><font color="black"><b>RCAEDACategory<span style="color:red">*</span>:</td><td>
+
+<input name='check_box_list' type="checkbox" {{"checked" if todo.RCAEDACategory=='RCA and EDA'}} value="RCA and EDA" id='a1' onclick="f1(this);" /><label><b>Analysis subtask - RCA and EDA</label>
+
+<input name='check_box_list' type="checkbox" {{"checked" if todo.RCAEDACategory=='RCA' }} value="RCA" id='a2' onclick="f2(this);" /><label><b>Analysis subtask - RCA</label>
+ 
+<input name='check_box_list' type="checkbox" {{"checked"  if todo.EdaCaseType=='EDA' }} value="EDA" id='a3' onclick="f3(this);" /><label><b>Analysis subtask - EDA</label>
+
+<input name='check_box_list' type="checkbox" {{"checked" if todo.RCAEDACategory=='RCA Subtask' }} value="RCA Subtask" id='a4' onclick="f4(this);" style="display: none;"/><label style="color:blue;display: none;"><b>RCA Subtask </label>
+ 
+<input name='check_box_list' type="checkbox" {{"checked"  if todo.EdaCaseType=='EDA subtask' }} value="EDA subtask" id='a5' onclick="f5(this);"  style="display: none;"/><label style="color:blue;display: none;"><b>EDA Subtask</label>
+
+</td></tr>
+
+<tr><td><font color="green"> <b>EDA_AssessorEmailName<span style="color:red"></span>:</td><td><input name='EDA_AssessorEmail' type='TEXT' style="width:335px;height:25px;" value = '{{todo.EDA_AssessorEmail}}' placeholder = " CC.DD@MM.NN" {{"disabled" if todo.EdaCaseType!='EDA' and todo.EdaCaseType!='EDA subtask' }} id='birthday' >
+&nbsp <font color="blue"> <b>EDACreatingTime <span style="color:red"></span>: &nbsp <input name='EDACreatingTime' type='TEXT' style="width:300px;height:25px;" value = '{{todo.EDACreatingTime}}' {{"disabled" if todo.EdaCaseType!='EDA' and todo.EdaCaseType!='EDA subtask'}} id='t8' onFocus="showSelect8();">
+<select name="sel8" id="sel8" style="display:none; width:314px;height:33px" onchange="document.getElementById('t8').value=this.value">  
+<option value='{{EDACreatingTime}}'>{{EDACreatingTime}}</option>
+<option value="After 5WhyRca In Progress">After 5WhyRca In Progress</option>
+<option value="After RCA Done">After RCA Done</option>
+<option value="Together With RCA">Together With RCA</option>
+</select>
+</td>
+</tr>
+
+<tr><td><font color="black"><b>JIRAProject<span style="color:red">*</span>:</td><td><input type="text" name="JIRAProject" id="t2" value ='{{todo.JIRAProject}}' onFocus="showSelect2();" style=" width:800px; height:23px">    
+<select name="sel2" id="sel2" style="display:none; width:815px;height:33px" onchange="rcaonchange(this.value);">
+<option value='{{JIRAProject}}'>{{JIRAProject}}</option>
+<option value="MNRCA">MNRCA</option>
+<option value="CUDOCIPBL">CUDOCIPBL</option>
+</select>
+</td></tr>
+
+<tr><td><font color="blue">RCAFilter<span style="color:red" id="rcaspan"></span>:</td><td><input type="text" name="RCAFilter" id="t7" value ='{{todo.RCAFilter}}' onFocus="showSelect7();" style=" width:800px; height:23px">
+<select name="sel7" id="sel7" style="display:none; width:815px;height:33px" onchange="rcafilterchange()">
+</select>
+</td></tr>
+
+<tr id="EditKeyCustomerBListTr" style="display: none;"><td></td><td><a href="javascript:void(0);" onclick="linkcustomerb()">Edit Key Customer B List</a> </td></tr>
+
+<tr style="display: none;"><td><font color="red"><b>Email Reminder Service<span style="color:#ff0000"></span>:</td><td><input type="text" name="BG" id="t9" value ='{{todo.BG}}' onFocus="showSelect9();" style=" width:800px; height:23px">
+<select name="sel9" id="sel9" style="display:none; width:815px;height:33px" onchange="document.getElementById('t9').value=this.value">  
+<option value='{{todo.BG}}'>{{todo.BG}}</option> 
+<option value="Yes">Yes</option> 
+<option value="No">No</option>  
+</select>  
+</td></tr>
+
+</table>
+
+<div class="control-group" style="margin-left:3px">
+	<div class="controls">
+	  <input name='button' class="btn btn-success" value='Submit Change' type='SUBMIT'>
+	  <a href="{{ url_for('InChargeGroupIndex') }}">Back to list</a>
+	</div>
+</div>
+</form>
+
+<script type="text/javascript">
+function f1(chk){
+ var t2 = document.getElementById("a2");
+ var t3 = document.getElementById("a3");
+ var t4 = document.getElementById("a4");
+ var t5 = document.getElementById("a5");
+
+ if (t2.checked){
+    t2.checked = false;
+  }
+  /*
+   if (t3.checked){
+    t3.checked = false;
+  }*/
+  if (t4.checked){
+    t4.checked = false;
+  }
+   if (t5.checked){
+    t5.checked = false;
+  }
+}
+
+function f2(chk){
+ var t1 = document.getElementById("a1");
+ var t4 = document.getElementById("a4");
+ var t5 = document.getElementById("a5");
+  var t = document.getElementById("birthday");
+ var t0 = document.getElementById("t8");
+/*
+ t.disabled = chk.checked;   //文本框初始设为disabled，获取文本框ID后取消disabled状态
+ t0.disabled = chk.checked; 
+*/ 
+ if (t1.checked){
+    t1.checked = false;
+  }
+  if (t4.checked){
+    t4.checked = false;
+  }
+  if (t5.checked){
+    t5.checked = false;
+  }
+}
+
+function f3(chk){
+ var t = document.getElementById("birthday");
+ var t1 = document.getElementById("t8");
+ var t2 = document.getElementById("a1");
+ var t3 = document.getElementById("a2");
+ var t6 = document.getElementById("a3");
+ var t4 = document.getElementById("a4");
+ var t5 = document.getElementById("a5");
+ t.disabled = !chk.checked;   //文本框初始设为disabled，获取文本框ID后取消disabled状态
+ t1.disabled = !chk.checked;   //文本框初始设为disabled，获取文本框ID后取消disabled状态
+ /*
+ if (t2.checked){
+    t2.checked = false;
+  }
+
+  if (!t2.checked && !t3.checked && !t4.checked && t5.checked && t6.checked)
+  {
+   t.disabled = !chk.checked;   //文本框初始设为disabled，获取文本框ID后取消disabled状态
+   t1.disabled = !chk.checked; 
+  }
+    */
+  if (t4.checked){
+    t4.checked = false;
+  }
+  if (t5.checked){
+    t5.checked = false;
+  }
+ document.getElementById('birthday').focus();//这个是鼠标光标聚焦，当点击checkbox后光标出现在文本框内
+ }
+
+function f4(chk){
+ var t1 = document.getElementById("a1");
+ var t2 = document.getElementById("a2");
+ var t3 = document.getElementById("a3");
+ var t5 = document.getElementById("a5");
+  var t4 = document.getElementById("a4");
+  var t = document.getElementById("birthday");
+ var t0 = document.getElementById("t8");
+/*
+if (chk.checked)
+{
+
+  t.disabled = !t5.checked;
+  t0.disabled = !t5.checked;
+}else{
+ t.disabled = !t5.checked;   //文本框初始设为disabled，获取文本框ID后取消disabled状态
+ t0.disabled = !t5.checked;
+}
+*/
+
+ if (t1.checked){
+    t1.checked = false;
+  }
+  if (t2.checked){
+    t2.checked = false;
+  }
+  if (t3.checked){
+    t3.checked = false;
+  }
+ document.getElementById('birthday').focus();//这个是鼠标光标聚焦，当点击checkbox后光标出现在文本框内
+ }
+
+function f5(chk){
+ var t1 = document.getElementById("a1");
+ var t2 = document.getElementById("a2");
+ var t3 = document.getElementById("a3");
+ var t5 = document.getElementById("birthday");
+ var t6 = document.getElementById("t8");
+ t5.disabled = !chk.checked;   //文本框初始设为disabled，获取文本框ID后取消disabled状态
+ t6.disabled = !chk.checked;   //文本框初始设为disabled，获取文本框ID后取消disabled状态
+ if (t1.checked){
+    t1.checked = false;
+  }
+  if (t2.checked){
+    t2.checked = false;
+  }
+  if (t3.checked){
+    t3.checked = false;
+  }
+ document.getElementById('birthday').focus();//这个是鼠标光标聚焦，当点击checkbox后光标出现在文本框内
+ } 
+ 
+/*
+function f1(chk){
+ var t2 = document.getElementById("a2");
+ var t3 = document.getElementById("a3");
+
+ if (t2.checked){
+    t2.checked = false;
+  }
+   if (t3.checked){
+    t3.checked = false;
+  }
+}
+
+function f2(chk){
+ var t1 = document.getElementById("a1");
+ if (t1.checked){
+    t1.checked = false;
+  }
+}
+
+function f3(chk){
+ var t = document.getElementById("birthday");
+ var t1 = document.getElementById("t8");
+ var t2 = document.getElementById("a1");
+ t.disabled = !chk.checked;   //文本框初始设为disabled，获取文本框ID后取消disabled状态
+  t1.disabled = !chk.checked;   //文本框初始设为disabled，获取文本框ID后取消disabled状态
+    if (t2.checked){
+    t2.checked = false;
+  }
+ document.getElementById('birthday').focus();//这个是鼠标光标聚焦，当点击checkbox后光标出现在文本框内
+ }
+ 
+function f4(chk){
+ var t = document.getElementById("birthday");
+ var t1 = document.getElementById("t8");
+ var t2 = document.getElementById("a1");
+ t.disabled = !chk.checked;   //文本框初始设为disabled，获取文本框ID后取消disabled状态
+  t1.disabled = !chk.checked;   //文本框初始设为disabled，获取文本框ID后取消disabled状态
+    if (t2.checked){
+    t2.checked = false;
+  }
+ document.getElementById('birthday').focus();//这个是鼠标光标聚焦，当点击checkbox后光标出现在文本框内
+ }
+ 
+ function f5(chk){
+ var t = document.getElementById("birthday");
+ var t1 = document.getElementById("t8");
+ var t2 = document.getElementById("a1");
+ t.disabled = !chk.checked;   //文本框初始设为disabled，获取文本框ID后取消disabled状态
+  t1.disabled = !chk.checked;   //文本框初始设为disabled，获取文本框ID后取消disabled状态
+    if (t2.checked){
+    t2.checked = false;
+  }
+ document.getElementById('birthday').focus();//这个是鼠标光标聚焦，当点击checkbox后光标出现在文本框内
+ }
+*/
+
+function showSelect(){  
+   var _t = document.getElementById('t');  
+   var _s = document.getElementById('sel');  
+   if( _t.style.display == ''){  
+       _t.style.display = 'none';  
+   }  
+   else{  
+       _t.style.display = '';  
+    }  
+   if ( _s.style.display == 'none' ){  
+        _s.style.display = '';  
+    }  
+    else{  
+        _s.style.display = 'none';  
+    }  
+}  
+function showSelect1(){  
+   var _t1 = document.getElementById('t1');  
+   var _s1 = document.getElementById('sel1');  
+   if( _t1.style.display == ''){  
+       _t1.style.display = 'none';  
+   }  
+   else{  
+       _t1.style.display = '';  
+    }  
+   if ( _s1.style.display == 'none' ){  
+        _s1.style.display = '';  
+    }  
+    else{  
+        _s1.style.display = 'none';  
+    }  
+} 
+function showSelect2(){  
+   var _t2 = document.getElementById('t2');  
+   var _s2 = document.getElementById('sel2');  
+   if( _t2.style.display == ''){  
+       _t2.style.display = 'none';  
+   }  
+   else{  
+       _t2.style.display = '';  
+    }  
+   if ( _s2.style.display == 'none' ){  
+        _s2.style.display = '';  
+    }  
+    else{  
+        _s2.style.display = 'none';  
+    }  
+} 
+function showSelect3(){  
+   var _t3 = document.getElementById('t3');  
+   var _s3 = document.getElementById('sel3');  
+   if( _t3.style.display == ''){  
+       _t3.style.display = 'none';  
+   }  
+   else{  
+       _t3.style.display = '';  
+    }  
+   if ( _s3.style.display == 'none' ){  
+        _s3.style.display = '';  
+    }  
+    else{  
+        _s3.style.display = 'none';  
+    }  
+} 
+
+function showSelect4(){  
+   var _t4 = document.getElementById('t4');  
+   var _s4 = document.getElementById('sel4');  
+   if( _t4.style.display == ''){  
+       _t4.style.display = 'none';  
+   }  
+   else{  
+       _t4.style.display = '';  
+    }  
+   if ( _s4.style.display == 'none' ){  
+        _s4.style.display = '';  
+    }  
+    else{  
+        _s4.style.display = 'none';  
+    }  
+}
+function showSelect5(){  
+   var _t5 = document.getElementById('t5');  
+   var _s5 = document.getElementById('sel5');  
+   if( _t5.style.display == ''){  
+       _t5.style.display = 'none';  
+   }  
+   else{  
+       _t5.style.display = '';  
+    }  
+   if ( _s5.style.display == 'none' ){  
+        _s5.style.display = '';  
+    }  
+    else{  
+        _s5.style.display = 'none';  
+    }  
+}
+
+function showSelect6(){  
+   var _t6 = document.getElementById('t6');  
+   var _s6 = document.getElementById('sel6');  
+   if( _t6.style.display == ''){  
+       _t6.style.display = 'none';  
+   }  
+   else{  
+       _t6.style.display = '';  
+    }  
+   if ( _s6.style.display == 'none' ){  
+        _s6.style.display = '';  
+    }  
+    else{  
+        _s6.style.display = 'none';  
+    }  
+}
+
+function showSelect7(){  
+   var _t7 = document.getElementById('t7');  
+   var _s7 = document.getElementById('sel7');  
+   if( _t7.style.display == ''){  
+       _t7.style.display = 'none';  
+   }  
+   else{  
+       _t7.style.display = '';  
+    }  
+   if ( _s7.style.display == 'none' ){  
+        _s7.style.display = '';  
+    }  
+    else{  
+        _s7.style.display = 'none';  
+    }  
+}
+
+function showSelect8(){  
+   var _t8 = document.getElementById('t8');  
+   var _s8 = document.getElementById('sel8');  
+   if( _t8.style.display == ''){  
+       _t8.style.display = 'none';  
+   }  
+   else{  
+       _t8.style.display = '';  
+    }  
+   if ( _s8.style.display == 'none' ){  
+        _s8.style.display = '';  
+    }  
+    else{  
+        _s8.style.display = 'none';  
+    }  
+}
+
+function showSelect9(){  
+   var _t9 = document.getElementById('t9');  
+   var _s9 = document.getElementById('sel9');  
+   if( _t9.style.display == ''){  
+       _t9.style.display = 'none';  
+   }  
+   else{  
+       _t9.style.display = '';  
+    }  
+   if ( _s9.style.display == 'none' ){  
+        _s9.style.display = '';  
+    }  
+    else{  
+        _s9.style.display = 'none';  
+    }  
+}
+
+function rcafilterchange(){
+    document.getElementById('t7').value=$("#sel7").val();
+    if($("#sel7").val() == 'Customer A + Key Customers B'){
+        $("#EditKeyCustomerBListTr").show();
+    }else {
+        $("#EditKeyCustomerBListTr").hide();
+    }
+}
+function linkcustomerb(){
+    window.open("/linkcustomerbedit/A_KEY_B");
+}
+$('input[name=AssessorEmail]').autocomplete({
+    serviceUrl: '/autocompleteemail',
+    minChars : 1,
+    deferRequestBy:300,
+    triggerSelectOnValidInput:false,
+    onSelect: function (suggestion) {
+    }
+});
+$('input[name=EDA_AssessorEmail]').autocomplete({
+    serviceUrl: '/autocompleteemail',
+    minChars : 1,
+    deferRequestBy:300,
+    triggerSelectOnValidInput:false,
+    onSelect: function (suggestion) {
+    }
+});
+$('input[name=GICTribe]').autocomplete({
+    serviceUrl: '/autocompletetribe',
+    minChars : 1,
+    deferRequestBy:300,
+    triggerSelectOnValidInput:false,
+    onSelect: function (suggestion) {
+    }
+});
+function rcaonchange(val){
+    document.getElementById('t2').value=val;
+    checkfiltermustinput();
+}
+function checkfiltermustinput(){
+    var project = $("#sel2").find("option:selected").val();
+    if(project == 'MNRCA'){
+        $("#rcaspan").text('*');
+    }else {
+        $("#rcaspan").text('');
+    }
+}
+$(document).ready(function(){
+    initSelect("sel7","select t.RCAFilterName,t.RCAFilterName from customerdict t group by t.RCAFilterName order by max(t.RCAFilterIdXh)");
+    var project = $("#t2").val();
+    if(project == 'MNRCA'){
+        $("#rcaspan").text('*');
+    }else {
+        $("#rcaspan").text('');
+    }
+});
+
+</script>
+
+{% endblock %}

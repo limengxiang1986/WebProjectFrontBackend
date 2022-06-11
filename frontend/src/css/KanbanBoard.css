@@ -1,0 +1,350 @@
+.kanbanBoards {
+    overflow: auto;
+}
+
+.infoMessage {
+    margin-top: 30px;
+}
+
+.infoMessage p {
+    font-weight: 400;
+    font-size: larger;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.infoMessage p:first-child {
+    padding-top: 50px;
+}
+
+.kanbanControlPanel {
+    display: grid;
+    grid-template-columns: 24.7% 18.525% 18.525% 13% 10.4% 13.5% 1.35%;
+    width: 100%;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid  #214191;
+    height: 45px;
+    align-items: unset;
+}
+
+.kanbanControlPanel #cp-1 {
+    width: 100%;
+    padding: 0px 0px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    word-wrap: normal;
+    font-weight: 500;
+}
+
+.kanbanControlPanel #cp-2,
+.kanbanControlPanel #cp-3,
+.kanbanControlPanel #cp-4,
+.kanbanControlPanel #cp-5,
+.kanbanControlPanel #cp-6,
+.kanbanControlPanel #cp-7 {
+    width: 99%;
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: 0px;
+}
+
+.kanbanControlPanel .searchSelect {
+    width: 100%;
+}
+
+.kanbanControlPanel .searchSelect .ant-input{
+    border-bottom: 0 !important;
+}
+
+.item-details-modal {
+    background-color: #F4F5F7;
+    border-radius: 2px;
+    margin: 50px;
+    min-height: 450px;
+    width: 800px;
+    outline: none;
+    padding: 20px;
+}
+
+.item-details {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    justify-items: center;
+}
+
+.item-details #left,
+.item-details #right {
+    display: grid;
+}
+
+.item-details .modalItemBig p {
+    height: 120px;
+    overflow-y: auto;
+}
+
+.item-details a {
+    display: block;
+}
+
+.item-details .assignee p:first-child {
+    padding: 0px;
+    margin: 0px;
+}
+
+.item-details .assignee p {
+    padding: 0px;
+    margin: 0px;
+}
+
+.item-details h3 {
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+
+.item {
+    font-size: 15px;
+    margin-bottom: 10px;
+    padding: 10px 12px 3px 12px;
+    border-radius: 5px;
+    z-index: 1;
+    background-color: white;
+}
+
+.item .typeLinkPanel {
+    display: grid;
+    padding: 5px 0px 0px 0px;
+    height: 33px;
+    margin: 0 !important;
+    grid-template-columns: 75% 25%;
+}
+
+.item:hover {
+    cursor: pointer;
+}
+
+.item-description {
+    font-size: 14px;
+    word-wrap: break-word;
+}
+
+.item-status {
+    text-align: right;
+}
+
+
+.item-title-div {
+    display: grid;
+    height: 20px;
+    padding: 3px 0px 4px 0px;
+    grid-template-columns: 23% 41% 38%;
+}
+
+.item .item-title-div .buttonToTool {
+    margin-left: auto;
+    margin-right: 8px;
+    top: -6px;
+    position: relative;
+}
+
+.item .item-title-div .buttonToTool button,
+.item .typeLinkPanel button {
+    cursor: pointer;
+    border: none;
+    font-weight: 500;
+    background-color: rgba(0, 0, 0, 0);
+    padding: 0 !important;
+    color: #001135;
+}
+
+.item .item-title-div .buttonToTool button:disabled,
+.item .typeLinkPanel button:disabled{
+    cursor: not-allowed;
+    color: #BCBCBC;
+    font-weight: 400;
+}
+
+.item .typeLinkPanel > button {
+    color: #001135;
+}
+
+.item .typeLinkPanel button{
+    color: #107C41;
+}
+
+.item .item-title-div .buttonToTool button:hover,
+.item .typeLinkPanel button:hover {
+    color: #ef6700;
+}
+
+.color-bar {
+    width: 100%;
+    margin-top: 2px;
+    height: 6px;
+    border-radius: 10px;
+    columns: 1;
+}
+
+.item-title-div .title {
+    width: 100%;
+    font-weight: 600;
+    position: relative;;
+    top: -6px;
+    font-size: 15px;
+    margin: 0;
+    word-wrap: normal;
+    /*text-align: center;*/
+    padding-left: 10px;
+}
+
+.item-title-div .title > a:hover {
+    color: #214191 !important;
+}
+
+.drop-wrapper {
+    flex: 1 25%;
+    width: 100%;
+    height: 100%;
+}
+
+.board {
+    background-color: #F8F8FF;
+    margin-top: 0px;
+    margin-bottom: 35px;
+    padding-bottom: 10px;
+}
+
+.board:last-of-type {
+    margin-bottom: 20px;
+}
+
+.board .header_assignee {
+    font-size: 17px;
+    display: flex;
+    padding-top: 7px;
+    height: 40px;
+    border-bottom: #214191 solid 1px;
+}
+
+.board .header_assignee .display_name {
+    font-weight: 500;
+    padding-left: 20px;
+}
+
+.board .header_assignee .squad_group {
+    font-style: italic;
+    padding-left: 10px;
+    margin-left: auto;
+    margin-right: 0;
+    padding-right: 20px;
+    font-size: 16px;
+    padding-top: 2px;
+}
+
+.board .row {
+    width: 100%;
+    padding-bottom: 0px;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+}
+
+.col-wrapper {
+    display: flex;
+    flex-direction: column;
+    float: left;
+    width: 100%;
+    padding: 0px 10px;
+    border-right: solid 1px #214191;
+    border-left: solid 1px #214191;
+}
+
+.col-wrapper:first-child {
+    border-left: none;
+}
+
+.col-wrapper:last-child {
+    border-right: none;
+}
+
+.col-header {
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0px auto;
+    padding-bottom: 10px;
+}
+
+.col {
+    width: 100%;
+}
+
+.highlight-region {
+    background-color: yellow;
+}
+
+.overlay {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);;
+}
+
+.close-btn-ctn {
+    display: flex;
+}
+
+.close-btn {
+    height: 40px;
+    width: 35px;
+    font-size: 20px;
+    color: #031D2C;
+    border: none;
+    border-radius: 25px;
+}
+
+.close-btn:hover {
+    background-color: #DCDCDC;
+}
+
+
+@media (-webkit-min-device-pixel-ratio: 1.0) {
+    .kanbanBoards {
+        height: 800px;
+    }
+    .kanbanControlPanel #cp-1 {
+        font-size: 2.1vmin;
+    }
+}
+
+@media (-webkit-min-device-pixel-ratio: 1.25) {
+    .kanbanBoards {
+        height: 590px;
+    }
+    .kanbanControlPanel #cp-1 {
+        font-size: 3vmin;
+    }
+}
+
+@media (-webkit-min-device-pixel-ratio: 1.5) {
+    .kanbanBoards {
+        height: 445px;
+    }
+    .kanbanControlPanel #cp-1 {
+        font-size: 3.5vmin;
+    }
+}
+
+@media (-webkit-min-device-pixel-ratio: 1.75) {
+    .kanbanBoards {
+        height: 345px;
+    }
+    .item-title-div {
+        grid-template-columns: 1% 53% 46%;
+    }
+    .kanbanControlPanel #cp-1 {
+        font-size: 4vmin;
+    }
+}

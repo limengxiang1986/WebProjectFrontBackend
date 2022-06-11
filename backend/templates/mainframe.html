@@ -1,0 +1,517 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+    <style>
+        .table {
+            table-layout: fixed;
+            width: 150%;
+        }
+
+        table th, table td {
+            font-weight: normal;
+            max-height: 42px;
+            padding: 1px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        table .td-content {
+            display: block;
+            max-height: 42px;
+            overflow: hidden;
+        }
+
+        #maindiv {
+            display: block;
+            width: 100%;
+            left: 0px;
+            top: 0px;
+        }
+
+        .leftpanel {
+            left: 0px;
+            margin-left: 0px;
+            margin-top: 57px;
+            width: 18%;
+            display: inline-block;
+            #border: 2px solid #999999;
+        }
+        .leftpanel li {
+            list-style-type: none;
+            font-size: 14px;
+            padding: 7px;
+        }
+
+        .rightpanel {
+            margin-left: 15px;
+            margin-top: 0px;
+            vertical-align: top;
+            display: inline-block;
+            width: 80%;
+            #border: 2px solid #999999;
+        }
+
+        .bottomline {
+            padding-bottom: 2px;
+            border-bottom: 1px solid #777777;
+        }
+
+        .bottomline a {
+            color: #215F7C;
+        }
+
+        .fc {
+            color: #215F7C;
+        }
+
+        .w3-button {
+            border-radius: 4px 4px 0px 0px;
+            border: 1px solid #252525;
+            background-color: #FFFFFF;
+            border-bottom: 0px;
+            width: 140px;
+            height: 22px;
+        }
+
+        .highlight{
+            background: #8195B2;
+            color: #FFFFFF;
+        }
+
+        .headtabbottom {
+            width: 100%;
+            height: 30px;
+        }
+
+        .tabs-sub {
+            background: none repeat scroll 0 0 #215F7C;
+            border-radius: 3px 3px 0 0;
+            clear: both;
+            height: 29px;
+            position: relative;
+            width: 100%;
+        }
+        .tabs-sub ul {
+            margin-bottom: 0px;
+            margin-top: 0px;
+            vertical-align: middle;
+        }
+        .tabs-sub li {
+            border-right: 1px solid #CCCCCC;
+            font-size: 11px;
+            list-style: none;
+            display: table-cell;
+            height: 29px;
+            text-align: center;
+            vertical-align: middle;
+            margin: 0px 0px ;
+        }
+        .tabs-sub li.selected_radious {
+            background-color: #8195B2;
+            font-weight: bold;
+            border-radius: 4px 0 0;
+            width: 100%;
+        }
+        .tabs-sub li a{
+            color: #FFFFFF;
+        }
+    </style>
+    <form method="post" action="" id="prfrom">
+        <input type="hidden" id="viewtype" name="viewtype" value="{{ viewtype }}" />
+        <input type="hidden" id="assignto" name="assignto" value="{{ assignto }}" />
+        <input type="hidden" id="alltask" name="alltask" value="{{ alltask }}" />
+        <input type="hidden" id="MyTribe" name="MyTribe" value="{{ MyTribe }}" />
+        <input type="hidden" id="MySquadGroup" name="MySquadGroup" value="{{ MySquadGroup }}" />
+        <input type="hidden" id="JiraIssueStatus" name="JiraIssueStatus" value="{{ JiraIssueStatus }}" />
+        <div id="maindiv">
+            <div class="leftpanel" >
+                <ul>
+                    <li class="bottomline" style="padding: 0px;margin: 0px 0px 14px 0px;border-bottom: 1px solid #FFFFFF;">
+                        <input type="button" onclick="SubmitReq('MyTribe')" style="background-color:#215F7C;width:100%;height:100%;text-align: left;
+                            color: #FFFFFF;border-radius: 4px;border: 1px solid #FFFFFF;height: 36px;font-size: 14px;" value=" Tasks Assign to My Tribe"/>
+                    </li>
+                    <li class="bottomline" style="padding: 0px;margin: 0px 0px 14px 0px;border-bottom: 1px solid #FFFFFF;">
+                        <input type="button" onclick="SubmitReq('MySquadGroup')" style="background-color:#215F7C;width:100%;height:100%;text-align: left;
+                            color: #FFFFFF;border-radius: 4px;border: 1px solid #FFFFFF;height: 36px;font-size: 14px;" value="  Tasks Assign to My SG"/>
+
+                    </li>
+                    <li class="bottomline" style="padding: 0px;margin: 0px 0px 14px 0px;border-bottom: 1px solid #FFFFFF;">
+                        <input type="button" onclick="SubmitReq('AssignMe')" style="background-color:#215F7C;width:100%;height:100%;text-align: left;color: #FFFFFF;border-radius: 4px;border: 1px solid #FFFFFF;height: 36px;font-size: 14px;" value="  Tasks Assign to Me"/>
+                    </li>
+                    <li class="bottomline" style="padding: 0px;margin: 0px 0px 13px 0px;border-bottom: 1px solid #FFFFFF;">
+                        <input type="button" onclick="SubmitReq('ALLTasks')" style="background-color:#215F7C;width:100%;height:100%;text-align: left;color: #FFFFFF;border-radius: 4px;border: 1px solid #FFFFFF;height: 36px;font-size: 14px;" value="  All Tasks"/>
+                    </li>
+                    <li>
+                    <li style="border-radius: 3px;background-color: #407EE7;color: #FFFFFF;">Tasks Assign To Tribe</li>
+                    </li>
+                    <li>
+                        <!--<select id="tribeTree" name="tribeTree" style="width: 100%;border: #000000;" class="mr5" value="{{ Tribe }}">
+                        </select>
+                        <input class="mr7" style="width: 75%;display: none;" id="Tribe" name="Tribe" value="{{ Tribe }}"/>-->
+                        <textarea placeholder="Tribe"  style="width: 80%;border:2px solid #000000;border-radius: 3px 3px;left: -7px;position: relative;" rows="3" class="mr5" id="Tribe" name="Tribe" value="">{{ Tribe }}</textarea>
+                        <span id="Tribebtn" class="iconfont" onclick="SubmitReq('Tribe')" style="font-size: 20px;padding: 2px 0px 0px 0px;top:0px;margin-top: 0px;cursor: pointer;
+                               font-weight: bold;display: ;">&#xe650;</span>
+                    </li>
+                    <li style="border-radius: 3px;background-color: #407EE7;color: #FFFFFF;">Tasks Related To PR</li>
+                    </li>
+                    <li>
+                        <input id="pridsearch2" name="pridsearch2" placeholder="PRID" value="{{ pridsearch2 }}"  style="width: 83%;border:2px solid #000000;border-radius: 3px 3px;left: -7px;position: relative;" class="mr5"/>
+                        <span id="pridsearch2btn" class="iconfont" onclick="SubmitReq('pridsearch2')" style="font-size: 20px;padding: 2px 0px 0px 0px;top:0px;margin-top: 0px;cursor: pointer;
+                        font-weight: bold;display: ;">&#xe650;</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="rightpanel">
+                <div id="headtab" style="padding: 0px 0px 0px 40px;">
+                    <button class="w3-button {% if viewtype=='RCA' or viewtype==''%} highlight {% endif %}" onclick="TabReq('RCA')" href="javascript:void(0)" type="button" id="tabRCA"  >RCA Tasks</button>
+                    <button class="w3-button {% if viewtype=='EDA' %} highlight {% endif %}" onclick="TabReq('EDA')" href="javascript:void(0)" type="button" id="tabEDA">EDA Tasks</button>
+                    <button class="w3-button {% if viewtype=='ACTION' %} highlight {% endif %}" onclick="TabReq('ACTION')" href="javascript:void(0)" type="button" id="tabACTION"  style="width: 200px;">Action Proposal</button>
+                    <button class="w3-button {% if viewtype=='ALL' %} highlight {% endif %}" onclick="TabReq('ALL')" href="javascript:void(0)" type="button" id="tabALL"  style="width: 70px;">All</button>
+                    <div style="float: right"><span class="iconfont" title="export excel" onclick="exportpage();" style="cursor: pointer;margin:0px 20px 0px 0px;font-size: 18px;">&#xe74e;</span></div>
+                </div>
+                <div class="tabs-sub">
+                    <ul >
+                        <li class="{% if JiraIssueStatus == 'Open' or JiraIssueStatus =='' %}  selected_radious {% endif %} "  style="width: 60px;left: 0px;position: absolute;display: table-cell;vertical-align: middle;">
+                            <a class="" onclick="SecTabReq('Open')" href="javascript:void(0)" >Open</a>
+                        </li>
+                        <li class="{% if JiraIssueStatus == 'Closed' %}  selected_radious {% endif %} " style="width: 90px;left:60px;position: absolute;">
+                            <a class="" onclick="SecTabReq('Closed')" href="javascript:void(0)" >Closed</a>
+                        </li>
+                        <li class="{% if JiraIssueStatus == 'All' %}  selected_radious {% endif %} " style="width: 80px;left:150px;position: absolute;">
+                            <a class="" onclick="SecTabReq('All')" href="javascript:void(0)" >All</a>
+                        </li>
+                    </ul>
+                </div>
+                <div id="titleline" style="padding: 12px 0px 15px 0px;border-bottom:1px solid #777777;display: block;">
+                    <span style="font-size: 22px;" class="fc">
+                        {% if MyTribe != '' %} Tasks Assign To {{ tribeName }} {% endif %}
+                        {% if MySquadGroup != '' %} Tasks Assign To {{ squadGroupName }} {% endif %}
+                        {% if Tribe != '' %} Tasks Assign To {{ Tribe }} {% endif %}
+                        {% if assignto == '1' or (assignto == '' and alltask == '' and Tribe == '' and pridsearch2 == '' and MyTribe == '' and MySquadGroup == '') %} Tasks Assign To Me {% endif %}
+                        {% if alltask == '1' %} All Tasks {% endif %}
+                        {% if pridsearch2 != '' %} Tasks Related To {{ pridsearch2 }} {% endif %}
+                    </span>
+                </div>
+                <div id="searchline" style="padding: 5px 0px 15px 0px;display: none;">
+                    <ul style="float: right;display: inline-block;">
+                    </ul>
+                </div>
+                <div id="tablediv" style="margin-top: 5px;display: block;">
+                    <div id="RCA" class="city">
+                        <div id="pageline" style="margin-top: 15px;margin-bottom: 5px; display: block;border: 0px solid #999999;clear: top;">
+                            <li style="display: inline-block;position: relative;left: 0%;">Found:{{ count }}</li>
+                            <li style="display: inline-block;position: relative;left: 20%;">Showing 1..1 of {{ count }}</li>
+                            <li style="display: inline-block;position: relative;left: 70%;"></li>
+                        </div>
+                        <div style="position: relative; height: 550px;overflow-y: scroll;overflow-x: hidden;" id="prtablediv">
+                            <table class="table table-hover" id="prtable">
+                              <tr>
+                                    <th style="width: 80px;">PRID</th>
+                                    <th style="width: 150px;">PRTitle</th>
+                                    <th style="width: 80px;">PRSeverity</th>
+                                    <th style="width: 110px;">JiraIssueId</th>
+                                    <th style="width: 120px;">JiraIssueParentId</th>
+                                    <th style="width: 150px;">PRAttached</th>
+                                    <th style="width: 140px;">JiraIssueType</th>
+                                    <th style="width: 120px;">JiraIssueCaseType</th>
+                                    <th style="width: 120px;">JiraIssueStatus</th>
+                                    <th style="width: 120px;">JiraIssueOverDue</th>
+                                    <th style="width: 140px;">JiraIssueOpenDays</th>
+                                    <th style="width: 150px;">JiraIssueCreatedDate</th>
+                                    <th style="width: 200px;">JiraIssueParentCreatedDate</th>
+                                    <th style="width: 180px;">JiraIssueResolutionDate</th>
+                                    <th style="width: 220px;">JiraIssueParentResolutionDate</th>
+                                    <th style="width: 150px;">JiraIssueDueDate</th>
+                                    <th style="width: 220px;">JiraIssueAssignee</th>
+                                    <th style="width: 280px;">PRRcaEdaAssessor</th>
+                                    <th style="width: 320px;">JiraIssueAssigneeTribe</th>
+                                    <th style="width: 350px;">JiraIssueAssigneeSquadGroup</th>
+                                    <th style="width: 300px;">JiraIssueAssigneeSquadGroupLead	</th>
+                              </tr>
+                              {%- for todo in todos %}
+                              <tr style={{"text-decoration:blink;color:black;background-color:#f2dede;" if todo.JiraIssueOverDue=='Yes' else "text-decoration:blink;color:black;background-color:#dff0d8;"}}>
+                                <td><a href="javascript:void(0)" onclick="onlink('{{ todo.PRID }}','{{ todo.JiraIssueId}}','3','{{ todo.JiraIssueType }}');">{{ todo.PRID }}</a>   <!--/todos/{{todo.PRID}}--></td>
+                                <td>{{ todo.PRTitle}}</td>
+                                <td>{{ todo.PRSeverity}}</td>
+                                <td><a href="javascript:void(0)" onclick="jiraIssueIdlink('{{ todo.JiraIssueId}}')">{{ todo.JiraIssueId}}</a></td>
+                                <td>{{ todo.JiraIssueParentTaskId}}</td>
+                                <td>{{ todo.PRAttached}}</td>
+                                <td>{{ todo.JiraIssueType}}</td>
+                                <td>{{ todo.JiraIssueCaseType}}</td>
+                                <td>{{ todo.JiraIssueStatus}}</td>
+                                <td style={{"text-decoration:blink;color:black;background-color:red;" if todo.JiraIssueOverDue=='Yes' else "text-decoration:blink;color:black;background-color:green;"}}>{{todo.JiraIssueOverDue}}</td>
+                                <td>{{ todo.JiraIssueOpenDays}}</td>
+                                <td>{{ todo.JiraIssueCreatedDate}}</td>
+                                <td>{{ todo.JiraIssueParentCreatedDate}}</td>
+                                <td>{{ todo.JiraIssueResolutionDate}}</td>
+                                <td>{{ todo.JiraIssueParentResolutionDate}}</td>
+                                <td>{{ todo.JiraIssueDueDate}}</td>
+                                <td>{{ todo.JiraIssueAssignee}}</td>
+                                <td>{{ todo.PRRcaEdaAssessor}}</td>
+                                <td>{{ todo.JiraIssueAssigneeTribe}}</td>
+                                <td>{{ todo.JiraIssueAssigneeSquadGroup}}</td>
+                                <td>{{ todo.JiraIssueAssigneeSquadGroupLead}}</td>
+                              </tr>
+                              {%- endfor %}
+                            </table>
+                        </div>
+                        <div id="pageline" style="margin-top: 15px;display: block;border: 0px solid #999999;clear: top;">
+                            <hr style="margin: 5px 0px;">
+                            <li style="display: inline-block;position: relative;left: 0%;">Found:{{ count }}</li>
+                            <li style="display: inline-block;position: relative;left: 20%;">Showing 1..1 of {{ count }}</li>
+                            <li style="display: inline-block;position: relative;left: 70%;"></li>
+                        </div>
+                    </div>
+
+                    <div id="EDA" class="city" style="display:none">
+                        <h2></h2>
+                        <p></p>
+                    </div>
+
+                    <div id="ACTION" class="city" style="display:none">
+                        <h2></h2>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="TableScrollFooter" style="overflow-x: scroll;overflow-y: hidden;width: 100%;height:25px;z-index: 100;bottom: 36px;position: fixed;">
+            <table >
+                <tbody>
+                    <tr>
+                        <td >
+                            <input style="width: 4500px;visibility: hidden;">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <input style="display: none;" id="totalctn" value="{{ count }}" />
+    </form>
+
+    <script language="JavaScript">
+        function onlink(PRID, JiraIssueId, p3,JiraIssueType){
+            if('{{ viewtype }}' == 'RCA' || '{{ viewtype }}' == 'EDA' || '{{ viewtype }}' == '' || ('{{ viewtype }}' == 'ALL' && JiraIssueType == 'Analysis subtask') ){
+                //location.href = "/onlinepr/"+PRID+","+p2+","+p3;
+                window.open("/onlinerca/"+JiraIssueId);
+            }else if('{{ viewtype }}' == 'ACTION' || ('{{ viewtype }}' == 'ALL' && ['Action for RCA','Action for EDA'].indexOf(JiraIssueType) > -1) ){
+                //location.href = "/todoaps/"+PRID 123;
+                window.open("/todoapsnew/"+JiraIssueId);
+            }
+
+        }
+        function jiraIssueIdlink(JiraIssueId){
+            var url = "https://jiradc.int.net.nokia.com/browse/" + JiraIssueId;
+            window.open(url);
+        }
+        function SubmitReq(type) {
+            if(type != ''){
+                if(type == 'AssignMe'){
+                    $("#assignto").val("1");
+                    $("#Tribe").val("");
+                    $("#pridsearch2").val("");
+                    $("#viewtype").val("RCA");
+                    $("#alltask").val("");
+                    $("#MySquadGroup").val("");
+                    $("#MyTribe").val("");
+                    $("#JiraIssueStatus").val("Open");
+                }else if(type == 'ALLTasks'){
+                    $("#assignto").val("");
+                    $("#Tribe").val("");
+                    $("#pridsearch2").val("");
+                    $("#viewtype").val("RCA");
+                    $("#alltask").val("1");
+                    $("#JiraIssueStatus").val("Open");
+                    $("#MySquadGroup").val("");
+                    $("#MyTribe").val("");
+                }else if(type == 'Tribe'){
+                    if($("#Tribe").val() == ""){
+                        return;
+                    }
+                    $("#assignto").val("");
+                    $("#pridsearch2").val("");
+                    $("#viewtype").val("RCA");
+                    $("#alltask").val("");
+                    $("#MySquadGroup").val("");
+                    $("#MyTribe").val("");
+                    $("#JiraIssueStatus").val("Open");
+                }else if(type == 'MyTribe'){
+                    $("#assignto").val("");
+                    $("#pridsearch2").val("");
+                    $("#viewtype").val("RCA");
+                    $("#alltask").val("");
+                    $("#MySquadGroup").val("");
+                    $("#MyTribe").val("MyTribe");
+                    $("#Tribe").val("");
+                    $("#JiraIssueStatus").val("Open");
+                }else if(type == 'MySquadGroup'){
+                    $("#assignto").val("");
+                    $("#pridsearch2").val("");
+                    $("#viewtype").val("RCA");
+                    $("#alltask").val("");
+                    $("#MySquadGroup").val("MySquadGroup");
+                    $("#MyTribe").val("");
+                    $("#Tribe").val("");
+                    $("#JiraIssueStatus").val("Open");
+                }else if(type == 'pridsearch2') {
+                    if($("#pridsearch2").val() == ""){
+                        return;
+                    }
+                    $("#assignto").val("");
+                    $("#viewtype").val("ALL");
+                    $("#alltask").val("");
+                    $("#MySquadGroup").val("");
+                    $("#MyTribe").val("");
+                    $("#Tribe").val("");
+                    $("#JiraIssueStatus").val("All");
+                }
+
+            }
+            showloading()
+            var form = $("form");
+            $('form').attr('action','/');
+            form.submit();
+        }
+        function TabReq(cityName ) {
+            $(".w3-button").each(function(){
+               $(this).css({'background':'#FFFFFF','color':'#000000'});
+            });
+            $("#tab"+cityName).css({'background':'#8195B2','color':'#FFFFFF'});
+            $("#viewtype").val(cityName);
+            SubmitReq('');
+        }
+        function SecTabReq(SecTabName ) {
+            $("#JiraIssueStatus").val(SecTabName);
+            SubmitReq('');
+        }
+        function exportpage() {
+            if(!($("#totalctn").val() > 0)){
+                alert('No data to export.')
+                return;
+            }else if($("#totalctn").val() > 500){
+                alert('Export number must not be greater then 500.')
+                return;
+            }
+            showloading();
+            $.ajax({
+                type: 'POST',
+                url: "/mainframe_exportexcel",
+                data: {
+                    'csrfmiddlewaretoken': '{{ csrf_token }}',
+                    "Tribe": $("#Tribe").val(),
+                    "MyTribe": $("#MyTribe").val(),
+                    "MySquadGroup": $("#MySquadGroup").val(),
+                    "pridsearch2": $("#pridsearch2").val(),
+                    "viewtype": $("#viewtype").val(),
+                    "assignto": $("#assignto").val(),
+                    "alltask": $("#alltask").val(),
+                    "JiraIssueStatus": $("#JiraIssueStatus").val()
+                },
+                success: function (data) {
+                    if (data["result"] == 'success') {
+                        window.location.href = data["filepathabs"];
+                    } else {
+                        alert("Export error." + data["result"]);
+                    }
+                    hideloading();
+                }
+            });
+        };
+
+        function fillPRSel(id, data){
+            var selectobj = $("#"+id);
+            selectobj.empty();
+            selectobj.append($("<option>").val("").text(""));
+            for(var i=0;i<data.length;i++){
+                selectobj.append($("<option>").val(data[i]["id"]).text(data[i]["tag"]));
+            }
+        }
+        $('#TableScrollFooter').scroll(function(){
+            try{
+                $("#prtablediv").scrollLeft($('#TableScrollFooter').scrollLeft());
+            }catch (e){
+                alert(e)
+            }
+        });
+        $(document).ready(function () {
+            $('#pridsearch2').autocomplete({
+                serviceUrl: '/autocompletepronto',
+                minChars : 1,
+                deferRequestBy:300,
+                triggerSelectOnValidInput:false,
+                delimiter: ',',
+                onSelect: function (suggestion) {
+                    if(suggestion.value != "") {
+                        if('{{ pridsearch2 }}' != suggestion.value){
+                            $('#pridsearch2').val($('#pridsearch2').val()+", ");
+                            $('#pridsearch2').focus();
+                            /**
+                            $("#Tribe").val("");
+                            SubmitReq('pridsearch2');
+                            */
+                        }
+                    }
+                }
+            });
+            $("#pridsearch2").bind("keypress", function (event) {
+                if(event.keyCode == '13'){
+                    if($("#pridsearch2").val() != ""){
+                        $("#pridsearch2btn").click();
+                    }
+                    return false;
+                }
+            });
+
+            $('#Tribe').autocomplete({
+                serviceUrl: '/autocompletetribe',
+                minChars : 1,
+                deferRequestBy:300,
+                triggerSelectOnValidInput:false,
+                delimiter: ',',
+                onSelect: function (suggestion) {
+                    if(suggestion.value != ""){
+                        if('{{ Tribe }}' != suggestion.value){
+                            $('#Tribe').val($('#Tribe').val()+", ");
+                            $('#Tribe').focus();
+                            /**
+                            SubmitReq('Tribe');
+                            */
+                        }
+                    }
+                }
+            });
+            $("#Tribe").bind("keypress", function (event) {
+                if(event.keyCode == '13'){
+                    if($("#Tribe").val() != ""){
+                        $("#Tribebtn").click();
+                    }
+                }
+            });
+            /**
+            var tribelist = {{ tribelist|tojson|safe }};
+            fillPRSel("tribeTree",jQuery.parseJSON(tribelist));
+            $("#tribeTree").select2({
+                minimumInputLength: 0,
+                placeholder: "Tribe",
+                allowClear: true,
+                tokenSeparators:[",", " "]
+            });
+            $("#tribeTree").change(function(){
+                $("#Tribe").val($(this).val());
+                SubmitReq('Tribe');
+            });
+            if($("#Tribe").val() != ""){
+                $("#tribeTree").val($("#Tribe").val());
+            }
+            */
+            $("#panelfoot").hide();
+            $("#main").height('700px');
+        });
+
+    </script>
+
+{% endblock %}
+
+

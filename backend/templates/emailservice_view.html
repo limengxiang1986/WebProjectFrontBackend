@@ -1,0 +1,409 @@
+{% extends "layout.html" %}
+{% block body %}
+<form action="" method=post class="form-horizontal" style="margin-left:150px">
+    <h2>EmailService Operation: 
+	<input name='button' class="btn btn-large btn-primary" value='Delete' type='SUBMIT'>
+	</h2>
+<table>
+<p>Use this form to Update EmailService or Delete:</p>
+
+<tr><td><font color="black"><b>EmailServiceId<span style="color:red">*</span>:</td><td><textarea readonly="true" name='EmailServiceId' style="width:800px;height:25px; background-color:#FFFFCC"" >{{todo.EmailServiceId}} </textarea></td></tr>
+
+<tr><td><font color="black"><b>TribeName<span style="color:red">*</span>:</td><td><input  name='AssigneeTribeName'  type='TEXT' value ='{{todo.TribeName}}' style="width:800px;height:25px; background-color:#FFFFCC" " > </td></tr>
+
+
+<tr><td><font color="blue"> <b>TribeQualityManagerEmail:</td><td><input name='QualityManagerEmail' style="width:808px;height:25px;color: #555555;background-color:#FFFFCC;border: 1px solid #c5c5c5;border-radius: 3px;" value="{{todo.QualityManagerEmail}}"> </td></tr>
+
+<tr><td><font color="black"><b>EmailServiceCategory<span style="color:red">*</span>:</td><td>
+<!---
+<input name='check_box_list' type="checkbox" {{"checked" if todo.RCAEDACategory=='RCA and EDA'}} value="RCA and EDA" id='a1' onclick="f1(this);" /><label><b>Analysis subtask - RCA and EDA</label>
+--->
+
+<input name='check_box_list' type="checkbox" {{"checked" if todo.RCA_EmailService =='Yes' }} value="RCA" id='a2'  /><label><b>Analysis subtask - RCA</label>
+ 
+<input name='check_box_list' type="checkbox" {{"checked"  if todo.EDA_EmailService=='Yes' }} value="EDA" id='a3'  /><label><b>Analysis subtask - EDA</label>
+
+<input name='check_box_list' type="checkbox" {{"checked" if todo.ActionForRCA_EmailService=='Yes' }} value="Action for RCA" id='a4'  /><label style="color:blue;"><b>Action for RCA </label>
+ 
+<input name='check_box_list' type="checkbox" {{"checked"  if todo.ActionForEDA_EmailService=='Yes' }} value="Action for EDA" id='a5'  /><label style="color:blue;"><b>Action for EDA </label>
+
+</td></tr>
+
+</table>
+
+<div class="control-group" style="margin-left:3px">
+	<div class="controls">
+	  <input name='button' class="btn btn-success" value='Submit Change' type='SUBMIT'>
+	  <a href="{{ url_for('EmailServiceIndex') }}">Back to list</a>
+	</div>
+</div>
+</form>
+
+<script type="text/javascript">
+
+function f1(chk){
+ var t2 = document.getElementById("a2");
+ var t3 = document.getElementById("a3");
+ var t4 = document.getElementById("a4");
+ var t5 = document.getElementById("a5");
+
+ if (t2.checked){
+    t2.checked = false;
+  }
+  /*
+   if (t3.checked){
+    t3.checked = false;
+  }*/
+  if (t4.checked){
+    t4.checked = false;
+  }
+   if (t5.checked){
+    t5.checked = false;
+  }
+}
+
+function f2(chk){
+ var t1 = document.getElementById("a1");
+ var t4 = document.getElementById("a4");
+ var t5 = document.getElementById("a5");
+  var t = document.getElementById("birthday");
+ var t0 = document.getElementById("t8");
+/*
+ t.disabled = chk.checked;   //文本框初始设为disabled，获取文本框ID后取消disabled状态
+ t0.disabled = chk.checked; 
+*/ 
+ if (t1.checked){
+    t1.checked = false;
+  }
+  if (t4.checked){
+    t4.checked = false;
+  }
+  if (t5.checked){
+    t5.checked = false;
+  }
+}
+
+function f3(chk){
+ var t = document.getElementById("birthday");
+ var t1 = document.getElementById("t8");
+ var t2 = document.getElementById("a1");
+ var t3 = document.getElementById("a2");
+ var t6 = document.getElementById("a3");
+ var t4 = document.getElementById("a4");
+ var t5 = document.getElementById("a5");
+ t.disabled = !chk.checked;   //文本框初始设为disabled，获取文本框ID后取消disabled状态
+ t1.disabled = !chk.checked;   //文本框初始设为disabled，获取文本框ID后取消disabled状态
+ /*
+ if (t2.checked){
+    t2.checked = false;
+  }
+
+  if (!t2.checked && !t3.checked && !t4.checked && t5.checked && t6.checked)
+  {
+   t.disabled = !chk.checked;   //文本框初始设为disabled，获取文本框ID后取消disabled状态
+   t1.disabled = !chk.checked; 
+  }
+    */
+  if (t4.checked){
+    t4.checked = false;
+  }
+  if (t5.checked){
+    t5.checked = false;
+  }
+ document.getElementById('birthday').focus();//这个是鼠标光标聚焦，当点击checkbox后光标出现在文本框内
+ }
+
+function f4(chk){
+ var t1 = document.getElementById("a1");
+ var t2 = document.getElementById("a2");
+ var t3 = document.getElementById("a3");
+ var t5 = document.getElementById("a5");
+  var t4 = document.getElementById("a4");
+  var t = document.getElementById("birthday");
+ var t0 = document.getElementById("t8");
+/*
+if (chk.checked)
+{
+
+  t.disabled = !t5.checked;
+  t0.disabled = !t5.checked;
+}else{
+ t.disabled = !t5.checked;   //文本框初始设为disabled，获取文本框ID后取消disabled状态
+ t0.disabled = !t5.checked;
+}
+*/
+
+ if (t1.checked){
+    t1.checked = false;
+  }
+  if (t2.checked){
+    t2.checked = false;
+  }
+  if (t3.checked){
+    t3.checked = false;
+  }
+ document.getElementById('birthday').focus();//这个是鼠标光标聚焦，当点击checkbox后光标出现在文本框内
+ }
+
+function f5(chk){
+ var t1 = document.getElementById("a1");
+ var t2 = document.getElementById("a2");
+ var t3 = document.getElementById("a3");
+ var t5 = document.getElementById("birthday");
+ var t6 = document.getElementById("t8");
+ t5.disabled = !chk.checked;   //文本框初始设为disabled，获取文本框ID后取消disabled状态
+ t6.disabled = !chk.checked;   //文本框初始设为disabled，获取文本框ID后取消disabled状态
+ if (t1.checked){
+    t1.checked = false;
+  }
+  if (t2.checked){
+    t2.checked = false;
+  }
+  if (t3.checked){
+    t3.checked = false;
+  }
+ document.getElementById('birthday').focus();//这个是鼠标光标聚焦，当点击checkbox后光标出现在文本框内
+ } 
+ 
+/*
+function f1(chk){
+ var t2 = document.getElementById("a2");
+ var t3 = document.getElementById("a3");
+
+ if (t2.checked){
+    t2.checked = false;
+  }
+   if (t3.checked){
+    t3.checked = false;
+  }
+}
+
+function f2(chk){
+ var t1 = document.getElementById("a1");
+ if (t1.checked){
+    t1.checked = false;
+  }
+}
+
+function f3(chk){
+ var t = document.getElementById("birthday");
+ var t1 = document.getElementById("t8");
+ var t2 = document.getElementById("a1");
+ t.disabled = !chk.checked;   //文本框初始设为disabled，获取文本框ID后取消disabled状态
+  t1.disabled = !chk.checked;   //文本框初始设为disabled，获取文本框ID后取消disabled状态
+    if (t2.checked){
+    t2.checked = false;
+  }
+ document.getElementById('birthday').focus();//这个是鼠标光标聚焦，当点击checkbox后光标出现在文本框内
+ }
+ 
+function f4(chk){
+ var t = document.getElementById("birthday");
+ var t1 = document.getElementById("t8");
+ var t2 = document.getElementById("a1");
+ t.disabled = !chk.checked;   //文本框初始设为disabled，获取文本框ID后取消disabled状态
+  t1.disabled = !chk.checked;   //文本框初始设为disabled，获取文本框ID后取消disabled状态
+    if (t2.checked){
+    t2.checked = false;
+  }
+ document.getElementById('birthday').focus();//这个是鼠标光标聚焦，当点击checkbox后光标出现在文本框内
+ }
+ 
+ function f5(chk){
+ var t = document.getElementById("birthday");
+ var t1 = document.getElementById("t8");
+ var t2 = document.getElementById("a1");
+ t.disabled = !chk.checked;   //文本框初始设为disabled，获取文本框ID后取消disabled状态
+  t1.disabled = !chk.checked;   //文本框初始设为disabled，获取文本框ID后取消disabled状态
+    if (t2.checked){
+    t2.checked = false;
+  }
+ document.getElementById('birthday').focus();//这个是鼠标光标聚焦，当点击checkbox后光标出现在文本框内
+ }
+*/
+
+function showSelect(){  
+   var _t = document.getElementById('t');  
+   var _s = document.getElementById('sel');  
+   if( _t.style.display == ''){  
+       _t.style.display = 'none';  
+   }  
+   else{  
+       _t.style.display = '';  
+    }  
+   if ( _s.style.display == 'none' ){  
+        _s.style.display = '';  
+    }  
+    else{  
+        _s.style.display = 'none';  
+    }  
+}  
+function showSelect1(){  
+   var _t1 = document.getElementById('t1');  
+   var _s1 = document.getElementById('sel1');  
+   if( _t1.style.display == ''){  
+       _t1.style.display = 'none';  
+   }  
+   else{  
+       _t1.style.display = '';  
+    }  
+   if ( _s1.style.display == 'none' ){  
+        _s1.style.display = '';  
+    }  
+    else{  
+        _s1.style.display = 'none';  
+    }  
+} 
+function showSelect2(){  
+   var _t2 = document.getElementById('t2');  
+   var _s2 = document.getElementById('sel2');  
+   if( _t2.style.display == ''){  
+       _t2.style.display = 'none';  
+   }  
+   else{  
+       _t2.style.display = '';  
+    }  
+   if ( _s2.style.display == 'none' ){  
+        _s2.style.display = '';  
+    }  
+    else{  
+        _s2.style.display = 'none';  
+    }  
+} 
+function showSelect3(){  
+   var _t3 = document.getElementById('t3');  
+   var _s3 = document.getElementById('sel3');  
+   if( _t3.style.display == ''){  
+       _t3.style.display = 'none';  
+   }  
+   else{  
+       _t3.style.display = '';  
+    }  
+   if ( _s3.style.display == 'none' ){  
+        _s3.style.display = '';  
+    }  
+    else{  
+        _s3.style.display = 'none';  
+    }  
+} 
+
+function showSelect4(){  
+   var _t4 = document.getElementById('t4');  
+   var _s4 = document.getElementById('sel4');  
+   if( _t4.style.display == ''){  
+       _t4.style.display = 'none';  
+   }  
+   else{  
+       _t4.style.display = '';  
+    }  
+   if ( _s4.style.display == 'none' ){  
+        _s4.style.display = '';  
+    }  
+    else{  
+        _s4.style.display = 'none';  
+    }  
+}
+function showSelect5(){  
+   var _t5 = document.getElementById('t5');  
+   var _s5 = document.getElementById('sel5');  
+   if( _t5.style.display == ''){  
+       _t5.style.display = 'none';  
+   }  
+   else{  
+       _t5.style.display = '';  
+    }  
+   if ( _s5.style.display == 'none' ){  
+        _s5.style.display = '';  
+    }  
+    else{  
+        _s5.style.display = 'none';  
+    }  
+}
+
+function showSelect6(){  
+   var _t6 = document.getElementById('t6');  
+   var _s6 = document.getElementById('sel6');  
+   if( _t6.style.display == ''){  
+       _t6.style.display = 'none';  
+   }  
+   else{  
+       _t6.style.display = '';  
+    }  
+   if ( _s6.style.display == 'none' ){  
+        _s6.style.display = '';  
+    }  
+    else{  
+        _s6.style.display = 'none';  
+    }  
+}
+
+function showSelect7(){  
+   var _t7 = document.getElementById('t7');  
+   var _s7 = document.getElementById('sel7');  
+   if( _t7.style.display == ''){  
+       _t7.style.display = 'none';  
+   }  
+   else{  
+       _t7.style.display = '';  
+    }  
+   if ( _s7.style.display == 'none' ){  
+        _s7.style.display = '';  
+    }  
+    else{  
+        _s7.style.display = 'none';  
+    }  
+}
+
+function showSelect8(){  
+   var _t8 = document.getElementById('t8');  
+   var _s8 = document.getElementById('sel8');  
+   if( _t8.style.display == ''){  
+       _t8.style.display = 'none';  
+   }  
+   else{  
+       _t8.style.display = '';  
+    }  
+   if ( _s8.style.display == 'none' ){  
+        _s8.style.display = '';  
+    }  
+    else{  
+        _s8.style.display = 'none';  
+    }  
+}
+
+function showSelect9(){  
+   var _t9 = document.getElementById('t9');  
+   var _s9 = document.getElementById('sel9');  
+   if( _t9.style.display == ''){  
+       _t9.style.display = 'none';  
+   }  
+   else{  
+       _t9.style.display = '';  
+    }  
+   if ( _s9.style.display == 'none' ){  
+        _s9.style.display = '';  
+    }  
+    else{  
+        _s9.style.display = 'none';  
+    }  
+}
+
+$('input[name=AssigneeTribeName]').autocomplete({
+    serviceUrl: '/autocompletetribe',
+    minChars : 1,
+    deferRequestBy:300,
+    triggerSelectOnValidInput:false,
+    onSelect: function (suggestion) {
+    }
+});
+$('input[name=QualityManagerEmail]').autocomplete({
+    serviceUrl: '/autocompleteemail',
+    minChars : 1,
+    deferRequestBy:300,
+    triggerSelectOnValidInput:false,
+    onSelect: function (suggestion) {
+    }
+});
+</script>
+
+{% endblock %}

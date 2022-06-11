@@ -1,0 +1,270 @@
+<!doctype html>
+<title>MNRCA JIRA RCA/EDA Efficient Promotion WebApp</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+<meta charset="utf-8">
+<style>
+body {
+	padding-top: 60px;
+	padding-bottom: 100px;
+}
+    #NokCustomFooter {
+        width: 100%;
+        background-color: #124191;
+        position: fixed;
+        line-height: 30px;
+        bottom: 0;
+    }
+
+    #NokFooterBottomRow {
+        color: white;
+    }
+
+    .FooterLeftLi {
+        float: left;
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+
+    #LblSiteConfidentiality {
+        float: right;
+        padding-right: 2px;
+        font-weight: bold;
+    }
+
+.navbar .trademark {
+  display: block;
+  float: left;
+  padding: 0px 0px 0px;
+  margin-left: 0px;
+  font-size: 20px;
+  font-weight: 200;
+  color: #000000;
+  text-shadow: 0 1px 0 #333333;
+}
+
+.searchpr {
+    box-sizing: border-box;
+    padding: 2px 0px;
+}
+
+.searchpr input[type=text] {
+  padding: 10px;
+  font-size: 13px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  height: 30px;
+  background: #f1f1f1;
+  box-sizing: border-box;
+}
+
+.searchpr button {
+  float: left;
+  width: 30%;
+  padding: 10px;
+  background: #2196F3;
+  color: white;
+  font-size: 13px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+  height: 30px;
+  box-sizing: border-box;
+}
+
+.searchpr button:hover {
+  background: #0b7dda;
+}
+
+.searchpr::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.fa {
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+}
+.fa-search:before {
+  content: "Search";
+  box-sizing: border-box;
+}
+</style>
+<link href="/static/css/default.css" rel="stylesheet">
+<link href="/static/css/bootstrap.css" rel="stylesheet">
+<link href="/static/css/bootstrap-responsive.css" rel="stylesheet">
+<link href="/static/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+<link href="/static/css/select2.min.css" rel="stylesheet" />
+<link href="../static/favicon.ico" rel="icon">
+
+
+<script src="/static/js/jquery.js"></script>
+<script src="/static/js/bootstrap.js"></script>
+<script src="/static/js/echarts.min.js"></script>
+<script src="/static/js/select2.min.js"></script>
+
+<script type="text/javascript" src="/static/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+
+<body>
+<div id="headMessage" class="navbar-fixed-top">
+    <ul class="fl" >
+        <li class="mr30" style="position: fixed ;left: 2px;">
+            <span class="iconfont" style="font-size: 24px; ">&#xeb71;</span>
+        </li>
+        <li style="padding: 0px 50px 0px 50px;">
+            <a class="brand" href="/" style="font-size: 23px;font-weight: bold;">RCA-Shark</a>
+        </li>
+        <li >
+            <a href="/" style="font-size: 16px;">Home</a>
+        </li>
+        <li>
+            <a href="{{ url_for('mndashboard') }}" style="font-size: 16px;">DashBoard</a>
+        </li>
+        <li>
+            <a href="/home" style="font-size: 16px;">MNRCA Home</a>
+        </li>
+        <li>
+            <a href="/jiranew" style="font-size: 16px;">Create 5WhyRCA Task</a>
+        </li>
+        <li>
+            <a href="/InChargeGroupIndex" style="font-size: 16px;">GICs</a>
+        </li>
+        <li>
+            <a href="/EmailServiceIndex" style="font-size: 16px;">Email Service</a>
+        </li>
+        {% if not current_user.is_authenticated%}
+            <li><a href="{{ url_for('login') }}" style="font-size: 16px;">Login</a></li>
+        {% endif %}
+    </ul>
+    <ul class="fr " style="padding: 0px 0px 0px 100px">
+        <li class="searchpr" style="padding: 3px 0px 0px 0px;" style="float: right ;">
+            <input type="text" id="PRIDSEARCH"  placeholder="PRID" maxlength="25" class="mr7">
+            <span  id="searchbtn" class="iconfont" style="font-size: 20px;" >&#xe8d6;</span>
+        </li>
+        <li >
+            <li><span style="font-size: 16px;"></span></li>
+        </li>
+        <li style="float: right;padding: 0px 30px 0px 0px"  >
+            {% if current_user.is_authenticated %}
+                <a href="{{ url_for('logout') }}"><span class="iconfont" style="font-size: 22px;">&#xe6a4;</span></a>
+            {% endif %}
+        </li>
+    </ul>
+        <!--
+        <li class="" style="display: inline-block;">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse"
+                data-target=".nav-collapse">
+                <span class="icon-bar"></span> <span class="icon-bar"></span> <span
+                    class="icon-bar"></span>
+            </button>
+
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                    <li class="active"><a href="/"style="font-size: 14px;">Home</a></li>
+
+                    <li><a href="{{ url_for('mndashboard') }}" style="font-size: 13px;">DashBoard</a></li>
+                    <li><a href="/home" style="font-size: 13px;">MNRCA Home</a></li>
+
+
+                    <li><a href="/jiranew" style="font-size: 13px;">Create 5WhyRCA Task</a></li>
+                    <li><a href="/InChargeGroupIndex" style="font-size: 13px;">GICs</a></li>
+                    <li><a href="/EmailServiceIndex">Email Service</a></li>
+                    {% if not current_user.is_authenticated%}
+                        <li><a href="{{ url_for('login') }}" style="font-size: 13px;">Login</a></li>
+                    {% endif %}
+
+                </ul>
+            </div>
+        </li>
+        <li class="searchpr" style="display: inline-block; width: 220px;">
+            <div style="padding:  9px 0px 0px 0px">
+                <input type="text" id="PRID"  placeholder="PRID" >
+                <button type="button" id="searchbtn" class="fa fa-search" ></button>
+            </div>
+        </li>
+        <li class="" style="display: inline-block;padding: 0px 10px 0px 60px">
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                    {% if current_user.is_authenticated %}
+                        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </li>
+        <li style="display: inline-block;text-align: right;alignment: right;padding: 0px 10px 0px 0px">
+            <a class="brand" style="alignment: right; display: inline;height: 20px;text-align: right;color:yellow;font-size: 15px;">
+                {{ user }}
+            </a>
+        </li>
+        -->
+</div>
+
+<div id="main" class="container">
+	{% with messages = get_flashed_messages() %}
+	{% if messages %}
+	  <div class="alert">
+		    <ul class="flashes">
+		    {% for message in messages %}
+		      <li>{{ message }}</li>
+		    {% endfor %}
+		    </ul>
+		</div>
+	{% endif %}
+	{% endwith %}
+
+	{% block body %}{% endblock %}
+	<hr>
+    <!--<div style="text-align: center">     For TMT Internal Task,click the link: <a href="http://internal-task.int.nokia.com/"  target="_blank">TMT Internal Task </a>.</div>-->
+
+<!--
+	<th>     For Long Cycle Time RCA,click the link: <a href="http://n-5cg5010gn7.nsn-intra.net:4000/" target="_blank"> Long Cycle Time RCA </a>. 
+	<hr>-->
+<!--
+	<footer id="footer" style="text-align: center">
+				<p>&copy; Arch Squad 2018</p>
+
+				<p>Made with love by <a href="https://nokia.sharepoint.com/sites/nokiacentral/default.aspx" target="_blank">Enqing Lei</a>. 
+				Contact him at <a href="mailto:enqing.lei@nokia-sbell.com">enqing.lei@nokia-sbell.com</a>.</p>
+				<p>Powered by Python,MySQL,Flask,SQLAlchemy and Twitter Bootstrap</p>		
+	</footer>
+-->
+</div>
+
+<div id="NokCustomFooter">
+    <div id="NokFooterBottomRow">
+        <div style="alignment: left;float: left; padding: 0px 5px 0px 10px">
+            <ui>
+                <ui class="FooterLeftLi"><img src="/static/img/NOKIA1.png" style="height: 100%;opacity: 100%;padding: 0px 10px 2px 0px" height="25px" width="80px"></ui>
+                <ui class="FooterLeftLi">&copy; Arch Squad 2021</ui>
+            </ui>
+        </div>
+        <div style="alignment: right;float: right; padding: 0px 20px 0px 0px">
+            <ui class="FooterLeftLi">
+                <span class="iconfont" style="font-size: 20px;" ></span>
+                <a href="https://jiradc.ext.net.nokia.com/secure/CreateIssue.jspa?pid=71785&issuetype=2" style="color: #FFFFFF"><span class="iconfont mr5">&#xe612;</span>Raise Requirements</a>
+            </ui>
+            <ui class="FooterLeftLi">|</ui>
+            <ui class="FooterLeftLi"><a href="https://jiradc.ext.net.nokia.com/secure/CreateIssue.jspa?pid=71785&issuetype=1" style="color: #FFFFFF"><span class="iconfont mr5">&#xe617;</span>Report Bug&nbsp;</a></ui>
+            <ui class="FooterLeftLi" >|</ui>
+            <ui class="FooterLeftLi"><a href="mailto:{{ username }}" style="color: white"> <span class="iconfont mr5">&#xe616;</span>{{ username }}</a></ui>
+            <!--<ui class="FooterLeftLi">|</ui>
+            <ui class="FooterLeftLi"><a href="https://jiradc.ext.net.nokia.com/secure/CreateIssue.jspa?pid=71785&issuetype=1" style="color: #FFFFFF">Help&nbsp;</a></ui>
+            -->
+            <!--<ui class="FooterLeftLi">{{username}}</ui>-->
+        </div>
+    </div>
+</div>
+<script language="JavaScript">
+    $("#searchbtn").click(function(){
+        if($("#PRIDSEARCH").val() != ""){
+            location.href = "/prontoweb_view/" + $("#PRIDSEARCH").val();
+        }
+    });
+</script>
+</body>
+

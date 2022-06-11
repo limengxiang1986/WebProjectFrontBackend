@@ -1,0 +1,504 @@
+<!doctype html>
+<title>MN RCA/EDA Status Tracking System -- Tracking RCA/EDA status </title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+<meta charset="utf-8">
+<style>
+    body {
+        padding-top: 60px;
+        padding-bottom: 100px;
+    }
+
+    #NokCustomFooter {
+        width: 100%;
+        background-color: #124191;
+        position: fixed;
+        line-height: 30px;
+        bottom: 0;
+    }
+
+    #NokFooterBottomRow {
+        color: white;
+    }
+
+    .FooterLeftLi {
+        float: left;
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+
+    #LblSiteConfidentiality {
+        float: right;
+        padding-right: 2px;
+        font-weight: bold;
+    }
+
+    .navbar .trademark {
+        display: block;
+        float: left;
+        padding: 0px 0px 0px;
+        margin-left: 0px;
+        font-size: 20px;
+        font-weight: 200;
+        color: #000000;
+        text-shadow: 0 1px 0 #333333;
+    }
+
+    .searchpr {
+        box-sizing: border-box;
+        padding: 2px 0px;
+    }
+
+    .searchpr input[type=text] {
+        padding: 10px;
+        font-size: 13px;
+        border: 0px solid grey;
+        float: left;
+        width: 120px;
+        height: 30px;
+        background: #002a80;
+        color: #FFFFFF;
+        box-sizing: border-box;
+    }
+    .searchpr input::-webkit-input-placeholder {
+        color: #FFFFFF;
+    }
+    .searchpr button {
+        float: left;
+        width: 30%;
+        padding: 10px;
+        background: #2196F3;
+        color: white;
+        font-size: 13px;
+        border: 1px solid grey;
+        border-left: none;
+        cursor: pointer;
+        height: 30px;
+        box-sizing: border-box;
+    }
+
+    .searchpr button:hover {
+        background: #0b7dda;
+    }
+
+    .searchpr::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+
+    .fa {
+        font: normal normal normal 14px/1 FontAwesome;
+        font-size: inherit;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        box-sizing: border-box;
+    }
+
+    .fa-search:before {
+        content: "Search";
+        box-sizing: border-box;
+    }
+
+
+    .nav {
+        list-style: none;
+        width: 40px;
+        float: left;
+        alignment: left;
+        background: #124191;
+        z-index: 1;
+    }
+
+    .nav ul {
+        list-style: none;
+    }
+
+    .nav > li {
+        float: left;
+    }
+
+    .nav ul a {
+        display: block;
+        text-decoration: none;
+        width: 120px;
+        height: 40px;
+        text-align: center;
+        line-height: 40px;
+        color: white;
+        background-color: #124191;
+    }
+
+    .nav > li:first-child a {
+        border-radius: 1px 1px 1px 1px;
+    }
+
+    .nav > li:last-child a {
+        border-radius: 1px 1px 1px 1px;
+    }
+
+    .drop-down {
+        /*position: relative;*/
+        background: #124191;
+        width: 100%;
+        height: 40px;
+    }
+
+    .drop-down .dropmenu {
+        width: 40px;
+        height: 35px;
+    }
+
+    .drop-down .dropmenu:hover {
+        background: #124191;
+    }
+
+    .drop-down .dropmenu:link {
+        text-decoration: none;
+        background: #124191;
+    }
+
+    .drop-down-content {
+        padding: 0;
+        display: none;
+        position: absolute;
+        margin: 0px;
+        width: 350px;
+        background: #124191;
+    }
+
+    .drop-down-content:hover{
+        display: block;
+    }
+
+    .drop-down-content li {
+        width: 100%;
+        background: #124191;
+    }
+
+    .drop-down-content li:hover {
+        background-color: #777777;
+        color: #FFFFFF;
+    }
+
+    .drop-down-content li:hover a {
+        background-color: #777777;
+        color: #FFFFFF;
+    }
+
+    .nav div:first-child:hover + .tmenu {
+        display: block;
+    }
+
+</style>
+<style>
+    .autocomplete-suggestions { border: 1px solid #999; background: #FFF; overflow: auto; }
+    .autocomplete-suggestion { padding: 2px 5px; white-space: nowrap; overflow: hidden; }
+    .autocomplete-selected { background: #F0F0F0; }
+    .autocomplete-suggestions strong { font-weight: normal; color: #3399FF; }
+    .autocomplete-group { padding: 2px 5px; }
+    .autocomplete-group strong { display: block; border-bottom: 1px solid #000; }
+</style>
+<link href="/static/css/default.css" rel="stylesheet">
+<link href="/static/css/select2.css" rel="stylesheet">
+<link href="/static/css/bootstrap.css" rel="stylesheet">
+<link href="/static/css/bootstrap-responsive.css" rel="stylesheet">
+<link href="/static/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+<link href="../static/favicon.ico" rel="icon">
+
+<script src="../static/font/iconfont.js"></script>
+<script src="/static/js/jquery.js"></script>
+<script src="/static/js/bootstrap.js"></script>
+<script src="/static/js/echarts.min.js"></script>
+<script src="/static/js/select2.min.js"></script>
+<script type="text/javascript" src="/static/js/common.js" charset="UTF-8"></script>
+
+<link href="/static/css/jquery-ui.css" rel="stylesheet" media="screen">
+<script src="/static/js/jquery-ui.js"></script>
+<script src="/static/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script src="/static/js/jquery.autocomplete.js"></script>
+<script src="/static/js/react.min.js"></script>
+<script src="/static/js/react-dom.min.js"></script>
+<script src="/static/js/axios.js"></script>
+<script src="/static/js/babel.min.js"></script>
+<body>
+<div id="headMessage" class="navbar-fixed-top">
+    <ul class="fl" style="position: fixed;">
+        <li class="mr30" style="position: fixed ;left: 0px;">
+            <!--<span class="iconfont" style="font-size: 24px; ">&#xeb71;</span>-->
+            <ul class="nav">
+                <div class="drop-down tmenu">
+                    <a href="javascript:void(0)" class="dropmenu"><span class="iconfont" style="font-size: 24px; padding: 0px 0px 5px 0px;">&#xeb71;</span></a>
+                </div>
+                <div class="drop-down-content tmenu" style="left: 0px;">
+                    <li>
+                        <a href="{{ url_for('rcaeda_home') }}" style="font-size: 16px;">Tribe Lead Audit tracking</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('ap_home') }}" style="font-size: 16px;">RCA/EDA AP Status Tracking</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('customer_home') }}" style="font-size: 16px;">JIRA Customer RCA/EDA Status Tracking</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('longcycletimerca_home') }}" style="font-size: 16px;">Internal LongCycleTime RCA Status Tracking</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('syslog_view') }}" style="font-size: 16px;">System Log</a>
+                    </li>
+                </div>
+            </ul>
+        </li>
+        <li style="padding: 0px 10px 0px 30px;z-index: 2;">
+            <a class="brand" href="javascript:void(0)" style="font-size: 23px;font-weight: bold;">RCA-Shark</a>
+        </li>
+        <li class="mr3">
+            <a href="/" style="font-size: 16px;{% if tabtype == 'home' %} color: #FFCC00; {% endif %} ">MNRCA Home</a>
+        </li>
+        <li class="mr3" style="display: none;">
+            <a href="/" style="font-size: 16px;">Home</a>
+        </li>
+        <li class="mr3">
+            <a href="{{ url_for('dashboard') }}" style="font-size: 16px;{% if tabtype == 'dashboard' %} color: #FFCC00; {% endif %} ">Dashboard</a>
+        </li>
+        <li class="mr3">
+            <a href="/jiranew" style="font-size: 16px;{% if tabtype == '5WhyRCA' %} color: #FFCC00; {% endif %}">Create 5WhyRCA Task</a>
+        </li>
+        <li class="mr3">
+            <a href="/InChargeGroupIndex" style="font-size: 16px;{% if tabtype == 'GICs' %} color: #FFCC00; {% endif %}">GICs</a>
+        </li>
+        <li class="mr3">
+            <a href="/EmailServiceIndex" style="font-size: 16px;{% if tabtype == 'Email' %} color: #FFCC00; {% endif %}">Email Service</a>
+        </li>
+        <li class="mr3">
+            <a href="{{ url_for('squadGroupAssessorIndex') }}" style="font-size: 16px;{% if tabtype == 'RcaEdaAssessor' %} color: #FFCC00; {% endif %}">Squad Group RcaEdaAssessor</a>
+        </li>
+        {% if not current_user.is_authenticated %}
+            <li><a href="{{ url_for('login') }}" style="font-size: 16px;">Login</a></li>
+            <li><a href="{{ url_for('register') }}">Register</a></li>
+        {% endif %}
+        <!--
+        <li >
+            <a href="/" style="font-size: 16px;">Home</a>
+        </li>
+        <li>
+            <a href="{{ url_for('dashboard') }}" style="font-size: 16px;">Dashboard</a>
+        </li>
+        <li><a href="{{ url_for('syslog_view') }}" style="font-size: 13px;">System Log</a></li>
+        {% if current_user.is_authenticated %}
+            <li><a href="/home" style="font-size: 16px;">MNRCA Home</a></li>
+            <li><a href="/newap">New AP</a></li>
+        {% endif %}
+        <li><a href="/jiranew" style="font-size: 16px;">Create 5WhyRCA Task</a></li>
+        <li><a href="/InChargeGroupIndex" style="font-size: 16px;">GICs</a></li>
+        <li><a href="/EmailServiceIndex" style="font-size: 16px;">Email Service</a></li>
+    -->
+    </ul>
+    <ul class="fr " style="padding: 0px 0px 0px 0px">
+        <li class="searchpr" style="padding: 5px 0px 0px 0px;margin-right: 40px;" >
+            <input type="text" id="PRIDSEARCH" placeholder="PRID" maxlength="25" class="mr7">
+            <span id="searchbtn" class="iconfont" style="font-size: 20px;padding: -2px 0px 0px 0px;top:0px;margin-top: -2px;">&#xe8d6;</span>
+        </li>
+        <li style="float: right;padding: 0px 20px 0px 0px">
+            {% if current_user.is_authenticated %}
+                <ul class="nav">
+                    <div class="drop-down tmenu" >
+                         <span class="iconfont" style="font-size: 24px;cursor: pointer;">&#xe6fa;</span>
+                    </div>
+                    <div class="drop-down-content tmenu" style="right: 0px;width: 125px;">
+                        <li>
+                            <a href="{{ url_for('logout') }}">
+                                <span class="iconfont mr12" style="font-size: 18px;">&#xe8ef;</span>
+                                <span style="font-size: 18px;">Logout</span>
+                            </a>
+                        </li>
+                        {% if username == 'enqing.lei@nokia-sbell.com' or username == 'leienqing' or username == 'mengxiang.li@nokia-sbell.com' %}
+                            <li>
+                                <a href="javascript:void(0);" onclick="openLink('/system_admin/')">
+                                    <span class="iconfont mr10" style="font-size: 20px;">&#xf021b;</span>
+                                    <span style="font-size: 19px;">Settings</span>
+                                </a>
+                            </li>
+                        {% endif %}
+                        <li>
+                            <a href="javascript:openHelp();">
+                                <span class="iconfont mr12" style="font-size: 18px;">&#xe60e;</span>
+                                <span style="font-size: 19px;">Help</span>
+                            </a>
+                        </li>
+                    </div>
+                </ul>
+            {% endif %}
+        </li>
+    </ul>
+</div>
+{% block headMessageSed %} {% endblock %}
+<div id="main" class="">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="alert">
+                <ul class="flashes">
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    {% block body %}{% endblock %}
+    <div id="panelfoot">
+        <hr>
+        <div style="text-align: center;" id="5WhyRCAExcel"><b> For RCA/EDA template,click the link for download:
+            <a href="http://rca-shark.int.nokia.com:31405/5WhyRcaTemplate/RCA_EDA_Analysis_Template_LTE_BL-mode.xlsm"> <span
+                    style="color:red">5WhyRCA Excel Template </span> </a>
+        </b>
+        </div>
+        <hr>
+        <div style="text-align: center;" id="CEDARTemplate"><b> For RCA/EDA CEDAR template,click the link for download:
+            <a href="http://rca-shark.int.nokia.com:31405/5WhyRcaTemplate/CEDAR-Template.pptx"> <span style="color:red">  CEDAR Template </span>
+            </a>
+        </b>
+        </div>
+        <hr>
+        <div style="text-align: center; display: none;" id="TMTInternal"> For TMT Internal Task,click the link: <a
+                href="http://internal-task.int.nokia.com/" target="_blank">TMT
+            Internal Task </a>.
+            <hr>
+        </div>
+        <!--
+            <th>     For Long Cycle Time RCA,click the link: <a href="http://rca-shark.int.nokia.com:4000/" target="_blank"> Long Cycle Time RCA </a>.
+            -->
+        <footer id="footer" style="text-align: center;">
+
+            <p>Made with love by <a href="https://nokia.sharepoint.com/sites/nokiacentral/default.aspx" target="_blank">Enqing
+                Lei</a>.
+                Contact him at <a href="mailto:enqing.lei@nokia-sbell.com">enqing.lei@nokia-sbell.com</a>.</p>
+            <p>Powered by Python,MySQL,Flask,SQLAlchemy and Twitter Bootstrap,Build with Containerization Micro-Service
+                Solution</p>
+        </footer>
+    </div>
+</div>
+
+<div id="loadingpiccommon"
+     style="text-align: center;width: 50px;display: none;height: 50px;padding: 150px;animation: rotatepic 4s infinite;animation-fill-mode: forwards;">
+    <span class="iconfont"
+          style="color: #124191 ;font-size: 50px;vertical-align: middle;align-content: center;text-align: center;position: relative;top: 15px;margin: 0px 0px 0px 0px;padding: 0px 0px 0px 0px;">&#xe749;</span>
+</div>
+
+<div id="NokCustomFooter" style="z-index: 3;">
+    <div id="NokFooterBottomRow">
+        <div style="alignment: left;float: left; padding: 0px 5px 0px 10px">
+            <ui>
+                <ui class="FooterLeftLi"><img src="/static/img/NOKIA1.png" style="height: 100%;opacity: 100%;padding: 0px 0px 2px 0px;" height="25px" width="80px"></ui>
+                <ui class="FooterLeftLi">|</ui>
+                <ui class="FooterLeftLi" style="margin-left: 5px;margin-right: 5px;">© Arch Squad 2022</ui>
+                <ui class="FooterLeftLi">|</ui>
+                <ui class="FooterLeftLi" style="margin-left: 3px;" id="websitevisitcount">Total visits:10488, Today visits:4</ui>
+            </ui>
+        </div>
+        <div style="alignment: right;float: right; padding: 0px 20px 0px 0px">
+            <ui class="FooterLeftLi" style="margin: 0px 5px 0px 5px;">
+                <a href="javascript:void(0);" onclick="openLink('https://confluence.ext.net.nokia.com/pages/viewpage.action?spaceKey=rcaShark&amp;title=MN+RCA-Shark+Tool+User+Manual')" style="color: #FFFFFF"><span class="iconfont" style="margin-right: 5px;">&#xe6b2;</span>Confluence</a>
+            </ui>
+            <ui class="FooterLeftLi">|</ui>
+            <ui class="FooterLeftLi" style="margin: 0px 5px 0px 5px;">
+                <span class="iconfont" style="font-size: 20px;"></span>
+                <a href="javascript:void(0);" onclick="openLink('https://jiradc.ext.net.nokia.com/projects/RCASHARK/issues/RCASHARK-1')"
+                   style="color: #FFFFFF"><span class="iconfont mr5">&#xe6d5;</span>Raise Requirements</a>
+            </ui>
+            <ui class="FooterLeftLi">|</ui>
+            <ui class="FooterLeftLi" style="margin: 0px 5px 0px 5px;"><a
+                    href="javascript:void(0);" onclick="openLink('https://jiradc.ext.net.nokia.com/projects/RCASHARK/issues/RCASHARK-2')"
+                    style="color: #FFFFFF"><span class="iconfont mr5">&#xe65a;</span>Report Bug&nbsp;</a></ui>
+            <ui class="FooterLeftLi">|</ui>
+            <ui class="FooterLeftLi"><a href="mailto:{{ username }}" style="color: white"> <span class="iconfont mr5">&#xe6be;</span>{{ username }}
+            </a></ui>
+            <!--<ui class="FooterLeftLi">|</ui>
+            <ui class="FooterLeftLi"><a href="https://jiradc.ext.net.nokia.com/secure/CreateIssue.jspa?pid=71785&issuetype=1" style="color: #FFFFFF">Help&nbsp;</a></ui>
+            -->
+            <!--<ui class="FooterLeftLi">{{username}}</ui>-->
+        </div>
+    </div>
+</div>
+<script language="JavaScript">
+    $("#searchbtn").click(function () {
+        if ($("#PRIDSEARCH").val() != "") {
+            //location.href = "/prontoweb_modify_fromexcelbyprid_view/" + $("#PRIDSEARCH").val();
+            //window.open("/prontoweb_modify_fromexcelbyprid_view/" + $("#PRIDSEARCH").val());
+            window.open("/?pridsearch2=" + $("#PRIDSEARCH").val().trim());
+        }
+    });
+    $("#PRIDSEARCH").bind("keypress", function (event) {
+        if(event.keyCode == '13'){
+            $("#searchbtn").click();
+        }
+    });
+$('#PRIDSEARCH').autocomplete({
+    serviceUrl: '/autocompletepronto',
+    minChars : 1,
+    deferRequestBy:400,
+    triggerSelectOnValidInput:false,
+    onSelect: function (suggestion) {
+        //$('#selected_option').html(suggestion.value);
+    }
+});
+function openHelp(){
+    window.open("https://nokia.sharepoint.com/:f:/s/Uplane_Core_Team_Meeting/RRM_TMT%20_Meeting/EmadU3i15LBBvXYQ555zzT4BhSYAUU8s7troE9EuNkNZvg?e=nLcuSk");
+}
+function registerTableDragEvent(tablename) {
+     var dragTH;
+     $('#' + tablename + ' th').mousedown(function(e) {
+         e = e || window.event;
+         if (e.offsetX > $(this).innerWidth() - 10) {
+             dragTH = $(this);
+             dragTH.mouseDown = true;
+             dragTH.oldX = e.pageX || e.clientX;
+             dragTH.oldWidth = $(this).innerWidth();
+         }
+     })
+     $('#' + tablename + ' th').mousemove(function(e) {
+         if (e.offsetX > $(this).innerWidth() - 10) {
+             $(this).css({
+                 cursor: "e-resize"
+             });
+         } else {
+             $(this).css({
+                 cursor: "default"
+             });
+         }
+         if (isNullOrUndefined(dragTH)) {
+             dragTH = $(this);
+         }
+         if (!isNullOrUndefined(dragTH.mouseDown) && dragTH.mouseDown == true) {
+             var difference = (e.pageX - dragTH.oldX) || (e.clientX - dragTH.oldX);
+             var newWidth = dragTH.oldWidth + difference;
+             dragTH.width(newWidth)
+         }
+     })
+     $("table#" + tablename + " th").mouseup(function(e) {
+         // if (isNullOrUndefined(dragTH)) {
+         //     dragTH = $(this);
+         // }
+         dragTH.mouseDown = false;
+         // $(dragTH).css({
+         //     cursor : "default"
+         // });
+     });
+}
+var websitevisitcount = getwebsitevisitcount();
+$("#websitevisitcount").text('Total visits:'+websitevisitcount[0]+', Today visits:' + websitevisitcount[1]);
+</script>
+</body>
+<style>
+    @keyframes rotatepic {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+</style>
+

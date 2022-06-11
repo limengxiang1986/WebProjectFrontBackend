@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block body %}
+<div style = "text-align:left; ">
+<div class="" style="margin-left: 100px;">
+    <h2>All Items:  <b style="color:red;">{{count}}</b>  	
+    <div style = "text-align:right;"> 
+    <a href="{{url_for('displayAllsquadGroupAssessor')}}" class="btn btn-large btn-primary">Display All</a>
+    <a href="{{url_for('squadGroupAssessorNew')}}" class="btn btn-large btn-primary">Add New squadGroupAssessor</a>
+    </div>
+    </h2>
+    <table class="table table-hover">
+      <tr>
+        <th>ID  
+		<th>squadGroupAssessorEmail
+		<th>squadGroupEmailGroup
+        <th>assessorSquadGroupName
+        <th>assessorSquadGroupLead
+        <th>assessorTribe
+        <th>assessorTribeLead
+        <th>registeredBy
+      {%- for todo in todos %}
+      <tr class={{ "success" if todo.done }}>
+        <td><a href="/squadGroupAssessor/{{todo.assessorId}}">{{ todo.assessorId}}</a>
+        <td>{{ todo.squadGroupRcaEdaAssessor}}</td>
+		<td>{{ todo.squadGroupEmailGroup}}</td>
+        <td>{{ todo.assessorSquadGroupName}}</td>
+        <td>{{ todo.assessorSquadGroupLead}}</td>
+		<td>{{ todo.assessorTribe}}</td>
+        <td>{{ todo.assessorTribeLead}}</td>
+        <td>{{ todo.registeredBy}}</td>
+      {%- endfor %}
+    </table>
+    <p>
+      <div style = "text-align:left;"><a href="{{ url_for('squadGroupAssessorNew') }}" class="btn btn-large btn-primary">Add New squadGroupAssessor</a>
+</div>
+</div>
+</div>
+{% endblock %}

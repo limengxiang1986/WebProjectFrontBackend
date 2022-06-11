@@ -1,0 +1,39 @@
+{% extends "jiralayout.html" %}
+{% block body %}
+    <br>
+    <br>
+    <!--<div style = "text-align:center;"> <a href="{{url_for('index_by_all')}}" class="btn btn-large btn-primary"> Display All RCA/EDA MNRCA JIRA Tasks</a> </h2>-->
+	<div style = "text-align:center;"> <a href="{{url_for('jiranew')}}" class="btn btn-large btn-primary"> Create RCA/EDA Task</a> </h2> 
+	
+    <hr>
+    <div style="text-align:center;">
+        <a href="{{ url_for('action_index_by_assignee') }}" class="btn btn-large btn-primary">Action Jira Task
+            Assigned
+            To
+            Me
+        </a>
+    </div>
+    <hr>
+    <div style="text-align:center;">
+        <a href="{{ url_for('index_by_assignee') }}" class="btn btn-large btn-primary">RCA/EDA MNRCA JIRA Task
+            Assigned
+            To
+            Me
+        </a>
+    </div>
+    <!--<div style = "text-align:center;"> <a href="{{url_for('index_by_reporter')}}" class="btn btn-large btn-primary"> RCA/EDA MNRCA JIRA Task Reported By Me</a> </h2>-->
+    <hr>
+    <div style="text-align:center;">
+        <a href="{{ url_for('index_by_automation') }}" class="btn btn-large btn-primary">All the New Automaically
+            Created
+            RCA/EDA Tasks
+        </a>
+    </div>
+
+    <!---
+<div style = "text-align:center;"> <a href="{{url_for('ap_home')}}" class="btn btn-large btn-primary"> CREATE And ASSIGN RCA/EDA MNRCA JIRA Task </a> </h2> 
+<hr>
+<div style = "text-align:center;"> <a href="{{url_for('longcycletimerca_home')}}" class="btn btn-large btn-primary">IMPORT RCA/EDA Action Tasks From SharePoint Excel To MNRCA RCA/EDA JIRA Tracker</a> </h2> 
+--->
+{% endblock %}
+

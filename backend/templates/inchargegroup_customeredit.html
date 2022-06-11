@@ -1,0 +1,201 @@
+{% extends "layout.html" %}
+{% block body %}
+    <div style="text-align:left;">
+        <div class="" style="margin-left: 100px;">
+            <h2>Customer Items: <b style="color:red;">{{ count }}</b>
+            </h2>
+            <table class="table table-hover">
+                <tr>
+                    <th>CustomerId</th>
+                    <th style="display: none;">RCAFilterName</th>
+                    <th>CustomerName</th>
+                    <th>Comment</th>
+                    <th>ACTION</th>
+                </tr>
+                {%- for todo in todos %}
+                    <tr class={{ "success" if todo.done }}>
+                        <td><a href="javascript:void(0);" onclick="editCustomer('{{ todo.CustomerId }}','{{ todo.CustomerName }}')">{{ todo.CustomerId }}</a></td>
+                        <td style="display: none;">{{ todo.RCAFilterName }}</td>
+                        <td>{{ todo.CustomerName }}</td>
+                        <td>{{ todo.Comment }}</td>
+                        <td>
+                            <a href="javascript:void(0);"
+                               onclick="deleteCustomer('{{ todo.RCAFilterId }}','{{ todo.CustomerId }}')">delete</a>
+                        </td>
+                    </tr>
+                    </tr>
+                {%- endfor %}
+            </table>
+            <p>
+            <div style="text-align:left;">
+                <a href="javascript:void(0);" onclick="addCustomer();" class="btn btn-large btn-primary">Add New
+                    Customer</a>
+            </div>
+        </div>
+    </div>
+    <div id="dialog-confirm-edit" title="Edit Dialog" style="display: none;">
+        <table style="width: 100%;height:100%;">
+            <tr style="height: 30px">
+                <td style="width: 30%;alignment: center;"><font style="font-weight: bold">CustomerId:</font></td>
+                <td style="width: 70%;alignment: right;" id="dialog-confirm-edit-cid">
+                </td>
+            </tr>
+            <tr style="height: 30px">
+                <td style="width: 30%;alignment: center;"><font style="font-weight: bold">CustomerName:</font></td>
+                <td style="width: 70%;alignment: right;">
+                    <input id="edit_content_question_name"  style="width: 100%;height:100%;resize: none;padding:0px 0px;border-radius: 1px;">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="dialog-confirm" title="Edit Dialog" style="display: none;">
+        <table style="width: 100%;height:100%;">
+            <tr style="height: 30px">
+                <td style="width: 30%;alignment: center;"><font style="font-weight: bold">CustomerName:</font></td>
+                <td style="width: 70%;alignment: right;">
+                    <input id="edit_content_question"  style="width: 100%;height:100%;resize: none;padding:0px 0px;border-radius: 1px;">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <style>
+    .confirm-button{
+        background-color: #006DCC;
+        color: #ffffff;
+        width: 120px;
+        height: 40px;
+        font-size: 16px;
+        border-radius: 3px;
+        border: 0px;
+    }
+    </style>
+    <script language="JavaScript">
+
+        function deleteCustomer(RCAFilterId, CustomerId) {
+            var r = confirm("Do you confirm to delete?");
+            var obj = {"RCAFilterId": RCAFilterId, "CustomerId": CustomerId}
+            if (r == true) {
+                $.ajax({
+                    type: 'POST',
+                    url: "/customer_delete",
+                    data: {
+                        'csrfmiddlewaretoken': '{{ csrf_token }}',
+                        'param': JSON.stringify(obj)
+                    },
+                    success: function (data) {
+                        if (data["result"] == 'success') {
+                            location.href = "/linkcustomerbedit/A_KEY_B";
+                        } else {
+                            alert("error." + data["result"]);
+                        }
+                    }
+                });
+            }
+        };
+
+        function editCustomer(CustomerId,CustomerName) {
+            $( "#dialog-confirm-edit").dialog({
+                resizable: false,
+                height:'auto',
+                width: 450,
+                modal: true,
+                open : function(){
+                    $("#dialog-confirm-edit").parent().find(".ui-dialog-titlebar").css({"background-color":"#194A95","color":"#FFFFFF"});
+                    $("#dialog-confirm-edit").parent().find(".ui-dialog-buttonset button").removeClass();
+                    $("#dialog-confirm-edit").parent().find(".ui-dialog-buttonset button").addClass('confirm-button');
+                    $("#dialog-confirm-edit").parent().find(".ui-dialog-buttonset button").css({"font-size":"17.5px","border-radius":"6px",
+                        "box-shadow":"0px 0px 0px #888888"});
+                    $("#dialog-confirm-edit").parent().css('left',500);
+                    $("#dialog-confirm-edit").attr('title','Edit Customer');
+                    $("#edit_content_question_name").val('');
+                    $("#dialog-confirm-edit-cid").text(CustomerId);
+                    $("#edit_content_question_name").val(CustomerName);
+                },
+                buttons: {
+                    Save: function(e) {
+                        if($("#edit_content_question_name").val() == ""){
+                            alert('Please Input CustomerName.');
+                            $( this ).dialog( "close" );
+                            return ;
+                        }
+                        var obj = {
+                            "RCAFilterId": 'A_KEY_B',
+                            'RCAFilterName': 'Customer A + Key Customers B',
+                            "CustomerName": $("#edit_content_question_name").val(),
+                            "CustomerId": $("#dialog-confirm-edit-cid").text().trim()
+                        }
+                        $.ajax({
+                            type: 'POST',
+                            url: "/customer_modify",
+                            data: {
+                                'csrfmiddlewaretoken': '{{ csrf_token }}',
+                                'param': JSON.stringify(obj)
+                            },
+                            success: function (data) {
+                                if (data["result"] == 'success') {
+                                    location.href = "/linkcustomerbedit/A_KEY_B";
+                                } else {
+                                    alert("error." + data["mes"]);
+                                }
+                            }
+                        });
+                    },
+                    Cancel: function() {
+                        $( this ).dialog( "close" );
+                    }
+                }
+            });
+        };
+
+        function addCustomer() {
+            $( "#dialog-confirm" ).dialog({
+                resizable: false,
+                height:'auto',
+                width: 450,
+                modal: true,
+                open : function(){
+                    $("#dialog-confirm").parent().find(".ui-dialog-titlebar").css({"background-color":"#194A95","color":"#FFFFFF"});
+                    $("#dialog-confirm").parent().find(".ui-dialog-buttonset button").removeClass();
+                    $("#dialog-confirm").parent().find(".ui-dialog-buttonset button").addClass('confirm-button');
+                    $("#dialog-confirm").parent().find(".ui-dialog-buttonset button").css({"font-size":"17.5px","border-radius":"6px",
+                        "box-shadow":"0px 0px 0px #888888"});
+                    $("#dialog-confirm").parent().css('left',500);
+                    $("#dialog-confirm").attr('title','Add New Customer');
+                    $("#edit_content_question").val('');
+                },
+                buttons: {
+                    Save: function(e) {
+                        if($("#edit_content_question").val() == ""){
+                            alert('Please Input CustomerName.');
+                            $( this ).dialog( "close" );
+                            return ;
+                        }
+                        var obj = {
+                            "RCAFilterId": 'A_KEY_B',
+                            'RCAFilterName': 'Customer A + Key Customers B',
+                            "CustomerName": $("#edit_content_question").val()
+                        }
+                        $.ajax({
+                            type: 'POST',
+                            url: "/customer_add",
+                            data: {
+                                'csrfmiddlewaretoken': '{{ csrf_token }}',
+                                'param': JSON.stringify(obj)
+                            },
+                            success: function (data) {
+                                if (data["result"] == 'success') {
+                                    location.href = "/linkcustomerbedit/A_KEY_B";
+                                } else {
+                                    alert("error." + data["mes"]);
+                                }
+                            }
+                        });
+                    },
+                    Cancel: function() {
+                        $( this ).dialog( "close" );
+                    }
+                }
+            });
+        };
+    </script>
+{% endblock %}

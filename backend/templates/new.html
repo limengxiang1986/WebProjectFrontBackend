@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block body %}
+  <form action="" method=post class="form-horizontal">
+	<h2>Add New Pronto</h2>
+<table>
+<p>Use this form to Edit your internal task and status( No More than 1024 chars,Only English,No Chinese):</p>
+<tr><td>PRID:</td><td><textarea name='PRID' style="width:800px;height:40px;">{{PRID}} </textarea></td></tr>
+<tr><td>PRTitle:</td><td><textarea name='PRTitle' style="width:800px;height:40px;">{{PRTitle}} </textarea></td></tr>
+<tr><td>PRReportedDate:</td><td><textarea name='PRReportedDate' style="width:800px;height:40px;">{{PRReportedDate}} </textarea></td></tr>
+<tr><td>PRClosedDate:</td><td><textarea name='PRClosedDate' style="width:800px;height:40px;">{{PRClosedDate}} </textarea></td></tr>
+<tr><td>IsLongCycleTime:</td><td><textarea name='IsLongCycleTime' style="width:800px;height:40px;">{{IsLongCycleTime}} </textarea></td></tr>
+<tr><td>PRRcaCompleteDate:</td><td><textarea name='PRRcaCompleteDate' style="width:800px;height:40px;">{{PRRcaCompleteDate}} </textarea></td></tr>
+<tr><td>PRRelease:</td><td><textarea name='PRRelease' style="width:800px;height:40px;">{{PRRelease}} </textarea></td></tr>
+<tr><td>PRAttached:</td><td><textarea name='PRAttached' style="width:800px;height:40px;">{{PRAttached}}</textarea></td></tr>
+<tr><td>IsCatM:</td><td><textarea name='IsCatM' style="width:800px;height:40px;">{{IsCatM}} </textarea></td></tr>
+<tr><td>IsRcaCompleted:</td><td><textarea name='IsRcaCompleted' style="width:800px;height:40px;">{{IsRcaCompleted}} </textarea></td></tr>
+<tr><td>NoNeedDoRCAReason:</td><td><textarea name='NoNeedDoRCAReason' style="width:800px;height:40px;" >{{NoNeedDoRCAReason}} </textarea> </td></tr>
+<tr><td>RootCauseCategory:</td><td><textarea name='RootCauseCategory' style="width:800px;height:40px;">{{RootCauseCategory}} </textarea></td></tr>
+<tr><td>FunctionArea:</td><td><textarea name='FunctionArea' style="width:800px;height:40px;">{{FunctionArea}} </textarea></td></tr>
+<tr><td>CodeDeficiencyDescription:</td><td><textarea name='CodeDeficiencyDescription' style="width:800px;height:40px;">{{CodeDeficiencyDescription}} </textarea></td></tr>
+<tr><td>CorrectionDecription:</td><td><textarea name='CorrectionDecription' style="width:800px;height:40px;">{{CorrectionDecription}} </textarea></td></tr>
+<tr><td>RootCause:</td><td><textarea name='RootCause' style="width:800px;height:40px;">{{RootCause}} </textarea></td></tr>
+<tr><td>IntroducedBy:</td><td><textarea name='IntroducedBy' style="width:800px;height:40px;" >{{IntroducedBy}} </textarea> </td></tr>
+<tr><td>Handler:</td><td><textarea name='Handler' style="width:800px;height:40px;" >{{Handler}} </textarea> </td></tr>
+</table>
+<br>
+
+<div class="control-group">
+	<div class="controls">
+	  <button type="submit" style="margin-right:0px;" class="btn btn-success">Add New</button>
+	  <a href="{{ url_for('rca_home') }}">Back to list</a>
+	</div>
+</div>
+  </form>
+{% endblock %}

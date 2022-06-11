@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% block body %}
+<div style = "text-align:left;">	
+<div id="" class="container" style="margin: 50px;">
+    <h2>{{headermessage}}: <b style="color:red;">{{count}}</b> 
+	<!---<div style = "text-align:right;"> <a href="{{url_for('displayall')}}" class="btn btn-large btn-primary">Display All</a></div>--->
+	</h2> 
+    <table class="table table-hover">
+      <tr>
+		<th>Item
+		<th>PRID
+		<th>JiraIssueId
+		<th>TaskType
+		<th>CaseType
+		<th>Status
+		<th>IsOverDue
+        <th>OpenDays
+        <th>Assignee
+        <th>AssigneeSquadGroup
+        <th>AssigneeLineManger
+        <th>AssigneeTribeLead
+		<th>CreatedDate
+		<th>DueDate
+		<th>ResolutionDate
+		<th>OverDueReason
+      {%- for todo in todos%}
+	  <tr>
+      <tr class={{ "error" if todo.JiraIssueOverDue=='Yes' else "success" }}>
+        <td>{{loop.index}}
+		<td>{{todo.PRID}}
+		<td><a href="https://jiradc.int.net.nokia.com/browse/{{todo.JiraIssueId}}">{{todo.JiraIssueId}}
+		<td>{{todo.JiraIssueType}}
+		<td>{{todo.JiraIssueCaseType}}
+		<td>{{todo.JiraIssueStatus}}
+		<td style={{"text-decoration:blink;color:black;background-color:red;" if todo.JiraIssueOverDue=='Yes' else "text-decoration:blink;color:black;background-color:green;"}}>{{todo.JiraIssueOverDue}}
+		<td>{{todo.JiraIssueOpenDays}}
+		<td>{{todo.JiraIssueAssignee}}
+		<td>{{todo.JiraIssueAssigneeSquadGroup}}
+		<td>{{todo.JiraIssueAssigneeSquadGroupLead}}
+		<td>{{todo.JiraIssueAssigneeTribeLead}}
+		<td>{{todo.JiraIssueCreatedDate}}
+		<td>{{todo.JiraIssueDueDate}}
+		<td>{{todo.JiraIssueResolutionDate}}
+		<td>{{todo.JiraIssueOverDueReason}}
+      {%- endfor %}
+    </table>
+    <p>
+</div>
+{% endblock %}

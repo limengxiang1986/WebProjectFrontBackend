@@ -1,0 +1,2256 @@
+﻿{% extends "layout.html" %}
+
+{% block body %}
+<form action="/loadTribeSquad" method=post class="form-horizontal",style="margin-left:-32px">
+<table>
+<div class="control-group" style="margin-left:-32px">
+<h3><p>Tribe/Squad: <input type="text" name="Handler" id="t3" value ='{{Handler}}' onFocus="showSelect3();" style=" width:200px; height:30px">     
+<select name="sel3" id="sel3" style="display:none; width:213px;height:40px" onchange="document.getElementById('t3').value=this.value">  
+<option value='{{Handler}}'>{{Handler}}</option> 
+<option value="chenlong">chenlong</option> 
+<option value="yangjinyong">yangjinyong</option>  
+<option value="lanshenghai">lanshenghai</option>  
+<option value="lizhongyuan">lizhongyuan</option>  
+<option value="liumingjing">liumingjing</option>  
+<option value="caizhichao">caizhichao</option>
+<option value="xiezhen">xiezhen</option>  
+<option value="zhangyijie">zhangyijie</option>
+<option value="leienqing">leienqing</option>
+<option value="hujun">hujun</option>
+<option value="wangli">wangli</option>
+</select> &nbsp <input name='button' class="btn btn-large btn-primary" value='submit' type='SUBMIT'>
+</h3>
+</div>
+</table>
+</form>
+<!---<input name='button' class="btn btn-large btn-primary" value='Delete' type='SUBMIT'>--->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<div class="row">
+   <div class="col-md-6" style="float:left;">
+        <h3>
+            <meta charset="utf-8">
+
+            <p> <b style="color:red;">{{titlemessage}}</b> <b style="color:blue;"> Tribe Customer 5WhyRCA Task Status <b></p>
+        </h3>
+            <div id="FiveWhyRcaTaskStatus" style="width:600px;height:400px;"></div>
+	</div>
+    <div class="col-md-6" style="float:right;">
+        <h3>
+            <meta charset="utf-8">
+            <p> <b style="color:red;">{{titlemessage}}</b> <b style="color:blue;"> Tribe Customer RCA/EDA sub-task Status<b></p>
+        </h3>
+        <div id="RcaEdaSubTaskStatus" style="width:600px;height:400px;"></div>
+    </div>
+</div>
+<hr>
+<h2>
+    <meta charset="utf-8">
+    <p> <b style="color:red;">{{titlemessage}}</b> <b style="color:blue;"> Tribe Customer Monthly 5WhyRca Status <b></p>
+</h2>
+    <div id="hzmonthlyfivewhyrca" style="width:900px;height:600px;"></div>
+	
+	
+<div class="row">
+    <div class="col-md-6" style="float:left;">
+        <h3>
+            <meta charset="utf-8">
+            <p> <b style="color:red;">  </b> <b style="color:blue;"> MN RCA/EDA Request Missed Ratio(Before)<b></p>
+        </h3>
+            <div id="main1" style="width:600px;height:400px;"></div>
+    </div>
+
+    <div class="col-md-6" style="float:right;">
+        <h3>
+            <meta charset="utf-8">
+            <p> <b style="color:red;">{{titlemessage}}</b> <b style="color:blue;"> MN RCA/EDA Request Missed Ratio(After)<b></p>
+        </h3>
+        <div id="main2" style="width:600px;height:400px;"></div>
+    </div>
+</div>
+
+<hr>
+
+<div class="row">
+   <div class="col-md-6" style="float:left;">
+        <h3>
+            <meta charset="utf-8">
+
+            <p> <b style="color:red;">{{titlemessage}}</b> <b style="color:blue;"> MN RCA/EDA Request Delay(Before)<b></p>
+        </h3>
+            <div id="main3" style="width:600px;height:400px;"></div>
+	</div>
+
+    <div class="col-md-6" style="float:right;">
+        <h3>
+            <meta charset="utf-8">
+            <p> <b style="color:red;">{{titlemessage}}</b> <b style="color:blue;"> MN RCA/EDA Request Delay(After)<b></p>
+        </h3>
+        <div id="main4" style="width:600px;height:400px;"></div>
+    </div>
+</div>
+
+
+<hr>
+
+<div class="row">
+   <div class="col-md-6" style="float:left;">
+        <h3>
+            <p> <b style="color:red;"></b> <b style="color:blue;"> MN RCA/EDA Cycle Time(Before)<b></p>
+        </h3>
+        <div id="main5" style="width:600px;height:400px;"></div>
+    </div>
+	<div class="col-md-6" style="float:right;">
+        <h3>
+            <meta charset="utf-8">
+            <p> <b style="color:red;"></b> <b style="color:blue;"> MN RCA/EDA Cycle Time(After)<b></p>
+        </h3>
+        <div id="main6" style="width:600px;height:400px;"></div>
+	</div>
+</div>
+
+<hr>
+<div class="row">
+   <div class="col-md-6" style="float:left;">
+        <h3>
+            <meta charset="utf-8">
+
+            <p> <b style="color:red;">{{titlemessage}}</b> <b style="color:blue;"> MN RCA/EDA Done Rate(Before)<b></p>
+        </h3>
+            <div id="main10" style="width:600px;height:400px;"></div>
+	</div>
+
+    <div class="col-md-6" style="float:right;">
+        <h3>
+            <meta charset="utf-8">
+            <p> <b style="color:red;">{{titlemessage}}</b> <b style="color:blue;"> MN RCA/EDA Done Rate(After)<b></p>
+        </h3>
+        <div id="main9" style="width:600px;height:400px;"></div>
+    </div>
+</div>
+
+<hr>
+
+<div class="row">
+   <div class="col-md-6" style="float:left;">
+        <h3>
+            <meta charset="utf-8">
+            <p> <b style="color:red;"></b> <b style="color:blue;"> MN RCA/EDA AP Done Rate(Before)<b></p>
+        </h3>
+        <div id="main8" style="width:600px;height:400px;"></div>
+        
+    </div>
+	<div class="col-md-6" style="float:right;">
+        <h3>
+            <p> <b style="color:red;"></b> <b style="color:blue;"> MN RCA/EDA AP Done Rate(After)<b></p>
+        </h3>
+        <div id="main7" style="width:600px;height:400px;"></div>
+	</div>
+</div>
+<hr>
+
+
+
+<h2>
+<p> <b style="color:red;"> </b> <b style="color:blue;"> MN RCA/EDA Missed Ratio Monthly(Mixed)<b></p>
+</h2>
+<div id="mnrcacoverage" style="width:900px;height:600px;"></div>
+
+<hr>
+
+<h2>
+    <meta charset="utf-8">
+    <p> <b style="color:red;">{{titlemessage}}</b> <b style="color:blue;"> MN RCA/EDA Missed Rate Monthly(After) <b></p>
+</h2>
+    <div id="mnrcacoverageTrend" style="width:900px;height:600px;"></div>
+
+<h2>
+    <meta charset="utf-8">
+    <p> <b style="color:red;">{{titlemessage}}</b> <b style="color:blue;"> MN RCA/EDA Missed Rate Monthly(Before)<b></p>
+</h2>
+    <div id="mnrcacoverageTrendWithoutAutomationChart" style="width:900px;height:600px;"></div>
+    
+<h2>
+    <meta charset="utf-8">
+    <p> <b style="color:red;">{{titlemessage}}</b> <b style="color:blue;"> MN RCA/EDA Request Delay Monthly(After)<b></p>
+</h2>
+	<div id="mnrcaRequestDelayTrendWithAutomationChart" style="width:900px;height:600px;"></div>
+<hr>
+
+<h2>
+    <meta charset="utf-8">
+    <p> <b style="color:red;">  </b> <b style="color:blue;"> MN RCA/EDA Request Delay Monthly(Before)<b></p>
+</h2>
+    <div id="mnrcaRequestDelayTrendWithoutAutomationChart" style="width:900px;height:600px;"></div>
+
+
+<hr>
+<!---
+<h2>
+	<p> <b style="color:red;"></b> <b style="color:blue;"> MN RCA/EDA Case Missed Rate(PowerBI) <b></p>
+</h2>
+    <div id="main11" style="width:600px;height:400px;"></div>
+
+<a class="cur STRING_BASE" href="http://n-5cg5010gn7.nsn-intra.net:3344/dashboard"><strong>Detail Information</strong></a> 
+--->
+<div class="row">
+    <div class="col-md-6" style="float:left;">
+        <h3>
+            <meta charset="utf-8">
+            <p> <b style="color:red;">  </b> <b style="color:blue;"> MN RCA/EDA Case Missed Rate(PowerBI)(Before)<b></p>
+        </h3>
+            <div id="main11" style="width:600px;height:400px;"></div>
+    </div>
+
+    <div class="col-md-6" style="float:right;">
+        <h3>
+            <meta charset="utf-8">
+            <p> <b style="color:red;">{{titlemessage}}</b> <b style="color:blue;"> MN RCA/EDA Case Missed Rate(PowerBI)(After)<b></p>
+        </h3>
+        <div id="main12" style="width:600px;height:400px;"></div>
+    </div>
+</div>
+
+<hr>
+
+<script type="text/javascript">
+
+
+var fiveWhyRcaTaskStatus = echarts.init(document.getElementById('FiveWhyRcaTaskStatus'));	
+
+$.get('/fiveWhyRcaTaskStatus').done(function (data) {
+        fiveWhyRcaTaskStatus.hideLoading(); 
+
+        fiveWhyRcaTaskStatus.setOption(
+		{
+            title : {
+                text: 'Tribe Customer 5WhyRca Task Status',
+                subtext: 'All A+B Included',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'axis',
+                axisPointer : {            
+                    type : 'shadow'       
+                }
+            },
+            legend: {
+                data:['Total', 'Closed','ClosedInTime','Open','OpenAndOverdue'],
+				//orient : 'vertical',
+				//x : 'right',
+				y: 'bottom',// 'top'| 'center' | 'bottom' | {number}
+            },
+			/*
+            toolbox: {
+                show : true,
+                feature : {
+                    mark : {show: true},
+                    dataView : {show: true, readOnly: false},
+                    magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                    restore : {show: true},
+                    saveAsImage : {show: true}
+                }
+            },*/
+            calculable : true,
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            xAxis : [
+                {
+                    type : 'category',
+                    data :data.team 
+                }
+            ],
+            series : [
+                {
+                    name:'Total', //'Total', 'Closed','ClosedInTime','OpenAndOverdue'
+                    type:'bar',
+					barGap:'1%',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data: data.Total  //[320, 302,191, 234, 290, 330, 310,120]
+                },
+                 {
+                    name:'Closed', //RCA/EDA Planned', 'RCA/EDA Missed
+                    type:'bar',
+					barGap:'1%',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data:data.Closed //[120, 132, 101, 134, 90, 230, 210,120]
+                },
+
+
+                {
+                    name:'ClosedInTime', //'RCA/EDA CycleTime Before', 'RCA/EDA CycleTime After'
+                    type:'bar',
+					barGap:'1%',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data: data.ClosedInTime  //[320, 302,191, 234, 290, 330, 310,120]
+                },
+				{
+                    name:'Open', //RCA/EDA Planned', 'RCA/EDA Missed
+                    type:'bar',
+					barGap:'1%',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data:data.Open //[120, 132, 101, 134, 90, 230, 210,120]
+                },
+                 {
+                    name:'OpenAndOverdue', //RCA/EDA Planned', 'RCA/EDA Missed
+                    type:'bar',
+					barGap:'1%',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data:data.OpenAndOverdue //[120, 132, 101, 134, 90, 230, 210,120]
+                },
+            ]
+		}
+		);
+    });  
+    
+var RcaEdaSubTaskStatus = echarts.init(document.getElementById('RcaEdaSubTaskStatus'));	
+
+$.get('/RcaEdaSubTaskStatus').done(function (data) {
+        RcaEdaSubTaskStatus.hideLoading(); 
+
+        RcaEdaSubTaskStatus.setOption(
+		{
+            title : {
+                text: 'Tribe Customer RCA/EDA subtask Status',
+                subtext: 'All RCA+EDA Included',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'axis',
+                axisPointer : {            
+                    type : 'shadow'       
+                }
+            },
+            legend: {
+                data:['Total', 'Closed','ClosedInTime','Open','OpenAndOverdue'],
+				//orient : 'vertical',
+				//x : 'right',
+				y: 'bottom',// 'top'| 'center' | 'bottom' | {number}
+            },
+			/*
+            toolbox: {
+                show : true,
+                feature : {
+                    mark : {show: true},
+                    dataView : {show: true, readOnly: false},
+                    magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                    restore : {show: true},
+                    saveAsImage : {show: true}
+                }
+            },*/
+            calculable : true,
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            xAxis : [
+                {
+                    type : 'category',
+                    data :data.team 
+                }
+            ],
+            series : [
+                {
+                    name:'Total', //'Total', 'Closed','ClosedInTime','OpenAndOverdue'
+                    type:'bar',
+					barGap:'1%',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data: data.Total  //[320, 302,191, 234, 290, 330, 310,120]
+                },
+                 {
+                    name:'Closed', //RCA/EDA Planned', 'RCA/EDA Missed
+                    type:'bar',
+					barGap:'1%',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data:data.Closed //[120, 132, 101, 134, 90, 230, 210,120]
+                },
+
+
+                {
+                    name:'ClosedInTime', //'RCA/EDA CycleTime Before', 'RCA/EDA CycleTime After'
+                    type:'bar',
+					barGap:'1%',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data: data.ClosedInTime  //[320, 302,191, 234, 290, 330, 310,120]
+                },
+				{
+                    name:'Open', //RCA/EDA Planned', 'RCA/EDA Missed
+                    type:'bar',
+					barGap:'1%',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data:data.Open //[120, 132, 101, 134, 90, 230, 210,120]
+                },
+                 {
+                    name:'OpenAndOverdue', //RCA/EDA Planned', 'RCA/EDA Missed
+                    type:'bar',
+					barGap:'1%',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data:data.OpenAndOverdue //[120, 132, 101, 134, 90, 230, 210,120]
+                },
+            ]
+		}
+		);
+    });
+
+
+var hzmonthlyfivewhyrca = echarts.init(document.getElementById('hzmonthlyfivewhyrca'));	
+$.get('/hzmonthlyfivewhyrca').done(function (data) {
+        hzmonthlyfivewhyrca.hideLoading(); 
+        hzmonthlyfivewhyrca.setOption(
+		{
+            title : {
+                text: data.user,
+                subtext: 'Tribe 5WhyRCA Status',
+                x:'center' /*,
+				textStyle:{
+		 
+                 color:"red",
+
+                 //fontSize:12
+				 }*/
+            },
+            tooltip : {
+                trigger: 'axis',
+                axisPointer : { 
+                    type : 'shadow'
+                }
+            },
+            legend: {
+                data:['Closed','ClosedInTime','ClosedNoInTime','Open', 'OverDue'],
+				//x : 'right',
+				y: 'bottom',// 'top'| 'center' | 'bottom' | {number}
+            },
+			/*
+            toolbox: {
+                show : true,
+                feature : {
+                    mark : {show: true},
+                    dataView : {show: true, readOnly: false},
+                    magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                    restore : {show: true},
+                    saveAsImage : {show: true}
+                }
+            },*/
+            calculable : true,
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            xAxis : [
+                {
+                    type : 'category',
+                    data :data.month,//['zhangyijie','Yangjinyong','Caizhichao','Chenlong','Liumingjing','Xiezhen','Lizhongyuan','Lanshenghai']
+					axisLabel:{
+
+						  rotate:12,
+						  interval:0,
+						  textStyle:{
+					 
+							 color:"blue",
+
+							 //fontSize:12
+
+						}
+
+					}
+				}
+            ],
+			/*
+			grid: {
+				x: 40,
+				x2: 0,
+				y2: 70,
+			},*/                 
+            series : [
+                {
+                    name:'Closed',//['RCA/EDA Arrival','RCA/EDA Planned', 'RCA/EDA Missed'
+                    type:'bar',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data: data.Closed  //[320, 302,191, 234, 290, 330, 310,120]
+                },
+                {
+                    name:'ClosedInTime',
+                    type:'bar',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data:data.ClosedInTime //[120, 132, 101, 134, 90, 230, 210,120]
+                },
+			    {
+                    name:'ClosedNoInTime',
+                    type:'bar',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data:data.ClosedNoInTime //[120, 132, 101, 134, 90, 230, 210,120]
+                },
+			    {
+                    name:'Open',
+                    type:'bar',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data:data.Open //[120, 132, 101, 134, 90, 230, 210,120]
+                },
+				{
+                    name:'OverDue',
+                    type:'bar',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data:data.OverDue //[120, 132, 101, 134, 90, 230, 210,120]
+                }
+            ]
+		}
+		);
+    });
+	
+var myChart11 = echarts.init(document.getElementById('main11'));	
+
+$.get('/mnCaseMissedPBI').done(function (data) {
+        myChart11.hideLoading(); 
+
+        myChart11.setOption(
+		{
+            title : {
+                text: 'Overall MN RCA/EDA Status',
+                subtext: 'All Tribes Included',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'axis',
+                axisPointer : {            
+                    type : 'shadow'       
+                }
+            },
+            legend: {
+                data:['RCA/EDA Plan Missed','RCA/EDA Planned'],
+				//x : 'right',
+				y: 'bottom',// 'top'| 'center' | 'bottom' | {number}
+            },
+			/*
+            toolbox: {
+                show : true,
+                feature : {
+                    mark : {show: true},
+                    dataView : {show: true, readOnly: false},
+                    magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                    restore : {show: true},
+                    saveAsImage : {show: true}
+                }
+            },*/
+            calculable : true,
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            xAxis : [
+                {
+                    type : 'category',
+                    data :data.team //['zhangyijie','Yangjinyong','Caizhichao','Chenlong','Liumingjing','Xiezhen','Lizhongyuan','Lanshenghai']
+                }
+            ],
+            series : [
+
+                 {
+                    name:'RCA/EDA Plan Missed', //RCA/EDA Planned', 'RCA/EDA Plan Missed
+                    type:'bar',
+					barGap:'1%',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data: data.rcaundone  //[320, 302,191, 234, 290, 330, 310,120]
+                },
+                
+                {
+                    name:'RCA/EDA Planned',
+                    type:'bar',
+					barGap:'1%',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data:data.rcadone //[120, 132, 101, 134, 90, 230, 210,120]
+                }
+            ]
+		}
+		);
+    });    
+
+var myChart12 = echarts.init(document.getElementById('main12'));	
+
+$.get('/mnCaseMissedPBIafter').done(function (data) {
+        myChart12.hideLoading(); 
+
+        myChart12.setOption(
+		{
+            title : {
+                text: 'Overall MN RCA/EDA Status',
+                subtext: 'All Tribes Included',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'axis',
+                axisPointer : {            
+                    type : 'shadow'       
+                }
+            },
+            legend: {
+                data:['RCA/EDA Plan Missed','RCA/EDA Planned'],
+				//x : 'right',
+				y: 'bottom',// 'top'| 'center' | 'bottom' | {number}
+            },
+			/*
+            toolbox: {
+                show : true,
+                feature : {
+                    mark : {show: true},
+                    dataView : {show: true, readOnly: false},
+                    magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                    restore : {show: true},
+                    saveAsImage : {show: true}
+                }
+            },*/
+            calculable : true,
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            xAxis : [
+                {
+                    type : 'category',
+                    data :data.team //['zhangyijie','Yangjinyong','Caizhichao','Chenlong','Liumingjing','Xiezhen','Lizhongyuan','Lanshenghai']
+                }
+            ],
+            series : [
+
+                 {
+                    name:'RCA/EDA Plan Missed', //RCA/EDA Planned', 'RCA/EDA Plan Missed
+                    type:'bar',
+					barGap:'1%',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data: data.rcaundone  //[320, 302,191, 234, 290, 330, 310,120]
+                },
+                
+                {
+                    name:'RCA/EDA Planned',
+                    type:'bar',
+					barGap:'1%',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data:data.rcadone //[120, 132, 101, 134, 90, 230, 210,120]
+                }
+            ]
+		}
+		);
+    });    
+
+
+var myChart1 = echarts.init(document.getElementById('main1'));	
+
+$.get('/mnCaseMisseCompare').done(function (data) {
+        myChart1.hideLoading(); 
+
+        myChart1.setOption(
+		{
+            title : {
+                text: 'Overall MN RCA/EDA Status',
+                subtext: 'All Tribes Included',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'axis',
+                axisPointer : {            
+                    type : 'shadow'       
+                }
+            },
+            legend: {
+                data:['RCA/EDA Request Missed','RCA/EDA Requested'],
+				//x : 'right',
+				y: 'bottom',// 'top'| 'center' | 'bottom' | {number}
+            },
+			/*
+            toolbox: {
+                show : true,
+                feature : {
+                    mark : {show: true},
+                    dataView : {show: true, readOnly: false},
+                    magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                    restore : {show: true},
+                    saveAsImage : {show: true}
+                }
+            },*/
+            calculable : true,
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            xAxis : [
+                {
+                    type : 'category',
+                    data :data.team //['zhangyijie','Yangjinyong','Caizhichao','Chenlong','Liumingjing','Xiezhen','Lizhongyuan','Lanshenghai']
+                }
+            ],
+            series : [
+
+                 {
+                    name:'RCA/EDA Request Missed', //RCA/EDA Planned', 'RCA/EDA Plan Missed
+                    type:'bar',
+					barGap:'1%',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data: data.rcaundone  //[320, 302,191, 234, 290, 330, 310,120]
+                },
+                
+                {
+                    name:'RCA/EDA Requested',
+                    type:'bar',
+					barGap:'1%',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data:data.rcadone //[120, 132, 101, 134, 90, 230, 210,120]
+                }
+            ]
+		}
+		);
+    });    
+
+var myChart2 = echarts.init(document.getElementById('main2'));	
+
+$.get('/mnCaseMisseCompareAfter').done(function (data) {
+        myChart2.hideLoading(); 
+
+        myChart2.setOption(
+		{
+            title : {
+                text: 'Overall MN RCA/EDA Status',
+                subtext: 'All Tribes Included',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'axis',
+                axisPointer : {            
+                    type : 'shadow'       
+                }
+            },
+            legend: {
+                data:['RCA/EDA Request Missed','RCA/EDA Requested'],
+				//x : 'right',
+				y: 'bottom',// 'top'| 'center' | 'bottom' | {number}
+            },
+			/*
+            toolbox: {
+                show : true,
+                feature : {
+                    mark : {show: true},
+                    dataView : {show: true, readOnly: false},
+                    magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                    restore : {show: true},
+                    saveAsImage : {show: true}
+                }
+            },*/
+            calculable : true,
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            xAxis : [
+                {
+                    type : 'category',
+                    data :data.team //['zhangyijie','Yangjinyong','Caizhichao','Chenlong','Liumingjing','Xiezhen','Lizhongyuan','Lanshenghai']
+                }
+            ],
+            series : [
+
+                {
+                    name:'RCA/EDA Request Missed', //RCA/EDA Planned', 'RCA/EDA Plan Missed
+                    type:'bar',
+					barGap:'1%',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data: data.rcaundone  //[320, 302,191, 234, 290, 330, 310,120]
+                },
+                
+                {
+                    name:'RCA/EDA Requested',
+                    type:'bar',
+					barGap:'1%',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data:data.rcadone //[120, 132, 101, 134, 90, 230, 210,120]
+                }
+            ]
+		}
+		);
+    });    
+        
+
+var myChart3 = echarts.init(document.getElementById('main3'));	
+
+$.get('/mnCaseDelayCompareBefore').done(function (data) {
+        myChart3.hideLoading(); 
+
+        myChart3.setOption(
+		{
+            title : {
+                text: 'Overall MN RCA/EDA Status',
+                subtext: 'All Tribes Included',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'axis',
+                axisPointer : {            
+                    type : 'shadow'       
+                }
+            },
+            legend: {
+                data:['RCA/EDA Maxdelay', 'RCA/EDA AvrDelay'],
+				//x : 'right',
+				y: 'bottom',// 'top'| 'center' | 'bottom' | {number}
+            },
+			/*
+            toolbox: {
+                show : true,
+                feature : {
+                    mark : {show: true},
+                    dataView : {show: true, readOnly: false},
+                    magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                    restore : {show: true},
+                    saveAsImage : {show: true}
+                }
+            },*/
+            calculable : true,
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            xAxis : [
+                {
+                    type : 'category',
+                    data :data.team //['zhangyijie','Yangjinyong','Caizhichao','Chenlong','Liumingjing','Xiezhen','Lizhongyuan','Lanshenghai']
+                }
+            ],
+            series : [
+
+                {
+                    name:'RCA/EDA Maxdelay', //RCA/EDA Maxdelay', 'RCA/EDA AvrDelay
+                    type:'bar',
+					barGap:'1%',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data:data.rcadone //[120, 132, 101, 134, 90, 230, 210,120]
+                },
+                                {
+                    name:'RCA/EDA AvrDelay', //RCA/EDA Planned', 'RCA/EDA Plan Missed
+                    type:'bar',
+					barGap:'1%',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data: data.rcaundone  //[320, 302,191, 234, 290, 330, 310,120]
+                }
+            ]
+		}
+		);
+    });    
+
+var myChart4 = echarts.init(document.getElementById('main4'));	
+
+$.get('/mnCaseDelayCompareAfter').done(function (data) {
+        myChart4.hideLoading(); 
+
+        myChart4.setOption(
+		{
+            title : {
+                text: 'Overall MN RCA/EDA Status',
+                subtext: 'All Tribes Included',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'axis',
+                axisPointer : {            
+                    type : 'shadow'       
+                }
+            },
+            legend: {
+                data:['RCA/EDA Maxdelay', 'RCA/EDA AvrDelay'],
+				//x : 'right',
+				y: 'bottom',// 'top'| 'center' | 'bottom' | {number}
+            },
+			/*
+            toolbox: {
+                show : true,
+                feature : {
+                    mark : {show: true},
+                    dataView : {show: true, readOnly: false},
+                    magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                    restore : {show: true},
+                    saveAsImage : {show: true}
+                }
+            },*/
+            calculable : true,
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            xAxis : [
+                {
+                    type : 'category',
+                    data :data.team //['zhangyijie','Yangjinyong','Caizhichao','Chenlong','Liumingjing','Xiezhen','Lizhongyuan','Lanshenghai']
+                }
+            ],
+            series : [
+
+                {
+                    name:'RCA/EDA Maxdelay', //RCA/EDA Maxdelay', 'RCA/EDA AvrDelay
+                    type:'bar',
+					barGap:'1%',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data:data.rcadone //[120, 132, 101, 134, 90, 230, 210,120]
+                },
+                                {
+                    name:'RCA/EDA AvrDelay', //RCA/EDA Planned', 'RCA/EDA Plan Missed
+                    type:'bar',
+					barGap:'1%',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data: data.rcaundone  //[320, 302,191, 234, 290, 330, 310,120]
+                }
+            ]
+		}
+		);
+    });  
+ 
+ 
+var myChart5 = echarts.init(document.getElementById('main5'));	
+//@app.route("/mnCaseMissRate", methods=["GET"])
+$.get('/mnRcaCycleTimeBefore').done(function (data) {
+        myChart5.hideLoading(); 
+
+        myChart5.setOption(
+		{
+            title : {
+                text: 'Overall MN RCA/EDA CycleTime Status',
+                subtext: 'Days',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'axis',
+                axisPointer : {            
+                    type : 'shadow'       
+                }
+            },
+            legend: {
+                data:['CycleTime Max','CycleTime Average'],
+				//x : 'right',
+				y: 'bottom',// 'top'| 'center' | 'bottom' | {number}
+            },
+			/*
+            toolbox: {
+                show : true,
+                feature : {
+                    mark : {show: true},
+                    dataView : {show: true, readOnly: false},
+                    magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                    restore : {show: true},
+                    saveAsImage : {show: true}
+                }
+            },*/
+            calculable : true,
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            xAxis : [
+                {
+                    type : 'category',
+                    data :data.team //['zhangyijie','Yangjinyong','Caizhichao','Chenlong','Liumingjing','Xiezhen','Lizhongyuan','Lanshenghai']
+                }
+            ],
+            series : [
+                {
+                    name:'CycleTime Max', //'CycleTime Max','CycleTime Average'
+                    type:'bar',
+					barGap:'1%',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data: data.rcaundone  //[320, 302,191, 234, 290, 330, 310,120]
+                },
+                 {
+                    name:'CycleTime Average', //RCA/EDA Planned', 'RCA/EDA Missed
+                    type:'bar',
+					barGap:'1%',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data:data.rcadone //[120, 132, 101, 134, 90, 230, 210,120]
+                },
+
+            ]
+		}
+		);
+    }); 
+    
+var myChart6 = echarts.init(document.getElementById('main6'));	
+
+$.get('/mnRcaCycleTime').done(function (data) {
+        myChart6.hideLoading(); 
+
+        myChart6.setOption(
+		{
+            title : {
+                text: 'Overall MN RCA/EDA Status',
+                subtext: 'Days',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'axis',
+                axisPointer : {            
+                    type : 'shadow'       
+                }
+            },
+            legend: {
+                data:['CycleTime Max','CycleTime Average'],
+				//x : 'right',
+				y: 'bottom',// 'top'| 'center' | 'bottom' | {number}
+            },
+			/*
+            toolbox: {
+                show : true,
+                feature : {
+                    mark : {show: true},
+                    dataView : {show: true, readOnly: false},
+                    magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                    restore : {show: true},
+                    saveAsImage : {show: true}
+                }
+            },*/
+            calculable : true,
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            xAxis : [
+                {
+                    type : 'category',
+                    data :data.team 
+                }
+            ],
+            series : [
+
+                {
+                    name:'CycleTime Max', //'CycleTime Max','CycleTime Average'
+                    type:'bar',
+					barGap:'1%',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data: data.rcaundone  //[320, 302,191, 234, 290, 330, 310,120]
+                },
+                 {
+                    name:'CycleTime Average', //RCA/EDA Planned', 'RCA/EDA Missed
+                    type:'bar',
+					barGap:'1%',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data:data.rcadone //[120, 132, 101, 134, 90, 230, 210,120]
+                },
+            ]
+		}
+		);
+    });     
+
+var myChart9 = echarts.init(document.getElementById('main9'));	
+
+$.get('/mnRcaDoneRate').done(function (data) {
+        myChart9.hideLoading(); 
+
+        myChart9.setOption(
+		{
+            title : {
+                text: 'Overall MN RCA/EDA Status',
+                subtext: 'All Tribes Included',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'axis',
+                axisPointer : {            
+                    type : 'shadow'       
+                }
+            },
+            legend: {
+                data:['numRcaTotal', 'numRcaDone','numRcaDoneInTime','numNoDoneAndOverdue'],
+				//x : 'right',
+				y: 'bottom',// 'top'| 'center' | 'bottom' | {number}
+            },
+			/*
+            toolbox: {
+                show : true,
+                feature : {
+                    mark : {show: true},
+                    dataView : {show: true, readOnly: false},
+                    magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                    restore : {show: true},
+                    saveAsImage : {show: true}
+                }
+            },*/
+            calculable : true,
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            xAxis : [
+                {
+                    type : 'category',
+                    data :data.team 
+                }
+            ],
+            series : [
+                {
+                    name:'numRcaTotal', //'numRcaTotal', 'numRcaDone','numRcaDoneInTime','numNoDoneAndOverdue'
+                    type:'bar',
+					barGap:'1%',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data: data.numRcaTotal  //[320, 302,191, 234, 290, 330, 310,120]
+                },
+                 {
+                    name:'numRcaDone', //RCA/EDA Planned', 'RCA/EDA Missed
+                    type:'bar',
+					barGap:'1%',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data:data.numRcaDone //[120, 132, 101, 134, 90, 230, 210,120]
+                },
+
+
+                {
+                    name:'numRcaDoneInTime', //'RCA/EDA CycleTime Before', 'RCA/EDA CycleTime After'
+                    type:'bar',
+					barGap:'1%',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data: data.numRcaDoneInTime  //[320, 302,191, 234, 290, 330, 310,120]
+                },
+                 {
+                    name:'numNoDoneAndOverdue', //RCA/EDA Planned', 'RCA/EDA Missed
+                    type:'bar',
+					barGap:'1%',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data:data.numNoDoneAndOverdue //[120, 132, 101, 134, 90, 230, 210,120]
+                },
+            ]
+		}
+		);
+    });  
+  
+var myChart10 = echarts.init(document.getElementById('main10'));
+$.get('/mnRcaDoneRateBefore').done(function (data) {
+        myChart10.hideLoading(); 
+
+        myChart10.setOption(
+		{
+            title : {
+                text: 'Overall MN RCA/EDA Status',
+                subtext: 'All Tribes Included',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'axis',
+                axisPointer : {            
+                    type : 'shadow'       
+                }
+            },
+            legend: {
+                data:['numRcaTotal', 'numRcaDone','numRcaDoneInTime','numNoDoneAndOverdue'],
+				//x : 'right',
+				y: 'bottom',// 'top'| 'center' | 'bottom' | {number}
+            },
+			/*
+            toolbox: {
+                show : true,
+                feature : {
+                    mark : {show: true},
+                    dataView : {show: true, readOnly: false},
+                    magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                    restore : {show: true},
+                    saveAsImage : {show: true}
+                }
+            },*/
+            calculable : true,
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            xAxis : [
+                {
+                    type : 'category',
+                    data :data.team //['zhangyijie','Yangjinyong','Caizhichao','Chenlong','Liumingjing','Xiezhen','Lizhongyuan','Lanshenghai']
+                }
+            ],
+            series : [
+                {
+                    name:'numRcaTotal', //'numRcaTotal', 'numRcaDone','numRcaDoneInTime','numNoDoneAndOverdue'
+                    type:'bar',
+					barGap:'1%',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data: data.numRcaTotal  //[320, 302,191, 234, 290, 330, 310,120]
+                },
+                 {
+                    name:'numRcaDone', //RCA/EDA Planned', 'RCA/EDA Missed
+                    type:'bar',
+					barGap:'1%',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data:data.numRcaDone //[120, 132, 101, 134, 90, 230, 210,120]
+                },
+
+
+                {
+                    name:'numRcaDoneInTime', //'RCA/EDA CycleTime Before', 'RCA/EDA CycleTime After'
+                    type:'bar',
+					barGap:'1%',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data: data.numRcaDoneInTime  //[320, 302,191, 234, 290, 330, 310,120]
+                },
+                 {
+                    name:'numNoDoneAndOverdue', //RCA/EDA Planned', 'RCA/EDA Missed
+                    type:'bar',
+					barGap:'1%',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data:data.numNoDoneAndOverdue //[120, 132, 101, 134, 90, 230, 210,120]
+                },
+            ]
+		}
+		);
+    }); 
+
+    
+var myChart7 = echarts.init(document.getElementById('main7'));	
+$.get('/mnRcaApDoneRate').done(function (data) {
+        myChart7.hideLoading(); 
+
+        myChart7.setOption(
+		{
+            title : {
+                text: 'Overall MN RCA/EDA Action Status',
+                subtext: 'All Tribes Included',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'axis',
+                axisPointer : {            
+                    type : 'shadow'       
+                }
+            },
+            legend: {
+                data:['numOfApDefined', 'numOfApDone','numOfApDoneInTime','numOfApNoDoneAndOverdue'],
+				//x : 'right',
+				y: 'bottom',// 'top'| 'center' | 'bottom' | {number}
+            },
+			/*
+            toolbox: {
+                show : true,
+                feature : {
+                    mark : {show: true},
+                    dataView : {show: true, readOnly: false},
+                    magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                    restore : {show: true},
+                    saveAsImage : {show: true}
+                }
+            },*/
+            calculable : true,
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            xAxis : [
+                {
+                    type : 'category',
+                    data :data.team //['zhangyijie','Yangjinyong','Caizhichao','Chenlong','Liumingjing','Xiezhen','Lizhongyuan','Lanshenghai']
+                }
+            ],
+            series : [
+                {
+                    name:'numOfApDefined', //'numOfApDefined', 'numOfApDone','numOfApDoneInTime','numOfApNoDoneAndOverdue'
+                    type:'bar',
+					barGap:'1%',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data: data.numOfApDefined  //[320, 302,191, 234, 290, 330, 310,120]
+                },
+                 {
+                    name:'numOfApDone', //RCA/EDA Planned', 'RCA/EDA Missed
+                    type:'bar',
+					barGap:'1%',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data:data.numOfApDone //[120, 132, 101, 134, 90, 230, 210,120]
+                },
+
+
+                {
+                    name:'numOfApDoneInTime', //'RCA/EDA CycleTime Before', 'RCA/EDA CycleTime After'
+                    type:'bar',
+					barGap:'1%',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data: data.numApOfDoneWithinTargetDate  //[320, 302,191, 234, 290, 330, 310,120]
+                },
+                 {
+                    name:'numOfApNoDoneAndOverdue', //RCA/EDA Planned', 'RCA/EDA Missed
+                    type:'bar',
+					barGap:'1%',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data:data.numOfApNotDoneYetButOverdue //[120, 132, 101, 134, 90, 230, 210,120]
+                },
+            ]
+		}
+		);
+    });  
+  
+var myChart8 = echarts.init(document.getElementById('main8'));
+$.get('/mnRcaApDoneRateBefore').done(function (data) {
+        myChart8.hideLoading(); 
+
+        myChart8.setOption(
+		{
+            title : {
+                text: 'Overall MN RCA/EDA Action Status',
+                subtext: 'All Tribes Included',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'axis',
+                axisPointer : {            
+                    type : 'shadow'       
+                }
+            },
+            legend: {
+                data:['numOfApDefined', 'numOfApDone','numOfApDoneInTime','numOfApNoDoneAndOverdue'],
+				//x : 'right',
+				y: 'bottom',// 'top'| 'center' | 'bottom' | {number}
+            },
+			/*
+            toolbox: {
+                show : true,
+                feature : {
+                    mark : {show: true},
+                    dataView : {show: true, readOnly: false},
+                    magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                    restore : {show: true},
+                    saveAsImage : {show: true}
+                }
+            },*/
+            calculable : true,
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            xAxis : [
+                {
+                    type : 'category',
+                    data :data.team //['zhangyijie','Yangjinyong','Caizhichao','Chenlong','Liumingjing','Xiezhen','Lizhongyuan','Lanshenghai']
+                }
+            ],
+            series : [
+                {
+                    name:'numOfApDefined', //'numOfApDefined', 'numOfApDone','numOfApDoneInTime','numOfApNoDoneAndOverdue
+                    type:'bar',
+					barGap:'1%',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data: data.numOfApDefined  //[320, 302,191, 234, 290, 330, 310,120]
+                },
+                 {
+                    name:'numOfApDone', //RCA/EDA Planned', 'RCA/EDA Missed
+                    type:'bar',
+					barGap:'1%',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data:data.numOfApDone //[120, 132, 101, 134, 90, 230, 210,120]
+                },
+
+
+                {
+                    name:'numOfApDoneInTime', //'RCA/EDA CycleTime Before', 'RCA/EDA CycleTime After'
+                    type:'bar',
+					barGap:'1%',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data: data.numApOfDoneWithinTargetDate  //[320, 302,191, 234, 290, 330, 310,120]
+                },
+                 {
+                    name:'numOfApNoDoneAndOverdue', //RCA/EDA Planned', 'RCA/EDA Missed
+                    type:'bar',
+					barGap:'1%',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data:data.numOfApNotDoneYetButOverdue //[120, 132, 101, 134, 90, 230, 210,120]
+                },
+            ]
+		}
+		);
+    }); 
+var mnrcacoverageChart = echarts.init(document.getElementById('mnrcacoverage'));	
+$.get('/mnrcacoverage').done(function (data) {
+        mnrcacoverageChart.hideLoading(); 
+        mnrcacoverageChart.setOption(
+		{
+            title : {
+                text: data.user,
+                subtext: 'MN Level RCA/EDA Status',
+                x:'center' /*,
+				textStyle:{
+		 
+                 color:"red",
+
+                 //fontSize:12
+				 }*/
+            },
+            tooltip : {
+                trigger: 'axis',
+                axisPointer : { 
+                    type : 'shadow'
+                }
+            },
+            legend: {
+                data:['RCA/EDA Arrival','RCA/EDA Planned', 'RCA/EDA Missed'],
+				//x : 'right',
+				y: 'bottom',// 'top'| 'center' | 'bottom' | {number}
+            },
+			/*
+            toolbox: {
+                show : true,
+                feature : {
+                    mark : {show: true},
+                    dataView : {show: true, readOnly: false},
+                    magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                    restore : {show: true},
+                    saveAsImage : {show: true}
+                }
+            },*/
+            calculable : true,
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            xAxis : [
+                {
+                    type : 'category',
+                    data :data.month,//['zhangyijie','Yangjinyong','Caizhichao','Chenlong','Liumingjing','Xiezhen','Lizhongyuan','Lanshenghai']
+					axisLabel:{
+
+						  rotate:0,
+						  interval:0,
+						  textStyle:{
+					 
+							 color:"blue",
+
+							 //fontSize:12
+
+						}
+
+					}
+				}
+            ],
+			/*
+			grid: {
+				x: 40,
+				x2: 0,
+				y2: 70,
+			},*/                 
+            series : [
+                {
+                    name:'RCA/EDA Arrival',//['RCA/EDA Arrival','RCA/EDA Planned', 'RCA/EDA Missed'
+                    type:'bar',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data: data.aparrival  //[320, 302,191, 234, 290, 330, 310,120]
+                },
+                {
+                    name:'RCA/EDA Planned',
+                    type:'bar',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data:data.apdone //[120, 132, 101, 134, 90, 230, 210,120]
+                },
+				{
+                    name:'RCA/EDA Missed',
+                    type:'bar',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data:data.apundone //[120, 132, 101, 134, 90, 230, 210,120]
+                }
+            ]
+		}
+		);
+    });
+
+var mnrcacoverageTrendChart = echarts.init(document.getElementById('mnrcacoverageTrend'));	
+$.get('/mnrcacoverageWithAutomation').done(function (data) {
+        mnrcacoverageTrendChart.hideLoading(); 
+        mnrcacoverageTrendChart.setOption(
+		{
+            title : {
+                text: data.user,
+                subtext: 'MN Level RCA/EDA Status Trend',
+                x:'center' /*,
+				textStyle:{
+		 
+                 color:"red",
+
+                 //fontSize:12
+				 }*/
+            },
+            tooltip : {
+                trigger: 'axis',
+                axisPointer : { 
+                    type : 'shadow'
+                }
+            },
+            legend: {
+                data:['RCA/EDA Arrival','RCA/EDA Planned', 'RCA/EDA Missed'],
+				//x : 'right',
+				y: 'bottom',// 'top'| 'center' | 'bottom' | {number}
+            },
+			/*
+            toolbox: {
+                show : true,
+                feature : {
+                    mark : {show: true},
+                    dataView : {show: true, readOnly: false},
+                    magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                    restore : {show: true},
+                    saveAsImage : {show: true}
+                }
+            },*/
+            calculable : true,
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            xAxis : [
+                {
+                    type : 'category',
+                    data :data.month,//['zhangyijie','Yangjinyong','Caizhichao','Chenlong','Liumingjing','Xiezhen','Lizhongyuan','Lanshenghai']
+					axisLabel:{
+
+						  rotate:0,
+						  interval:0,
+						  textStyle:{
+					 
+							 color:"blue",
+
+							 //fontSize:12
+
+						}
+
+					}
+				}
+            ],
+			/*
+			grid: {
+				x: 40,
+				x2: 0,
+				y2: 70,
+			},*/                 
+            series : [
+                {
+                    name:'RCA/EDA Arrival',//['RCA/EDA Arrival','RCA/EDA Planned', 'RCA/EDA Missed'
+                    type:'bar',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data: data.aparrival  //[320, 302,191, 234, 290, 330, 310,120]
+                },
+                {
+                    name:'RCA/EDA Planned',
+                    type:'bar',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data:data.apdone //[120, 132, 101, 134, 90, 230, 210,120]
+                },
+				{
+                    name:'RCA/EDA Missed',
+                    type:'bar',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data:data.apundone //[120, 132, 101, 134, 90, 230, 210,120]
+                }
+            ]
+		}
+		);
+    });
+    
+    
+var mnrcacoverageTrendWithoutAutomationChart = echarts.init(document.getElementById('mnrcacoverageTrendWithoutAutomationChart'));	
+$.get('/mnrcacoverageWithoutAutomation').done(function (data) {
+        mnrcacoverageTrendWithoutAutomationChart.hideLoading(); 
+        mnrcacoverageTrendWithoutAutomationChart.setOption(
+		{
+            title : {
+                text: data.user,
+                subtext: 'MN Level RCA/EDA Status Trend',
+                x:'center' /*,
+				textStyle:{
+		 
+                 color:"red",
+
+                 //fontSize:12
+				 }*/
+            },
+            tooltip : {
+                trigger: 'axis',
+                axisPointer : { 
+                    type : 'shadow'
+                }
+            },
+            legend: {
+                data:['RCA/EDA Arrival','RCA/EDA Planned', 'RCA/EDA Missed'],
+				//x : 'right',
+				y: 'bottom',// 'top'| 'center' | 'bottom' | {number}
+            },
+			/*
+            toolbox: {
+                show : true,
+                feature : {
+                    mark : {show: true},
+                    dataView : {show: true, readOnly: false},
+                    magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                    restore : {show: true},
+                    saveAsImage : {show: true}
+                }
+            },*/
+            calculable : true,
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            xAxis : [
+                {
+                    type : 'category',
+                    data :data.month,//['zhangyijie','Yangjinyong','Caizhichao','Chenlong','Liumingjing','Xiezhen','Lizhongyuan','Lanshenghai']
+					axisLabel:{
+
+						  rotate:0,
+						  interval:0,
+						  textStyle:{
+					 
+							 color:"blue",
+
+							 //fontSize:12
+
+						}
+
+					}
+				}
+            ],
+			/*
+			grid: {
+				x: 40,
+				x2: 0,
+				y2: 70,
+			},*/                 
+            series : [
+                {
+                    name:'RCA/EDA Arrival',//['RCA/EDA Arrival','RCA/EDA Planned', 'RCA/EDA Missed'
+                    type:'bar',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data: data.aparrival  //[320, 302,191, 234, 290, 330, 310,120]
+                },
+                {
+                    name:'RCA/EDA Planned',
+                    type:'bar',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data:data.apdone //[120, 132, 101, 134, 90, 230, 210,120]
+                },
+				{
+                    name:'RCA/EDA Missed',
+                    type:'bar',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data:data.apundone //[120, 132, 101, 134, 90, 230, 210,120]
+                }
+            ]
+		}
+		);
+    });
+    
+var mnrcaRequestDelayTrendWithAutomationChart = echarts.init(document.getElementById('mnrcaRequestDelayTrendWithAutomationChart'));	
+$.get('/mnrcaDelayWithAutomation').done(function (data) {
+        mnrcaRequestDelayTrendWithAutomationChart.hideLoading(); 
+        mnrcaRequestDelayTrendWithAutomationChart.setOption(
+		{
+            title : {
+                text: data.user,
+                subtext: 'MN RCA/EDA Request Delay Trend With Automation',
+                x:'center' /*,
+				textStyle:{
+		 
+                 color:"red",
+
+                 //fontSize:12
+				 }*/
+            },
+            tooltip : {
+                trigger: 'axis',
+                axisPointer : { 
+                    type : 'shadow'
+                }
+            },
+            legend: {
+                data:['RCA/EDA Request Max Delay','RCA/EDA Request Average Delay', 'RCA/EDA Request Min Delay'],
+				//x : 'right',
+				y: 'bottom',// 'top'| 'center' | 'bottom' | {number}
+            },
+			/*
+            toolbox: {
+                show : true,
+                feature : {
+                    mark : {show: true},
+                    dataView : {show: true, readOnly: false},
+                    magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                    restore : {show: true},
+                    saveAsImage : {show: true}
+                }
+            },*/
+            calculable : true,
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            xAxis : [
+                {
+                    type : 'category',
+                    data :data.month,//['zhangyijie','Yangjinyong','Caizhichao','Chenlong','Liumingjing','Xiezhen','Lizhongyuan','Lanshenghai']
+					axisLabel:{
+
+						  rotate:0,
+						  interval:0,
+						  textStyle:{
+					 
+							 color:"blue",
+
+							 //fontSize:12
+
+						}
+
+					}
+				}
+            ],
+			/*
+			grid: {
+				x: 40,
+				x2: 0,
+				y2: 70,
+			},*/                 
+            series : [
+                {
+                    name:'RCA/EDA Request Max Delay',//'RCA/EDA Request Max Delay','RCA/EDA Request Average Delay', 'RCA/EDA Request Min Delay'
+                    type:'bar',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data: data.aparrival  //[320, 302,191, 234, 290, 330, 310,120]
+                },
+                {
+                    name:'RCA/EDA Request Average Delay',
+                    type:'bar',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data:data.apdone //[120, 132, 101, 134, 90, 230, 210,120]
+                },
+				{
+                    name:'RCA/EDA Request Min Delay',
+                    type:'bar',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data:data.apundone //[120, 132, 101, 134, 90, 230, 210,120]
+                }
+            ]
+		}
+		);
+    });
+
+var mnrcaRequestDelayTrendWithoutAutomationChart = echarts.init(document.getElementById('mnrcaRequestDelayTrendWithoutAutomationChart'));	
+$.get('/mnrcaDelayWithoutAutomation').done(function (data) {
+        mnrcaRequestDelayTrendWithoutAutomationChart.hideLoading(); 
+        mnrcaRequestDelayTrendWithoutAutomationChart.setOption(
+		{
+            title : {
+                text: data.user,
+                subtext: 'MN RCA/EDA Request Delay Trend Without Automation',
+                x:'center' /*,
+				textStyle:{
+		 
+                 color:"red",
+
+                 //fontSize:12
+				 }*/
+            },
+            tooltip : {
+                trigger: 'axis',
+                axisPointer : { 
+                    type : 'shadow'
+                }
+            },
+            legend: {
+                data:['RCA/EDA Request Max Delay','RCA/EDA Request Average Delay', 'RCA/EDA Request Min Delay'],
+				//x : 'right',
+				y: 'bottom',// 'top'| 'center' | 'bottom' | {number}
+            },
+			/*
+            toolbox: {
+                show : true,
+                feature : {
+                    mark : {show: true},
+                    dataView : {show: true, readOnly: false},
+                    magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                    restore : {show: true},
+                    saveAsImage : {show: true}
+                }
+            },*/
+            calculable : true,
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            xAxis : [
+                {
+                    type : 'category',
+                    data :data.month,//['zhangyijie','Yangjinyong','Caizhichao','Chenlong','Liumingjing','Xiezhen','Lizhongyuan','Lanshenghai']
+					axisLabel:{
+
+						  rotate:0,
+						  interval:0,
+						  textStyle:{
+					 
+							 color:"blue",
+
+							 //fontSize:12
+
+						}
+
+					}
+				}
+            ],
+			/*
+			grid: {
+				x: 40,
+				x2: 0,
+				y2: 70,
+			},*/                 
+            series : [
+                {
+                    name:'RCA/EDA Request Max Delay',//'RCA/EDA Request Max Delay','RCA/EDA Request Average Delay', 'RCA/EDA Request Min Delay'
+                    type:'bar',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data: data.aparrival  //[320, 302,191, 234, 290, 330, 310,120]
+                },
+                {
+                    name:'RCA/EDA Request Average Delay',
+                    type:'bar',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data:data.apdone //[120, 132, 101, 134, 90, 230, 210,120]
+                },
+				{
+                    name:'RCA/EDA Request Min Delay',
+                    type:'bar',
+                    //stack: 'total',
+                    itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                    data:data.apundone //[120, 132, 101, 134, 90, 230, 210,120]
+                }
+            ]
+		}
+		);
+    });    
+    
+   
+/*
+$('#t3').blur(function () {
+    var strEmployeeNo = $('#sel3').val().trim();
+    //var strEmployeeNo = document.getElementById('t3'); 
+    $.ajax({
+        type: "post",
+      async: true,
+        url: "/loadTribeSquad", 
+        data: { "AssignTo": strEmployeeNo },    
+        success: function(data) {
+            /*$('#AssignTo').val(data.AssignTo);        
+            $('#t3').val(data.severity); 
+            $('#t2').val(data.SourceList); 
+            $('#t1').val(data.BusinessUnit); 
+            $('#t4').val(data.BusinessLine);
+            $('#t5').val(data.ProductLine);             
+        },
+        error: function(err) {
+            alert("Load Squad Dashboard Error,Logout and re-login, Please!");
+        }
+    });
+});*/
+
+function showSelect3(){  
+   var _t3 = document.getElementById('t3');  
+   var _s3 = document.getElementById('sel3');  
+   if( _t3.style.display == ''){  
+       _t3.style.display = 'none';  
+   }  
+   else{  
+       _t3.style.display = '';  
+    }  
+   if ( _s3.style.display == 'none' ){  
+        _s3.style.display = '';  
+    }  
+    else{  
+        _s3.style.display = 'none';  
+    }  
+} 
+
+
+
+
+var myChart_rootcause = echarts.init(document.getElementById('rootcausedistribution'));	
+var   option_rootcause = {
+            title : {
+                text: 'Root Cause Category',
+                subtext: 'Total Level',
+                x:'center'
+            },
+
+            legend: {
+                orient : 'horizontal',//'vertical',   
+				//left: 'left',
+                x : '38%',//'right',  // 'center' | 'left' | {number},
+    
+				y: '85%', // 'center' | 'bottom' | {number}    
+
+                data:[]
+				//data:['RCA Undone','RCA Done']
+            },
+
+            series : [
+                {
+                    name:'Tribe RCA Status',
+                    type:'pie',
+                    radius : '55%',
+                    center: ['50%', '50%'],
+                    data:[
+                        {value:[0], name:'RCA Done'},
+                        {value:[0], name:'RCA Undone'}
+                    ],
+					itemStyle: {
+						normal:{
+						 label:{
+						 show:true,
+						 formatter: '{b} : {c} \n ({d}%)'
+						 },
+						 labelLine:{
+						 show:true
+						 }
+						 },
+						emphasis: {
+							shadowBlur: 10,
+							shadowOffsetX: 0,
+							shadowColor: 'rgba(0, 0, 0, 0.5)'
+						}
+					}
+                }		
+            ]
+		};
+		
+myChart_rootcause.setOption(option_rootcause);
+
+// myChart2.showLoading(); // 显示加载动画
+    
+    // 异步加载数据
+    $.get('/rootcausedistribution').done(function (data) {
+        myChart_rootcause.hideLoading(); // 隐藏加载动画
+        
+
+        // 填入数据
+        myChart_rootcause.setOption(
+
+		{
+            title : {
+                text: data.user,
+                subtext:'Total Level' ,
+                x:'center'
+            },
+            legend: {
+                orient : 'horizontal',//'vertical',   
+				//left: 'left',
+                x : '38%',//'right',  // 'center' | 'left' | {number},
+    
+				y: '85%', // 'center' | 'bottom' | {number}    
+
+                data:data.rootcause
+				//data:['RCA Undone','RCA Done']
+            },
+            series : [
+                {
+                    name:data.rootcause,
+                    type:'pie',
+                    radius : '55%',
+                    center: ['50%', '50%'],
+                    data:[
+						{value: data.count[0], name:data.rootcause[0]},
+                        {value: data.count[1], name:data.rootcause[1]},
+						{value: data.count[2], name:data.rootcause[2]},
+                        {value: data.count[3], name:data.rootcause[3]},
+						{value: data.count[4], name:data.rootcause[4]},
+                        {value: data.count[5], name:data.rootcause[5]},
+						{value: data.count[6], name:data.rootcause[6]},
+                        {value: data.count[7], name:data.rootcause[7]},
+                        {value: data.count[8], name:data.rootcause[8]},
+                        {value: data.count[9], name:data.rootcause[9]},
+						{value: data.count[10], name:data.rootcause[10]}
+                    ],
+					itemStyle: {
+						normal:{
+						 label:{
+						 show:true,
+						 formatter: '{b} : {c} \n ({d}%)'
+						 },
+						 labelLine:{
+						 show:true
+						 }
+						 },
+						emphasis: {
+							shadowBlur: 10,
+							shadowOffsetX: 0,
+							shadowColor: 'rgba(0, 0, 0, 0.5)'
+						}
+					}
+                }		
+            ]
+		}
+		);
+    });
+
+// Function Area
+var myChart_functionarea = echarts.init(document.getElementById('functionareadistribution'));	
+var   option_functionarea = {
+            title : {
+                text: 'Function Area',
+                subtext: 'Total Level',
+                x:'center'
+            },
+
+            legend: {
+                orient : 'horizontal',//'vertical',   
+				//left: 'left',
+                x : '38%',//'right',  // 'center' | 'left' | {number},
+    
+				y: '85%', // 'center' | 'bottom' | {number}    
+
+                data:[]
+				//data:['RCA Undone','RCA Done']
+            },
+
+            series : [
+                {
+                    name:'Tribe RCA Status',
+                    type:'pie',
+                    radius : '55%',
+                    center: ['50%', '50%'],
+                    data:[
+                        {value:[0], name:'RCA Done'},
+                        {value:[0], name:'RCA Undone'}
+                    ],
+					itemStyle: {
+						normal:{
+						 label:{
+						 show:true,
+						 formatter: '{b} : {c} \n ({d}%)'
+						 },
+						 labelLine:{
+						 show:true
+						 }
+						 },
+						emphasis: {
+							shadowBlur: 10,
+							shadowOffsetX: 0,
+							shadowColor: 'rgba(0, 0, 0, 0.5)'
+						}
+					}
+                }		
+            ]
+		};
+		
+myChart_functionarea.setOption(option_functionarea);
+
+    $.get('/functionareadistribution').done(function (data) {
+        myChart_functionarea.hideLoading(); // 隐藏加载动画
+		                var servicedata=[];
+
+                for(var i=0;i<data.count.length;i++){
+                    var obj=new Object();
+                    obj.name=data.functionarea[i]; 
+                    obj.value=data.count[i];
+                    servicedata[i]=obj;
+                }
+        myChart_functionarea.setOption(
+		{
+            title : {
+                text: data.user,
+                subtext:'Total Level' ,
+                x:'center'
+            },
+            legend: {
+                orient : 'horizontal',//'vertical',   
+				//left: 'left',
+                x : '38%',//'right',  // 'center' | 'left' | {number},
+				y: '85%', // 'center' | 'bottom' | {number}    
+                data:data.functionarea
+            },
+            series : [
+                {
+                    name:'Function Area',
+                    type:'pie',
+                    radius : '55%',
+                    center: ['50%', '50%'],
+                    data:servicedata,
+					/*[
+						{value: data.count[0], name:data.rootcause[0]},
+                        {value: data.count[1], name:data.rootcause[1]},
+						{value: data.count[2], name:data.rootcause[2]},
+                        {value: data.count[3], name:data.rootcause[3]},
+						{value: data.count[4], name:data.rootcause[4]},
+                        {value: data.count[5], name:data.rootcause[5]},
+						{value: data.count[6], name:data.rootcause[6]},
+                        {value: data.count[7], name:data.rootcause[7]},
+                        {value: data.count[8], name:data.rootcause[8]},
+                        {value: data.count[9], name:data.rootcause[9]},
+						{value: data.count[10], name:data.rootcause[10]}
+                    ],*/
+					itemStyle: {
+						normal:{
+						 label:{
+						 show:true,
+						 formatter: '{b} : {c} \n ({d}%)'
+						 },
+						 labelLine:{
+						 show:true
+						 }
+						 },
+						emphasis: {
+							shadowBlur: 10,
+							shadowOffsetX: 0,
+							shadowColor: 'rgba(0, 0, 0, 0.5)'
+						}
+					}
+                }		
+            ]
+		}
+		);
+    });
+	
+// Cat-M
+
+
+var myChart_rootcausecatm = echarts.init(document.getElementById('rootcausedistributioncatm'));	
+// myChart2.showLoading(); // 显示加载动画
+    
+    // 异步加载数据
+    $.get('/rootcausedistribution').done(function (data) {
+        myChart_rootcausecatm.hideLoading(); // 隐藏加载动画
+        
+
+        // 填入数据
+        myChart_rootcausecatm.setOption(
+
+		{
+            title : {
+                text: data.user,
+                subtext:'Total Level' ,
+                x:'center'
+            },
+            legend: {
+                orient : 'horizontal',//'vertical',   
+				//left: 'left',
+                x : '38%',//'right',  // 'center' | 'left' | {number},
+    
+				y: '85%', // 'center' | 'bottom' | {number}    
+
+                data:data.rootcause
+				//data:['RCA Undone','RCA Done']
+            },
+            series : [
+                {
+                    name:data.rootcause,
+                    type:'pie',
+                    radius : '55%',
+                    center: ['50%', '50%'],
+                    data:[
+						{value: data.count[0], name:data.rootcause[0]},
+                        {value: data.count[1], name:data.rootcause[1]},
+						{value: data.count[2], name:data.rootcause[2]},
+                        {value: data.count[3], name:data.rootcause[3]},
+						{value: data.count[4], name:data.rootcause[4]},
+                        {value: data.count[5], name:data.rootcause[5]},
+						{value: data.count[6], name:data.rootcause[6]},
+                        {value: data.count[7], name:data.rootcause[7]},
+                        {value: data.count[8], name:data.rootcause[8]},
+                        {value: data.count[9], name:data.rootcause[9]},
+						{value: data.count[10], name:data.rootcause[10]}
+                    ],
+					itemStyle: {
+						normal:{
+						 label:{
+						 show:true,
+						 formatter: '{b} : {c} \n ({d}%)'
+						 },
+						 labelLine:{
+						 show:true
+						 }
+						 },
+						emphasis: {
+							shadowBlur: 10,
+							shadowOffsetX: 0,
+							shadowColor: 'rgba(0, 0, 0, 0.5)'
+						}
+					}
+                }		
+            ]
+		}
+		);
+    });
+
+
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+{% block body %}
+<div style = "text-align:left;margin-left: 100px;">
+    <h2>{{headermessage}}: <b style="color:red;">{{count}}</b> 
+    <!---
+    <div style = "text-align:center;">
+    <a href="{{url_for('customer_rca_done')}}" class="btn btn-large btn-primary">Customer RCA Done</a>
+    <a href="{{url_for('customer_rca_undone')}}" class="btn btn-large btn-primary">Customer RCA Undone</a>
+    <a href="{{url_for('customer_home')}}" class="btn btn-large btn-primary">Customer RCA All</a>
+    </div>
+    --->
+    <div style = "text-align:right;">
+    </div>  </h2> 
+    <table class="table table-hover" id="prtable">
+          <tr>
+                <th style="width: 150px;">PRID</th>
+                <th style="width: 150px;">PRTitle</th>
+                <th style="width: 120px;">PRSeverity</th>
+                <th style="width: 120px;">JiraIssueId</th>
+                <th style="width: 150px;">PRAttached</th>
+                <th style="width: 120px;">JiraIssueType</th>
+                <th style="width: 120px;">JiraIssueCaseType</th>
+                <th style="width: 120px;">JiraIssueStatus</th>
+                <th style="width: 120px;">JiraIssueOverDue</th>
+                <th style="width: 140px;">JiraIssueOpenDays</th>
+                <th style="width: 120px;">JiraIssueDueDate</th>
+                <th style="width: 140px;">JiraIssueAssignee</th>
+                <th style="width: 150px;">PRRcaEdaAssessor</th>
+                <th style="width: 220px;">JiraIssueAssigneeTribe</th>
+                <th style="width: 280px;">JiraIssueAssigneeSquadGroup</th>
+                <th style="width: 300px;">JiraIssueAssigneeSquadGroupLead	</th>
+          </tr>
+          {%- for todo in todos %}
+          <tr style={{"text-decoration:blink;color:black;background-color:#f2dede;" if todo.JiraIssueOverDue=='Yes' else "text-decoration:blink;color:black;background-color:#dff0d8;"}}>
+            <td><a href="javascript:void(0)" onclick="onlink('{{ todo.PRID }}','{{ todo.JiraIssueId}}','3','{{ todo.JiraIssueType }}');">{{ todo.PRID }}</a>   <!--/todos/{{todo.PRID}}--></td>
+            <td>{{ todo.PRTitle}}</td>
+            <td>{{ todo.PRSeverity}}</td>
+            <td><a href="javascript:void(0)" onclick="jiraIssueIdlink('{{ todo.JiraIssueId}}')">{{ todo.JiraIssueId}}</a></td>
+            <td>{{ todo.PRAttached}}</td>
+            <td>{{ todo.JiraIssueType}}</td>
+            <td>{{ todo.JiraIssueCaseType}}</td>
+            <td>{{ todo.JiraIssueStatus}}</td>
+            <td style={{"text-decoration:blink;color:black;background-color:red;" if todo.JiraIssueOverDue=='Yes' else "text-decoration:blink;color:black;background-color:green;"}}>{{todo.JiraIssueOverDue}}</td>
+            <td>{{ todo.JiraIssueOpenDays}}</td>
+            <td>{{ todo.JiraIssueDueDate}}</td>
+            <td>{{ todo.JiraIssueAssignee}}</td>
+            <td>{{ todo.PRRcaEdaAssessor}}</td>
+            <td>{{ todo.JiraIssueAssigneeTribe}}</td>
+            <td>{{ todo.JiraIssueAssigneeSquadGroup}}</td>
+            <td>{{ todo.JiraIssueAssigneeSquadGroupLead}}</td>
+          </tr>
+          {%- endfor %}
+    </table>
+    <p>
+
+</div>
+<script language="JavaScript">
+function onlink(PRID, p2, p3,JiraIssueType){
+    window.open("/prontoweb_modify_fromexcelbyprid/"+PRID+","+p2+","+p3);
+}
+function jiraIssueIdlink(JiraIssueId){
+    var url = "https://jiradc.int.net.nokia.com/browse/" + JiraIssueId;
+    window.open(url);
+}
+</script>
+
+{% endblock %}

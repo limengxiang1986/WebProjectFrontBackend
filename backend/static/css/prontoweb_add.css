@@ -1,0 +1,235 @@
+.card-enter {
+    opacity: 0;
+    transform: scale(0.6);
+}
+
+.card-enter-active {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 300ms, transform 300ms;
+}
+
+.card-enter-done {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.card-exit {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.card-exit-active {
+    opacity: 0;
+    transform: scale(0.6);
+    transition: opacity 300ms, transform 300ms;
+}
+
+.card-exit-done {
+    opacity: 0;
+}
+
+.history_bg {
+    position: fixed;
+    background-color: #c5c5c5;
+    left: 0px;
+    top: 0px;
+    box-shadow: 50px 50px 50px #888888;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+}
+
+.history_root {
+    margin: 0px 15px 0px 30px;
+    font-size: 20px;
+    left: 0px;
+    top: 5px;
+    position: fixed;
+    background-color: rgb(204, 204, 204);
+    width: 96%;
+    height: 97%;
+    border-radius: 4px;
+    box-shadow: 5px 5px 5px #888888;
+    border: 1px solid black;
+    z-index: 9999;
+    border-radius: 5px;
+}
+
+.roothidden {
+    display: none;
+}
+
+.history_body {
+    display: inline;
+}
+
+.history_title {
+    background-color: #124191;
+    color: #FFFFFF;
+    font-size: 22px;
+    height: 35px;
+    border-radius: 3px 3px 0px 0px;
+}
+
+.history_title > p {
+    position: relative;
+    top: 5px;
+    left: 15px;
+}
+
+.history_left {
+    margin: 15px;
+    display: inline-block;
+    width: 76%;
+    height: 87%;
+    overflow-y: auto;
+}
+
+.history_right {
+    margin: 10px;
+    width: 20%;
+    display: inline-block;
+    height: 87%;
+    overflow-y: auto;
+    position: absolute;
+    top: 42px;
+}
+
+.history_right ul {
+    margin: 0px;
+    padding: 0px;
+    position: absolute;
+    width: 100%;
+}
+
+.history_right ul li {
+    list-style-type: none;
+    cursor: pointer;
+    margin: 5px 0px;
+    background-color: aliceblue;
+    border-radius: 2px;
+    line-height: 35px;
+    padding: 3px;
+}
+
+.li_uname {
+    font-size: 22px;
+}
+
+.li_time {
+    font-size: 15px;
+}
+
+.history_bottom {
+    position: absolute;
+    height: 50px;
+    font-size: 20px;
+    bottom: 0px;
+    width: 100%;
+}
+
+.history_bottom_btn {
+    color: #FFFFFF;
+    background-color: #124191;
+    position: absolute;
+    height: 30px;
+    border-radius: 4px;
+    padding: 13px 15px 0px 15px;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    box-shadow: 2px 2px 2px #888888;
+}
+
+.history_bottom_btn:hover {
+    background-color: #789;
+}
+
+.history_bottom_left {
+    left: 30%;
+}
+
+.history_bottom_right {
+    left: 50%;
+}
+
+
+.stable {
+    margin: 10px;
+    width: auto;
+    margin: 0px;
+    padding: 0px;
+    margin-right: 9px;
+    width: 4000px;
+    margin-bottom: 30px;
+    font-size: 16px;
+}
+
+.stable table td {
+    padding: 2px;
+}
+
+.str {
+    height: 30px;
+}
+
+.stc {
+    border: 1px solid black;
+}
+
+.stchide {
+    border: 1px solid black;
+    display: none;
+}
+
+.stitle {
+    height: 30px;
+}
+
+.stitle td {
+    width: 100%;
+    height: 30px;
+    color: #FFFFFF;
+    text-align: center;
+    background-color: #194A95;
+}
+
+.stitle td p {
+    margin: 0px 0px 0px 20px;
+    color: #FFFFFF;
+    font-size: 22px;
+    display: contents;
+}
+
+.summaryth {
+    background-color: #D0D9E9;
+    border: 1px solid black;
+}
+
+.summarythgrade {
+    background-color: #FFCC00;
+    border: 1px solid black;
+}
+
+.summarytable {
+    width: 2000px;
+}
+
+.summarytable table tr td {
+    border: 1px solid black;
+    padding: 2px;
+}
+
+.gradesubmit{
+    margin: 0px 0px 10px 10px;
+    background-color: #fff;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    color: #666;
+    font-size: 18px;
+    display: inline-block;
+    padding: 3px 14px;
+}
+
+

@@ -1,0 +1,177 @@
+{% extends "layout.html" %}
+{% block body %}
+    <style>
+        @keyframes mymove {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        .trSelected{
+            background-color: #FFFFCC;
+        }
+        #gictable {
+
+        }
+        #gictable tr:first-child {
+            font-size: 14px;
+        }
+        #gictable tr:first-child th {
+            padding: 0px 31px 0px 0px;
+        }
+    </style>
+    <div style="text-align:left;">
+        <div style="margin:-20px 20px 0px 10px;">
+            <h2>All Items: <b style="color:red;">{{ count }}</b>
+                <div style="text-align:right;">
+                    <a href="{{ url_for('displayAllGroupInCharge') }}" class="btn btn-large btn-primary">Display All</a>
+                    <a href="{{ url_for('InChargeGroupRegisterNew') }}" class="btn btn-large btn-primary">Add New
+                        InChargeGroupName</a>
+                    <a href="javascritp:void(0)" onclick="export_excel('')" class="btn btn-large btn-primary">Export</a>
+                    <a href="javascritp:void(0)" onclick="import_excel('')" class="btn btn-large btn-primary">Import
+                        From
+                        Excel</a>
+                </div>
+            </h2>
+        </div>
+        <div class="" style="margin: 10px 10px 0px 10px;overflow: auto;height: 610px;">
+            <table class="" id="gictable" style="background-color: #fff;border: none;border-collapse: collapse;border-spacing: 0pt 0pt;empty-cells: show;font-family: arial, verdana, sans-serif;font-size: 12px;margin: 0 0 20px 0;padding: 0;table-layout: auto;text-align: left;width: 100%;">
+                <tr style="border-top: 1px solid #CCCCCC;">
+                    <th>GIC_ID
+                    <th>InChargeGroupName
+                    <th>EmailServiceSubscribed
+                    <th>AssessorEmail
+                    <th>Labels
+                    <th>BusinessUnit
+                    <th>BusinessLine
+                    <th>ProductLine
+                    <th>RCACategory
+                    <th>EDACategory
+                    <th style="padding: 0px 200px 0px 0px;">RCAFilter
+                    <th>EDACreatingTime
+                    <th>JIRAProject
+                    <th>AddedBy
+                        {%- for todo in todos %}
+                            <tr class="{{ "success" if todo.done }}" style="border-top: 1px solid #CCCCCC;">
+                            <td><a href="/inchargegroups/{{ todo.id }}">{{ todo.id }}</a>
+                            <td>{{ todo.InChargeGroupName }}</td>
+                            <td>{{ todo.BG }}</td>
+                            <td>{{ todo.AssessorEmail }}</td>
+                            <td>{{ todo.Labels }}</td>
+                            <td>{{ todo.BusinessUnit }}</td>
+                            <td>{{ todo.BusinessLine }}</td>
+                            <td>{{ todo.ProductLine }}</td>
+                            <td>{{ todo.RCAEDACategory }}</td>
+                            <td>{{ todo.EdaCaseType }}</td>
+                            <td>{{ todo.RCAFilter }}</td>
+                            <td>{{ todo.EDACreatingTime }}</td>
+                            <td>{{ todo.JIRAProject }}</td>
+                            <td>{{ todo.AddedBy }}</td>
+                        {%- endfor %}
+            </table>
+        </div>
+        <div style="text-align:left;margin: 10px 20px 0px 10px">
+            <a href="{{ url_for('InChargeGroupRegisterNew') }}" class="btn btn-large btn-primary">Add New
+                InChargeGroupName</a>
+            <a href="javascritp:void(0)" onclick="export_excel('')" class="btn btn-large btn-primary">Export</a>
+            <a href="javascritp:void(0)" onclick="import_excel('')" class="btn btn-large btn-primary">Import From
+                Excel</a>
+        </div>
+    </div>
+    <a href="" style="display: none;" id="downexportfile"><p id="">xlsx</p></a>
+    <input style="display:none" type="file" id="FileUpload" value="Import From Excel" accept=".xlsx"
+           onchange="douploadfile()">
+    <script>
+        $("#downexportfile").find('p').click(function () {
+            window.location.href = $("#downexportfile").attr('href');
+        });
+
+        function openExportWind(){
+
+        }
+        $("#gictable").find('tr:gt(0)').click(function (){
+            var oclass = $(this).attr('class');
+            if(oclass == 'trSelected'){
+                $(this).removeClass('trSelected')
+            }else {
+                $(this).addClass('trSelected')
+            }
+        });
+        function export_excel() {
+            var selectedTrs = $("#gictable").find('tr.trSelected');
+            if(selectedTrs.size() <= 0 ){
+                alert('Please select items first.');
+                return;
+            }
+            var selectGicIDs = '';
+            for (var i = 0 ;i<selectedTrs.size();i++){
+                selectGicIDs += $(selectedTrs[i]).find('td:eq(0)').text().trim() + ',';
+            }
+            showloading();
+            $.ajax({
+                type: 'POST',
+                url: "/inchargegroup_exportexcel",
+                data: {
+                    'csrfmiddlewaretoken': '{{ csrf_token }}',
+                    'gicids':selectGicIDs
+                },
+                success: function (data) {
+                    if (data["result"] == 'success') {
+                        $("#downexportfile").attr('href', data["filepathabs"]);
+                        $("#downexportfile").find('p').trigger('click');
+                    } else {
+                        alert("Export error." + data["result"]);
+                    }
+                    hideloading();
+                }
+            });
+        };
+
+        function import_excel() {
+            $('#FileUpload').click();
+        }
+
+        function douploadfile() {
+            var fileObj = document.getElementById("FileUpload").files[0];
+            if (typeof (fileObj) == "undefined" || fileObj.size <= 0) {
+                alert("please choose a file.");
+                return;
+            }
+            var formFile = new FormData();
+            formFile.append("action", "UploadVMKImagePath");
+            formFile.append("file", fileObj);
+            showloading();
+            var data = formFile;
+            $.ajax({
+                url: "/inchargegroup_importexcel",
+                data: data,
+                type: "POST",
+                dataType: "json",
+                cache: false,
+                processData: false,
+                contentType: false,
+                success: function (result) {
+                    if (result['result'] == 'success') {
+                        alert('Import success.' + result['mes']);
+                        var obj = document.getElementById('FileUpload');
+                        obj.outerHTML = obj.outerHTML;
+                        window.location.reload();
+                    } else {
+                        alert("error. " + result['mes']);
+                        var obj = document.getElementById('FileUpload');
+                        obj.outerHTML = obj.outerHTML;
+                    }
+                    hideloading();
+                }
+            })
+        }
+
+        $(document).ready(function () {
+            $("#panelfoot").hide();
+            $("#main").height('700px');
+        });
+    </script>
+{% endblock %}
+

@@ -1,0 +1,359 @@
+{% extends "layout.html" %}
+{% block body %}
+<div style = "text-align:left;">	
+<div id="main" class="container">
+    <h2>{{headermessage}}: <b style="color:red;">{{count}}</b> 
+    <!---<div style = "text-align:center;">
+    <a href="{{url_for('rca_done')}}" class="btn btn-large btn-primary">RCA Done</a> 
+    <a href="{{url_for('rca_undone')}}" class="btn btn-large btn-primary">RCA Undone</a> 
+    <a href="{{url_for('rca_noneed')}}" class="btn btn-large btn-primary">RCA NoNeed</a> 
+    <a href="{{url_for('rca_home')}}" class="btn btn-large btn-primary">RCA All</a> 
+    <a href="{{url_for('rca_jira')}}" class="btn btn-large btn-primary">RCA OnJIRA</a> 
+    </div> --->
+    <div style = "text-align:right;"> <a href="{{url_for('toexcel')}}" class="btn btn-large btn-primary">Exmport to Excel</a>
+    </div> </h2> 
+    
+<form action="" method=post class="form-horizontal">
+<table>
+<tr><th><font color="red"><b>Search/Filter By Role</b><span style="color:red">*</span>:<th><input type="text" name="RoleName" id="t5" value ='{{RoleName}}' onFocus="showSelect5();" style=" width:185px; height:23px;">    
+<select name="sel5" id="sel5" style="display:none; width:199px;height:33px" onchange="document.getElementById('t5').value=this.value">  
+<option value='{{RoleName}}'>{{RoleName}}</option>
+<option value="TeamAssessor">TeamAssessor</option>
+<option value="ProntoFixer">ProntoFixer</option>
+<option value="All">All</option>
+</select> &nbsp <input name='button' class="btn btn-success" value='Display All Items' type='SUBMIT'>
+<tr>
+<th><font color="blue"><b>Search By Role Email</b><span style="color:red">*</span>:<th><input name='ApAssignedTo' id='ApAssignedTo' placeholder= "email: aa.bb@mm.nn"  type='TEXT' value ='{{ApAssignedTo}}'  style="width:185px;height:23px; background-color:#FFFFCC "> &nbsp <font color="blue"><b> IsRcaCompleted </b><span style="color:red">*</span>:&nbsp <input type="text" name="ApStatus" id="t8" value ='{{ApStatus}}' onFocus="showSelect8();" style="width:183px; height:23px;">    
+<select name="sel8" id="sel8" style="display:none; width:197px;height:33px" onchange="document.getElementById('t8').value=this.value">  
+<option value='{{ApStatus}}'>{{ApStatus}}</option> 
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+<option value="All">All</option>
+</select> &nbsp <input name='button' class="btn btn-success" value='Search' type='SUBMIT'>
+<br>
+<tr><th> &nbsp &nbsp &nbsp &nbsp <font color="green"><b>OR:</b>
+<tr><th><font color="black"><b>Filter By Team</b><span style="color:red">*</span>:<th><input type="text" name="groupName" id="t7" value ='{{groupName}}' onFocus="showSelect7();" style=" width:185px; height:23px;">    
+<select name="sel7" id="sel7" style="display:none; width:199px;height:33px" onchange="document.getElementById('t7').value=this.value">  
+<option value='{{groupName}}'>{{groupName}}</option>
+<option value="MyTribe">MyTribe</option>
+<option value="MySquad">MySquad</option>
+<option value="MySelf">MySelf</option>
+<option value="All">All</option>
+</select>
+&nbsp <font color="black"><b> IsRcaCompleted </b><span style="color:red">*</span>:&nbsp  <input type="text" name="apStatus1" id="t6" value ='{{apStatus1}}' onFocus="showSelect6();" style=" width:183px; height:23px">    
+<select name="sel6" id="sel6" style="display:none; width:197px;height:33px" onchange="document.getElementById('t6').value=this.value">  
+<option value='{{apStatus1}}'>{{apStatus1}}</option> 
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+<option value="All">All</option>
+</select> &nbsp <input name='button' class="btn btn-success" value='GoFilter' type='SUBMIT'>
+</tr>
+</table>
+</form>
+
+    <table class="table table-hover">
+      <tr>
+		<th>PRID
+        <th>PRTitle
+		<th>LTECategory
+        <th>PRReportedDate
+        <th>PRClosedDate
+        <th>PRRelease
+        <th>PRAttached
+        <th>IsRcaCompleted
+		<th>RootCause 
+		<th>TeamAssessor 
+        <th>FixedBy		
+        <th>LineManager
+      {%- for todo in todos %}
+      <tr class={{ "success" if todo.IsRcaCompleted == 'Yes' }}>
+        <td><a href="/todofa/{{todo.PRID}}">{{ todo.PRID }}</a>
+
+		<td style={{ "text-decoration:blink;color: grey" if todo.IsRcaCompleted=='Yes' }}>{{ todo.PRTitle}}
+		<td>{{ todo.LteCategory}}	
+        <td>{{ todo.PRReportedDate}}
+        <td>{{ todo.PRClosedDate}}
+        <td>{{ todo.PRRelease}}
+        <td>{{ todo.PRAttached}}
+        <td>{{ todo.IsRcaCompleted}}
+		<td>{{ todo.RootCause}}
+		<td>{{ todo.TeamAssessor}} 
+        <td>{{ todo.IntroducedBy}}		
+        <td>{{ todo.Handler}}</td>
+		
+      {%- endfor %}
+    </table>
+    <p>
+      <div style = "text-align:left;"> <a href="{{ url_for('new') }}" class="btn btn-large btn-primary">Add New Pronto </a> <a href="{{url_for('fromexcel')}}" class="btn btn-large btn-primary">Import from Excel</a>
+</div>
+  
+</div>
+
+
+<script type="text/javascript">
+//AJS.$("#select2-example").auiSelect2();
+
+$.get('/new').done(function (data) {
+	$('#PRTitle').val(data.title);
+})
+
+/*
+$(document).ready(function(){
+	$("input").focus(function(){       //获得焦点事件
+	   $("input").css("background-color","#FFFFCC");
+	});
+	$("input").blur(function(){        //失去焦点事件
+	   $("input").css("background-color","#D6D6FF");
+	});
+});
+*/
+
+     $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+
+
+$('#test1').blur(function(){
+	var parm = $('#test1').val().trim();
+	$.post("后台操作URL",{'val':parm},function(){
+		$('#test2').val(返回数据);
+	},返回数据类型);
+});
+/*
+function flaskcall(){
+        var strEmployeeNo = $('#PRID').val().trim();
+        $.ajax({
+            type: "post",
+          async: true,//表示异步执行；这里同步异步都是没有问题的，关于同步和异步自己目前还不是很清楚。
+            url: "/new12", //Controller中的方法名
+            data: { "PRID": strEmployeeNo },     //参数，从前台获取的教工号
+            success: function(data) {
+                $('#PRTitle').val(data.PRTitle);        //显示教师的名字，data为Json，里面只有教师名一个属性故可以直接使用。
+              //有时候我们需要将json转化成字符串，方法见文尾
+            },
+            error: function(err) {
+                alert("PRID Not exist,Please Check and re input!!");
+            }
+        });
+}
+
+*/
+//随教工号的变化得到相应的教师名称
+    $('#PRID').blur(function () {
+        var strEmployeeNo = $('#PRID').val().trim();
+        $.ajax({
+            type: "post",
+          async: true,//表示异步执行；这里同步异步都是没有问题的，关于同步和异步自己目前还不是很清楚。
+            url: "/loadProntoInfo", //Controller中的方法名
+            data: { "PRID": strEmployeeNo },     //参数，从前台获取的教工号
+            success: function(data) {
+                $('#PRTitle').val(data.title);  
+				$('#Severity').val(data.severity); 
+				$('#PRRelease').val(data.softwareRelease);  
+				$('#Feature').val(data.feature); 
+				$('#featureComment').val(data.featureComment);  
+				$('#PRAttached').val(data.problemReportIds); 
+				$('#Product').val(data.product);  
+				$('#GroupInCharge').val(data.groupIncharge); 
+				$('#FaultAnalysisId').val(data.faultAnalysisId); 
+                $('#AssignTo').val(data.AssessorEmail); 
+				$('#idDisplayAssignTo').val(data.displayName); 
+            },
+            error: function(err) {
+                alert("PRID Error");
+            }
+        });
+});
+/*
+    $('#GroupInCharge').blur(function () {
+        var strEmployeeNo = $('#GroupInCharge').val().trim();
+        $.ajax({
+            type: "post",
+          async: true,//表示异步执行；这里同步异步都是没有问题的，关于同步和异步自己目前还不是很清楚。
+            url: "/loadAssigneeInfo1", //Controller中的方法名
+            data: { "GroupInCharge": strEmployeeNo },     //参数，从前台获取的教工号
+            success: function(data) {
+                $('#AssignTo').val(data.AssignTo);        //显示教师的名字，data为Json，里面只有教师名一个属性故可以直接使用。
+              //有时候我们需要将json转化成字符串，方法见文尾
+            },
+            error: function(err) {
+                alert("Email Error");
+            }
+        });
+});
+*/
+    $('#AssignTo').blur(function () {
+        var strEmployeeNo = $('#AssignTo').val().trim();
+        $.ajax({
+            type: "post",
+          async: true,//表示异步执行；这里同步异步都是没有问题的，关于同步和异步自己目前还不是很清楚。
+            url: "/loadAssigneeInfo", //Controller中的方法名
+            data: { "AssignTo": strEmployeeNo },     //参数，从前台获取的教工号
+            success: function(data) {
+                $('#idDisplayAssignTo').val(data.AssignTo);        //显示教师的名字，data为Json，里面只有教师名一个属性故可以直接使用。
+              //有时候我们需要将json转化成字符串，方法见文尾
+            },
+            error: function(err) {
+                alert("Email Error");
+            }
+        });
+});
+
+$('#CourseCode').blur(function() {
+        var jsonStr = "";
+        var strCourseCode = $('#CourseCode').val().trim();
+       $.post("/OnClass/QueryCourseNameByCourseCode", { 'strCourseCode': strCourseCode }, function (data) {
+            $('#CourseName').val(data);
+        });
+});
+
+
+
+function showSelect(){  
+   var _t = document.getElementById('t');  
+   var _s = document.getElementById('sel');  
+   if( _t.style.display == ''){  
+       _t.style.display = 'none';  
+   }  
+   else{  
+       _t.style.display = '';  
+    }  
+   if ( _s.style.display == 'none' ){  
+        _s.style.display = '';  
+    }  
+    else{  
+        _s.style.display = 'none';  
+    }  
+}  
+function showSelect1(){  
+   var _t1 = document.getElementById('t1');  
+   var _s1 = document.getElementById('sel1');  
+   if( _t1.style.display == ''){  
+       _t1.style.display = 'none';  
+   }  
+   else{  
+       _t1.style.display = '';  
+    }  
+   if ( _s1.style.display == 'none' ){  
+        _s1.style.display = '';  
+    }  
+    else{  
+        _s1.style.display = 'none';  
+    }  
+} 
+function showSelect2(){  
+   var _t2 = document.getElementById('t2');  
+   var _s2 = document.getElementById('sel2');  
+   if( _t2.style.display == ''){  
+       _t2.style.display = 'none';  
+   }  
+   else{  
+       _t2.style.display = '';  
+    }  
+   if ( _s2.style.display == 'none' ){  
+        _s2.style.display = '';  
+    }  
+    else{  
+        _s2.style.display = 'none';  
+    }  
+} 
+function showSelect3(){  
+   var _t3 = document.getElementById('t3');  
+   var _s3 = document.getElementById('sel3');  
+   if( _t3.style.display == ''){  
+       _t3.style.display = 'none';  
+   }  
+   else{  
+       _t3.style.display = '';  
+    }  
+   if ( _s3.style.display == 'none' ){  
+        _s3.style.display = '';  
+    }  
+    else{  
+        _s3.style.display = 'none';  
+    }  
+} 
+
+function showSelect4(){  
+   var _t4 = document.getElementById('t4');  
+   var _s4 = document.getElementById('sel4');  
+   if( _t4.style.display == ''){  
+       _t4.style.display = 'none';  
+   }  
+   else{  
+       _t4.style.display = '';  
+    }  
+   if ( _s4.style.display == 'none' ){  
+        _s4.style.display = '';  
+    }  
+    else{  
+        _s4.style.display = 'none';  
+    }  
+}
+function showSelect5(){  
+   var _t5 = document.getElementById('t5');  
+   var _s5 = document.getElementById('sel5');  
+   if( _t5.style.display == ''){  
+       _t5.style.display = 'none';  
+   }  
+   else{  
+       _t5.style.display = '';  
+    }  
+   if ( _s5.style.display == 'none' ){  
+        _s5.style.display = '';  
+    }  
+    else{  
+        _s5.style.display = 'none';  
+    }  
+}
+
+function showSelect6(){  
+   var _t6 = document.getElementById('t6');  
+   var _s6 = document.getElementById('sel6');  
+   if( _t6.style.display == ''){  
+       _t6.style.display = 'none';  
+   }  
+   else{  
+       _t6.style.display = '';  
+    }  
+   if ( _s6.style.display == 'none' ){  
+        _s6.style.display = '';  
+    }  
+    else{  
+        _s6.style.display = 'none';  
+    }  
+}
+
+function showSelect7(){  
+   var _t7 = document.getElementById('t7');  
+   var _s7 = document.getElementById('sel7');  
+   if( _t7.style.display == ''){  
+       _t7.style.display = 'none';  
+   }  
+   else{  
+       _t7.style.display = '';  
+    }  
+   if ( _s7.style.display == 'none' ){  
+        _s7.style.display = '';  
+    }  
+    else{  
+        _s7.style.display = 'none';  
+    }  
+}
+
+function showSelect8(){  
+   var _t8 = document.getElementById('t8');  
+   var _s8 = document.getElementById('sel8');  
+   if( _t8.style.display == ''){  
+       _t8.style.display = 'none';  
+   }  
+   else{  
+       _t8.style.display = '';  
+    }  
+   if ( _s8.style.display == 'none' ){  
+        _s8.style.display = '';  
+    }  
+    else{  
+        _s8.style.display = 'none';  
+    }  
+}
+</script>
+{% endblock %}

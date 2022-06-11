@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block body %}
+<div style = "text-align:left;">	
+<div id="   " class="container">
+    <h2>{{headermessage}}: <b style="color:red;">{{count}}</b>
+	<!---<div style = "text-align:right;"> <a href="{{url_for('displayall')}}" class="btn btn-large btn-primary">Display All</a></div>--->
+	</h2> 
+    <table class="table table-hover">
+      <tr>
+		<th>Item
+		<th>PRID
+		<th>JiraIssueId
+		<th>TaskType
+		<th>Status
+		<th>IsOverDue
+        <th>OpenDays
+		<th>CreatedDate
+		<th>ResolutionDate
+		<th>OverDueReason
+	 
+      {%- for todo in todos%}
+	  <tr>
+      <tr class={{ "error" if todo.JiraIssueParentOverDue=='Yes' else "success" }}>
+        <td>{{loop.index}}
+		<td>{{todo.PRID}}
+		<td><a href="https://jiradc.int.net.nokia.com/browse/{{todo.JiraIssueParentTaskId}}">{{todo.JiraIssueParentTaskId}}
+		<td>5WhyRca		
+		<td>{{todo.JiraIssueParentStatus}}	
+		<td style={{"text-decoration:blink;color:black;background-color:red;" if todo.JiraIssueParentOverDue=='Yes' else "text-decoration:blink;color:black;background-color:green;"}}>{{todo.JiraIssueParentOverDue}} 			
+		<td>{{todo.JiraIssueParentOpenDays}} 
+		<td>{{todo.JiraIssueParentCreatedDate}} 		
+		<td>{{todo.JiraIssueParentResolutionDate}}
+		<td>{{todo.JiraIssueParentOverDueReason}}
+      {%- endfor %}
+    </table>
+    <p>
+  
+</div>
+{% endblock %}

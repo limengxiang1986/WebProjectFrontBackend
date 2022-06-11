@@ -1,0 +1,27 @@
+h1 {
+    font-size: 24px;
+    text-align: center;
+    font-style: italic;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+span {
+    display: block;
+}
+
+.pageNotFoundContainer {
+    height: 100%;
+    width: 100%;
+}
+
+.pageNotFoundContainerText {
+    border: rgb(18,65,145) 10px solid;
+    border-radius: 50px;
+    width: 800px;
+    padding: 25px;
+    vertical-align: center;
+    margin: 50px auto;
+}

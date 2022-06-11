@@ -1,0 +1,129 @@
+.ant-layout-sider-children,.ant-layout-content,.site-layout{
+    height: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .sider{
+    background-color: #fff !important;
+  }
+  .sider-button{
+    display: flex;
+      justify-content: space-evenly; /* 水平均匀分布 */
+      align-items: center; /* 垂直居中 */
+      flex-direction: column;
+    height: 200px;
+    /* background-color: red; */
+    margin-top: 80px;
+  }
+  .sider-select{
+    text-align: center;
+    margin-top: 50px;
+    height: 200px;
+    width: 100%;
+    /* background-color: red; */
+  }
+  .select_1{
+    height: 0 !important;
+  }
+  .select_2{
+    height: 0 !important;
+    margin-top: 100px;
+  }
+  .content{
+    /* margin-top: 30px !important ; */
+    background-color: #fff;
+  }
+  .ant-tabs{
+    margin-top: 30px !important;
+    margin-left: 20px !important;
+    height: 100%;
+    background-color: #fff !important;
+    
+  }
+  .ant-layout-content{
+    background-color: #fff !important;
+  
+  }
+  .ant-tabs-content{
+    height: 100% !important;
+  }
+  .TabPane-content{
+    width: 100% !important;
+    height: 100% !important;
+    /* display: flex; */
+              /* flex-direction: column; */
+  }
+  .Tag-content{
+    border-bottom: 4px solid black;
+  }
+  .Table-content{
+    margin-top: 20px;
+    width: 100%;
+    overflow: auto;
+    height: 100%;
+  }
+  .ant-tag{
+    /* height: 50px; */
+    width: 80px;
+    line-height:  30px !important;
+    text-align: center;
+    margin-right: 3px !important;
+    margin-bottom: 20px !important;
+    padding: 0;
+  }
+  .ant-table-cell{
+    /* text-align: center; */
+    min-width: 200px !important;
+    /* background-color: red  !important; */
+    border: 2px solid black;
+  }
+  .ant-table-thead>tr>th{
+    text-align: center !important;
+    margin: 0;
+    padding: 0 !important;
+  }
+  /* RCA_Facts样式 */
+  .RCAFacts_header{
+    margin-bottom: 5px;
+  }
+  .title_top{
+    text-align: center;
+    background-color: rgb(101, 169, 238);
+    /* border: 1px solid black; */
+  }
+  .title_content{
+    padding: 1px;
+    margin: auto;
+  }
+  .main_content{
+      padding: 1px;
+     margin: auto;
+     
+  }
+  .aside_title{
+    text-align: center;
+    background-color: rgb(101, 169, 238);
+    /* border: 1px solid black; */
+  }
+  .ant-col{
+    border: 1px solid black;
+    /* border-top: 1px solid black; */
+  }
+  .ant-form-item{
+    margin: 0 !important;
+  }
+  .RCA_box{
+    width: 100%;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    /* background-color: red; */
+    /* display:flex */
+  }
+  .tiltle_th{
+    width: 280px;
+    background-color: red;
+  }
+  
+  
+  
+  

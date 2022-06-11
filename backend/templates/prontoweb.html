@@ -1,0 +1,179 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<style>
+.table {
+table-layout:fixed;
+width: 150%;
+}
+
+table th,table td {
+font-weight: normal;
+max-height: 42px;
+padding: 1px;
+text-overflow:ellipsis;
+overflow:hidden;
+white-space: nowrap;
+}
+
+table .td-content {
+display: block;
+max-height: 42px;
+overflow: hidden;
+}
+
+
+</style>
+<div style="text-align:left;padding: 0px 50px 0px 50px;">
+
+        <h2>All APs: <b style="color:red;">{{count}} </b></h2>
+        <form action="" method="post" class="form-horizontal">
+            <table>
+                <tr>
+                    <th><font color="black"><b> pronto_id </b></font><span style="color:red">*</span>:&nbsp;
+                        <input
+                                type="text" name="case_number" id="t8" value='{{case_number}}'
+                                style="width:183px; height:23px;"></th>
+                    <th><font color="black"><b>product</b></font><span style="color:red">*</span>:&nbsp;
+                        <input type="text" name="product" id="t7" value='{{product}}'
+                               style=" width:185px; height:23px;">
+                        &nbsp <input name='button' class="btn btn-success" value='Search' type='SUBMIT' id="queryid">
+                        <br></th>
+                </tr>
+            </table>
+        </form>
+        <table class="table table-hover">
+            <tr>
+                <th width="100">pronto_id</th>
+                <!--<th width="200">Case_Number</th>-->
+                <th width="100">Product</th>
+                <th width="200">Abstract_Headline</th>
+                <th width="200">Assessors</th>
+                <th width="200">Quality_Reviewer</th>
+                <th width="200">Actions</th>
+            </tr>
+            {%- for todo in rcaedas %}
+            <tr class={{
+            "success" if todo.IsApCompleted == 'Yes' }}>
+            <td><a href="javascript:void(0)" onclick="viewpr('{{todo.pronto_id}}')">{{ todo.pronto_id }}</a></td>
+            <!--<td title="{{ todo.case_number }}">{{ todo.case_number }}</td>-->
+            <td title="{{ todo.product }}">{{ todo.product }}</td>
+            <td title="{{ todo.abstract_headline }}">{{ todo.abstract_headline }}</td>
+            <td title="{{ todo.assessors }}">{{ todo.assessors }}</td>
+            <td title="{{ todo.quality_reviewer }}">{{ todo.quality_reviewer }}</td>
+            <td><a
+                    href="javascript:void(0)" onclick="modifypr('{{todo.pronto_id}}')">modify</a>&nbsp;&nbsp;<a href="javascript:void(0);"
+                                                                              onclick="export_excel('{{ todo.pronto_id }}')">exportexcel</a>&nbsp;&nbsp;
+                <a href="javascript:void(0);" onclick="deletePr('{{ todo.pronto_id }}')">delete</a>
+            </td>
+            </tr>
+            <!--<td>{{ todo.entity_json}}-->
+            {%- endfor %}
+        </table>
+        <p>
+        <div style="text-align:left;">
+            <a href="/prontoweb_add"
+                                         class="btn btn-large btn-primary">Add New AP </a>
+            <a href="javascript:void(0);" onclick="importexcel()" class="btn btn-large btn-primary">Import From Excel</a>
+            <input style="display:none" type="file" id="FileUpload"  value="Import From Excel" accept=".xlsx" onchange="douploadfile()">
+        </div>
+    </div>
+    <script language="JavaScript">
+    function viewpr(pr){
+        window.open("/prontoweb_view/"+pr);
+    }
+    function modifypr(pr){
+        window.open("/prontoweb_modify/"+pr);
+    }
+function  deletePr(pronto_id){
+    var r = confirm("Do you confirm to delete?");
+    if(r==true){
+        $.ajax({
+            type: 'POST',
+            url: "/prontoweb/prontoweb_delete",
+            data: {
+                'csrfmiddlewaretoken': '{{ csrf_token }}',
+                'pronto_id':pronto_id
+            },
+            success: function (data) {
+                if(data["result"] == 'success'){
+                    alert('success deleted');
+                    $('#queryid').click();
+                } else {
+                    alert("error." + data["result"] );
+                }
+            }
+        });
+    }
+};
+function  export_excel(pronto_id){
+    $.ajax({
+        type: 'POST',
+        url: "/prontoweb/prontoweb_exportexcel",
+        data: {
+            'csrfmiddlewaretoken': '{{ csrf_token }}',
+            'pronto_id':pronto_id
+        },
+        success: function (data) {
+            if(data["result"] == 'success'){
+                window.location.href = data["filepath"];
+            } else {
+                alert("Export error." + data["result"] );
+            }
+        }
+    });
+};
+
+function importexcel(){
+    $('#FileUpload').click();
+}
+
+function douploadfile(){
+   var fileObj = document.getElementById("FileUpload").files[0];
+   if (typeof (fileObj) == "undefined" || fileObj.size <= 0) {
+       alert("please choose a file.");
+       return;
+   }
+   var formFile = new FormData();
+   formFile.append("action", "UploadVMKImagePath");
+   formFile.append("file", fileObj);
+
+   var data = formFile;
+   $.ajax({
+       url: "/prontoweb/upload_xls_for_pronto",
+       data: data,
+       type: "POST",
+       dataType: "json",
+       cache: false,
+       processData: false,
+       contentType: false,
+       success: function (result) {
+           if(result['result']=='success'){
+               var jstr = result["fddrcajsonstr"]
+               var acttype = result["acttype"]
+               var form = $("<form method='post'></form>");
+               form.attr({ "action": '/prontoweb_modify_fromexcel/' });
+               var input = $("<input type='hidden'>");
+               input.attr({"name": 'fddrcajsonstr',"id":'fddrcajsonstr' });
+               input.val(jstr);
+               form.append(input);
+               var input2 = $("<input type='hidden'>");
+               input2.attr({"name": 'acttype',"id":'acttype' });
+               input2.val(acttype);
+               form.append(input2);
+               $("body").append(form);
+               form.submit();
+               form.remove();
+           } else {
+               alert("error. " + result['mes']);
+               var obj = document.getElementById('FileUpload') ;
+               obj.outerHTML=obj.outerHTML;
+           }
+
+       }
+   })
+}
+    </script>
+
+    {% endblock %}

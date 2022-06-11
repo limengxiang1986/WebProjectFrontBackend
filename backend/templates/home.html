@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block body %}
+    <br>
+    <br>
+    <div style="text-align:center;"><a href="{{ url_for('rcaeda_home') }}" class="btn btn-large btn-primary">Tribe
+        Lead
+        Audit tracking
+    </a>
+    </div>
+    <hr>
+    <div style="text-align:center;"><a href="{{ url_for('squadGroupAssessorIndex') }}"
+                                       class="btn btn-large btn-primary">Squad Group RcaEdaAssessor
+    </a>
+    </div>
+    <!--<div style = "text-align:center;"> <a href="{{url_for('rca_home')}}" class="btn btn-large btn-primary">Light RCA Status Tracking</a> </h2>-->
+    <hr>
+    <div style="text-align:center;"><a href="{{ url_for('ap_home') }}" class="btn btn-large btn-primary">RCA/EDA AP
+        Status Tracking
+    </a>
+    </div>
+    <hr>
+    <div style="text-align:center;"><a href="{{ url_for('customer_home') }}" class="btn btn-large btn-primary">JIRA
+        Customer RCA/EDA Status Tracking
+    </a>
+    </div>
+    <hr>
+
+    <div style="text-align:center;"><a href="{{ url_for('longcycletimerca_home') }}" class="btn btn-large btn-primary">
+        Internal
+            LongCycleTime RCA Status Tracking
+    </a>
+    </div>
+{% endblock %}
+

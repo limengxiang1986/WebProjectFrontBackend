@@ -1,0 +1,48 @@
+/*Why Tree comments module styles: */
+
+.whyTreeCommentSectionModule .commentsButton {
+    background-color: green;
+    border-radius: 18px;
+    border: #006c00 1px solid;
+    color: white;
+    padding: 3px 85px 3px 85px;
+    font-weight: 600;
+    display: block;
+    height: 30px;
+    margin-top: 25px;
+    margin-right: auto;
+    margin-left: auto;
+    font-size: 14px;
+    justify-content: center;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.whyTreeCommentSectionModule .commentsButton:hover {
+    background-color: white;
+    color: black;
+    border: #006c00 1px solid;
+}
+
+.whyTreeCommentSectionModule .emptyCommentListText {
+    text-align: center;
+    font-weight: 600;
+    font-size: 18px;
+    margin: 25px auto;
+}
+
+.whyTreeCommentSectionModule .notAnswered {
+    color: red !important;
+}
+
+.whyTreeCommentSectionModule .notActiveCommentSection {
+    pointer-events: none !important;
+}
+
+.whyTreeCommentSectionModule .commentSectionAlertMessage {
+    font-size: 18px;
+    height: 18px;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    margin-bottom: 20px
+}

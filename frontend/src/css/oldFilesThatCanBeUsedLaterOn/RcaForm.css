@@ -1,0 +1,111 @@
+.rootCauseAnalysis {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    /*grid-row-gap: 25px;*/
+    width: 100%;
+}
+
+#rootCauseAnalysisHeader {
+    grid-row: 1;
+    grid-column: 2/4;
+
+}
+
+#whyContainer {
+    grid-column: 2/9;
+    border: black 4px solid;
+    border-radius: 10px;
+    padding: 50px;
+    display: grid;
+    grid-row-gap: 20px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    background-color: rgb(18,65,145);
+}
+
+#firstWhy {
+    grid-row: 1;
+    grid-column: 1/6;
+    border: black 2px solid;
+    background-color: white;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+
+}
+
+#firstWhyHeader {
+    grid-row: 1;
+    grid-column: 1/5;
+}
+
+#firstWhyText {
+    grid-row: 2;
+    grid-column: 1/5;
+}
+
+#secondWhy {
+    grid-row: 3;
+    grid-column: 1/6;
+    border: black 2px solid;
+    background-color: white;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+#secondWhyHeader {
+    grid-row: 1;
+    grid-column: 1/5;
+}
+
+#secondWhyText {
+    grid-row: 2;
+    grid-column: 1/5;
+}
+
+.editButton {
+    grid-column: 5;
+    grid-row: 1;
+    justify-content: center;
+    width: 100%;
+    color: white !important;
+    background-color: rgb(0,201,255) !important;
+    border-color: rgb(18, 116, 149) !important;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.editButton:hover {
+    color: black !important;
+    background-color: white !important;
+    border-color: green !important;
+    border-width: 2px;
+    padding: 0 !important;
+}
+
+#nextBtn {
+    grid-row: 3;
+    grid-column: 4/7;
+    width: 100%;
+    padding-top: 25px;
+}
+
+#nextButton1 {
+    justify-content: center;
+    width: 100%;
+    color: white !important;
+    background-color: rgb(0,201,255) !important;
+    border-color: rgb(18, 116, 149) !important;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+#nextButton1:hover {
+    color: black !important;
+    background-color: white !important;
+    border-color: green !important;
+    border-width: 2px;
+    padding: 0 !important;
+}
+
+.boldText {
+    font-weight: bold;
+}

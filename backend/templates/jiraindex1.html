@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+{% block body %}
+<div style = "text-align:left;">
+<div class="" style="margin-left: 100px;">
+    <h2>{{headermessage}}: <b style="color:red;">{{count}}</b>
+	<div style = "text-align:right;"> <a href="{{url_for('displayall1')}}" class="btn btn-large btn-primary">Display All</a></div>
+    <!--
+        <form action="" method="post" class="form-horizontal">
+        <table>
+            <tr>
+                <th><font color="black"><b> Tribe </b></font>:&nbsp;
+                    <input
+                            type="text" name="Tribe" id="Tribe" value='{{case_number}}'
+                            style="width:183px; height:23px;">
+                <input name='button' class="btn btn-success" value='Search' type='SUBMIT' id="queryid">
+                </th>
+            </tr>
+        </table>
+    </form>
+    -->
+	</h2> 
+    <table class="table table-hover">
+      <tr>
+		<th>PRID
+        <th>PRTitle
+		<th>PRSeverity
+		<th>JiraIssueId
+        <th>PRAttached
+		<th>JiraIssueType
+		<th>JiraIssueStatus
+		<th>JiraIssueOverDue
+		<th>JiraIssueOpenDays
+        <th>JiraIssueDueDate
+        <th>JiraIssueAssignee
+		<th>PRRcaEdaAssessor
+        <th>JiraIssueAssigneeSquadGroupLead	
+ 
+      {%- for todo in todos %}
+      <tr style={{"text-decoration:blink;color:black;background-color:#f2dede;" if todo.JiraIssueOverDue=='Yes' else "text-decoration:blink;color:black;background-color:#dff0d8;"}}>
+		<td><a href="/prontoweb_modify_fromexcelbyprid/{{ todo.PRID }},{{ todo.JiraIssueId}},3">{{ todo.PRID }}</a>   <!--/todos/{{todo.PRID}}-->
+		<td>{{ todo.PRTitle}}
+		<td>{{ todo.PRSeverity}}
+		<td><a href="https://jiradc.int.net.nokia.com/browse/{{todo.JiraIssueId}}">{{ todo.JiraIssueId}}</a>
+        <td>{{ todo.PRAttached}}
+        <td>{{ todo.JiraIssueType}}
+		<td>{{ todo.JiraIssueStatus}}
+        <td style={{"text-decoration:blink;color:black;background-color:red;" if todo.JiraIssueOverDue=='Yes' else "text-decoration:blink;color:black;background-color:green;"}}>{{todo.JiraIssueOverDue}}
+        <td>{{ todo.JiraIssueOpenDays}}
+        <td>{{ todo.JiraIssueDueDate}}
+        <td>{{ todo.JiraIssueAssignee}}
+        <td>{{ todo.PRRcaEdaAssessor}}
+        <td>{{ todo.JiraIssueAssigneeSquadGroupLead}}</td>
+
+      {%- endfor %}
+    </table>
+    <p>
+<div style = "text-align:left;"> <a href="{{ url_for('jiranew') }}" class="btn btn-large btn-primary">Create New JIRA RCA/EDA Task </a>
+<!---	  <a href="{{url_for('fromexcel')}}" class="btn btn-large btn-primary">Import from Excel</a> --->
+</div>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,66 @@
+
+.CollapseHeader {
+    border: none;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 8px 20px;
+    position: relative;
+    width: 100%;
+    text-align: left;
+    background: ghostwhite;
+    font-family: inherit;
+    outline: none;
+    cursor: pointer;
+
+    transition: 260ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.CollapseHeader:hover {
+    background-color: #e7e7e7;
+}
+
+.CollapseHeader div {
+    flex: 1;
+}
+
+.CollapseHeader .firstHeading {
+    display: block;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.CollapseHeader .secondHeading {
+    display: block;
+    font-weight: 400;
+    margin-top: 2px;
+    line-height: 1.1;
+    font-size: 14px;
+}
+
+.arrow_is_open + .arrow_is_closed {
+    margin-top: 10px;
+}
+
+.CollapseHeader .arrow_is_open {
+    transform: rotate(0deg);
+}
+
+.CollapseHeader .arrow_is_closed {
+    transform: rotate(180deg);
+}
+
+
+.Collapse {
+    margin-bottom: 10px;
+}
+
+.collapse_divider {
+    position: absolute;
+    top: 0px;
+    height: 1px;
+    left: 10px;
+    right: 10px;
+    border-top: 1px #214191 solid;
+    transition: 260ms;
+}

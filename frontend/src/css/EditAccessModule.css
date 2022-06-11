@@ -1,0 +1,73 @@
+.editAccessModule {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.editAccessModule .statusAlert {
+    position: fixed;
+    top: 35%;
+    left: 25%;
+    width: 50%;
+}
+
+.editAccessModule .btn {
+    color: white !important;
+    border-width: 1px;
+    border-radius: 18px;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+    width: 150px;
+    padding: 0;
+    height: 30px;
+    display: block;
+    font-weight: 600;
+    margin: 7px auto 15px auto;
+}
+
+.editAccessModule .btn.revokeAccess {
+    background-color: rgb(189, 4, 4) !important;
+    border-color: rgb(238, 0, 41) !important;
+}
+
+.editAccessModule .btn.gainAccess {
+    background-color: rgb(16, 189, 4) !important;
+    border-color: rgb(60, 238, 0) !important;
+}
+
+.editAccessModule .btn:hover {
+    color: black !important;
+    background-color: white !important;
+    border-color: rgb(8, 41, 103) !important;
+    cursor: pointer;
+}
+
+.editAccessModule .editor {
+    color: red;
+    margin: 0px;
+    font-size: 18px;
+}
+
+.editAccessModule .editor span {
+    font-size: 16px;
+}
+
+.editAccessModule .editor>span {
+    display: block;
+}
+
+.editAccessModule .editor .editorMobile {
+    padding-left: 25px;
+}
+
+.editAccessModule .editor .icon {
+    margin-bottom: -6px;
+}
+
+.editAccessModule .editor a {
+    color: #214191 !important;
+}
+
+.editAccessModule .editor a:hover {
+    color: #ff3131 !important;
+}

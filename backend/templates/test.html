@@ -1,0 +1,542 @@
+<!doctype html>
+<title>MN RCA/EDA Status Tracking System -- Tracking RCA/EDA status </title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+<meta charset="utf-8">
+<script src="/static/js/jquery.js"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="/static/js/bootstrap.js"></script>
+<!-- Bootstrap 3.3.6 -->
+<link href="/static/css/bootstrap.css" rel="stylesheet">
+<!-- BootstrapDialog -->
+<link href="/static/css/bootstrap-dialog.min.css" rel="stylesheet" type="text/css"/>
+<script src="/static/js/bootstrap-dialog.min.js"></script>
+
+<!-- React -->
+<script src="/static/js/react.min.js"></script>
+<script src="/static/js/react-dom.min.js"></script>
+<script src="/static/js/axios.js"></script>
+<script src="/static/js/babel.min.js"></script>
+<style>
+    .auto-complete {
+        width: 200px;
+    }
+
+    .auto-complete input {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .auto-complete > div {
+        display: none;
+        padding-top: 10px;
+    }
+
+    .auto-complete > div.open {
+        display: block;
+    }
+
+    .auto-complete > div ul {
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+        border: 1px solid #ccc;
+    }
+
+    .auto-complete > div ul li {
+        height: 30px;
+        line-height: 30px;
+        border-bottom: 1px solid #ccc;
+        padding-left: 10px;
+    }
+
+    .auto-complete > div ul li:hover {
+        background-color: #eaeaea;
+        cursor: pointer;
+    }
+
+    .auto-complete > div ul li:last-child {
+        border-bottom: none;
+    }
+</style>
+<bod>
+      
+      
+      
+      
+    <div id="textbox">textbox</div>
+    <div id="versionhistorydiv"></div>
+
+    autocomplete:
+    <div id="calculate"></div>
+      
+      
+    <div id="autocomplete"></div>
+      
+      
+
+      
+</bod>
+<script type="text/javascript">
+
+    const CURRENTPRID = '01309318';
+</script>
+<script type="text/babel">
+
+    class VersionSummary extends React.Component {
+        constructor(props) {
+            super(props);
+        }
+
+        renderTr(tro){
+            return (
+                tro.map((tr, rindex) =>
+                    {return tr.rootcause === '' ? '' :
+                        <tr className="str" key={rindex} >
+                            <td className="stc">{tr.why1}</td>
+                            <td className="stc">{tr.why2}</td>
+                            <td className="stc">{tr.why3}</td>
+                            <td className="stc">{tr.why4}</td>
+                            <td className="stc">{tr.why5}</td>
+                            <td className="stc">{tr.rootcause}</td>
+                            <td className="stc">{tr.actionproposal.text}</td>
+                            <td className="stc">{tr.root_cause_category.text}</td>
+                            <td className="stc">{tr.root_cause_subcategory.text}</td>
+                            <td className="stc">{tr.rca_action_type.text}</td>
+                            <td className="stc">{tr.assigned_to}</td>
+                            <td className="stc">{tr.completion_target_date}</td>
+                            <td className="stc">{tr.grading}</td>
+                            <td className="stc"></td>
+                        </tr>
+                    }
+                )
+            );
+        }
+        renderTr2(tro,hasdefect){
+            return (
+                tro.map((tr, rindex) =>
+                    {return tr.escape_cause === '' ? '' :
+                        <tr className="str" key={rindex} >
+                            <td className="stc">{tr.why1}</td>
+                            <td className="stc">{tr.why2}</td>
+                            <td className="stc">{tr.why3}</td>
+                            <td className="stc">{tr.why4}</td>
+                            <td className="stc">{tr.why5}</td>
+                            <td className="stc">{tr.escape_cause}</td>
+                            <td className="stc">{tr.actionproposal.text}</td>
+                            <td className="stc">{tr.escape_cause_category.text}</td>
+                            <td className="stc">{tr.escape_cause_subcategory.text}</td>
+                            <td className="stc">{tr.eda_action_type.text}</td>
+                            <td className="stc">{tr.assigned_to}</td>
+                            <td className="stc">{tr.completion_target_date}</td>
+                            <td className="stc">{hasdefect ? tr.where_could_defect_have_been_detected.text : tr.grading}</td>
+                            <td className="stc">{hasdefect ? tr.grading : ''}</td>
+                        </tr>
+                    }
+                )
+            );
+        }
+
+        render() {
+            if(this.props.jsoncontent === ''){
+                return <div></div>;
+            }
+            const jsonobj = $.parseJSON(this.props.jsoncontent);
+            const returnobj = (
+                <div>
+                    <div className="summarytable">
+                        <table>
+                            <tr className="stitle"><td colSpan='5'><p >Facts</p></td></tr>
+                            <tr >
+                                <td className="summaryth">Case Number</td>
+                                <td className="summaryth">Product</td>
+                                <td className="summaryth">Abstract Headline</td>
+                                <td className="summaryth">Assessors</td>
+                                <td className="summaryth">Quality Reviewer</td>
+                            </tr>
+                            <tr>
+                                <td >{jsonobj.rcaformbase.case_number}</td>
+                                <td >{jsonobj.rcaformbase.product}</td>
+                                <td >{jsonobj.rcaformbase.abstract_headline} </td>
+                                <td >{jsonobj.rcaformbase.assessors}</td>
+                                <td >{jsonobj.rcaformbase.quality_reviewer}</td>
+                            </tr>
+                            <tr class="btnpanel">
+                                <td colSpan="2" className="summaryth">Gather Facts</td>
+                                <td colSpan="3" className="summaryth">Facts</td>
+                            </tr>
+                            <tr>
+                                <td colSpan="2"><font>1. Issue Description</font>
+                                    What was the problem from the customer's or tester’s viewpoint?
+                                    What was wrong or not working?
+                                </td>
+                                <td colSpan="3">
+                                    {jsonobj.rcaformbase.issue_description}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colSpan="2"><font fontSize="2px">2. Triggering scenario</font>
+                                    What sequence of events is needed to observe the fault?
+                                    What environment (e.g. HW/SW configuration) should be used?
+                                    What constraints should be satisfied?
+                                    Where and how was the issue actually found?
+                                    Repeatability
+                                </td>
+                                <td colSpan="3" id="triggering_scenario_summary">
+                                    {jsonobj.rcaformbase.triggering_scenario}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colSpan="2"><font color="#FF0000" >Triggering scenario category: select appropriate item from the
+                                    list</font>
+                                </td>
+                                <td colSpan="3" >{jsonobj.rcaformbase.triggering_scenario_category.text}</td>
+                            </tr>
+                            <tr>
+                                <td colSpan="2"><font size="2px" >3.Code Deficiency: What was wrong in the source code?</font>
+                                    Short technical description like
+                                    *variable was overwritten due to queue overflow --> The check for queue size was wrong - did allow
+                                    more
+                                    entries than actually fit into the queue
+                                    “name of non-existing file was sent to iOMS” --> “No check for file creation operation success
+                                    was
+                                    performed”
+                                </td>
+                                <td colSpan="3" id="code_deficienc_summary">{jsonobj.rcaformbase.code_deficienc}</td>
+                            </tr>
+                            <tr>
+                                <td colSpan="2"><font size="2px" >4. Correction Description: How the code was changed to fix the
+                                    issue?</font>
+                                    Just a short technical description:
+                                    *variable was overwritten due to queue overflow --> The check for queue size was wrong - did allow
+                                    more
+                                    entries than actually fit into the queue --> “<font color="#0000FF">queue size verification was
+                                        added</font>”
+                                    “name of non-existing file was sent to iOMS” --> “No check for file creation operation success
+                                    was
+                                    performed” --> “<font color="#0000FF">file creation operation result is verified before next
+                                        actions</font>”
+                                </td>
+                                <td colSpan="3" >{jsonobj.rcaformbase.correction_description}</td>
+                            </tr>
+                            <tr>
+                                <td colSpan="2"><font size="2px" >5. Injection type</font>
+                                    - New Feature
+                                    - Defective Correction
+                                    - Optimization / Refactoring
+                                    - Revealed Issue
+                                    - Legacy code
+
+                                    See Technical RCA guideline for detailed description:
+                                    https://sharenet-ims.inside.nokiasiemensnetworks.com/Overview/D492583158
+                                </td>
+                                <td colSpan="3" >{jsonobj.rcaformbase.injection_type.text}</td>
+                            </tr>
+                            <tr>
+                                <td colSpan="2"><font size="2px" >6. Injection time</font>
+                                    When the issue was merged (precise date) and first build containing the issue (e.g.
+                                    LN4.0_ENB_1202_476_42) +
+                                    following:
+                                    - For New Feature injection: Feature ID
+                                    - For Defective Correction injection: PR id
+                                    - For Legacy Code: latest file revision (date) which was checked to claim Legacy Code
+                                </td>
+                                <td colSpan="3">{jsonobj.rcaformbase.injection_time}</td>
+                            </tr>
+                            <tr>
+                                <td colSpan="2"><font size="2px">7.Additional Facts</font>
+                                    - Was the issue corrected in another branch and not propagated to the branch where the issue was
+                                    detected
+                                    and reported by Customer?
+                                    - Any other facts worth to be mentioned
+                                    If case of a doubt (should be mentioned or not) – please do add the information
+                                </td>
+                                <td colSpan="3" >{jsonobj.rcaformbase.additional_facts}</td>
+                            </tr>
+                            <tr>
+                                <td colSpan="2"><font size="2px">8.Inheritance Recommendation</font>
+                                    - Should the issue be requested for propagation in maintenance branches?
+                                    - Guidenace is to request inheritance for issues which might lead to an outage (e.g. rolling reboot,
+                                    sleeping cell, site unavailability, site visit is needed to repair after the fault occurence and
+                                    etc)
+                                </td>
+                                <td colSpan="3" >{jsonobj.rcaformbase.inheritance_recommendation}</td>
+                            </tr>
+                            <tr>
+                                <td colSpan="2"><font size="2px" >9. How many times R&D requested for Symptoms/Logs recollection
+                                    (number)?</font>
+                                </td>
+                                <td colSpan="3">{jsonobj.rcaformbase.how_many_times}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div className="stable">
+                        <table >
+                            <tr className="stitle"><td colSpan='14' ><p >RCA</p></td></tr>
+                            <tr><td className="summaryth" width="250px;">Why1</td><td className="summaryth" width="250px;">Why2</td><td className="summaryth" width="250px;">Why3</td><td className="summaryth" width="250px;">Why4</td><td className="summaryth" width="250px;">Why5</td><td className="summaryth" width="250px;">Root Cause</td><td className="summaryth"  width="250px;">Action Proposal</td><td  className="summaryth"  width="250px;">Root Cause Category</td><td className="summaryth"  width="250px;">Root Cause Subcategory</td><td className="summaryth"  width="250px;">RCA Action Type</td><td className="summaryth"  width="250px;"  >Assigned To</td><td className="summaryth"  width="250px;"  >Completion Target Date</td><td className='summarythgrade'  width="250px;">RCA Quality Grade</td><td className="summaryth" width="250px;"></td></tr>
+                            {this.renderTr(jsonobj.rcaformrootcause.why_was_the_fault_introduced)}
+                            {this.renderTr(jsonobj.rcaformrootcause.why_root_cause_was_not_found)}
+                            <tr className="stitle"><td colSpan='14' ><p >EDA-SCT</p></td></tr>
+                            <tr><td className="summaryth" width="250px;">Why1</td><td className="summaryth" width="250px;">Why2</td><td className="summaryth" width="250px;">Why3</td><td className="summaryth" width="250px;">Why4</td><td className="summaryth" width="250px;">Why5</td><td className="summaryth" width="250px;">Escape Cause</td><td className="summaryth"  width="250px;">Action Proposal</td><td  className="summaryth"  width="250px;">Escape Cause Category</td><td className="summaryth"  width="250px;">Escape Cause Subcategory</td><td className="summaryth"  width="250px;">EDA Action Type</td><td className="summaryth"  width="250px;"  >Assigned To</td><td className="summaryth"  width="250px;"  >Completion Target Date</td><td className='summarythgrade'  width="250px;">EDA Quality Grade</td><td className="summaryth" width="250px;"></td></tr>
+                            {this.renderTr2(jsonobj.rcaformescapedefect.why_not_requirements_review,false)}
+                            {this.renderTr2(jsonobj.rcaformescapedefect.why_not_design_review,false)}
+                            {this.renderTr2(jsonobj.rcaformescapedefect.why_not_analysis_tools,false)}
+                            {this.renderTr2(jsonobj.rcaformescapedefect.why_not_inspections,false)}
+                            {this.renderTr2(jsonobj.rcaformescapedefect.why_not_component_test,false)}
+                            <tr className="stitle"><td colSpan='14' ><p >EDA-ET</p></td></tr>
+                            <tr><td className="summaryth" width="250px;">Why1</td><td className="summaryth" width="250px;">Why2</td><td className="summaryth" width="250px;">Why3</td><td className="summaryth" width="250px;">Why4</td><td className="summaryth" width="250px;">Why5</td><td className="summaryth" width="250px;">Escape Cause</td><td className="summaryth"  width="250px;">Action Proposal</td><td  className="summaryth"  width="250px;">Escape Cause Category</td><td className="summaryth"  width="250px;">Escape Cause Subcategory</td><td className="summaryth"  width="250px;">EDA Action Type</td><td className="summaryth"  width="250px;"  >Assigned To</td><td className="summaryth"  width="250px;"  >Completion Target Date</td><td className="summaryth" width="250px;">Where Could Defect Have Been Detected</td><td className='summarythgrade'  width="250px;">EDA Quality Grade</td></tr>
+                            {this.renderTr2(jsonobj.rcaformescapedefect.why_not_entity_test,true)}
+                            {this.renderTr2(jsonobj.rcaformescapedefect.why_not_et_auto,true)}
+                            <tr className="stitle"><td colSpan='14' ><p >EDA-ST</p></td></tr>
+                            <tr><td className="summaryth" width="250px;">Why1</td><td className="summaryth" width="250px;">Why2</td><td className="summaryth" width="250px;">Why3</td><td className="summaryth" width="250px;">Why4</td><td className="summaryth" width="250px;">Why5</td><td className="summaryth" width="250px;">Escape Cause</td><td className="summaryth"  width="250px;">Action Proposal</td><td  className="summaryth"  width="250px;">Escape Cause Category</td><td className="summaryth"  width="250px;">Escape Cause Subcategory</td><td className="summaryth"  width="250px;">EDA Action Type</td><td className="summaryth"  width="250px;"  >Assigned To</td><td className="summaryth"  width="250px;"  >Completion Target Date</td><td className="summaryth" width="250px;">Where Could Defect Have Been Detected</td><td className='summarythgrade'  width="250px;">EDA Quality Grade</td></tr>
+                            {this.renderTr2(jsonobj.rcaformescapedefect.why_not_system_test,true)}
+                            {this.renderTr2(jsonobj.rcaformescapedefect.why_not_st_auto,true)}
+                        </table>
+                    </div>
+                </div>
+            );
+            return (returnobj);
+        }
+    }
+
+    class Versionhistory extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {
+                currentIndex: 0,
+                currentId: '',
+                currentJson: '',
+                historyVersion: [],
+                show:false,
+            }
+        }
+
+        componentDidMount() {
+            this.loadData();
+        }
+
+        render() {
+            const {currentId, currentJson, historyVersion, show} = this.state;
+            return (
+                <div >
+                    <input type="button" value="show" onClick={e=>this.showHis()}/>
+                    <div className={"history_bg " + ( show ? "" : "roothidden")}>
+                        <div className={"history_root"}>
+                            <div className={"history_body"} >
+                                <div className="history_left"><VersionSummary jsoncontent={currentJson}/></div>
+                                <div className="history_right">
+                                    <ul>
+                                        {
+                                            historyVersion.map((item, index) =>
+                                                <li key={item.vid}
+                                                    onClick={() => {
+                                                        this.clickHistoryItem(index)
+                                                    }}>
+                                                    <div className="li_uname">{item.uname}</div>
+                                                    <div className="li_time">{item.create_time}</div>
+                                                </li>
+                                            )
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                            <div className="history_bottom">
+                                <span className="history_bottom_btn history_bottom_left" onClick={()=>this.restore()}>Restore</span>
+                                <span className="history_bottom_btn history_bottom_right" onClick={()=>this.close()}>Close</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )
+        }
+        async loadData(){
+            console.log('loaddata');
+            const rstlist = await axios.get("http://127.0.0.1:9998/prontoweb/getHistoryVersion/" + CURRENTPRID);
+            this.setState({
+                historyVersion: rstlist.data.data
+            })
+        }
+        close(){
+            this.setState({
+                show: false
+            })
+        }
+        restore(){
+            console.log('restore');
+            this.close();
+        }
+        clickHistoryItem(index) {
+            console.log(index);
+            this.setState({
+                currentIndex: index,
+                currentId: this.state.historyVersion[index]["vid"],
+                currentJson: this.state.historyVersion[index]["json"]
+            });
+        }
+        showHis(){
+            this.loadData();
+            this.setState({
+                show: true,
+                currentIndex: 0,
+                currentId: this.state.historyVersion[0]["vid"],
+                currentJson: this.state.historyVersion[0]["json"]
+            })
+        }
+    }
+
+
+    ReactDOM.render(<Versionhistory/>, document.getElementById("versionhistorydiv"));
+
+</script>
+
+<style>
+    .history_bg{
+        position: fixed;
+        background-color: #c5c5c5;
+        left: 0px;
+        top: 0px;
+        box-shadow: 50px 50px 50px #888888;
+        width: 100%;
+        height: 100%;
+    }
+    .history_root {
+        display: inline-block;
+        margin: 0px 15px 0px 30px;
+        font-size: 20px;
+        border: 1px solid black;
+        left: 0px;
+        top: 39.9906px;
+        position: absolute;
+        background-color: rgb(204, 204, 204);
+        width: 96%;
+        height: 750px;
+        border-radius: 4px;
+        box-shadow: 5px 5px 5px #888888;
+    }
+
+    .roothidden{
+        display: none;
+    }
+    .history_body {
+        display: inline;
+    }
+
+    .history_left {
+        margin: 15px;
+        display: inline-block;
+        width: 76%;
+        height: 87%;
+        overflow-y: auto;
+    }
+
+    .history_right {
+        margin: 10px;
+        width: 20%;
+        display: inline-block;
+        height: 80%;
+        overflow-y: auto;
+        position: absolute;
+    }
+
+    .history_right ul {
+        margin: 0px;
+        padding: 0px;
+        position: absolute;
+        width: 100%;
+    }
+
+    .history_right ul li {
+        list-style-type: none;
+        cursor: pointer;
+        margin: 5px 0px;
+        background-color: aliceblue;
+        border-radius: 2px;
+        line-height: 35px;
+        padding: 3px;
+    }
+
+    .li_uname {
+        font-size: 22px;
+    }
+
+    .li_time {
+        font-size: 15px;
+    }
+
+    .history_bottom {
+        position: absolute;
+        height: 50px;
+        font-size: 20px;
+        bottom: 20px;
+        width: 100%;
+    }
+
+    .history_bottom_btn {
+        color: #FFFFFF;
+        background-color: #124191;
+        position: absolute;
+        height: 35px;
+        border-radius: 4px;
+        padding: 13px 15px 0px 15px;
+        text-align: center;
+        vertical-align: middle;
+        cursor: pointer;
+        box-shadow: 2px 2px 2px #888888;
+    }
+    .history_bottom_btn:hover{
+        background-color: #789;
+    }
+
+    .history_bottom_left {
+        left: 30%;
+    }
+    .history_bottom_right {
+        left: 50%;
+    }
+
+    .summarytable {
+        width : 2000px;
+    }
+    .summarytable table tr td{
+        border: 1px solid black;
+        padding: 2px;
+    }
+
+    .stable{
+        margin: 10px;width: auto;margin:0px;padding:0px;margin-right: 9px;width: 3500px;margin-bottom: 30px;
+    }
+    .str{
+        height: 30px;
+    }
+    .stc{
+        border: 1px solid black;
+    }
+    .stitle{
+        height: 30px;
+    }
+    .stitle td {
+        width: 100%;height: 30px;color: #FFFFFF;text-align: center;background-color: #194A95;
+    }
+    .stitle td p{
+        margin: 0px 0px 0px 20px;color: #FFFFFF;font-size: 22px;display: contents;
+    }
+    .summaryth {
+        background-color: #D0D9E9;
+        border: 1px solid black;
+    }
+
+    .summarythgrade {
+        background-color: #FFCC00;
+        border: 1px solid black;
+    }
+    .btnpanel{
+       background-color:#194A95;
+       alignment: left;
+       width: 30px;
+    }
+</style>
+
+
+
+
+

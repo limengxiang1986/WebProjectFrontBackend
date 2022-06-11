@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% block body %}
+<div style = "text-align:left;margin: 0px 50px 0px 50px;">
+<div class="">
+    <h2>All RCA/EDA Items: <b style="color:red;">{{count}}</b></h2> 
+    <table class="table table-hover">
+      <tr>
+		<th>PRID
+        <th>PRTitle
+		<th>PRSeverity
+		<th>JiraIssueId
+        <th>PRAttached
+		<th>JiraIssueType
+		<th>JiraIssueStatus
+		<th>JiraIssueOverDue
+		<th>JiraIssueOpenDays
+        <th>JiraIssueDueDate
+        <th>JiraIssueAssignee
+		<th>PRRcaEdaAssessor
+        <th>JiraIssueAssigneeSquadGroupLead
+
+      {%- for todo in todos %}
+      <tr style={{"text-decoration:blink;color:black;background-color:#f2dede;" if todo.JiraIssueOverDue=='Yes' else "text-decoration:blink;color:black;background-color:#dff0d8;"}}>
+        <!---<td><a href="http://rca-shark.int.nokia.com/todos/{{todo.PRID}}">{{ todo.PRID }}</a>--->
+        <td><a href="http://rca-shark.int.nokia.com/prontoweb_modify_fromexcelbyprid/{{ todo.PRID }},{{ todo.JiraIssueId}},3">{{ todo.PRID }}</a>
+		<td>{{ todo.PRTitle}}
+		<td>{{ todo.PRSeverity}}
+		<td><a href="https://jiradc.int.net.nokia.com/browse/{{todo.JiraIssueId}}">{{ todo.JiraIssueId}}</a>
+        <td>{{ todo.PRAttached}}
+        <td>{{ todo.JiraIssueType}}
+		<td>{{ todo.JiraIssueStatus}}
+        <td style={{"text-decoration:blink;color:black;background-color:red;" if todo.JiraIssueOverDue=='Yes' else "text-decoration:blink;color:black;background-color:green;"}}>{{todo.JiraIssueOverDue}}
+        <td>{{ todo.JiraIssueOpenDays}}
+        <td>{{ todo.JiraIssueDueDate}}
+        <td>{{ todo.JiraIssueAssignee}}
+        <td>{{ todo.PRRcaEdaAssessor}}
+        <td>{{ todo.JiraIssueAssigneeSquadGroupLead}}</td>
+      {%- endfor %}
+    </table>
+    <p>
+</div>
+  
+</div>
+{% endblock %}

@@ -1,0 +1,189 @@
+{% extends "layout.html" %}
+{% block body %}
+    <style>
+        .aptable {
+
+        }
+
+        .aptable tr {
+            height: 35px;
+        }
+
+        .aptable tr td:first-child {
+        }
+
+        .aptable tr td:last-child {
+        }
+    </style>
+    <form action="" method=post class="form-horizontal" style="margin-left: 100px;">
+        <h2>Edit AP or Update AP status: <input name='button' class="btn btn-large btn-primary" value='Delete'
+                                                type='SUBMIT'></h2>
+        <table class="aptable">
+            <p style="font-size: 20px;">Use this form to Edit your internal task and status( No More than 1024
+                chars,Only English,No Chinese):</p>
+            <tr>
+                <td style="width: 15%;"><h4>APID:</h4></td>
+                <td style="width: 35%;font-size: 18px;" >{{ todo.APID }}</td>
+                <td style="width: 11%;"><h4>PRID:</h4></td>
+                <td style="font-size: 18px;">{{ todo.PRID }}</td>
+            </tr>
+            <tr>
+                <td style="width: 15%;"><h4>ApJiraId:</h4></td>
+                <td style="width: 35%;font-size: 18px;" >{{ todo.ApJiraId }}</td>
+                <td><h4>APDescription:</h4></td>
+                <td style="font-size: 18px;">{{ todo.APDescription }}</td>
+            </tr>
+            <tr>
+                <td><h4>APCreatedDate:</h4></td>
+                <td style="font-size: 18px;">
+                    {{ todo.APCreatedDate }}
+                </td>
+                <td><h4>APDueDate:</h4></td>
+                <td style="font-size: 18px;">
+                    {{ todo.APDueDate }}
+                </td>
+            </tr>
+            <tr>
+                <td><h4>APCompletedOn:</h4></td>
+                <td style="font-size: 18px;">
+                    {{ todo.APCompletedOn }}
+                </td>
+                <td><h4>IsApCompleted:</h4></td>
+                <td style="font-size: 18px;">{{ todo.IsApCompleted }}</td>
+            </tr>
+            <tr>
+                <td><h4>APAssingnedTo:</h4></td>
+                <td style="font-size: 18px;">{{ todo.APAssingnedTo }}</td>
+                <td ><h4>QualityOwner:</h4></td>
+                <td style="font-size: 18px;">{{ todo.QualityOwner }}</td>
+            </tr>
+            <tr>
+                <td><h4>Evidence of completeness:</h4></td>
+                <td style="font-size: 18px;"><textarea type="text" name="Evidence" id="Evidence" value='' style="width: 400px;" rows="5">{{ todo.EvidenceOfCompleteness }}</textarea>
+                </td>
+            </tr>
+        </table>
+        <div class="control-group" style="">
+            <div class="controls" style="margin: 20px 0px 20px 0px;display: block;">
+                <input name='button' class="btn btn-success" value='TextEvidenceUpdate' type='SUBMIT'>
+                <a href="{{ url_for('uploadevidence') }}" class="btn btn-success"> UploadEvidence </a>
+                <!--<a href="{{ url_for('apindex') }}">Back to list</a>-->
+                <input name='button' class="btn btn-success" value='Close' onclick="closePage()" style="width: 50px;">
+            </div>
+        </div>
+    </form>
+
+
+    <script type="text/javascript">
+        $('#APCreatedDate').datetimepicker({
+            language: '',
+            autoclose: 1,
+            weekStart: 1,
+            minView: 2,
+            todayBtn: 1,
+            todayHighlight: 1,
+            keyboardNavigation: 1,
+            minuteStep: 6,
+            initialDate: new Date(),
+        });
+
+        $('#APDueDate').datetimepicker({
+            language: '',
+            autoclose: 1,
+            weekStart: 1,
+            minView: 2,
+            todayBtn: 1,
+            todayHighlight: 1,
+            keyboardNavigation: 1,
+            initialDate: new Date(),
+        });
+
+        $('#xx').datetimepicker({
+            language: '',
+            autoclose: 1,
+
+            weekStart: 1,
+            minView: 2,
+            todayBtn: 1,
+            todayHighlight: 1,
+            keyboardNavigation: 1,
+
+            initialDate: new Date(),
+        });
+
+
+        $('#sss').datetimepicker({
+            language: '',
+            autoclose: 1,
+            format: 'yyyy-MM-dd',
+            weekStart: 1,
+            minView: 2,
+            todayBtn: 1,
+            todayHighlight: 1,
+            keyboardNavigation: 1,
+            minuteStep: 6,
+            showMeridian: 1,
+            initialDate: new Date(),
+        });
+
+        function showSelect() {
+            var _t = document.getElementById('t');
+            var _s = document.getElementById('sel');
+            if (_t.style.display == '') {
+                _t.style.display = 'none';
+            } else {
+                _t.style.display = '';
+            }
+            if (_s.style.display == 'none') {
+                _s.style.display = '';
+            } else {
+                _s.style.display = 'none';
+            }
+        }
+
+        function showSelect1() {
+            var _t1 = document.getElementById('t1');
+            var _s1 = document.getElementById('sel1');
+            if (_t1.style.display == '') {
+                _t1.style.display = 'none';
+            } else {
+                _t1.style.display = '';
+            }
+            if (_s1.style.display == 'none') {
+                _s1.style.display = '';
+            } else {
+                _s1.style.display = 'none';
+            }
+        }
+
+        function showSelect2() {
+            var _t2 = document.getElementById('t2');
+            var _s2 = document.getElementById('sel2');
+            if (_t2.style.display == '') {
+                _t2.style.display = 'none';
+            } else {
+                _t2.style.display = '';
+            }
+            if (_s2.style.display == 'none') {
+                _s2.style.display = '';
+            } else {
+                _s2.style.display = 'none';
+            }
+        }
+
+        function showSelect3() {
+            var _t3 = document.getElementById('t3');
+            var _s3 = document.getElementById('sel3');
+            if (_t3.style.display == '') {
+                _t3.style.display = 'none';
+            } else {
+                _t3.style.display = '';
+            }
+            if (_s3.style.display == 'none') {
+                _s3.style.display = '';
+            } else {
+                _s3.style.display = 'none';
+            }
+        }
+    </script>
+{% endblock %}
